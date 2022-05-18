@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="若再许我少年时，一两黄金一两风">
@@ -76,6 +76,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -160,6 +161,115 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://coder-xieshijie.cn/2022/05/18/%E8%BF%99%E6%98%AF%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="谢世杰">
+      <meta itemprop="description" content="若再许我少年时，一两黄金一两风">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="coder.谢世杰">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/18/%E8%BF%99%E6%98%AF%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="post-title-link" itemprop="url">这是我的第一篇文章</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-18 19:48:50 / 修改时间：20:03:34" itemprop="dateCreated datePublished" datetime="2022-05-18T19:48:50+08:00">2022-05-18</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>431</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>索引和数据，都是存放在磁盘。读取的时候，优先把索引加载到内存中的</li>
+<li>引擎存放数据的方式是不一样的<ol>
+<li>innodb，数据和索引放在同一个文件中</li>
+<li>myisam，数据和索引是分开放在不同文件的</li>
+</ol>
+</li>
+<li>mysql的数据存储格式是B+树，为什么<ol>
+<li>目前的数据读取速度瓶颈就是IO</li>
+<li>因此需要 1.减少IO数量，2.减少IO次数</li>
+<li>可选方案：<ol>
+<li>hash表，1.需要好的hash算法、2.存储内容无序，范围查找需要遍历</li>
+<li>二叉树，BST，AVL树，黑红树。缺点是数据量大的时候，树会很高。树深了就会导致IO次数</li>
+<li><img src="/Users/xieshijie/github/Blog/source/img/image-20220312130335401.png" alt="image-20220312130335401"></li>
+<li>B树，磁盘中存放这索引和数据，数据占据了磁盘的大部分空间，假如一行数据1k，一个磁盘块就是16行，那么三层的B树就是16*16*16（每一个节点都有16个孩子）&#x3D;4096</li>
+<li><img src="/Users/xieshijie/github/Blog/source/img/image-20220312131049289.png" alt="image-20220312131049289"></li>
+<li>B+树，磁盘中只存放索引</li>
+<li><img src="/Users/xieshijie/github/Blog/source/img/image-20220312132414112.png" alt="image-20220312132414112"></li>
+<li></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>操作系统<ol>
+<li>局部性原理<ol>
+<li>之前被访问的数据可能被再次访问</li>
+<li>数据和程序都有聚集成群的倾向</li>
+</ol>
+</li>
+<li>磁盘预读<ol>
+<li>内存和磁盘交互存在最小的逻辑单位，页 (4K或者8K)</li>
+<li>INNODB引擎进行数据加载的时候，读取是16K (4页或者2页)</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -312,7 +422,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -349,7 +459,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">0k</span>
+    <span title="站点总字数">1k</span>
 
 
 
