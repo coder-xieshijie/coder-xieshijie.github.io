@@ -1,0 +1,1091 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ognl语言介绍和使用实践">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ognl语言介绍和使用实践">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/08/07/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/ognl%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="ognl语言介绍和使用实践">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691488319-75255fb7c64f74c6cae09bdb2fc5d212.jpg">
+<meta property="article:published_time" content="2023-08-07T09:53:39.000Z">
+<meta property="article:modified_time" content="2023-08-07T09:53:39.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="问题定位">
+<meta property="article:tag" content="ognl">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691488319-75255fb7c64f74c6cae09bdb2fc5d212.jpg">
+  
+  
+  
+  <title>ognl语言介绍和使用实践 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ognl语言介绍和使用实践"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-07 17:53" pubdate>
+          2023年8月7日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          64 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="其他技能"
+        id="heading-9e18fb2754b05ed1d4a0bc5699e6df2e" role="tab" data-toggle="collapse" href="#collapse-9e18fb2754b05ed1d4a0bc5699e6df2e"
+        aria-expanded="true"
+      >
+        其他技能
+        <span class="list-group-count">(11)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-9e18fb2754b05ed1d4a0bc5699e6df2e"
+           role="tabpanel" aria-labelledby="heading-9e18fb2754b05ed1d4a0bc5699e6df2e">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/11/18/%E9%9A%8F%E7%AC%94/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%85%B7%E7%82%AB%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="从零开始搭建一个酷炫的个人博客"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">从零开始搭建一个酷炫的个人博客</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/01/06/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E8%BD%AE%E5%AD%90-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/" title="好用的工具轮子(持续更新~)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">好用的工具轮子(持续更新~)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/05/18/%E9%9A%8F%E7%AC%94/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E6%90%AD%E5%BB%BAdemo/" title="搭建demo"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">搭建demo</span>
+        </a>
+      
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="工具"
+        id="heading-20dce2c6fa909a5cd62526615fe2788a" role="tab" data-toggle="collapse" href="#collapse-20dce2c6fa909a5cd62526615fe2788a"
+        aria-expanded="false"
+      >
+        工具
+        <span class="list-group-count">(3)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-20dce2c6fa909a5cd62526615fe2788a"
+           role="tabpanel" aria-labelledby="heading-20dce2c6fa909a5cd62526615fe2788a">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/06/07/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/MAC%E5%BA%94%E7%94%A8%E3%80%81%E5%B7%A5%E5%85%B7%E7%BD%91%E7%AB%99%E3%80%81%E6%8F%92%E4%BB%B6%E5%A4%A7%E5%90%88%E9%9B%86/" title="MAC应用、工具网站、插件大合集"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MAC应用、工具网站、插件大合集</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/10/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/iterm2-oh-my-zsh-%E6%89%93%E9%80%A0%E8%88%92%E9%80%82%E7%BB%88%E7%AB%AF%E4%BD%93%E9%AA%8C/" title="iterm2 + oh my zsh 打造舒适终端体验"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">iterm2 + oh my zsh 打造舒适终端体验</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/09/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/%E6%89%93%E9%80%A0%E9%AB%98%E6%95%88Mac%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/" title="打造高效Mac工作环境"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">打造高效Mac工作环境</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="工具激活"
+        id="heading-e702699c0068ac7fadd48ed78621f8f4" role="tab" data-toggle="collapse" href="#collapse-e702699c0068ac7fadd48ed78621f8f4"
+        aria-expanded="false"
+      >
+        工具激活
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-e702699c0068ac7fadd48ed78621f8f4"
+           role="tabpanel" aria-labelledby="heading-e702699c0068ac7fadd48ed78621f8f4">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/12/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/idea%E6%BF%80%E6%B4%BB/" title="idea激活"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">idea激活</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="文档能力"
+        id="heading-968c07411b8b5394a61c4576bb772af5" role="tab" data-toggle="collapse" href="#collapse-968c07411b8b5394a61c4576bb772af5"
+        aria-expanded="false"
+      >
+        文档能力
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-968c07411b8b5394a61c4576bb772af5"
+           role="tabpanel" aria-labelledby="heading-968c07411b8b5394a61c4576bb772af5">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/06/26/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E6%96%87%E6%A1%A3%E8%83%BD%E5%8A%9B/UML%E7%B1%BB%E5%9B%BE/" title="UML类图"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">UML类图</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="智力测验"
+        id="heading-f02fc4d4c7506022c080ab13911f21b0" role="tab" data-toggle="collapse" href="#collapse-f02fc4d4c7506022c080ab13911f21b0"
+        aria-expanded="false"
+      >
+        智力测验
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-f02fc4d4c7506022c080ab13911f21b0"
+           role="tabpanel" aria-labelledby="heading-f02fc4d4c7506022c080ab13911f21b0">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/13/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E6%99%BA%E5%8A%9B%E6%B5%8B%E9%AA%8C%E9%A2%98/" title="智力测验题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">智力测验题</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="问题定位"
+        id="heading-4e091815b2fd7619cc3e78258dd1d894" role="tab" data-toggle="collapse" href="#collapse-4e091815b2fd7619cc3e78258dd1d894"
+        aria-expanded="true"
+      >
+        问题定位
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4e091815b2fd7619cc3e78258dd1d894"
+           role="tabpanel" aria-labelledby="heading-4e091815b2fd7619cc3e78258dd1d894">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/06/01/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/arthas%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="arthas使用指南"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">arthas使用指南</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/07/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/ognl%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8%E5%AE%9E%E8%B7%B5/" title="ognl语言介绍和使用实践"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">ognl语言介绍和使用实践</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ognl语言介绍和使用实践</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="OGNL-的历史"><a href="#OGNL-的历史" class="headerlink" title="OGNL 的历史"></a>OGNL 的历史</h2><p>OGNL 最初是为了能够使用对象的属性名来建立 UI 组件 (component) 和 控制器 (controllers) 之间的联系，简单来说就是：视图 与 控制器 之间数据的联系。后来为了应付更加复杂的数据关系，Drew Davidson 发明了一个被他称为 KVCL(Key-Value Coding Language) 的语言。 Luke 参与进来后，用 ANTLR 来实现了该语言，并给它取了这个新名字，他后来又使用 JavaCC 重新实现了该语言。目前 OGNL 由 Drew 来负责维护。目前很多项目中都用到了 OGNL，其中不乏为大家所熟知的，例如几个流行的 web 应用框架：WebWork，Tapestry 等。</p>
+<h2 id="什么是-OGNL？"><a href="#什么是-OGNL？" class="headerlink" title="什么是 OGNL？"></a>什么是 OGNL？</h2><p>OGNL 是 Object-Graph Navigation Language 的缩写，从语言角度来说：它是一个功能强大的表达式语言，用来获取和设置 java 对象的属性 , 它旨在提供一个更高抽象度语法来对 java 对象图进行导航，OGNL 在许多的地方都有应用，例如：</p>
+<ol>
+<li>作为 GUI 元素（textfield,combobox, 等）到模型对象的绑定语言。</li>
+<li>数据库表到 Swing 的 TableModel 的数据源语言。</li>
+<li>web 组件和后台 Model 对象的绑定语言 (WebOGNL,Tapestry,WebWork,WebObjects) 。</li>
+<li>作为 Jakarata Commons BeanUtils 或者 JSTL 的表达式语言的一个更具表达力的替代语言。</li>
+</ol>
+<p>另外，java 中很多可以做的事情，也可以使用 OGNL 来完成，例如：列表映射和选择。 对于开发者来说，使用 OGNL，可以用简洁的语法来完成对 java 对象的导航。通常来说： 通过一个”路径”来完成对象信息的导航，这个”路径”可以是到 java bean 的某个属性，或者集合中的某个索引的对象，等等，而不是直接使用 get 或者 set 方法来完成。</p>
+<h2 id="为什么需要表达式语言-EL"><a href="#为什么需要表达式语言-EL" class="headerlink" title="为什么需要表达式语言 (EL)"></a>为什么需要表达式语言 (EL)</h2><p>表达式语言（EL）本质上被设计为：帮助你使用简单的表达式来完成一些”常用”的工作。通常情况下，ELs 可以在一些框架中找到，它被是用来简化我们的工作。例如：大家熟知的 Hibernate，使用 HQL(Hibernate Query Language) 来完成数据库的操作，HQL 成了开发人员与复查的 SQL 表达式之间的一个桥梁。 在 web 框架下，表达式语言起到了相似的目的。它的存在消除了重复代码的书写。例如：当没有 EL 的时候，为了从 session 中得到购物车并且将 ID 在网页上呈现出来，当直接在 jsp 中使用 java 代码来完成的时候，一般是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plain">&lt;%<br>    ShoppingCart cart = (ShoppingCart) session.get(&quot;cart&quot;);<br>    int id = cart.getId();<br>    %&gt;<br>    &lt;%= id%&gt;<br></code></pre></td></tr></table></figure>
+
+<p>你也可以将这些 code 压缩成一句，如下，但是现在代码就很不直观，且不可读。另外，虽然变成了一句，但是与上面的原始的例子一样，也包含了同样的表达式。例如：类型转换：转换成 ShoppingCart 。这里只不过是将原来的三个表达式变成了一句，其复杂度是没有得到简化的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">&lt;%= ((ShoppingCart) session.get(&quot;cart&quot;)).getId() %&gt;<br></code></pre></td></tr></table></figure>
+
+<p>当在 web 框架中使用表达式语言的时候，则可以有效的处理这种代码的复杂性。而不需要你，调用 servelet API，类型转换，然后再调用 getter 方法，多数的 Els 都可将这个过程简化为类似于：#session.cart.id 这中更可读的表达式。 表达式：#session.cart.id 与 java 代码不一样的是：没有 java 代码的 get 方法调用和类型转换。因为这些操作是非常”常用”的，这时候使用 EL 就顺理成章了，使用 EL 可以”消除”这些代码。</p>
+<h2 id="OGNL-的基本语法"><a href="#OGNL-的基本语法" class="headerlink" title="OGNL 的基本语法"></a>OGNL 的基本语法</h2><p>OGNL 表达式一般都很简单。虽然 OGNL 语言本身已经变得更加丰富了也更强大了，但是一般来说那些比较复杂的语言特性并未影响到 OGNL 的简洁：简单的部分还是依然那么简单。比如要获取一个对象的 name 属性，OGNL 表达式就是 name, 要获取一个对象的 headline 属性的 text 属性，OGNL 表达式就是 headline.text 。 OGNL 表达式的基本单位是”导航链”，往往简称为”链”。最简单的链包含如下部分：</p>
+<p>表达式组成部分示例属性名称如上述示例中的 name 和 headline.text方法调用hashCode() 返回当前对象的哈希码。数组元素listeners[0] 返回当前对象的监听器列表中的第一个元素。</p>
+<p>所有的 OGNL 表达式都基于当前对象的上下文来完成求值运算，链的前面部分的结果将作为后面求值的上下文。你的链可以写得很长，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">name.toCharArray()[0].numericValue.toString()<br></code></pre></td></tr></table></figure>
+
+<p>上面的表达式的求值步骤：</p>
+<ul>
+<li>提取根 (root) 对象的 name 属性。</li>
+<li>调用上一步返回的结果字符串的 toCharArray() 方法。</li>
+<li>提取返回的结果数组的第一个字符。</li>
+<li>获取字符的 numericValue 属性，该字符是一个 Character 对象，Character 类有一个 getNumericValue() 方法。</li>
+<li>调用结果 Integer 对象的 toString() 方法。</li>
+</ul>
+<p>上面的例子只是用来得到一个对象的值，OGNL 也可以用来去设置对象的值。当把上面的表达式传入 Ognl.setValue() 方法将导致 InappropriateExpressionException，因为链的最后的部分（ <code>toString()</code> ）既不是一个属性的名字也不是数组的某个元素。 了解了上面的语法基本上可以完成绝大部分工作了。</p>
+<h2 id="如何使用-OGNL"><a href="#如何使用-OGNL" class="headerlink" title="如何使用 OGNL"></a>如何使用 OGNL</h2><p>OGNL 不仅能够去获取或者设置对象的属性，而也可以用来：完成实例方法的调用，静态方法的调用，表达式求值，Lambda 表达式等，下面我们看看如何使用 OGNL 来完成这些任务。</p>
+<h3 id="ognl-Ognl-类"><a href="#ognl-Ognl-类" class="headerlink" title="ognl.Ognl 类"></a><code>ognl.Ognl</code> 类</h3><p>最简单的使用是直接使用 ognl.Ognl 类来评估一个 OGNL 表达式。 Ognl 类提供一些静态方法用来解析和解释 OGNL 表达式，最简单的示例是不使用上下文从一个对象中获取某个表达式的值，示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs plain">import ognl.Ognl; <br>import ognl.OgnlException;<br><br>	try &#123;<br>		result = Ognl.getValue(expression, root);<br>	&#125;<br>	catch (OgnlException ex)<br>	&#123;   <br>		// Report error or recover   <br>	&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上述代码将基于 root 对象评估 expression，返回结果，如果表达式有错，比如没有找到指定的属性，将抛出 OgnlException 。 更复杂一点的应用是使用预解析的表达式。这种方式允许在表达式求值之前就能捕获表达式的解析错误，应用开发人员可以缓存表达式解析出来的结果（AST），从而能在重复使用的时候提高性能。 Ognl 的 parseExpression 方法就是用来执行预解析操作的。 Ognl 2.7 版本后由于添加了” Expression Compilation ”性能得到了质的提高，在后面章节会有介绍。 Ognl 类的获取和设置方法也可以接受一个 context map 参数，他允许你放一些自己的变量，并能在 Ognl 表达式中使用。缺省的上下文里只包含 #root 和 #context 两个键。下面的示例展示如何从 root 对象中解析出 documentName 属性，然后将当前用户名称添加到返回的结果后面：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs plain">private Map context = new HashMap();<br>public void setUserName(String value)<br>&#123;<br>      context.put(&quot;userName&quot;, value);<br>&#125;<br>try &#123;<br>     // get value using our own custom context map<br>     result = Ognl.getValue(&quot;userName&quot;&quot;, context, root);<br>&#125; catch (OgnlException ex) &#123;<br>      // Report error or recover<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上面提到的 #root 变量指向的就是当前的 root 变量（表达式求值的初始对象（initial object））, 而 #context 就是指向的 Map 对象，下面的例子可以更直观的说明</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs plain">User root = new User();<br>  root.setId(19612);<br>  root.setName(&quot;sakura&quot;);<br>  Map context = new HashMap();<br>  context.put(&quot;who&quot;, &quot;Who am i?&quot;);<br>  try &#123;<br>    String who1 = (String)Ognl.getValue(&quot;#who&quot;, context, root);<br>    String who2 = (String)Ognl.getValue(&quot;#context.who&quot;, context, root);<br>      Object whoExp = Ognl.parseExpression(&quot;#who&quot;);<br>    String who3 = (String)Ognl.getValue(whoExp, context, root);<br>    //who1 who2 who3 返回同样的值， whoExp 重复使用可以提高效率<br>    String name1 = (String)Ognl.getValue(&quot;name&quot;, root);<br>    String name2 = (String)Ognl.getValue(&quot;#root.name&quot;, root);<br>    //name1 name2 返回同样的值<br>  &#125; catch (OgnlException e) &#123;<br>    //error handling<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="OGNL-表达式"><a href="#OGNL-表达式" class="headerlink" title="OGNL 表达式"></a>OGNL 表达式</h3><ol>
+<li>常量： 字符串：” ello” 字符：’h’ 数字：除了像 java 的内置类型 int,long,float 和 double,Ognl 还有如例：10.01B，相当于 java.math.BigDecimal，使用 ‘b’ 或者 ‘B’ 后缀。 100000H，相当于 java.math.BigInteger，使用 ‘h’ 或 ‘H’ 后缀。</li>
+<li>属性的引用 例如：user.name</li>
+<li>变量的引用 例如：#name</li>
+<li>静态变量的访问 使用 @class@field</li>
+<li>静态方法的调用 使用 @class@method(args), 如果没有指定 class 那么默认就使用 java.lang.Math.</li>
+<li>构造函数的调用 例如：new java.util.ArrayList();</li>
+</ol>
+<p>其它的 Ognl 的表达式可以参考 Ognl 的语言手册。</p>
+<h3 id="OGNL-的基本用法"><a href="#OGNL-的基本用法" class="headerlink" title="OGNL 的基本用法"></a>OGNL 的基本用法</h3><p>OGNL 的 API，前面我们已经介绍过了，OGNL 的一个主要功能就是对象图的导航，我们看一下 OGNL 的最基本的用去取值和设置的 API。</p>
+<h5 id="getValue"><a href="#getValue" class="headerlink" title="getValue"></a>getValue</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs plain">public static java.lang.Object getValue(java.lang.String expression,<br>                                            java.util.Map context,<br>                                            java.lang.Object root,<br>                                            java.lang.Class resultType)<br>                                     throws OgnlException<br>     Evaluates the given OGNL expression to extract a value<br>      from the given root object in a given context<br>     Parameters:<br>     expression - the OGNL expression to be parsed<br>     context - the naming context for the evaluation<br>     root - the root object for the OGNL expression<br>     resultType - the converted type of the resultant object,<br>                 using the context&#x27;s type converter<br>     Returns:<br>     the result of evaluating the expression<br></code></pre></td></tr></table></figure>
+
+<h5 id="setValue"><a href="#setValue" class="headerlink" title="setValue"></a>setValue</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs plain">public static void setValue(java.lang.String expression,<br>                                 java.util.Map context,<br>                                 java.lang.Object root,<br>                                 java.lang.Object value)<br>                          throws OgnlException<br>     Evaluates the given OGNL expression to insert a value into the<br>     object graph rooted at the given root object given the context.<br>     Parameters:<br>     expression - the OGNL expression to be parsed<br>     root - the root object for the OGNL expression<br>     context - the naming context for the evaluation<br>     value - the value to insert into the object graph<br></code></pre></td></tr></table></figure>
+
+<p>OGNL 的 API 设计得是很简单的，context 提供上下文，为变量和表达式的求值过程来提供命名空间，存储变量 等，通过 root 来指定对象图遍历的初始变量，使用 expression 来告诉 Ognl 如何完成运算。看看下面两个简单的代码片段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs plain">User user1 = new User();<br>user1.setId(1);<br>user1.setName(&quot;firer&quot;);<br>User user2 = new User();<br>user2.setId(2);<br>user2.setName(&quot;firer2&quot;);<br>List users = new ArrayList();<br>users.add(user1);<br>users.add(user2);<br>Department dep = new Department();<br>dep.setUsers(users);<br>dep.setName(&quot;dep&quot;);<br>dep.setId(11);<br>Object o = Ognl.getValue(&quot;users[1].name&quot;, dep);<br></code></pre></td></tr></table></figure>
+
+<p>这里我们可以看到前面介绍的使用表达式语言的有点，使用 “users[1].name”，就能完成对 name 的取值，而不用去进行类型转换等工作。下面是一个简单的设值的例子。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plain">User user = new User();<br>user.setId(1);<br>user.setName(&quot;ffirer&quot;);<br>Ognl.setValue(&quot;department.name&quot;, user, &quot;dep1&quot;);<br></code></pre></td></tr></table></figure>
+
+<p>就想前面介绍的，Ognl 也可以完成一些其它的工作，一个例子就是在我们的日常工作中，我们经常需要从列表中去”搜索”符合我们要求的对象，使用 java 的时候我们需要对列表进行遍历、类型转换、取值然后比较来得到我们想要的值，而使用 Ognl 将使这个过程变得简单，优雅。代码片段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs plain">User user1 = new User();<br>user1.setId(1);<br>user1.setName(&quot;firer&quot;);<br>// 如上例创建一些 User<br>List users = new ArrayList();<br>users.add(user1);<br>// 将创建的 User 添加到 List 中<br>Department dep = new Department();<br>dep.setUsers(users);<br>List names = (List)Ognl.getValue(&quot;users.&#123;name&#125;&quot;, dep);<br>List ids = (List)Ognl.getValue(&quot;users.&#123;? #this.id &gt; 1&#125;&quot;, dep);<br></code></pre></td></tr></table></figure>
+
+<p>这里表达式 “users.{name}” 将取得列表中所有 Users 的 name 属性，并以另外一个列表返回。 “users.{? #this.id &gt; 1}” 将返回所有 id 大于 1 的 User，也以一个列表返回，包含了所有的 User 对象。这里使用的是 Ognl 的”列表投影”操作，叫这个名字是因为比较像数据库中返回某些列的操作。 Ognl 还有很多其它功能，在 Ognl 的 SVN 的 testcase 中找到如何使用它们。</p>
+<h2 id="OGNL-的性能"><a href="#OGNL-的性能" class="headerlink" title="OGNL 的性能"></a>OGNL 的性能</h2><p>OGNL，或者说表达式语言的性能主要又两方面来决定，一个就是对表达式的解析 (Parser)，另一个是表达式的执行，OGNL 采用 javaCC 来完成 parser 的实现，在 OGNL 2.7 中又对 OGNL 的执行部分进行了加强，使用 javasisit 来 JIT(Just-In-Time) 的生成 byte code 来完成表达式的执行。 Ognl 给这个功能的名字是：OGNL Expression Compilation 。 基本的使用方法是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plain">SimpleObject root = new SimpleObject();<br>OgnlContext context =  (OgnlContext) Ognl.createDefaultContext(null);<br><br>Node node =  (Node) Ognl.compileExpression(context, root, &quot;user.name&quot;);<br>String userName = （String）node.getAccessor().get(context, root);<br></code></pre></td></tr></table></figure>
+
+<p>那么使用 Expression Compilation 能给 Ognl 的性能带来什么了？ 一个性能方面的简单测试：对比了 4 中情况：分别是：直接 Java 调用 (1), OGNL 缓存使用 expression compilation (2), OGNL 缓存使用 OGNL expression parsed（3） 以及不使用任何缓存的结果（4）。</p>
+<h5 id="图-1-性能对比"><a href="#图-1-性能对比" class="headerlink" title="图 1. 性能对比"></a>图 1. 性能对比</h5><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691488319-75255fb7c64f74c6cae09bdb2fc5d212.jpg" srcset="/img/loading.gif" lazyload alt="性能对比"></p>
+<p>可以看到 expression compilation 非常接近使用 java 调用的时间，所以可以看到当表达式要被多次使用，使用 expression compilation 并且已经做好了缓存的情况下，OGNL 非常接近 java 直接调用的时间。</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>本文介绍了 OGNL 的概念、表达式语法以及如何使用 OGNL， 并提供了一些简单的示例代码，OGNL 在实际应用中还可以对其进行扩展，在本文中并为涉及， 感兴趣的读者可以进一步进行相关的学习和研究</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/" class="category-chain-item">其他技能</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/" class="category-chain-item">问题定位</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/">#问题定位</a>
+      
+        <a href="/tags/ognl/">#ognl</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ognl语言介绍和使用实践</div>
+      <div>http://coder-xieshijie.cn/2023/08/07/其他技能/问题定位/ognl语言介绍和使用实践/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/08/Spring/spel%E4%BD%BF%E7%94%A8%E5%AE%9E%E8%B7%B5/" title="spel使用实践">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">spel使用实践</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/06/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis%E5%92%8Cmysql%E7%9A%84%E5%8F%8C%E5%86%99%E9%97%AE%E9%A2%98/" title="redis和mysql的双写问题">
+                        <span class="hidden-mobile">redis和mysql的双写问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

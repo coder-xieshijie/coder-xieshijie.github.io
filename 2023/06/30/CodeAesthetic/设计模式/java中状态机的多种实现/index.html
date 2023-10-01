@@ -1,0 +1,978 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="java中状态机的多种实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java中状态机的多种实现">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/06/30/CodeAesthetic/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java%E4%B8%AD%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E5%A4%9A%E7%A7%8D%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="java中状态机的多种实现">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-30T06:30:26.000Z">
+<meta property="article:modified_time" content="2023-06-30T06:30:26.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="CodeAesthetic">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>java中状态机的多种实现 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="java中状态机的多种实现"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-30 14:30" pubdate>
+          2023年6月30日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="CodeAesthetic"
+        id="heading-f6d869b3eda521c42a134eb666b34d2e" role="tab" data-toggle="collapse" href="#collapse-f6d869b3eda521c42a134eb666b34d2e"
+        aria-expanded="true"
+      >
+        CodeAesthetic
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-f6d869b3eda521c42a134eb666b34d2e"
+           role="tabpanel" aria-labelledby="heading-f6d869b3eda521c42a134eb666b34d2e">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="代码重构"
+        id="heading-e9af5bdb40ae4e5dcd58966047c7b21b" role="tab" data-toggle="collapse" href="#collapse-e9af5bdb40ae4e5dcd58966047c7b21b"
+        aria-expanded="false"
+      >
+        代码重构
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-e9af5bdb40ae4e5dcd58966047c7b21b"
+           role="tabpanel" aria-labelledby="heading-e9af5bdb40ae4e5dcd58966047c7b21b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/06/12/CodeAesthetic/%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84/%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84%E6%8A%80%E5%B7%A7-from-kstack/" title="代码重构技巧(from kstack)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">代码重构技巧(from kstack)</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="设计模式"
+        id="heading-301a19970448f8e4f27ddae7a7d415fe" role="tab" data-toggle="collapse" href="#collapse-301a19970448f8e4f27ddae7a7d415fe"
+        aria-expanded="true"
+      >
+        设计模式
+        <span class="list-group-count">(3)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-301a19970448f8e4f27ddae7a7d415fe"
+           role="tabpanel" aria-labelledby="heading-301a19970448f8e4f27ddae7a7d415fe">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/06/30/CodeAesthetic/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/java%E4%B8%AD%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E5%A4%9A%E7%A7%8D%E5%AE%9E%E7%8E%B0/" title="java中状态机的多种实现"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">java中状态机的多种实现</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/12/CodeAesthetic/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%B6%88%E7%81%ADif-else-%E6%A8%A1%E6%9D%BF-%E7%AD%96%E7%95%A5-%E5%B7%A5%E5%8E%82/" title="消灭if-else (模板+策略+工厂)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">消灭if-else (模板+策略+工厂)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/27/CodeAesthetic/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%8A%B6%E6%80%81%E6%9C%BA-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/" title="状态机/状态模式"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">状态机/状态模式</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">java中状态机的多种实现</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在java后端项目的开发过程中，经常会碰到需要进行状态转换的场景，比如订单的状态、任务的状态等等，通常会使用枚举对状态进行定义，并在需要时更改其枚举值。</p>
+<p>但是在一些比较复杂的场景下，例如状态数大于等于5个，或者大状态拥有子状态的场景（如订单【交易中】的状态包含【待发货】【已发货】等子状态），再直接通过修改枚举值的方式已经难以进行维护，且会导致状态变更的代码在项目中散布，不仅在实现上不够优雅，而且在需要添加或者修改状态时牵一发而动全身。因此，我们需要有一种技术手段，来对状态进行统一管理，以及收束变更状态的代码入口。</p>
+<p><strong>有限状态机（Finite State Machine, FSM）就是用来干这个事的！</strong></p>
+<p>该文是一个系列文章，本章先介绍基本概念及其简单实现</p>
+<h1 id="什么是有限状态机"><a href="#什么是有限状态机" class="headerlink" title="什么是有限状态机"></a>什么是有限状态机</h1><p>引用参考文档1的说明</p>
+<blockquote>
+<p><em>A <em><strong>Finite State Machine</strong></em> is a model of computation based on a hypothetical machine made of one or more states. Only one single state of this machine can be active at the same time. It means the machine has to transition from one state to another in to perform different actions.</em></p>
+</blockquote>
+<p>状态机就是包含多个状态的数学模型，并可以在状态之间进行变换并且触发一些动作。</p>
+<p>一个状态机一般包含以下几个元素</p>
+<ol>
+<li><code>State</code> 当前状态</li>
+<li><code>Event</code> 触发事件</li>
+<li><code>Transition</code> 状态变换，或者说下一个状态(次态)</li>
+<li><code>Action</code> 要执行的动作</li>
+</ol>
+<blockquote>
+<p>在一些文章中，会将触发事件和执行动作的名称互换，这里笔者采用开源状态机 <code>Squirrel</code> 的定义</p>
+</blockquote>
+<p>即在一个状态下，某些事件触发后变换成了另一个状态，并执行了一些操作</p>
+<h1 id="如何实现一个简单的状态机"><a href="#如何实现一个简单的状态机" class="headerlink" title="如何实现一个简单的状态机"></a>如何实现一个简单的状态机</h1><p>这里根据多篇参考文档，总结以下四种实现方式并进行简述，具体的实现代码可以查看参考文档2</p>
+<h2 id="1-switch-case"><a href="#1-switch-case" class="headerlink" title="1. switch...case"></a>1. <code>switch...case</code></h2><ul>
+<li>保存当前状态</li>
+<li>状态变更时传入变更事件event, 先通过<code>if...else</code> 判断是哪个事件，再对当前事件 <code>event</code> 进行 <code>switch...case</code> 确定要执行的操作</li>
+<li>进入下一个状态，并执行 <code>action</code></li>
+</ul>
+<p>简单代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StateMachine</span> &#123;<br>    <span class="hljs-comment">// 当前状态</span><br>    <span class="hljs-keyword">private</span> State currState;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">StateMachine</span><span class="hljs-params">(State initState)</span> &#123;<br>        <span class="hljs-built_in">this</span>.currState = initState;<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">transist</span><span class="hljs-params">(Event event)</span> &#123;<br>        <span class="hljs-keyword">if</span> (当前是状态<span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">switch</span> (event) &#123;<br>                <span class="hljs-keyword">case</span> 事件<span class="hljs-number">1</span>:<br>                    <span class="hljs-comment">// 设置下一个状态</span><br>                    <span class="hljs-comment">// 执行action</span><br>                <span class="hljs-keyword">case</span> 事件<span class="hljs-number">2</span>:<br>                  ...<br>            &#125;<br>        &#125;<br>        <br>        <span class="hljs-comment">// ......</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<p>该种方法实现是最简单的实现方法，在状态数量较少时，这是一个很高效的实现方案。但是在较复杂的状态下，会导致嵌套大量的 <code>if...else</code> 和 <code>switch...case</code> 语句，维护起来费劲而且实现不够优雅。</p>
+<h2 id="2-状态模式-State-Design-Pattern"><a href="#2-状态模式-State-Design-Pattern" class="headerlink" title="2. 状态模式 (State Design Pattern)"></a>2. 状态模式 (<code>State Design Pattern</code>)</h2><p>原始定义如下</p>
+<blockquote>
+<p>Allow an object to alter its behavior when its internal state changes.The object will appear to change its class.</p>
+</blockquote>
+<p>采用参考文档4的翻译对其进行解释</p>
+<blockquote>
+<p>外部的调用不用知道其内部如何实现状态和行为变化的</p>
+</blockquote>
+<p>状态模式主要就是对转换规则进行封装，封装状态而暴露行为，状态的改变看起来就是行为发生改变，总结起来，状态模式干了这么几件事</p>
+<ul>
+<li><p>需要定义状态抽象类 <code>AbstractState</code>，其中需要包含上下文 <code>Context</code>, 以及所有的抽象事件（<code>event</code>）对象的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AbstractState</span> &#123;<br>    <span class="hljs-comment">// 上下文信息</span><br>    <span class="hljs-keyword">protected</span> Context context;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setContext</span><span class="hljs-params">(Context context)</span> &#123;<br>        <span class="hljs-built_in">this</span>.context = context;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 事件操作放在具体的状态定义内</span><br>    <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">event1</span><span class="hljs-params">()</span>;<br>    <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">event2</span><span class="hljs-params">()</span>;<br>    <span class="hljs-comment">// ......</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>具体的状态需要继承并实现抽象状态</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">State1</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AbstractState</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">event1</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// set next state</span><br>        <span class="hljs-comment">// do something else</span><br>    &#125;<br>    <span class="hljs-comment">// ......</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>上下文 <code>Context</code> 中需要包含所有所需信息，包括所有的状态实例，并指定一个属性指示当前是哪个状态实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Context</span> &#123;<br><br>    <span class="hljs-comment">// 当前状态实例</span><br>    <span class="hljs-keyword">protected</span> AbstractState currState;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">State1</span> <span class="hljs-variable">state1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">State1</span>();<br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">State2</span> <span class="hljs-variable">state2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">State2</span>();<br>    <span class="hljs-comment">// ......</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Context</span><span class="hljs-params">(AbstractState state)</span> &#123;<br>        setState(state);<br>    &#125;<br><br>    <span class="hljs-comment">// 具体的事件调用当前状态进行执行</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">event1</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-built_in">this</span>.currState.event1();<br>    &#125;<br><br>    <span class="hljs-comment">// ......</span><br>&#125;<br><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>由上可见，状态模式将与行为与状态相绑定，避免了直接去写大量的 <code>if...else</code> 和 <code>switch...case</code> 编写时可以方便地增加新的状态，并且只需要改变对象的状态就可以改变对象的行为，</p>
+<h2 id="3-Java枚举实现"><a href="#3-Java枚举实现" class="headerlink" title="3. Java枚举实现"></a>3. Java枚举实现</h2><p>利用枚举来实现，其主要思想在于可以将状态 <code>State</code> 和 事件 <code>Event</code> 都定义成一个枚举类型，并利用枚举也可以定义抽象方法的特性，使得其定义和动作可以写在一起</p>
+<p>简单来说，其定义如下</p>
+<ul>
+<li><p>定义状态枚举</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">StateEnum</span> &#123;<br>    State1 &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doEvent1</span><span class="hljs-params">(StateMachine stateMachine)</span> &#123;<br>            <span class="hljs-comment">// set next state</span><br>            <span class="hljs-comment">// do something else</span><br>        &#125;<br><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doEvent2</span><span class="hljs-params">(StateMachine stateMachine)</span> &#123;<br>            <span class="hljs-comment">// set next state</span><br>            <span class="hljs-comment">// do something else</span><br>        &#125;<br>        <span class="hljs-comment">// ......</span><br>    &#125;,<br>    <span class="hljs-comment">// .......</span><br>    ;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doEvent1</span><span class="hljs-params">(StateMachine stateMachine)</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doEvent2</span><span class="hljs-params">(StateMachine stateMachine)</span>;<br>    <span class="hljs-comment">// ......</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>定义事件枚举</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">EventEnum</span> &#123;<br>    Event1 &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">trigger</span><span class="hljs-params">(StateMachine stateMachine, StateEnum state)</span> &#123;<br>            <span class="hljs-keyword">return</span> state.doEvent1(stateMachine);<br>        &#125;<br>    &#125;,<br>    <span class="hljs-comment">// ......</span><br>    ;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">trigger</span><span class="hljs-params">(StateMachine stateMachine, StateEnum state)</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>组装状态机</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StateMachine</span> &#123;<br><br>    <span class="hljs-keyword">private</span> StateEnum state;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">StateMachine</span><span class="hljs-params">(StateEnum state)</span> &#123;<br>        <span class="hljs-built_in">this</span>.state = state;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">execute</span><span class="hljs-params">(EventEnum event)</span> &#123;<br>        event.trigger(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">this</span>.state);<br>    &#125;<br><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>该实现根据参考文档2做抽象，具体例子可以查看其文章</p>
+<p>使用枚举来定义可以使得我们的代码更加清晰</p>
+<h2 id="4-保存转换映射"><a href="#4-保存转换映射" class="headerlink" title="4. 保存转换映射"></a>4. 保存转换映射</h2><p>一言以蔽之，就是将状态机每一个状态转换所需要的几个要素都保存下来，在触发对应的事件时，遍历所有的状态映射记录，并根据状态以及上下文信息找到对应的记录，并执行转换得到次态</p>
+<p>状态机的转换记录定义如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@Builder</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StateMachineRecord</span> &#123;<br>    <span class="hljs-comment">// 当前状态</span><br>    <span class="hljs-keyword">private</span> State currentState;<br>    <span class="hljs-comment">// 触发事件</span><br>    <span class="hljs-keyword">private</span> Event event;<br>    <span class="hljs-comment">// 次态</span><br>    <span class="hljs-keyword">private</span> State nextState;<br>    <span class="hljs-comment">// 执行动作</span><br>    <span class="hljs-keyword">private</span> Action action;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<p>这种方式实际上就是很多开源状态机的基础实现方式，不过在其实现中，会通过自定义注解的形式来使得代码更加简洁明了和优雅，并进行其他一些优化来优化性能，如记录索引以及懒加载等。</p>
+<h2 id="5-srping-statemachine"><a href="#5-srping-statemachine" class="headerlink" title="5.srping statemachine"></a>5.srping statemachine</h2><p>当满足以下条件时，使用状态机是一个不错的选择：</p>
+<ol>
+<li>你可以将应用程序或其部分结构表示为状态。</li>
+<li>你想将复杂的逻辑分解为较小的可管理的任务。</li>
+<li>应用程序已经存在并发问题，例如某些事件以异步方式发生。</li>
+</ol>
+<p>当你满足以下条件时，你已经在尝试实现一个状态机：</p>
+<ol>
+<li>使用布尔标志或枚举来模拟情况。</li>
+<li>某些变量仅在应用程序生命周期的某个部分具有意义。</li>
+<li>通过 if-else 结构（或者更糟糕的是，多个这样的结构）进行循环，检查特定标志或枚举是否已设置，然后根据标志和枚举的组合存在与否进一步确定要执行的操作。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-statemachine/docs/3.2.1/reference/#quick-example">https://docs.spring.io/spring-statemachine/docs/3.2.1/reference/#quick-example</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">States</span> &#123;<br>	STATE1, STATE2<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Events</span> &#123;<br>	EVENT1, EVENT2<br>&#125;<br><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@EnableStateMachine</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Config1</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">EnumStateMachineConfigurerAdapter</span>&lt;States, Events&gt; &#123;<br><br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(StateMachineStateConfigurer&lt;States, Events&gt; states)</span><br>			<span class="hljs-keyword">throws</span> Exception &#123;<br>		states<br>			.withStates()<br>				.initial(States.STATE1)<br>				.states(EnumSet.allOf(States.class));<br>	&#125;<br><br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(StateMachineTransitionConfigurer&lt;States, Events&gt; transitions)</span><br>			<span class="hljs-keyword">throws</span> Exception &#123;<br>		transitions<br>			.withExternal()<br>				.source(States.STATE1).target(States.STATE2)<br>				.event(Events.EVENT1)<br>				.and()<br>			.withExternal()<br>				.source(States.STATE2).target(States.STATE1)<br>				.event(Events.EVENT2);<br>	&#125;<br>&#125;<br><br><span class="hljs-meta">@WithStateMachine</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyBean</span> &#123;<br><br>	<span class="hljs-meta">@OnTransition(target = &quot;STATE1&quot;)</span><br>	<span class="hljs-keyword">void</span> <span class="hljs-title function_">toState1</span><span class="hljs-params">()</span> &#123;<br>	&#125;<br><br>	<span class="hljs-meta">@OnTransition(target = &quot;STATE2&quot;)</span><br>	<span class="hljs-keyword">void</span> <span class="hljs-title function_">toState2</span><span class="hljs-params">()</span> &#123;<br>	&#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyApp</span> &#123;<br><br>	<span class="hljs-meta">@Autowired</span><br>	StateMachine&lt;States, Events&gt; stateMachine;<br><br>	<span class="hljs-keyword">void</span> <span class="hljs-title function_">doSignals</span><span class="hljs-params">()</span> &#123;<br>		stateMachine<br>			.sendEvent(Mono.just(MessageBuilder<br>				.withPayload(Events.EVENT1).build()))<br>			.subscribe();<br>		stateMachine<br>			.sendEvent(Mono.just(MessageBuilder<br>				.withPayload(Events.EVENT2).build()))<br>			.subscribe();<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ol>
+<li><a href="https://link.juejin.cn/?target=https://medium.com/@mlbors/what-is-a-finite-state-machine-6d8dec727e2c" title="https://medium.com/@mlbors/what-is-a-finite-state-machine-6d8dec727e2c">What is a Finite State Machine?. In this article, we are going to see… | by Mátyás Lancelot Bors | Medium</a></li>
+<li><a href="https://link.juejin.cn/?target=https://zhuanlan.zhihu.com/p/97442825" title="https://zhuanlan.zhihu.com/p/97442825">Java有限状态机的4种实现对比</a></li>
+<li><a href="https://link.juejin.cn/?target=https://www.jianshu.com/p/e335799a5a0b" title="https://www.jianshu.com/p/e335799a5a0b">设计模式之状态模式（State Pattern）</a></li>
+<li><a href="https://link.juejin.cn/?target=https://blog.csdn.net/xiaxl/article/details/86306406" title="https://blog.csdn.net/xiaxl/article/details/86306406">Java 有限状态机 (设计模式——状态模式)_xiaxveliang-CSDN博客_java有限状态机</a></li>
+<li><a href="https://link.juejin.cn/?target=https://www.baeldung.com/java-enum-simple-state-machine" title="https://www.baeldung.com/java-enum-simple-state-machine">Implementing Simple State Machines with Java Enums | Baeldung</a></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CodeAesthetic/" class="category-chain-item">CodeAesthetic</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CodeAesthetic/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="category-chain-item">设计模式</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CodeAesthetic/">#CodeAesthetic</a>
+      
+        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">#设计模式</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>java中状态机的多种实现</div>
+      <div>http://coder-xieshijie.cn/2023/06/30/CodeAesthetic/设计模式/java中状态机的多种实现/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/07/10/Spring/spring%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/" title="spring如何解决循环依赖">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">spring如何解决循环依赖</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/27/CodeAesthetic/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%8A%B6%E6%80%81%E6%9C%BA-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/" title="状态机/状态模式">
+                        <span class="hidden-mobile">状态机/状态模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

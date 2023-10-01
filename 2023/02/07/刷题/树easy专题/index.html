@@ -1,0 +1,1085 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="树easy专题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树easy专题">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/02/07/%E5%88%B7%E9%A2%98/%E6%A0%91easy%E4%B8%93%E9%A2%98/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="树easy专题">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-07T02:09:31.000Z">
+<meta property="article:modified_time" content="2023-02-10T03:08:29.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="easy">
+<meta property="article:tag" content="树">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>树easy专题 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="树easy专题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-07 10:09" pubdate>
+          2023年2月7日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          69 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="刷题/Leetcode"
+        id="heading-836bf8257d376825631e79f5de16c123" role="tab" data-toggle="collapse" href="#collapse-836bf8257d376825631e79f5de16c123"
+        aria-expanded="true"
+      >
+        刷题/Leetcode
+        <span class="list-group-count">(6)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-836bf8257d376825631e79f5de16c123"
+           role="tabpanel" aria-labelledby="heading-836bf8257d376825631e79f5de16c123">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="剑指offer"
+        id="heading-88eaec4c7bc4ec29afa783666d0b53bc" role="tab" data-toggle="collapse" href="#collapse-88eaec4c7bc4ec29afa783666d0b53bc"
+        aria-expanded="false"
+      >
+        剑指offer
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-88eaec4c7bc4ec29afa783666d0b53bc"
+           role="tabpanel" aria-labelledby="heading-88eaec4c7bc4ec29afa783666d0b53bc">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/03/16/%E5%88%B7%E9%A2%98/%E5%89%91%E6%8C%87offer-easy/" title="剑指offer-easy"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">剑指offer-easy</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="回溯"
+        id="heading-d0796920d23cfdffed1b61ef579e4a3c" role="tab" data-toggle="collapse" href="#collapse-d0796920d23cfdffed1b61ef579e4a3c"
+        aria-expanded="false"
+      >
+        回溯
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-d0796920d23cfdffed1b61ef579e4a3c"
+           role="tabpanel" aria-labelledby="heading-d0796920d23cfdffed1b61ef579e4a3c">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/02/27/%E5%88%B7%E9%A2%98/%E5%9B%9E%E6%BA%AF%E4%B8%93%E9%A2%98/" title="回溯专题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">回溯专题</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="树"
+        id="heading-302f276a934f5b3debc891512c311e91" role="tab" data-toggle="collapse" href="#collapse-302f276a934f5b3debc891512c311e91"
+        aria-expanded="true"
+      >
+        树
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-302f276a934f5b3debc891512c311e91"
+           role="tabpanel" aria-labelledby="heading-302f276a934f5b3debc891512c311e91">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/02/07/%E5%88%B7%E9%A2%98/%E6%A0%91easy%E4%B8%93%E9%A2%98/" title="树easy专题"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">树easy专题</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/10/%E5%88%B7%E9%A2%98/%E6%A0%91medium%E4%B8%93%E9%A2%98/" title="树medium专题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">树medium专题</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="链表"
+        id="heading-777cc60e866fff12295e870743c02771" role="tab" data-toggle="collapse" href="#collapse-777cc60e866fff12295e870743c02771"
+        aria-expanded="false"
+      >
+        链表
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-777cc60e866fff12295e870743c02771"
+           role="tabpanel" aria-labelledby="heading-777cc60e866fff12295e870743c02771">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/01/16/%E5%88%B7%E9%A2%98/%E9%93%BE%E8%A1%A8easy%E4%B8%93%E9%A2%98/" title="链表easy专题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">链表easy专题</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/01/29/%E5%88%B7%E9%A2%98/%E9%93%BE%E8%A1%A8medium%E4%B8%93%E9%A2%98/" title="链表medium专题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">链表medium专题</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">树easy专题</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年2月10日 上午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>树跟链表一样，很多场景可以使用递归求解</li>
+</ol>
+<h2 id="LeetCode94-二叉树的中序遍历-yes"><a href="#LeetCode94-二叉树的中序遍历-yes" class="headerlink" title="LeetCode94 二叉树的中序遍历 (yes)"></a>LeetCode94 二叉树的中序遍历 (yes)</h2><h4 id="（1）题目："><a href="#（1）题目：" class="headerlink" title="（1）题目："></a>（1）<strong>题目</strong>：</h4><p>给定一个二叉树的根节点 <code>root</code> ，返回 <em>它的 <strong>中序</strong> 遍历</em> 。</p>
+<h4 id="（2）思路："><a href="#（2）思路：" class="headerlink" title="（2）思路："></a>（2）思路：</h4><p>- </p>
+<h4 id="（3）代码："><a href="#（3）代码：" class="headerlink" title="（3）代码："></a>（3）代码：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> List&lt;Integer&gt; result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 前序：根左右</span><br><span class="hljs-comment"> * 中序：左根右</span><br><span class="hljs-comment"> * 后序：左右根</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title function_">inorderTraversal</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    addTree(root);<br><br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addTree</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br><br>    addTree(root.left);<br>    result.add(root.val);<br>    addTree(root.right);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="LeetCode100-相同的树-yes"><a href="#LeetCode100-相同的树-yes" class="headerlink" title="LeetCode100 相同的树 (yes)"></a>LeetCode100 相同的树 (yes)</h2><h4 id="（1）题目：-1"><a href="#（1）题目：-1" class="headerlink" title="（1）题目："></a>（1）<strong>题目</strong>：</h4><p>给你两棵二叉树的根节点 <code>p</code> 和 <code>q</code> ，编写一个函数来检验这两棵树是否相同。</p>
+<p>如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。</p>
+<h4 id="（2）思路：-1"><a href="#（2）思路：-1" class="headerlink" title="（2）思路："></a>（2）思路：</h4><p>- </p>
+<h4 id="（3）代码：-1"><a href="#（3）代码：-1" class="headerlink" title="（3）代码："></a>（3）代码：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isSameTree</span><span class="hljs-params">(TreeNode p, TreeNode q)</span> &#123;<br>    <span class="hljs-keyword">if</span> (p == <span class="hljs-literal">null</span> &amp;&amp; q != <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (p != <span class="hljs-literal">null</span> &amp;&amp; q == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (p == <span class="hljs-literal">null</span> &amp;&amp; q == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> p.val == q.val<br>            &amp;&amp; isSameTree(p.left, q.left)<br>            &amp;&amp; isSameTree(p.right, q.right);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="LeetCode101-对称二叉树-yes"><a href="#LeetCode101-对称二叉树-yes" class="headerlink" title="LeetCode101 对称二叉树 (yes)"></a>LeetCode101 对称二叉树 (yes)</h2><h4 id="（1）题目：-2"><a href="#（1）题目：-2" class="headerlink" title="（1）题目："></a>（1）<strong>题目</strong>：</h4><p>给你一个二叉树的根节点 <code>root</code> ， 检查它是否轴对称。</p>
+<h4 id="（2）思路：-2"><a href="#（2）思路：-2" class="headerlink" title="（2）思路："></a>（2）思路：</h4><p>- </p>
+<h4 id="（3）代码：-2"><a href="#（3）代码：-2" class="headerlink" title="（3）代码："></a>（3）代码：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isSymmetric</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> symmetric(root.left, root.right);<br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">symmetric</span><span class="hljs-params">(TreeNode left, TreeNode right)</span> &#123;<br>    <span class="hljs-keyword">if</span> (left == <span class="hljs-literal">null</span> &amp;&amp; right == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (left == <span class="hljs-literal">null</span> &amp;&amp; right != <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (left != <span class="hljs-literal">null</span> &amp;&amp; right == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> left.val == right.val &amp;&amp; symmetric(left.right, right.left) &amp;&amp; symmetric(left.left, right.right);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="LeetCode104-二叉树的最大深度-yes"><a href="#LeetCode104-二叉树的最大深度-yes" class="headerlink" title="LeetCode104 二叉树的最大深度 (yes)"></a>LeetCode104 二叉树的最大深度 (yes)</h2><h4 id="（1）题目：-3"><a href="#（1）题目：-3" class="headerlink" title="（1）题目："></a>（1）<strong>题目</strong>：</h4><p>给定一个二叉树，找出其最大深度。</p>
+<p>二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。</p>
+<h4 id="（2）思路：-3"><a href="#（2）思路：-3" class="headerlink" title="（2）思路："></a>（2）思路：</h4><p>- </p>
+<h4 id="（3）代码：-3"><a href="#（3）代码：-3" class="headerlink" title="（3）代码："></a>（3）代码：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">maxDepth</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> Math.max(maxDepth(root.left), maxDepth(root.right)) + <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="LeetCode108-将有序数组转为二叉搜索树-yes"><a href="#LeetCode108-将有序数组转为二叉搜索树-yes" class="headerlink" title="LeetCode108 将有序数组转为二叉搜索树 (yes)"></a>LeetCode108 将有序数组转为二叉搜索树 (yes)</h2><h4 id="（1）题目：-4"><a href="#（1）题目：-4" class="headerlink" title="（1）题目："></a>（1）<strong>题目</strong>：</h4><p>给你一个整数数组 <code>nums</code> ，其中元素已经按 <strong>升序</strong> 排列，请你将其转换为一棵 <strong>高度平衡</strong> 二叉搜索树。</p>
+<p><strong>高度平衡</strong> 二叉树是一棵满足「每个节点的左右两个子树的高度差的绝对值不超过 1 」的二叉树。</p>
+<h4 id="（2）思路：-4"><a href="#（2）思路：-4" class="headerlink" title="（2）思路："></a>（2）思路：</h4><ul>
+<li>只要左右子树是平衡二叉树，那么当前树就是平衡二叉树</li>
+</ul>
+<h4 id="（3）代码：-4"><a href="#（3）代码：-4" class="headerlink" title="（3）代码："></a>（3）代码：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title function_">sortedArrayToBST</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == nums || <span class="hljs-number">0</span> == nums.length) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> buildBST(nums, <span class="hljs-number">0</span>, nums.length - <span class="hljs-number">1</span>);<br>&#125;<br><br><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title function_">buildBST</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums, <span class="hljs-type">int</span> s, <span class="hljs-type">int</span> e)</span> &#123;<br>    <span class="hljs-keyword">if</span> (s &lt; <span class="hljs-number">0</span> || e &lt; <span class="hljs-number">0</span> || s &gt;= nums.length || e &gt;= nums.length) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (s == e) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(nums[s]);<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (e - s == <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-type">TreeNode</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(nums[s]);<br>        <span class="hljs-type">TreeNode</span> <span class="hljs-variable">root</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(nums[e]);<br>        root.left = left;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br><br>    <span class="hljs-type">int</span> <span class="hljs-variable">mid</span> <span class="hljs-operator">=</span> (e + s) / <span class="hljs-number">2</span>;<br>    <span class="hljs-type">TreeNode</span> <span class="hljs-variable">root</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(nums[mid]);<br>    <span class="hljs-type">TreeNode</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> buildBST(nums, s, mid - <span class="hljs-number">1</span>);<br>    <span class="hljs-type">TreeNode</span> <span class="hljs-variable">right</span> <span class="hljs-operator">=</span> buildBST(nums, mid + <span class="hljs-number">1</span>, e);<br>    root.left = left;<br>    root.right = right;<br>    <span class="hljs-keyword">return</span> root;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 官方解法，更简洁</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title function_">helper</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums, <span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right)</span> &#123;<br>    <span class="hljs-keyword">if</span> (left &gt; right) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 总是选择中间位置左边的数字作为根节点</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">mid</span> <span class="hljs-operator">=</span> (left + right) / <span class="hljs-number">2</span>;<br><br>    <span class="hljs-type">TreeNode</span> <span class="hljs-variable">root</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(nums[mid]);<br>    root.left = helper(nums, left, mid - <span class="hljs-number">1</span>);<br>    root.right = helper(nums, mid + <span class="hljs-number">1</span>, right);<br>    <span class="hljs-keyword">return</span> root;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="LeetCode110-判断平衡二叉树-no"><a href="#LeetCode110-判断平衡二叉树-no" class="headerlink" title="LeetCode110 判断平衡二叉树 (no)"></a>LeetCode110 判断平衡二叉树 (no)</h2><h4 id="（1）题目：-5"><a href="#（1）题目：-5" class="headerlink" title="（1）题目："></a>（1）<strong>题目</strong>：</h4><p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
+<p>本题中，一棵高度平衡二叉树定义为：</p>
+<blockquote>
+<p>一个二叉树<em>每个节点</em> 的左右两个子树的高度差的绝对值不超过 1 。</p>
+</blockquote>
+<h4 id="（2）思路：-5"><a href="#（2）思路：-5" class="headerlink" title="（2）思路："></a>（2）思路：</h4><ul>
+<li>自顶向下，暴力法，时间复杂度Nlongn</li>
+<li>自底向上，时间复杂度为N，最优解。思考：就是在遍历的过程中加上剪枝，当高度超过2，必定不是平衡树，-1这个结果会向上传递</li>
+</ul>
+<h4 id="（3）代码：-5"><a href="#（3）代码：-5" class="headerlink" title="（3）代码："></a>（3）代码：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 自顶向下，暴力法，时间复杂度Nlongn</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isBalanced</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> Math.abs(maxDepth(root.left) - maxDepth(root.right)) &lt;= <span class="hljs-number">1</span><br>            &amp;&amp; isBalanced(root.left) &amp;&amp; isBalanced(root.right);<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">maxDepth</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> Math.max(maxDepth(root.left), maxDepth(root.right)) + <span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 自底向上，时间复杂度为N，最优解</span><br><span class="hljs-comment"> * 思考：就是在遍历的过程中加上剪枝，当高度超过2，必定不是平衡树，-1这个结果会向上传递</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isBalanced2</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">return</span> recur(root) != -<span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-title function_">recur</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> recur(root.left);<br>    <span class="hljs-keyword">if</span> (left == -<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">right</span> <span class="hljs-operator">=</span> recur(root.right);<br>    <span class="hljs-keyword">if</span> (right == -<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> Math.abs(left - right) &lt; <span class="hljs-number">2</span> ? Math.max(left, right) + <span class="hljs-number">1</span> : -<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="LeetCode111-二叉树最小深度-no"><a href="#LeetCode111-二叉树最小深度-no" class="headerlink" title="LeetCode111 二叉树最小深度 (no)"></a>LeetCode111 二叉树最小深度 (no)</h2><h4 id="（1）题目：-6"><a href="#（1）题目：-6" class="headerlink" title="（1）题目："></a>（1）<strong>题目</strong>：</h4><p>给定一个二叉树，找出其最小深度。</p>
+<p>最小深度是从根节点到最近叶子节点的最短路径上的节点数量。</p>
+<p><strong>说明：</strong>叶子节点是指没有子节点的节点。</p>
+<h4 id="（2）思路：-6"><a href="#（2）思路：-6" class="headerlink" title="（2）思路："></a>（2）思路：</h4><ul>
+<li>非递归解法，使用栈，先进先出<ul>
+<li>记录当前层和下一层节点数量</li>
+<li>记录层的高度</li>
+<li>当节点的左右子节点为null，返回层的高度，因为是第一个遇到的，所以是最小高度</li>
+</ul>
+</li>
+<li>递归解法<ul>
+<li>左孩子和有孩子都为空的情况，说明到达了叶子节点，直接返回1即可</li>
+<li>如果左孩子和由孩子其中一个为空，那么<strong>需要返回比较大的那个孩子的深度</strong></li>
+<li>最后一种情况，也就是左右孩子都不为空，返回最小深度+1即可</li>
+</ul>
+</li>
+</ul>
+<h4 id="（3）代码：-6"><a href="#（3）代码：-6" class="headerlink" title="（3）代码："></a>（3）代码：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">minDepth</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == root) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    Deque&lt;TreeNode&gt; nodes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayDeque</span>&lt;&gt;();<br>    nodes.push(root);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">level</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">countUp</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">countDown</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">while</span> (!nodes.isEmpty()) &#123;<br>        <span class="hljs-type">TreeNode</span> <span class="hljs-variable">pop</span> <span class="hljs-operator">=</span> nodes.removeFirst();<br>        countUp--;<br><br>        <span class="hljs-keyword">if</span> (pop.left == <span class="hljs-literal">null</span> &amp;&amp; pop.right == <span class="hljs-literal">null</span>) &#123;<br><br>            <span class="hljs-keyword">return</span> level;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> != pop.left) &#123;<br>            nodes.addLast(pop.left);<br>            countDown++;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> != pop.right) &#123;<br>            nodes.addLast(pop.right);<br>            countDown++;<br>        &#125;<br><br>        <span class="hljs-keyword">if</span> (countUp == <span class="hljs-number">0</span>) &#123;<br>            countUp = countDown;<br>            countDown = <span class="hljs-number">0</span>;<br>            level++;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> level;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">minDepth1</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-comment">// 这道题递归条件里分为三种情况</span><br>    <span class="hljs-comment">// 1.左孩子和有孩子都为空的情况，说明到达了叶子节点，直接返回1即可</span><br>    <span class="hljs-keyword">if</span> (root.left == <span class="hljs-literal">null</span> &amp;&amp; root.right == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-comment">// 2.如果左孩子和由孩子其中一个为空，那么需要返回比较大的那个孩子的深度</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">m1</span> <span class="hljs-operator">=</span> minDepth(root.left);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">m2</span> <span class="hljs-operator">=</span> minDepth(root.right);<br>    <span class="hljs-comment">// 这里其中一个节点为空，说明m1和m2有一个必然为0，所以可以返回m1 + m2 + 1;</span><br>    <span class="hljs-keyword">if</span> (root.left == <span class="hljs-literal">null</span> || root.right == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> m1 + m2 + <span class="hljs-number">1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 3.最后一种情况，也就是左右孩子都不为空，返回最小深度+1即可</span><br>    <span class="hljs-keyword">return</span> Math.min(m1, m2) + <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="LeetCode112-路径总和-yes"><a href="#LeetCode112-路径总和-yes" class="headerlink" title="LeetCode112 路径总和 (yes)"></a>LeetCode112 路径总和 (yes)</h2><h4 id="（1）题目：-7"><a href="#（1）题目：-7" class="headerlink" title="（1）题目："></a>（1）<strong>题目</strong>：</h4><p>给你二叉树的根节点 <code>root</code> 和一个表示目标和的整数 <code>targetSum</code> 。判断该树中是否存在 <strong>根节点到叶子节点</strong> 的路径，这条路径上所有节点值相加等于目标和 <code>targetSum</code> 。如果存在，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<h4 id="（2）思路：-7"><a href="#（2）思路：-7" class="headerlink" title="（2）思路："></a>（2）思路：</h4><ul>
+<li><p>自己的思路</p>
+<ul>
+<li>自顶向下，依次计算经过节点的和，判断符合条件则跳出循环</li>
+</ul>
+</li>
+<li><p>题解思路</p>
+<ul>
+<li>这道题提供了一种思路，求和sum，不一定非要+，也可以减</li>
+<li>就像这道题，是从根节点依次减去当前节点的val，然后判断&#x3D;&#x3D;0</li>
+</ul>
+</li>
+</ul>
+<h4 id="（3）代码：-7"><a href="#（3）代码：-7" class="headerlink" title="（3）代码："></a>（3）代码：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">hasPathSum</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> targetSum)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    curSum(root, <span class="hljs-number">0</span>, targetSum);<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 从根节点当当前节点的和</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">curSum</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> sum, <span class="hljs-type">int</span> target)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br><br>    sum += root.val;<br>    <span class="hljs-keyword">if</span> (sum == target &amp;&amp; <span class="hljs-literal">null</span> == root.left &amp;&amp; <span class="hljs-literal">null</span> == root.right) &#123;<br>        res = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br><br>    curSum(root.left, sum, target);<br>    curSum(root.right, sum, target);<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 题解1：DFS解法</span><br><span class="hljs-comment"> * 这道题提供了一种思路，求和sum，不一定非要+，也可以减</span><br><span class="hljs-comment"> * 就像这道题，是从根节点依次减去当前节点的val，然后判断==0</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">hasPathSum1</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> sum)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (root.left == <span class="hljs-literal">null</span> &amp;&amp; root.right == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> root.val == sum;<br>    &#125;<br>    <span class="hljs-keyword">return</span> hasPathSum1(root.left, sum - root.val) || hasPathSum1(root.right, sum - root.val);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="LeetCode113-路径总和2-yes"><a href="#LeetCode113-路径总和2-yes" class="headerlink" title="LeetCode113 路径总和2 (yes)"></a>LeetCode113 路径总和2 (yes)</h2><h4 id="（1）题目：-8"><a href="#（1）题目：-8" class="headerlink" title="（1）题目："></a>（1）<strong>题目</strong>：</h4><p>给你二叉树的根节点 <code>root</code> 和一个整数目标和 <code>targetSum</code> ，找出所有 <strong>从根节点到叶子节点</strong> 路径总和等于给定目标和的路径。</p>
+<h4 id="（2）思路：-8"><a href="#（2）思路：-8" class="headerlink" title="（2）思路："></a>（2）思路：</h4><ul>
+<li>自己的思路<ul>
+<li>自顶向下，dfs&#x2F;回溯的思想</li>
+<li>回溯的关键是需要把在结果不符合的时候需要能够回到之前的状态</li>
+<li>最开始做的时候，在符合条件的地方只add，没有remove，这样会导致多条path时，后续的path会多节点，因为第一条path没有去除</li>
+<li>回溯的思想，有add就要有remove</li>
+</ul>
+</li>
+</ul>
+<h4 id="（3）代码：-8"><a href="#（3）代码：-8" class="headerlink" title="（3）代码："></a>（3）代码：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> List&lt;List&lt;Integer&gt;&gt; allPaths = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><br><span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="hljs-title function_">pathSum</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> targetSum)</span> &#123;<br>    count(root, targetSum, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;());<br>    <span class="hljs-keyword">return</span> allPaths;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">count</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> tar, List&lt;Integer&gt; path)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == root.left &amp;&amp; <span class="hljs-literal">null</span> == root.right &amp;&amp; root.val == tar) &#123;<br>        path.add(root.val);<br>        allPaths.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(path));<br>      	<span class="hljs-comment">// 注意这里，需要把结果存入的时候去除</span><br>        path.remove(path.size() - <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br><br>    path.add(root.val);<br>    count(root.left, tar - root.val, path);<br>    count(root.right, tar - root.val, path);<br>    path.remove(path.size()-<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="LeetCode226-翻转二叉树-yes"><a href="#LeetCode226-翻转二叉树-yes" class="headerlink" title="LeetCode226 翻转二叉树 (yes)"></a>LeetCode226 翻转二叉树 (yes)</h2><h4 id="（1）题目：-9"><a href="#（1）题目：-9" class="headerlink" title="（1）题目："></a>（1）<strong>题目</strong>：</h4><p>给你一棵二叉树的根节点 <code>root</code> ，翻转这棵二叉树，并返回其根节点。</p>
+<p><strong>输入：</strong>root &#x3D; [4,2,7,1,3,6,9] <strong>输出：</strong>[4,7,2,9,6,3,1]</p>
+<h4 id="（2）思路：-9"><a href="#（2）思路：-9" class="headerlink" title="（2）思路："></a>（2）思路：</h4><h4 id="（3）代码：-9"><a href="#（3）代码：-9" class="headerlink" title="（3）代码："></a>（3）代码：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title function_">invertTree</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br><br>    <span class="hljs-type">TreeNode</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> invertTree(root.left);<br>    <span class="hljs-type">TreeNode</span> <span class="hljs-variable">right</span> <span class="hljs-operator">=</span> invertTree(root.right);<br>    root.left = right;<br>    root.right = left;<br><br>    <span class="hljs-keyword">return</span> root;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="LeetCode257-二叉树的所有路径-yes"><a href="#LeetCode257-二叉树的所有路径-yes" class="headerlink" title="LeetCode257 二叉树的所有路径 (yes)"></a>LeetCode257 二叉树的所有路径 (yes)</h2><h4 id="（1）题目：-10"><a href="#（1）题目：-10" class="headerlink" title="（1）题目："></a>（1）<strong>题目</strong>：</h4><p>给你一棵二叉树的根节点 <code>root</code> ，翻转这棵二叉树，并返回其根节点。</p>
+<p><strong>输入：</strong>root &#x3D; [4,2,7,1,3,6,9] <strong>输出：</strong>[4,7,2,9,6,3,1]</p>
+<h4 id="（2）思路：-10"><a href="#（2）思路：-10" class="headerlink" title="（2）思路："></a>（2）思路：</h4><h4 id="（3）代码：-10"><a href="#（3）代码：-10" class="headerlink" title="（3）代码："></a>（3）代码：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> List&lt;String&gt; <span class="hljs-title function_">binaryTreePaths</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == root) &#123;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == root.left &amp;&amp; <span class="hljs-literal">null</span> == root.right) &#123;<br>        res.add(<span class="hljs-string">&quot;&quot;</span> + root.val);<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>    printPath(root.left, <span class="hljs-string">&quot;&quot;</span> + root.val);<br>    printPath(root.right, <span class="hljs-string">&quot;&quot;</span> + root.val);<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><br>List&lt;String&gt; res = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">printPath</span><span class="hljs-params">(TreeNode root, String path)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br><br>    path += <span class="hljs-string">&quot;-&gt;&quot;</span> + root.val;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == root.left &amp;&amp; <span class="hljs-literal">null</span> == root.right) &#123;<br>        res.add(path);<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br><br>    printPath(root.left, path);<br>    printPath(root.right, path);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%88%B7%E9%A2%98-Leetcode/" class="category-chain-item">刷题/Leetcode</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%88%B7%E9%A2%98-Leetcode/%E6%A0%91/" class="category-chain-item">树</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/LeetCode/">#LeetCode</a>
+      
+        <a href="/tags/easy/">#easy</a>
+      
+        <a href="/tags/%E6%A0%91/">#树</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>树easy专题</div>
+      <div>http://coder-xieshijie.cn/2023/02/07/刷题/树easy专题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月7日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年2月10日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/02/10/%E5%88%B7%E9%A2%98/%E6%A0%91medium%E4%B8%93%E9%A2%98/" title="树medium专题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">树medium专题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/29/%E5%88%B7%E9%A2%98/%E9%93%BE%E8%A1%A8medium%E4%B8%93%E9%A2%98/" title="链表medium专题">
+                        <span class="hidden-mobile">链表medium专题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

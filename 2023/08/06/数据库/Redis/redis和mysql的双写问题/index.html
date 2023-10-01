@@ -1,0 +1,1010 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="redis和mysql的双写问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis和mysql的双写问题">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/08/06/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis%E5%92%8Cmysql%E7%9A%84%E5%8F%8C%E5%86%99%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="redis和mysql的双写问题">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-06T02:44:09.000Z">
+<meta property="article:modified_time" content="2023-08-06T02:44:09.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="redis">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>redis和mysql的双写问题 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="redis和mysql的双写问题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-06 10:44" pubdate>
+          2023年8月6日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="数据库"
+        id="heading-68051bf4aa2743b030984b694628ee9c" role="tab" data-toggle="collapse" href="#collapse-68051bf4aa2743b030984b694628ee9c"
+        aria-expanded="true"
+      >
+        数据库
+        <span class="list-group-count">(11)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-68051bf4aa2743b030984b694628ee9c"
+           role="tabpanel" aria-labelledby="heading-68051bf4aa2743b030984b694628ee9c">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="MySQL"
+        id="heading-62a004b95946bb97541afa471dcca73a" role="tab" data-toggle="collapse" href="#collapse-62a004b95946bb97541afa471dcca73a"
+        aria-expanded="false"
+      >
+        MySQL
+        <span class="list-group-count">(8)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-62a004b95946bb97541afa471dcca73a"
+           role="tabpanel" aria-labelledby="heading-62a004b95946bb97541afa471dcca73a">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/21/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL-%E4%B8%AD%E7%9A%84-distinct-%E5%92%8C-group-by-%E5%93%AA%E4%B8%AA%E6%95%88%E7%8E%87%E6%9B%B4%E9%AB%98%EF%BC%9F/" title="MySQL 中的 distinct 和 group by 哪个效率更高？"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MySQL 中的 distinct 和 group by 哪个效率更高？</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/26/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/mysql%E7%9A%84explain%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" title="mysql的explain关键字使用说明"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">mysql的explain关键字使用说明</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/24/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/sql%E8%AF%AD%E5%8F%A5%E5%90%84%E4%B8%AA%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/" title="sql语句各个关键字的执行顺序"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">sql语句各个关键字的执行顺序</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/20/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%A4%8D%E6%9D%82%E6%9F%A5%E8%AF%A2sql%E6%95%B4%E7%90%86/" title="复杂查询sql整理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">复杂查询sql整理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/06/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%AE%9E%E9%99%85%E5%88%86%E6%9E%90Mysql%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/" title="实际分析Mysql死锁问题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">实际分析Mysql死锁问题</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/07/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%B8%B8%E7%94%A8sql%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/" title="常用sql命令整理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">常用sql命令整理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/06/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81/" title="数据库锁"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">数据库锁</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E7%B4%A2%E5%BC%95%E7%9A%84%E8%AE%B0%E8%B4%A6%E6%9C%AC/" title="索引的记账本"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">索引的记账本</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="es"
+        id="heading-12470fe406d44017d96eab37dd65fc14" role="tab" data-toggle="collapse" href="#collapse-12470fe406d44017d96eab37dd65fc14"
+        aria-expanded="false"
+      >
+        es
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-12470fe406d44017d96eab37dd65fc14"
+           role="tabpanel" aria-labelledby="heading-12470fe406d44017d96eab37dd65fc14">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/08/29/%E6%95%B0%E6%8D%AE%E5%BA%93/elasticsearch-%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/" title="elasticsearch 概念介绍"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">elasticsearch 概念介绍</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="redis"
+        id="heading-86a1b907d54bf7010394bf316e183e67" role="tab" data-toggle="collapse" href="#collapse-86a1b907d54bf7010394bf316e183e67"
+        aria-expanded="true"
+      >
+        redis
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-86a1b907d54bf7010394bf316e183e67"
+           role="tabpanel" aria-labelledby="heading-86a1b907d54bf7010394bf316e183e67">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/22/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis-key%E5%80%BC%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%88%B0value/" title="redis key值如何定位到value"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">redis key值如何定位到value</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/06/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis%E5%92%8Cmysql%E7%9A%84%E5%8F%8C%E5%86%99%E9%97%AE%E9%A2%98/" title="redis和mysql的双写问题"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">redis和mysql的双写问题</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">redis和mysql的双写问题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="什么是双写问题"><a href="#什么是双写问题" class="headerlink" title="什么是双写问题"></a>什么是双写问题</h2><p>Redis和MySQL的双写问题是指在同一个业务流程中，需要同时向Redis和MySQL两个数据库系统写入数据。由于这两种数据库系统的特性不同，可能会引发一些问题，尤其是在数据一致性和数据可靠性方面。</p>
+<p>这主要有两个问题：</p>
+<ol>
+<li>数据一致性问题：由于网络、程序等问题，可能会出现先写Redis成功，再写MySQL失败的情况，或者反过来，导致数据在两个系统中不一致。</li>
+<li>双写一致性问题：即使两个写操作都成功，但由于Redis和MySQL的读写速度差异，可能会出现”脏读”的问题，即新的读操作读取到的是旧的数据。</li>
+</ol>
+<h2 id="解决策略"><a href="#解决策略" class="headerlink" title="解决策略"></a>解决策略</h2><p>解决这两个问题的常见策略包括：</p>
+<ol>
+<li><strong>使用分布式事务来保证数据一致性。</strong>分布式事务可以保证在多个系统中的所有操作都成功或者都失败。但是，由于Redis并不原生支持分布式事务，实现起来可能比较复杂，且可能会影响系统性能。</li>
+<li><strong>采用最终一致性模型</strong>，这种模型可以接受短暂的数据不一致，但需要保证最终数据的一致性。例如，可以使用消息队列来实现：先更新一种数据库，然后将更新操作放入消息队列，由另一种数据库消费该队列来完成更新。</li>
+<li><strong>优先保证MySQL的数据写入，成功后再写入Redis</strong>。当读取数据时，优先从Redis中读取，如果Redis中没有，再从MySQL中读取，并将读取到的数据写入Redis，这种方式被称为缓存穿透。这种方式可以在一定程度上保证数据的一致性，但可能会增加系统的复杂性。</li>
+</ol>
+<h2 id="先写MySQL在写Redis的优缺点"><a href="#先写MySQL在写Redis的优缺点" class="headerlink" title="先写MySQL在写Redis的优缺点"></a>先写MySQL在写Redis的优缺点</h2><p><strong>优点：</strong></p>
+<ol>
+<li><strong>数据一致性</strong>：优先保证MySQL的数据写入，成功后再写入Redis，这样即使在写Redis的过程中出现了错误，数据依然可以从MySQL中取得，这保证了数据的一致性。</li>
+<li><strong>高可用性</strong>：读取数据时，优先从Redis中读取，如果Redis中没有，再从MySQL中读取，并将读取到的数据写入Redis。这样做既可以提高数据读取的速度（因为Redis是基于内存的，读写速度快），又可以防止MySQL的查询压力过大。</li>
+<li><strong>易于实施</strong>：这种策略在技术实现上相对简单，不需要考虑分布式事务或者引入额外的组件如消息队列等。</li>
+</ol>
+<p><strong>弊端：</strong></p>
+<ol>
+<li><strong>数据延迟</strong>：由于数据需要先写入MySQL，再写入Redis，所以如果有并发的读请求，可能会读到旧的数据，也就是出现“脏读”的情况。</li>
+<li><strong>增加系统复杂性</strong>：这种方式需要业务代码去做缓存的读写，增加了代码的复杂性。</li>
+<li><strong>Redis数据丢失问题</strong>：如果Redis发生故障，数据丢失，会导致大量的请求冲击MySQL，进一步可能会引发MySQL的性能问题。这种情况下，需要有适当的Redis持久化策略，或者备份策略来应对。</li>
+</ol>
+<p><strong>适用场景</strong></p>
+<ol>
+<li><strong>高读取频率的数据</strong>：对于读取频率很高的数据，这种策略非常有用。数据主要存储在MySQL中，但由于读取主要从Redis中进行，可以显著提高读取速度。</li>
+<li><strong>需要快速更新的数据</strong>：对于需要快速更新的数据，首先更新MySQL，然后更新Redis，这样可以保证最终的数据一致性。（或者可以先让Redis数据失效，在更新数据库，Redis等下一次查询的时候进行更新）</li>
+<li><strong>Redis数据失效或重启</strong>：当Redis中的数据失效或者Redis需要重启时，可以从MySQL中读取数据并重新填充Redis，这样即使Redis中的数据丢失，也不会影响到应用程序的正常运行。</li>
+</ol>
+<h2 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h2><p>有几种常见的分布式事务解决方案，包括两阶段提交（2PC）、三阶段提交（3PC）、TCC（Try-Confirm-Cancel）等。这里我会详细介绍2PC和TCC两种方案。</p>
+<ol>
+<li><p><strong>两阶段提交（2PC）</strong>：</p>
+<ul>
+<li><strong>准备阶段</strong>：事务协调者向所有的事务参与者发送事务内容，询问是否可以执行事务，然后等待所有参与者的回复。</li>
+<li><strong>提交阶段</strong>：如果所有的事务参与者都同意事务请求，事务协调者向所有的参与者发送“提交”请求，并进入“完成”状态。各参与者在执行事务提交操作后，释放在事务执行中占用的资源。</li>
+</ul>
+<p>这种方式的主要问题在于同步阻塞和单点问题。如果协调者宕机，参与者会一直阻塞等待，直到协调者恢复。如果参与者宕机，协调者也需要一直等待其恢复。此外，事务的提交依赖于所有参与者的反馈，只要有一个参与者反馈失败，那么整个事务就会失败，这显然在大规模分布式系统中是低效的。</p>
+</li>
+<li><p><strong>TCC（Try-Confirm-Cancel）</strong>：</p>
+<ul>
+<li><strong>Try阶段</strong>：检查预计执行的业务是否可以成功，执行所有业务检查，预留必须的业务资源。</li>
+<li><strong>Confirm阶段</strong>：真正的执行业务操作，并且不会失败（除非有程序上的错误），因为前一阶段已经做了资源的预留。</li>
+<li><strong>Cancel阶段</strong>：在业务执行错误，或者长时间无响应需要回滚的时候，执行的业务取消，取消预留的业务资源。</li>
+</ul>
+<p>TCC模式相比于2PC，更适合长事务处理，能更好地降低阻塞情况。但TCC需要为每个业务逻辑编写对应的确认和取消操作，增加了开发的复杂性。</p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/" class="category-chain-item">redis</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
+      
+        <a href="/tags/redis/">#redis</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>redis和mysql的双写问题</div>
+      <div>http://coder-xieshijie.cn/2023/08/06/数据库/Redis/redis和mysql的双写问题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/07/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/ognl%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8%E5%AE%9E%E8%B7%B5/" title="ognl语言介绍和使用实践">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ognl语言介绍和使用实践</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/04/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E6%B5%81%E9%87%8F%E5%BD%95%E5%88%B6%E5%9B%9E%E6%94%BE%E4%BB%8B%E7%BB%8D/" title="流量录制回放介绍">
+                        <span class="hidden-mobile">流量录制回放介绍</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

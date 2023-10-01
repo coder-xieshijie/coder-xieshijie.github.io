@@ -1,0 +1,1331 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="arthas使用指南">
+<meta property="og:type" content="article">
+<meta property="og:title" content="arthas使用指南">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/06/01/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/arthas%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="arthas使用指南">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-e4b2ae7b265aac5019b29223fce84c88.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-71a23aeca37f716527573bd56733b527.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-25a3e17233a880ce7a5c283fb0901bfa.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-34b7778b58ec6a269991b525c1d48fc2.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-768197f87d9998eb5f8fb8edd54e70d2.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-35468342fec9541f3998881106b3c0a4.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-a5c2dd3c2a7225fbc52a3722dff9e526.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-09ae7f17ef7d36924115febc791dca27.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-98c85e18000df0c2162f651254229e40.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-6b67276bafa40a45b648f408dad816f3.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-7db7e8b2409d1b83f7e7c504f6545db5.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-0279ae777c2b029ebcb016b21fa88e29.png">
+<meta property="article:published_time" content="2023-06-01T09:43:37.000Z">
+<meta property="article:modified_time" content="2023-09-18T09:43:37.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="问题定位">
+<meta property="article:tag" content="arthas">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-e4b2ae7b265aac5019b29223fce84c88.png">
+  
+  
+  
+  <title>arthas使用指南 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="arthas使用指南"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-01 17:43" pubdate>
+          2023年6月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          42k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          350 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="其他技能"
+        id="heading-9e18fb2754b05ed1d4a0bc5699e6df2e" role="tab" data-toggle="collapse" href="#collapse-9e18fb2754b05ed1d4a0bc5699e6df2e"
+        aria-expanded="true"
+      >
+        其他技能
+        <span class="list-group-count">(11)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-9e18fb2754b05ed1d4a0bc5699e6df2e"
+           role="tabpanel" aria-labelledby="heading-9e18fb2754b05ed1d4a0bc5699e6df2e">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/11/18/%E9%9A%8F%E7%AC%94/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%85%B7%E7%82%AB%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="从零开始搭建一个酷炫的个人博客"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">从零开始搭建一个酷炫的个人博客</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/01/06/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E8%BD%AE%E5%AD%90-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/" title="好用的工具轮子(持续更新~)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">好用的工具轮子(持续更新~)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/05/18/%E9%9A%8F%E7%AC%94/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E6%90%AD%E5%BB%BAdemo/" title="搭建demo"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">搭建demo</span>
+        </a>
+      
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="工具"
+        id="heading-20dce2c6fa909a5cd62526615fe2788a" role="tab" data-toggle="collapse" href="#collapse-20dce2c6fa909a5cd62526615fe2788a"
+        aria-expanded="false"
+      >
+        工具
+        <span class="list-group-count">(3)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-20dce2c6fa909a5cd62526615fe2788a"
+           role="tabpanel" aria-labelledby="heading-20dce2c6fa909a5cd62526615fe2788a">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/06/07/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/MAC%E5%BA%94%E7%94%A8%E3%80%81%E5%B7%A5%E5%85%B7%E7%BD%91%E7%AB%99%E3%80%81%E6%8F%92%E4%BB%B6%E5%A4%A7%E5%90%88%E9%9B%86/" title="MAC应用、工具网站、插件大合集"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MAC应用、工具网站、插件大合集</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/10/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/iterm2-oh-my-zsh-%E6%89%93%E9%80%A0%E8%88%92%E9%80%82%E7%BB%88%E7%AB%AF%E4%BD%93%E9%AA%8C/" title="iterm2 + oh my zsh 打造舒适终端体验"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">iterm2 + oh my zsh 打造舒适终端体验</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/09/09/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/%E6%89%93%E9%80%A0%E9%AB%98%E6%95%88Mac%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/" title="打造高效Mac工作环境"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">打造高效Mac工作环境</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="工具激活"
+        id="heading-e702699c0068ac7fadd48ed78621f8f4" role="tab" data-toggle="collapse" href="#collapse-e702699c0068ac7fadd48ed78621f8f4"
+        aria-expanded="false"
+      >
+        工具激活
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-e702699c0068ac7fadd48ed78621f8f4"
+           role="tabpanel" aria-labelledby="heading-e702699c0068ac7fadd48ed78621f8f4">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/12/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/idea%E6%BF%80%E6%B4%BB/" title="idea激活"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">idea激活</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="文档能力"
+        id="heading-968c07411b8b5394a61c4576bb772af5" role="tab" data-toggle="collapse" href="#collapse-968c07411b8b5394a61c4576bb772af5"
+        aria-expanded="false"
+      >
+        文档能力
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-968c07411b8b5394a61c4576bb772af5"
+           role="tabpanel" aria-labelledby="heading-968c07411b8b5394a61c4576bb772af5">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/06/26/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E6%96%87%E6%A1%A3%E8%83%BD%E5%8A%9B/UML%E7%B1%BB%E5%9B%BE/" title="UML类图"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">UML类图</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="智力测验"
+        id="heading-f02fc4d4c7506022c080ab13911f21b0" role="tab" data-toggle="collapse" href="#collapse-f02fc4d4c7506022c080ab13911f21b0"
+        aria-expanded="false"
+      >
+        智力测验
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-f02fc4d4c7506022c080ab13911f21b0"
+           role="tabpanel" aria-labelledby="heading-f02fc4d4c7506022c080ab13911f21b0">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/13/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E6%99%BA%E5%8A%9B%E6%B5%8B%E9%AA%8C%E9%A2%98/" title="智力测验题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">智力测验题</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="问题定位"
+        id="heading-4e091815b2fd7619cc3e78258dd1d894" role="tab" data-toggle="collapse" href="#collapse-4e091815b2fd7619cc3e78258dd1d894"
+        aria-expanded="true"
+      >
+        问题定位
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4e091815b2fd7619cc3e78258dd1d894"
+           role="tabpanel" aria-labelledby="heading-4e091815b2fd7619cc3e78258dd1d894">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/06/01/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/arthas%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="arthas使用指南"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">arthas使用指南</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/07/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/ognl%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8%E5%AE%9E%E8%B7%B5/" title="ognl语言介绍和使用实践"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ognl语言介绍和使用实践</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">arthas使用指南</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年9月18日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="arthas使用指南"><a href="#arthas使用指南" class="headerlink" title="arthas使用指南"></a>arthas使用指南</h1><h2 id="零、原理简介"><a href="#零、原理简介" class="headerlink" title="零、原理简介"></a><strong>零、原理简介</strong></h2><p>arthas &#x3D; Instrumentation + java agent + attach api + ASM</p>
+<p>官方开源代码仓库：<a target="_blank" rel="noopener" href="https://github.com/alibaba/arthas">https://github.com/alibaba/arthas</a></p>
+<p>Arthas-MVEL：<a target="_blank" rel="noopener" href="https://github.com/XhinLiang/arthas-mvel">https://github.com/XhinLiang/arthas-mvel</a></p>
+<h3 id="Instrumentation"><a href="#Instrumentation" class="headerlink" title="Instrumentation"></a><strong>Instrumentation</strong></h3><p>Instrumentation 是 Java 提供的一个来自 JVM 的接口，该接口提供了一系列查看和操作 Java 类定义的方法，例如修改类的字节码、向 classLoader 的 classpath 下加入 jar 文件等。使得开发者可以通过 Java 语言来操作和监控 JVM 内部的一些状态，进而实现 Java 程序的监控分析，甚至实现一些特殊功能（如 JVM 版本的 AOP、热部署等）。</p>
+<h3 id="Java-agent"><a href="#Java-agent" class="headerlink" title="Java agent"></a><strong>Java agent</strong></h3><p>Java agent 是一种特殊的Java程序（Jar文件），它是 Instrumentation 的客户端。与普通 Java 程序通过 main 方法启动不同，agent 并不是一个可以单独启动的程序，而必须依附在一个 Java 应用程序上，通过 Instrumentation API 与 JVM 交互。</p>
+<p>Java agent 与 Instrumentation 二者需要在一起使用。</p>
+<h3 id="attach-api"><a href="#attach-api" class="headerlink" title="attach api"></a><strong>attach api</strong></h3><p>Java agent 可以在 JVM 启动后再加载，而这是通过 attach api 实现的。attach api 不仅仅是为了实现动态加载 agent，attach api 其实是跨 JVM 进程通讯的工具，能够将某种指令从一个 JVM 进程发送给另一个 JVM 进程。</p>
+<p>加载 agent 只是 attach api 发送的各种指令中的一种， 诸如 jstack 打印线程栈、jps 列出 Java 进程、jmap 做内存 dump 等功能，都属于 attach api 可以发送的指令。</p>
+<h3 id="ASM-字节码操作和分析框架"><a href="#ASM-字节码操作和分析框架" class="headerlink" title="ASM 字节码操作和分析框架"></a><strong>ASM 字节码操作和分析框架</strong></h3><p>arthas 通过 ASM 这个 Java 字节码操作和分析框架来对目标类的字节码进行修改。在字节码增强的过程中，arthas 会在目标类的方法入口和出口处插入特定的字节码，用于收集方法的调用次数、响应时间等性能指标。同时，arthas 可以通过修改字节码来实现条件断点、异常捕获等调试功能。</p>
+<p><strong>总而言之，arthas 首先利用 attach api 将自己作为 Java agent 附加到目标 JVM 进程中。然后，arthas 通过 Java Instrumentati<strong><strong>on 获取目标进程的类和对象等运</strong></strong>行时信息，并借助 ASM 对目标类的字节码进行动态修改。最后，arthas 与目标 JVM 进程进行进程间通信，接收用户的命令并返回诊断结果</strong></p>
+<h3 id="Karthas"><a href="#Karthas" class="headerlink" title="Karthas"></a><strong>Karthas</strong></h3><ol>
+<li><strong>mvel 支持</strong></li>
+</ol>
+<p>arthas 动态表达式的引擎采用的是 ognl，ognl 的语法不太直观，为了方便用户的使用，karthas 增加了对 mvel 语法的支持，<strong>支持 Spring Bean 的自动加载</strong>，因此可以类似 python 等交互式语言一样，直接简单地交互执行当前 arthas 注入的 Java 进程的任意方法。具体的使用见 3.9 节。</p>
+<ol>
+<li><strong>web console 协作</strong></li>
+</ol>
+<p>arthas本身是一个命令行工具，因此使用的主要场景主要是单个开发人员独自 debug 线上问题。但在实际应用场景中，往往需要多个开发人员共同 debug 同一个现场，这时候如果能把 arthas 的现场通过 web url 分享出来，就会使得这种场景的处理更加方便。</p>
+<p>karthas 在这个方面针对 arthas 原生的 tunnel-server 进行了增强，使得 web console 能够穿透快手的 access proxy 环境，同时申请资源对 tunnel-server 在快手的环境进行了集群化部署，让快手用户能够开箱可用。</p>
+<h2 id="一、进入方式"><a href="#一、进入方式" class="headerlink" title="一、进入方式"></a><strong>一、进入方式</strong></h2><p>流水线配置时，设置使用 kbox：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-e4b2ae7b265aac5019b29223fce84c88.png" srcset="/img/loading.gif" lazyload></p>
+<p>之后打开容器 webssh，使用 jps  找到 java 进程的 pid，使用命令 <strong>&#x2F;opt&#x2F;kbox&#x2F;latest&#x2F;karthas&#x2F;kas.sh pid</strong> 得到 Karthas 的 url 链接，进入即可到达 Karthas 界面</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-71a23aeca37f716527573bd56733b527.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-25a3e17233a880ce7a5c283fb0901bfa.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="二、辅助工具"><a href="#二、辅助工具" class="headerlink" title="二、辅助工具"></a><strong>二、辅助工具</strong></h2><p>因 Karthas 部分命令形式较为复杂，推荐安装 idea 插件 arthas idea：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-34b7778b58ec6a269991b525c1d48fc2.png" srcset="/img/loading.gif" lazyload></p>
+<p>安装后，右击想要观察的类字段、方法上，即可快捷生成相关命令</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-768197f87d9998eb5f8fb8edd54e70d2.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="三、常用命令及功能"><a href="#三、常用命令及功能" class="headerlink" title="三、常用命令及功能"></a><strong>三、常用命令及功能</strong></h2><h3 id="3-1-jad-命令——查看反编译代码"><a href="#3-1-jad-命令——查看反编译代码" class="headerlink" title="3.1 jad 命令——查看反编译代码"></a><strong>3.1 jad 命令——查看反编译代码</strong></h3><p>jad 命令后添加类全路径即可查看字节码反编译的 java 代码</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-35468342fec9541f3998881106b3c0a4.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-2-查看-kconf-取值"><a href="#3-2-查看-kconf-取值" class="headerlink" title="3.2 查看 kconf 取值"></a><strong>3.2 查看 kconf 取值</strong></h3><p>依靠 Karthas 的 MVEL，可以像交互式解释器那样，使用赋值语句获得 kconf 对象，之后直接调用 get() 即可，也可调用 defaultValue()、configKeyNameSpace()、configKey() 等获取更多信息</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs perl">[arthas@70]$ kconf = com.kuaishou.kwaishop.merchant.janus.center.core.config.kconf.MerchantJanusStringListConfigKey.ocpcSplitCharList<br>@MerchantJanusStringListConfigKey[ocpcSplitCharList]<br>[arthas@70]$ kconf.get()<br>@ArrayList[<br>    @String[,],<br>    @String[%2c],<br>    @String[%2C],<br>]<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-3-watch-命令——监视方法调用"><a href="#3-3-watch-命令——监视方法调用" class="headerlink" title="3.3 watch 命令——监视方法调用"></a><strong>3.3 watch 命令——监视方法调用</strong></h3><p>使用 watch 命令监视方法调用，可查看调用时间、入参出参以及抛出的异常。</p>
+<p><strong>参数说明:</strong></p>
+<p>class-pattern: 类名表达式匹配</p>
+<p>method-pattern: 方法名表达式匹配</p>
+<p>express: 观察表达式，默认值：{params, target, returnObj}</p>
+<p>condition-express: 条件表达式</p>
+<p>[b]: 在函数调用之前观察</p>
+<p>[e]: 在函数异常之后观察</p>
+<p>[s]: 在函数返回之后观察</p>
+<p>[f]: 在函数结束之后(正常返回和异常返回)观察</p>
+<p>[E]: 开启正则表达式匹配，默认为通配符匹配</p>
+<p>[x:]: 指定输出结果的属性遍历深度，默认为 1，最大值是 4</p>
+<p>观察表达式与条件表达式均为一个 ognl 表达式，其围绕以下对象进行：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Advice</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ClassLoader loader;  <span class="hljs-comment">// 本次调用类所在的类加载器</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Class&lt;?&gt; clazz;      <span class="hljs-comment">// 本次调用方法所在类的 Class 引用</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ArthasMethod method; <span class="hljs-comment">// 本次调用方法反射引用</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Object target;       <span class="hljs-comment">// 本次调用类的实例</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Object[] params;     <span class="hljs-comment">// 本次调用参数列表，是一个数组，如果方法是无参方法则为空数组</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Object returnObj;    <span class="hljs-comment">// 本次调用返回的对象。当且仅当 isReturn==true 成立时候有效，表明方法调用是以正常返回的方式结束。如果当前方法无返回值 void，则值为 null</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Throwable throwExp;  <span class="hljs-comment">// 本次调用抛出的异常。当且仅当 isThrow==true 成立时有效，表明方法调用是以抛出异常的方式结束。</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">boolean</span> isBefore;    <span class="hljs-comment">// 标志：当前的通知节点有可能是在方法一开始就通知，此时 isBefore==true 成立，同时 isThrow==false 和 isReturn==false，因为在方法刚开始时，还无法确定方法调用将会如何结束。</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">boolean</span> isThrow;     <span class="hljs-comment">// 标志：当前的方法调用以抛异常的形式结束。</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">boolean</span> isReturn;    <span class="hljs-comment">// 标志：当前的方法调用以正常返回的形式结束。</span><br>    <span class="hljs-comment">// getter/setter</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>因此默认会观察调用类的实例、入参列表以及返回值。</p>
+<h4 id="观察正常返回的出入参"><a href="#观察正常返回的出入参" class="headerlink" title="观察正常返回的出入参"></a><strong>观察正常返回的出入参</strong></h4><p>下面的例子观察 KimServiceImpl#convertMsgRequest 方法的出入参，使用了参数 “-n 1” 表示只观察一次，“-x 3” 表示将出入参的属性仅展开三级。另外因入参被看作一个数组，所以其为 Object[] 类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs plain">[arthas@71]$ watch com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.KimServiceImpl convertMsgRequest &#x27;&#123;params,returnObj&#125;&#x27;  -n 1  -x 3<br>Press Q or Ctrl+C to abort.<br>Affect(class count: 1 , method count: 1) cost in 309 ms, listenerId: 34<br>method=com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.KimServiceImpl.convertMsgRequest location=AtExit<br>ts=2023-05-04 19:58:09; [cost=0.050595ms] result=@ArrayList[<br>    @Object[][<br>        @KimRequest[<br>            appKey=@String[18eb1702-c0b9-4eea-9455-506daf42ce85],<br>            appSecret=@String[cde904cb-9169-4e9f-a32d-ce4a1200603a],<br>            groupId=null,<br>            userId=null,<br>            userName=@String[yanghao12],<br>            sendType=@Integer[0],<br>            param=@HashMap[isEmpty=false;size=1],<br>        ],<br>    ],<br>    @KimMsgRequest[<br>        username=@String[yanghao12],<br>        userId=null,<br>        groupId=null,<br>        msgType=null,<br>        markdown=null,<br>        text=null,<br>    ],<br>]<br>Command execution times exceed limit: 1, so command will exit. You can set it with -n option.<br></code></pre></td></tr></table></figure>
+
+<h4 id="观察异常情况下的出入参及异常"><a href="#观察异常情况下的出入参及异常" class="headerlink" title="观察异常情况下的出入参及异常"></a><strong>观察异常情况下的出入参及异常</strong></h4><p>对 ChatServiceImpl#chatDomainConversation 方法构造了一个抛出异常的执行，然后 watch 其详细信息，调用后得到如下结果。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span>watch com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span> chatDomainConversation <span class="hljs-string">&#x27;&#123;params,returnObj,throwExp&#125;&#x27;</span>  -n <span class="hljs-number">1</span>  -x <span class="hljs-number">3</span><br><span class="hljs-title class_">Press</span> Q <span class="hljs-keyword">or</span> <span class="hljs-title class_">Ctrl</span>+C to abort.<br><span class="hljs-title class_">Affect</span>(<span class="hljs-keyword">class</span> <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span> , method <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">264</span> ms, <span class="hljs-symbol">listenerId:</span> <span class="hljs-number">35</span><br>method=com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span>.chatDomainConversation location=<span class="hljs-title class_">AtExceptionExit</span><br>ts=<span class="hljs-number">2023</span>-<span class="hljs-number">05</span>-<span class="hljs-number">04</span> <span class="hljs-number">20</span><span class="hljs-symbol">:</span><span class="hljs-number">05</span><span class="hljs-symbol">:</span><span class="hljs-number">03</span>; [cost=<span class="hljs-number">1</span>.676912ms] result=<span class="hljs-variable">@ArrayList</span>[<br>    <span class="hljs-variable">@Object</span>[][<br>        <span class="hljs-variable">@String</span>[yanghao12],<br>        null,<br>        <span class="hljs-variable">@String</span>[hello],<br>        <span class="hljs-variable">@String</span>[],<br>    ],<br>    null,<br>    com.kuaishou.kwaishop.merchant.answerize.center.common.exception.<span class="hljs-title class_">AnswerizeBaseException</span>: 目前没有对应领域存在<br>        at com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span>.chatDomainConversation(<span class="hljs-title class_">ChatServiceImpl</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">139</span>)<br>        at java.base/jdk.internal.reflect.<span class="hljs-title class_">NativeMethodAccessorImpl</span>.invoke0(<span class="hljs-title class_">Native</span> <span class="hljs-title class_">Method</span>)<br>        at java.base/jdk.internal.reflect.<span class="hljs-title class_">NativeMethodAccessorImpl</span>.invoke(<span class="hljs-title class_">NativeMethodAccessorImpl</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">62</span>)<br>        at java.base/jdk.internal.reflect.<span class="hljs-title class_">DelegatingMethodAccessorImpl</span>.invoke(<span class="hljs-title class_">DelegatingMethodAccessorImpl</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">43</span>)<br>        at java.base/java.lang.reflect.<span class="hljs-title class_">Method</span>.invoke(<span class="hljs-title class_">Method</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">566</span>)<br>        ......<br>,<br>]<br><span class="hljs-title class_">Command</span> execution times exceed <span class="hljs-symbol">limit:</span> <span class="hljs-number">1</span>, so command will exit. <span class="hljs-title class_">You</span> can set it with -n option.<br></code></pre></td></tr></table></figure>
+
+<h4 id="限定条件的-watch"><a href="#限定条件的-watch" class="headerlink" title="限定条件的 watch"></a><strong>限定条件的 watch</strong></h4><p>可使用条件表达式，例如想限定入参属性 userName 为 “test”，则可以使用如下语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">watch com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.KimServiceImpl convertMsgRequest &#x27;&#123;params,returnObj,throwExp&#125;&#x27; &#x27;params[0].getUserName().equals(&quot;test&quot;)&#x27; -x 3<br></code></pre></td></tr></table></figure>
+
+<p>如想限定第一个参数，则可使用 params[0] 对第一个参数进行限定：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span>watch com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span> chat <span class="hljs-string">&#x27;&#123;params,returnObj,throwExp&#125;&#x27;</span> <span class="hljs-string">&#x27;params[0].equals(&quot;yanghao12&quot;)&#x27;</span> -x <span class="hljs-number">3</span><br><span class="hljs-title class_">Press</span> Q <span class="hljs-keyword">or</span> <span class="hljs-title class_">Ctrl</span>+C to abort.<br><span class="hljs-title class_">Affect</span>(<span class="hljs-keyword">class</span> <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span> , method <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">252</span> ms, <span class="hljs-symbol">listenerId:</span> <span class="hljs-number">50</span><br>method=com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span>.chat location=<span class="hljs-title class_">AtExit</span><br>ts=<span class="hljs-number">2023</span>-<span class="hljs-number">05</span>-<span class="hljs-number">04</span> <span class="hljs-number">20</span><span class="hljs-symbol">:</span><span class="hljs-number">37</span><span class="hljs-symbol">:</span><span class="hljs-number">03</span>; [cost=<span class="hljs-number">3167</span>.408299ms] result=<span class="hljs-variable">@ArrayList</span>[<br>    <span class="hljs-variable">@Object</span>[][<br>        <span class="hljs-variable">@String</span>[yanghao12],<br>        <span class="hljs-variable">@String</span>[你是谁？],<br>        <span class="hljs-variable">@String</span>[],<br>    ],<br>    <span class="hljs-variable">@String</span>[我是快手公司商家增长团队研发的智能小助手，专门为用户提供帮助和答疑服务。如果您有任何关于快手平台的问题需要咨询，随时欢迎向我提问。],<br>    null,<br>]<br></code></pre></td></tr></table></figure>
+
+<p>可采用 &amp;&amp;、||、^ 等逻辑操作符进行多个条件的连接，例如通过 &amp;&amp; 连接两个条件，其中 #cost 表示方法的耗时（ms）：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span>watch com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span> chat <span class="hljs-string">&#x27;&#123;params,returnObj,throwExp&#125;&#x27;</span> <span class="hljs-string">&#x27;params[0].equals(&quot;yanghao12&quot;)&amp;&amp;#cost &gt; 3000&#x27;</span> -x <span class="hljs-number">3</span><br><span class="hljs-title class_">Press</span> Q <span class="hljs-keyword">or</span> <span class="hljs-title class_">Ctrl</span>+C to abort.<br><span class="hljs-title class_">Affect</span>(<span class="hljs-keyword">class</span> <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span> , method <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">257</span> ms, <span class="hljs-symbol">listenerId:</span> <span class="hljs-number">55</span><br>method=com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span>.chat location=<span class="hljs-title class_">AtExit</span><br>ts=<span class="hljs-number">2023</span>-<span class="hljs-number">05</span>-<span class="hljs-number">04</span> <span class="hljs-number">20</span><span class="hljs-symbol">:</span><span class="hljs-number">42</span><span class="hljs-symbol">:</span><span class="hljs-number">27</span>; [cost=<span class="hljs-number">7961</span>.660798ms] result=<span class="hljs-variable">@ArrayList</span>[<br>    <span class="hljs-variable">@Object</span>[][<br>        <span class="hljs-variable">@String</span>[yanghao12],<br>        <span class="hljs-variable">@String</span>[讲个鬼故事吧],<br>        <span class="hljs-variable">@String</span>[],<br>    ],<br>    <span class="hljs-variable">@String</span>[好的，以下是一个短小的鬼故事：\n\n有一个人在深夜走在路上，突然看到前方有一个女人，女人的脸被头发遮住了，只露出一双眼睛。那个人觉得很奇怪，但还是走了过去，当他走过女人身边时，女人突然转过头来，露出了一张恐怖的面孔，那个人吓得立刻逃跑了。\n\n据说这个女人是一个被杀害的鬼魂，她会在深夜出现在路上，引诱路人靠近，然后杀死他们。因此，人们在深夜出行时要特别小心，避免遇到这个可怕的鬼魂。],<br>    null,<br>]<br></code></pre></td></tr></table></figure>
+
+<h4 id="监视-sql-语句"><a href="#监视-sql-语句" class="headerlink" title="监视 sql 语句"></a><strong>监视 sql 语句</strong></h4><p>若使用了 mybatis 或 mybatis-plus，可使用如下命令简单监视任意 sql 语句</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span>watch org.apache.ibatis.mapping.<span class="hljs-title class_">BoundSql</span> getSql <span class="hljs-string">&#x27;&#123;params,returnObj,throwExp&#125;&#x27;</span> -x <span class="hljs-number">3</span><br><span class="hljs-title class_">Press</span> Q <span class="hljs-keyword">or</span> <span class="hljs-title class_">Ctrl</span>+C to abort.<br><span class="hljs-title class_">Affect</span>(<span class="hljs-keyword">class</span> <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span> , method <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">368</span> ms, <span class="hljs-symbol">listenerId:</span> <span class="hljs-number">64</span><br>method=org.apache.ibatis.mapping.<span class="hljs-title class_">BoundSql</span>.getSql location=<span class="hljs-title class_">AtExit</span><br>ts=<span class="hljs-number">2023</span>-<span class="hljs-number">05</span>-<span class="hljs-number">05</span> <span class="hljs-number">10</span><span class="hljs-symbol">:</span><span class="hljs-number">49</span><span class="hljs-symbol">:</span><span class="hljs-number">10</span>; [cost=<span class="hljs-number">0</span>.055517ms] result=<span class="hljs-variable">@ArrayList</span>[<br>    <span class="hljs-variable">@Object</span>[][isEmpty=<span class="hljs-literal">true</span>;size=<span class="hljs-number">0</span>],<br>    <span class="hljs-variable">@String</span>[<span class="hljs-variable constant_">SELECT</span>  id,user,messages,create_time,update_time  <span class="hljs-variable constant_">FROM</span> history_info \n \n <span class="hljs-variable constant_">WHERE</span> (user = <span class="hljs-string">?)</span> <span class="hljs-variable constant_">ORDER</span> <span class="hljs-variable constant_">BY</span> create_time <span class="hljs-variable constant_">DESC</span> limit <span class="hljs-number">1</span>],<br>    null,<br>]<br>method=org.apache.ibatis.mapping.<span class="hljs-title class_">BoundSql</span>.getSql location=<span class="hljs-title class_">AtExit</span><br>ts=<span class="hljs-number">2023</span>-<span class="hljs-number">05</span>-<span class="hljs-number">05</span> <span class="hljs-number">10</span><span class="hljs-symbol">:</span><span class="hljs-number">49</span><span class="hljs-symbol">:</span><span class="hljs-number">12</span>; [cost=<span class="hljs-number">0</span>.014351ms] result=<span class="hljs-variable">@ArrayList</span>[<br>    <span class="hljs-variable">@Object</span>[][isEmpty=<span class="hljs-literal">true</span>;size=<span class="hljs-number">0</span>],<br>    <span class="hljs-variable">@String</span>[<span class="hljs-variable constant_">UPDATE</span> history_info  <span class="hljs-variable constant_">SET</span> user=<span class="hljs-string">?,\n</span>messages=<span class="hljs-string">?,\n\n</span>update_time=?  \n \n <span class="hljs-variable constant_">WHERE</span> (user = <span class="hljs-string">?)</span>],<br>    null,<br>]<br></code></pre></td></tr></table></figure>
+
+<h4 id="监视-http-请求"><a href="#监视-http-请求" class="headerlink" title="监视 http 请求"></a><strong>监视 http 请求</strong></h4><p>以下会跟踪耗时大于 100ms 的 http  请求的 url 及耗时情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">watch org.springframework.web.servlet.DispatcherServlet doService &#x27;&#123;params[0].getRequestURI()+&quot; &quot;+ #cost&#125;&#x27;  -n 5  -x 3 &#x27;#cost&gt;100&#x27;  -f<br></code></pre></td></tr></table></figure>
+
+<p>可获取指定 header 信息，例如以下获取 trace-id</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">watch org.springframework.web.servlet.DispatcherServlet doService &#x27;&#123;params[0].getRequestURI()+&quot;  header=&quot;+params[1].getHeaders(&quot;trace-id&quot;)&#125;&#x27;  -n 5  -x 3 -f<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-4-thread-命令"><a href="#3-4-thread-命令" class="headerlink" title="3.4 thread 命令"></a><strong>3.4 thread 命令</strong></h3><p><strong>参数说明</strong></p>
+<p>id: 线程 id</p>
+<p>[n:]: 指定 CPU 占比最高的前 N 个线程并打印堆栈</p>
+<p>[b]: 找出当前阻塞其他线程的线程</p>
+<p>[i <value>]: 指定 cpu 使用率统计的采样间隔，单位为毫秒，默认值为 200</p>
+<p>[–all]: 显示所有匹配的线程</p>
+<h4 id="排查CPU占比高的线程"><a href="#排查CPU占比高的线程" class="headerlink" title="排查CPU占比高的线程"></a><strong>排查CPU占比高的线程</strong></h4><p>使用 thread -n 命令，例如查询前 3 个最忙的线程：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs markdown">[arthas@70]$ thread -n 3<br>&quot;consumer-holder-[<span class="hljs-string">commercialize_sync_topic</span>][<span class="hljs-symbol">c_commercialize_sync_group-lane-PRT.test</span>]-0&quot; Id=1110 cpuUsage=37.22% deltaTime=76ms time=11317ms RUNNABLE (in native)<br><span class="hljs-code">    at java.base@11.0.14-internal/sun.nio.ch.EPoll.wait(Native Method)</span><br><span class="hljs-code">    at java.base@11.0.14-internal/sun.nio.ch.EPollSelectorImpl.doSelect(EPollSelectorImpl.java:120)</span><br><span class="hljs-code">    at java.base@11.0.14-internal/sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:124)</span><br><span class="hljs-code">		......</span><br><span class="hljs-code"></span><br><br>&quot;consumer-holder-[<span class="hljs-string">kwaishop_ecologic_questionnaire_user_submit</span>][<span class="hljs-symbol">c_kwaishop_ecologic_questionnaire_user_submit_merchant_janus-lane-PRT.test</span>]-0#5&quot; Id=1141 cpuUsage=5.99% deltaTime=12ms time=19619ms RUNNABLE (in native)<br><span class="hljs-code">    at java.base@11.0.14-internal/sun.nio.ch.EPoll.wait(Native Method)</span><br><span class="hljs-code">    at java.base@11.0.14-internal/sun.nio.ch.EPollSelectorImpl.doSelect(EPollSelectorImpl.java:120)</span><br><span class="hljs-code">    at java.base@11.0.14-internal/sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:124)</span><br><span class="hljs-code">		......</span><br><span class="hljs-code"></span><br><br>&quot;arthas-command-execute&quot; Id=1851 cpuUsage=2.48% deltaTime=5ms time=107ms RUNNABLE<br><span class="hljs-code">    at java.management@11.0.14-internal/sun.management.ThreadImpl.dumpThreads0(Native Method)</span><br><span class="hljs-code">    at java.management@11.0.14-internal/sun.management.ThreadImpl.getThreadInfo(ThreadImpl.java:494)</span><br><span class="hljs-code">    at com.taobao.arthas.core.command.monitor200.ThreadCommand.processTopBusyThreads(ThreadCommand.java:206)</span><br><span class="hljs-code">		......</span><br></code></pre></td></tr></table></figure>
+
+<p>可以附加 -i 属性指定采样时间间隔，例如 thread -n 3 -i 1000 会统计近 1000 ms 内前三个最消耗 CPU 的线程。</p>
+<h4 id="排查阻塞线程"><a href="#排查阻塞线程" class="headerlink" title="排查阻塞线程"></a><strong>排查阻塞线程</strong></h4><p>使用 thread -b 直接查询</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@70</span>]<span class="hljs-variable">$ </span>thread -b<br><span class="hljs-string">&quot;consumer-holder-[invite_call_back_topic][c_invite_call_back_group-lane-PRT.test]-0&quot;</span> <span class="hljs-title class_">Id</span>=<span class="hljs-number">1175</span> <span class="hljs-variable constant_">RUNNABLE</span><br>    at java.base<span class="hljs-variable">@11</span>.<span class="hljs-number">0.14</span>-internal/sun.nio.ch.<span class="hljs-title class_">EPoll</span>.wait(<span class="hljs-title class_">Native</span> <span class="hljs-title class_">Method</span>)<br>    at java.base<span class="hljs-variable">@11</span>.<span class="hljs-number">0.14</span>-internal/sun.nio.ch.<span class="hljs-title class_">EPollSelectorImpl</span>.doSelect(<span class="hljs-title class_">EPollSelectorImpl</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">120</span>)<br>    at java.base<span class="hljs-variable">@11</span>.<span class="hljs-number">0.14</span>-internal/sun.nio.ch.<span class="hljs-title class_">SelectorImpl</span>.lockAndDoSelect(<span class="hljs-title class_">SelectorImpl</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">124</span>)<br>    -  locked sun.nio.ch.<span class="hljs-title class_">Util</span>$<span class="hljs-number">2</span><span class="hljs-variable">@3903b099</span><br>    -  locked sun.nio.ch.<span class="hljs-title class_">EPollSelectorImpl</span><span class="hljs-variable">@494f3bc9</span><br>    at java.base<span class="hljs-variable">@11</span>.<span class="hljs-number">0.14</span>-internal/sun.nio.ch.<span class="hljs-title class_">SelectorImpl</span>.select(<span class="hljs-title class_">SelectorImpl</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">136</span>)<br>    at org.apache.kafka.common.network.<span class="hljs-title class_">Selector</span>.select(<span class="hljs-title class_">Selector</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">645</span>)<br>    at org.apache.kafka.common.network.<span class="hljs-title class_">Selector</span>.poll(<span class="hljs-title class_">Selector</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">396</span>)<br>    at org.apache.kafka.clients.<span class="hljs-title class_">NetworkClient</span>.poll(<span class="hljs-title class_">NetworkClient</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">430</span>)<br>    at org.apache.kafka.clients.consumer.internals.<span class="hljs-title class_">ConsumerNetworkClient</span>.poll(<span class="hljs-title class_">ConsumerNetworkClient</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">226</span>)<br>    -  locked org.apache.kafka.clients.consumer.internals.<span class="hljs-title class_">ConsumerNetworkClient</span><span class="hljs-variable">@7ad2abea</span> &lt;---- but blocks <span class="hljs-number">1</span> other threads!<br>    at org.apache.kafka.clients.consumer.<span class="hljs-title class_">KafkaConsumer</span>.pollOnceWithCostInfo(<span class="hljs-title class_">KafkaConsumer</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">1256</span>)<br>    at org.apache.kafka.clients.consumer.<span class="hljs-title class_">KafkaConsumer</span>.pollWithCostInfo(<span class="hljs-title class_">KafkaConsumer</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">1095</span>)<br>    at org.apache.kafka.clients.consumer.<span class="hljs-title class_">KafkaConsumer</span>.pollWithCostInfo(<span class="hljs-title class_">KafkaConsumer</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">1130</span>)<br>    at com.kuaishou.framework.kafka.n.<span class="hljs-title class_">KafkaJavaConsumerHolder</span><span class="hljs-variable">$ConsumerHolder</span>.loopPollAndConsume(<span class="hljs-title class_">KafkaJavaConsumerHolder</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">1080</span>)<br>    at com.kuaishou.framework.kafka.n.<span class="hljs-title class_">KafkaJavaConsumerHolder</span><span class="hljs-variable">$ConsumerHolder</span>.<span class="hljs-built_in">lambda</span>$createAndExecuteConsumeTask<span class="hljs-variable">$7</span>(<span class="hljs-title class_">KafkaJavaConsumerHolder</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">920</span>)<br>    at com.kuaishou.framework.kafka.n.<span class="hljs-title class_">KafkaJavaConsumerHolder</span>$<span class="hljs-title class_">ConsumerHolder</span><span class="hljs-variable">$$</span><span class="hljs-title class_">Lambda</span><span class="hljs-variable">$1817</span>/<span class="hljs-number">0x00000008413f4c40</span>.run(<span class="hljs-title class_">Unknown</span> <span class="hljs-title class_">Source</span>)<br>    at java.base<span class="hljs-variable">@11</span>.<span class="hljs-number">0.14</span>-internal/java.util.concurrent.<span class="hljs-title class_">ThreadPoolExecutor</span>.runWorker(<span class="hljs-title class_">ThreadPoolExecutor</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">1128</span>)<br>    at java.base<span class="hljs-variable">@11</span>.<span class="hljs-number">0.14</span>-internal/java.util.concurrent.<span class="hljs-title class_">ThreadPoolExecutor</span><span class="hljs-variable">$Worker</span>.run(<span class="hljs-title class_">ThreadPoolExecutor</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">628</span>)<br>    at java.base<span class="hljs-variable">@11</span>.<span class="hljs-number">0.14</span>-internal/java.lang.<span class="hljs-title class_">Thread</span>.run(<span class="hljs-title class_">Thread</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">829</span>)<br><br>    <span class="hljs-title class_">Number</span> of locked synchronizers = <span class="hljs-number">1</span><br>    - java.util.concurrent.<span class="hljs-title class_">ThreadPoolExecutor</span>$<span class="hljs-title class_">Worker</span><span class="hljs-variable">@712</span>0dbac<br></code></pre></td></tr></table></figure>
+
+<p>可看到当前消费者组线程 “consumer-holder-[invite_call_back_topic][c_invite_call_back_group-lane-PRT.test]-0” 锁定了对象 org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient@7ad2abea，导致阻塞了另外一个线程。</p>
+<h4 id="查询特定线程堆栈"><a href="#查询特定线程堆栈" class="headerlink" title="查询特定线程堆栈"></a><strong>查询特定线程堆栈</strong></h4><p>使用 thread id，查看特定 id 线程的堆栈信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs plain">[arthas@71]$ thread 221<br>&quot;http-nio-8080-exec-1&quot; Id=221 WAITING on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@36bdd6d8<br>    at java.base@11.0.14-internal/jdk.internal.misc.Unsafe.park(Native Method)<br>    -  waiting on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@36bdd6d8<br>    at java.base@11.0.14-internal/java.util.concurrent.locks.LockSupport.park(LockSupport.java:194)<br>    at java.base@11.0.14-internal/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2081)<br>    at java.base@11.0.14-internal/java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:433)<br>    at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:108)<br>    at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:33)<br>    at java.base@11.0.14-internal/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1054)<br>    at java.base@11.0.14-internal/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1114)<br>    at java.base@11.0.14-internal/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)<br>    at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)<br>    at java.base@11.0.14-internal/java.lang.Thread.run(Thread.java:829)<br></code></pre></td></tr></table></figure>
+
+<h4 id="查看所有线程"><a href="#查看所有线程" class="headerlink" title="查看所有线程"></a><strong>查看所有线程</strong></h4><p>使用 thread -all 显示所有匹配线程信息</p>
+<h4 id="查看特定状态所有线程"><a href="#查看特定状态所有线程" class="headerlink" title="查看特定状态所有线程"></a><strong>查看特定状态所有线程</strong></h4><p>使用 thread –state xxx，例如：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-a5c2dd3c2a7225fbc52a3722dff9e526.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-5-trace-命令——查看方法调用链路和执行耗时"><a href="#3-5-trace-命令——查看方法调用链路和执行耗时" class="headerlink" title="3.5 trace 命令——查看方法调用链路和执行耗时"></a><strong>3.5 trace 命令——查看方法调用链路和执行耗时</strong></h3><p>trace 命令能主动搜索 class-pattern／method-pattern 对应的方法调用路径，渲染和统计整个调用链路上的所有性能开销和追踪调用链路。</p>
+<p><strong>参数说明</strong></p>
+<p>class-pattern: 类名表达式匹配</p>
+<p>method-pattern: 方法名表达式匹配</p>
+<p>condition-express: 条件表达式</p>
+<p>[E]: 开启正则表达式匹配，默认为通配符匹配</p>
+<p>[n:]: 命令执行次数</p>
+<p>#cost: 方法执行耗时</p>
+<h4 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a><strong>简单示例</strong></h4><p>一个简单的示例如下，可以观察到耗时的操作在 ChatService#chat 和 KimService#sendTextMessage 两个方法内。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span>trace com.kuaishou.kwaishop.merchant.answerize.center.core.handler.consume.<span class="hljs-title class_">ChatConsumeHandler</span> handler<br><span class="hljs-title class_">Press</span> Q <span class="hljs-keyword">or</span> <span class="hljs-title class_">Ctrl</span>+C to abort.<br><span class="hljs-title class_">Affect</span>(<span class="hljs-keyword">class</span> <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span> , method <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">346</span> ms, <span class="hljs-symbol">listenerId:</span> <span class="hljs-number">16</span><br><span class="hljs-string">`---ts=2023-05-04 14:16:36;thread_name=UNI_c_answerize_chat_topic_22;id=765;is_daemon=false;priority=5;TCCL=org.springframework.boot.loader.LaunchedURLClassLoader@749ab7b4</span><br><span class="hljs-string">    `</span>---[<span class="hljs-number">1833</span>.242546ms] com.kuaishou.kwaishop.merchant.answerize.center.core.handler.consume.<span class="hljs-title class_">ChatConsumeHandler</span><span class="hljs-symbol">:handler</span>()<br>        +---[<span class="hljs-number">0</span>.035623ms] kuaishou.kwaishop.merchant.invite.center.<span class="hljs-title class_">AnswerizeMsgDto</span><span class="hljs-variable">$AnswerizeFlowMsg</span><span class="hljs-symbol">:getUser</span>() <span class="hljs-comment">#37</span><br>        +---[<span class="hljs-number">0</span>.017509ms] kuaishou.kwaishop.merchant.invite.center.<span class="hljs-title class_">AnswerizeMsgDto</span><span class="hljs-variable">$AnswerizeFlowMsg</span><span class="hljs-symbol">:getExtra</span>() <span class="hljs-comment">#38</span><br>        +---[<span class="hljs-number">0</span>.120501ms] com.kuaishou.framework.util.<span class="hljs-title class_">ObjectMapperUtils</span><span class="hljs-symbol">:fromJson</span>() <span class="hljs-comment">#40</span><br>        +---[<span class="hljs-number">0</span>.039254ms] org.apache.commons.lang3.<span class="hljs-title class_">StringUtils</span><span class="hljs-symbol">:isEmpty</span>() <span class="hljs-comment">#44</span><br>        +---[<span class="hljs-number">1522</span>.793878ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.<span class="hljs-title class_">ChatService</span><span class="hljs-symbol">:chat</span>() <span class="hljs-comment">#47</span><br>        +---[<span class="hljs-number">0</span>.03056ms] com.kuaishou.kwaishop.merchant.answerize.center.common.util.<span class="hljs-title class_">KimOpenUtil</span><span class="hljs-symbol">:msgParamConvertor</span>() <span class="hljs-comment">#48</span><br>        +---[<span class="hljs-number">0</span>.059335ms] com.kuaishou.kwaishop.merchant.answerize.center.core.config.kconf.<span class="hljs-title class_">MerchantAnswerizeMapConfigKey</span><span class="hljs-symbol">:get</span>() <span class="hljs-comment">#51</span><br>        +---[<span class="hljs-number">0</span>.023643ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-symbol">:builder</span>() <span class="hljs-comment">#52</span><br>        +---[<span class="hljs-number">0</span>.021792ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:appKey</span>() <span class="hljs-comment">#53</span><br>        +---[<span class="hljs-number">0</span>.019118ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:appSecret</span>() <span class="hljs-comment">#54</span><br>        +---[<span class="hljs-number">0</span>.014695ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:param</span>() <span class="hljs-comment">#55</span><br>        +---[<span class="hljs-number">0</span>.017362ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:groupId</span>() <span class="hljs-comment">#56</span><br>        +---[<span class="hljs-number">0</span>.0151ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:userName</span>() <span class="hljs-comment">#57</span><br>        +---[<span class="hljs-number">0</span>.016715ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:sendType</span>() <span class="hljs-comment">#58</span><br>        +---[<span class="hljs-number">0</span>.027505ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:build</span>() <span class="hljs-comment">#59</span><br>        <span class="hljs-string">`---[309.269577ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.KimService:sendTextMessage() #61</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="多层-trace"><a href="#多层-trace" class="headerlink" title="多层 trace"></a><strong>多层 trace</strong></h4><p>可见 trace 命令只会 trace 匹配到的函数里的子调用，并不会向下 trace 多层。为了实现 trace  多层的效果，可以使用 -E 参数开启正则表达式匹配，从而用正则表达式匹配路径上的多个类和函数，一定程度上达到多层 trace 的效果，以下跟踪了handler() 方法中调用的 ChatService#chat 方法，以及 chat() 内部调用的 ChatServiceImpl#chatNormalConversation 方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs plain">[arthas@71]$ trace -E com.kuaishou.kwaishop.merchant.answerize.center.core.handler.consume.ChatConsumeHandler|com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.ChatServiceImpl handler|chat|chatNormalConversation<br>Press Q or Ctrl+C to abort.<br>Affect(class count: 2 , method count: 3) cost in 562 ms, listenerId: 18<br>`---ts=2023-05-04 14:34:05;thread_name=UNI_c_answerize_chat_topic_24;id=795;is_daemon=false;priority=5;TCCL=org.springframework.boot.loader.LaunchedURLClassLoader@749ab7b4<br>    `---[1872.237546ms] com.kuaishou.kwaishop.merchant.answerize.center.core.handler.consume.ChatConsumeHandler:handler()<br>        +---[0.01762ms] kuaishou.kwaishop.merchant.invite.center.AnswerizeMsgDto$AnswerizeFlowMsg:getUser() #37<br>        +---[0.00891ms] kuaishou.kwaishop.merchant.invite.center.AnswerizeMsgDto$AnswerizeFlowMsg:getExtra() #38<br>        +---[0.107442ms] com.kuaishou.framework.util.ObjectMapperUtils:fromJson() #40<br>        +---[0.040396ms] org.apache.commons.lang3.StringUtils:isEmpty() #44<br>        +---[1151.319768ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.ChatService:chat() #47<br>        |   `---[1151.257163ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.ChatServiceImpl:chat()<br>        |       +---[12.101286ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.HistoryManageService:queryHistoryByUser() #50<br>        |       +---[0.032386ms] org.apache.commons.collections4.CollectionUtils:isEmpty() #51<br>        |       +---[0.025957ms] org.apache.commons.lang3.StringUtils:isEmpty() #58<br>        |       `---[1139.019001ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.ChatServiceImpl:chatNormalConversation() #59<br>        |           `---[1138.955373ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.ChatServiceImpl:chatNormalConversation()<br>        |               +---[0.024002ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.MessageDTO:builder() #117<br>        |               +---[0.019647ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.MessageDTO$Role:getName() #118<br>        |               +---[0.017317ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.MessageDTO$MessageDTOBuilder:role() #95<br>        |               +---[0.018757ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.MessageDTO$MessageDTOBuilder:content() #119<br>        |               +---[0.014803ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.MessageDTO$MessageDTOBuilder:build() #120<br>        |               +---[0.012072ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.ChatCompletionDTO$Model:getName() #123<br>        |               +---[2.446956ms] com.kuaishou.kwaishop.merchant.answerize.center.common.util.TikTokensUtil:tokens() #95<br>        |               +---[0.019998ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.ChatCompletionDTO$Model:getMaxToken() #124<br>        |               +---[1129.891215ms] com.kuaishou.kwaishop.merchant.answerize.center.client.client.OpenAIClient:chatCompletion() #127<br>        |               +---[0.028956ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.ChatCompletionResponseDTO:getChoices() #128<br>        |               +---[0.023938ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.ChatChoice:getMessageDTO() #95<br>        |               +---[6.006524ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.HistoryManageService:updateUserHistory() #131<br>        |               `---[0.017471ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.MessageDTO:getContent() #134<br>        +---[0.016075ms] com.kuaishou.kwaishop.merchant.answerize.center.common.util.KimOpenUtil:msgParamConvertor() #48<br>        +---[0.03273ms] com.kuaishou.kwaishop.merchant.answerize.center.core.config.kconf.MerchantAnswerizeMapConfigKey:get() #51<br>        +---[0.014531ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.KimRequest:builder() #52<br>        +---[0.011929ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.KimRequest$KimRequestBuilder:appKey() #53<br>        +---[0.009899ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.KimRequest$KimRequestBuilder:appSecret() #54<br>        +---[0.012046ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.KimRequest$KimRequestBuilder:param() #55<br>        +---[0.009794ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.KimRequest$KimRequestBuilder:groupId() #56<br>        +---[0.009603ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.KimRequest$KimRequestBuilder:userName() #57<br>        +---[0.009825ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.KimRequest$KimRequestBuilder:sendType() #58<br>        +---[0.010477ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.KimRequest$KimRequestBuilder:build() #59<br>        `---[720.206435ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.KimService:sendTextMessage() #61<br></code></pre></td></tr></table></figure>
+
+<h4 id="限制trace条件"><a href="#限制trace条件" class="headerlink" title="限制trace条件"></a><strong>限制trace条件</strong></h4><p>为了防止采集到大量结果，可以使用 -n 和 #cost 来进行采集结果数量的限定和耗时条件的限定，例如下面这个例子将只采集耗时大于 3000ms 的第一次调用，之后便会直接退出命令：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span>trace com.kuaishou.kwaishop.merchant.answerize.center.core.handler.consume.<span class="hljs-title class_">ChatConsumeHandler</span> handler -n <span class="hljs-number">1</span> <span class="hljs-string">&#x27;#cost &gt; 3000&#x27;</span><br><span class="hljs-title class_">Press</span> Q <span class="hljs-keyword">or</span> <span class="hljs-title class_">Ctrl</span>+C to abort.<br><span class="hljs-title class_">Affect</span>(<span class="hljs-keyword">class</span> <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span> , method <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">252</span> ms, <span class="hljs-symbol">listenerId:</span> <span class="hljs-number">21</span><br><span class="hljs-string">`---ts=2023-05-04 14:47:23;thread_name=UNI_c_answerize_chat_topic_27;id=7ba;is_daemon=false;priority=5;TCCL=org.springframework.boot.loader.LaunchedURLClassLoader@749ab7b4</span><br><span class="hljs-string">    `</span>---[<span class="hljs-number">6064</span>.372975ms] com.kuaishou.kwaishop.merchant.answerize.center.core.handler.consume.<span class="hljs-title class_">ChatConsumeHandler</span><span class="hljs-symbol">:handler</span>()<br>        +---[<span class="hljs-number">0</span>.020583ms] kuaishou.kwaishop.merchant.invite.center.<span class="hljs-title class_">AnswerizeMsgDto</span><span class="hljs-variable">$AnswerizeFlowMsg</span><span class="hljs-symbol">:getUser</span>() <span class="hljs-comment">#37</span><br>        +---[<span class="hljs-number">0</span>.012811ms] kuaishou.kwaishop.merchant.invite.center.<span class="hljs-title class_">AnswerizeMsgDto</span><span class="hljs-variable">$AnswerizeFlowMsg</span><span class="hljs-symbol">:getExtra</span>() <span class="hljs-comment">#38</span><br>        +---[<span class="hljs-number">0</span>.094053ms] com.kuaishou.framework.util.<span class="hljs-title class_">ObjectMapperUtils</span><span class="hljs-symbol">:fromJson</span>() <span class="hljs-comment">#40</span><br>        +---[<span class="hljs-number">0</span>.017264ms] org.apache.commons.lang3.<span class="hljs-title class_">StringUtils</span><span class="hljs-symbol">:isEmpty</span>() <span class="hljs-comment">#44</span><br>        +---[<span class="hljs-number">5727</span>.814648ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.<span class="hljs-title class_">ChatService</span><span class="hljs-symbol">:chat</span>() <span class="hljs-comment">#47</span><br>        +---[<span class="hljs-number">0</span>.016821ms] com.kuaishou.kwaishop.merchant.answerize.center.common.util.<span class="hljs-title class_">KimOpenUtil</span><span class="hljs-symbol">:msgParamConvertor</span>() <span class="hljs-comment">#48</span><br>        +---[<span class="hljs-number">0</span>.036667ms] com.kuaishou.kwaishop.merchant.answerize.center.core.config.kconf.<span class="hljs-title class_">MerchantAnswerizeMapConfigKey</span><span class="hljs-symbol">:get</span>() <span class="hljs-comment">#51</span><br>        +---[<span class="hljs-number">0</span>.037161ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-symbol">:builder</span>() <span class="hljs-comment">#52</span><br>        +---[<span class="hljs-number">0</span>.011403ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:appKey</span>() <span class="hljs-comment">#53</span><br>        +---[<span class="hljs-number">0</span>.01047ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:appSecret</span>() <span class="hljs-comment">#54</span><br>        +---[<span class="hljs-number">0</span>.016492ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:param</span>() <span class="hljs-comment">#55</span><br>        +---[<span class="hljs-number">0</span>.010732ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:groupId</span>() <span class="hljs-comment">#56</span><br>        +---[<span class="hljs-number">0</span>.007971ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:userName</span>() <span class="hljs-comment">#57</span><br>        +---[<span class="hljs-number">0</span>.010299ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:sendType</span>() <span class="hljs-comment">#58</span><br>        +---[<span class="hljs-number">0</span>.011872ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.kim.<span class="hljs-title class_">KimRequest</span><span class="hljs-variable">$KimRequestBuilder</span><span class="hljs-symbol">:build</span>() <span class="hljs-comment">#59</span><br>        <span class="hljs-string">`---[335.348733ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.KimService:sendTextMessage() #61</span><br><span class="hljs-string"></span><br><span class="hljs-string">Command execution times exceed limit: 1, so command will exit. You can set it with -n option.</span><br></code></pre></td></tr></table></figure>
+
+<p>也可如前“watch”命令所示，使用更为复杂的条件语句进行条件限制。</p>
+<h4 id="通配符匹配"><a href="#通配符匹配" class="headerlink" title="通配符匹配"></a><strong>通配符匹配</strong></h4><p>trace 默认采用通配符匹配，下面的示例中，将会匹配 ChatServiceImpl 内 chat* 的方法，可见其进行了两层 trace</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span>trace com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span> chat* -n <span class="hljs-number">1</span> <span class="hljs-string">&#x27;#cost &gt; 3000&#x27;</span><br><span class="hljs-title class_">Press</span> Q <span class="hljs-keyword">or</span> <span class="hljs-title class_">Ctrl</span>+C to abort.<br><span class="hljs-title class_">Affect</span>(<span class="hljs-keyword">class</span> <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span> , method <span class="hljs-symbol">count:</span> <span class="hljs-number">3</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">305</span> ms, <span class="hljs-symbol">listenerId:</span> <span class="hljs-number">22</span><br><span class="hljs-string">`---ts=2023-05-04 14:51:18;thread_name=UNI_c_answerize_chat_topic_29;id=7cf;is_daemon=false;priority=5;TCCL=org.springframework.boot.loader.LaunchedURLClassLoader@749ab7b4</span><br><span class="hljs-string">    `</span>---[<span class="hljs-number">4986</span>.447081ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span><span class="hljs-symbol">:chat</span>()<br>        +---[<span class="hljs-number">6</span>.610857ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.<span class="hljs-title class_">HistoryManageService</span><span class="hljs-symbol">:queryHistoryByUser</span>() <span class="hljs-comment">#50</span><br>        +---[<span class="hljs-number">0</span>.00605ms] org.apache.commons.collections4.<span class="hljs-title class_">CollectionUtils</span><span class="hljs-symbol">:isEmpty</span>() <span class="hljs-comment">#51</span><br>        +---[<span class="hljs-number">0</span>.004414ms] org.apache.commons.lang3.<span class="hljs-title class_">StringUtils</span><span class="hljs-symbol">:isEmpty</span>() <span class="hljs-comment">#58</span><br>        <span class="hljs-string">`---[4979.744882ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.ChatServiceImpl:chatNormalConversation() #59</span><br><span class="hljs-string">            `</span>---[<span class="hljs-number">4979</span>.709312ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span><span class="hljs-symbol">:chatNormalConversation</span>()<br>                +---[<span class="hljs-number">0</span>.007337ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.<span class="hljs-title class_">Message</span><span class="hljs-symbol">DTO:</span>builder() <span class="hljs-comment">#117</span><br>                +---[<span class="hljs-number">0</span>.005473ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.<span class="hljs-title class_">Message</span>DTO<span class="hljs-variable">$Role</span><span class="hljs-symbol">:getName</span>() <span class="hljs-comment">#118</span><br>                +---[<span class="hljs-number">0</span>.006898ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.<span class="hljs-title class_">Message</span>DTO<span class="hljs-variable">$MessageDTOBuilder</span><span class="hljs-symbol">:role</span>() <span class="hljs-comment">#95</span><br>                +---[<span class="hljs-number">0</span>.007451ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.<span class="hljs-title class_">Message</span>DTO<span class="hljs-variable">$MessageDTOBuilder</span><span class="hljs-symbol">:content</span>() <span class="hljs-comment">#119</span><br>                +---[<span class="hljs-number">0</span>.005921ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.<span class="hljs-title class_">Message</span>DTO<span class="hljs-variable">$MessageDTOBuilder</span><span class="hljs-symbol">:build</span>() <span class="hljs-comment">#120</span><br>                +---[<span class="hljs-number">0</span>.004486ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.<span class="hljs-title class_">ChatCompletion</span>DTO<span class="hljs-variable">$Model</span><span class="hljs-symbol">:getName</span>() <span class="hljs-comment">#123</span><br>                +---[<span class="hljs-number">2</span>.528856ms] com.kuaishou.kwaishop.merchant.answerize.center.common.util.<span class="hljs-title class_">TikTokensUtil</span><span class="hljs-symbol">:tokens</span>() <span class="hljs-comment">#95</span><br>                +---[<span class="hljs-number">0</span>.005295ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.<span class="hljs-title class_">ChatCompletion</span>DTO<span class="hljs-variable">$Model</span><span class="hljs-symbol">:getMaxToken</span>() <span class="hljs-comment">#124</span><br>                +---[<span class="hljs-number">4970</span>.527234ms] com.kuaishou.kwaishop.merchant.answerize.center.client.client.<span class="hljs-title class_">OpenAIClient</span><span class="hljs-symbol">:chatCompletion</span>() <span class="hljs-comment">#127</span><br>                +---[<span class="hljs-number">0</span>.0063ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.<span class="hljs-title class_">ChatCompletionResponse</span><span class="hljs-symbol">DTO:</span>getChoices() <span class="hljs-comment">#128</span><br>                +---[<span class="hljs-number">0</span>.006029ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.<span class="hljs-title class_">ChatChoice</span><span class="hljs-symbol">:getMessageDTO</span>() <span class="hljs-comment">#95</span><br>                +---[<span class="hljs-number">6</span>.438786ms] com.kuaishou.kwaishop.merchant.answerize.center.core.service.<span class="hljs-title class_">HistoryManageService</span><span class="hljs-symbol">:updateUserHistory</span>() <span class="hljs-comment">#131</span><br>                <span class="hljs-string">`---[0.00694ms] com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.MessageDTO:getContent() #134</span><br><span class="hljs-string"></span><br><span class="hljs-string">Command execution times exceed limit: 1, so command will exit. You can set it with -n option.</span><br></code></pre></td></tr></table></figure>
+
+<p>默认 trace 会跳过 jdk 中的方法，如 toString() 等，使用 –skipJDKMethod false 关闭跳过。</p>
+<h4 id="动态trace"><a href="#动态trace" class="headerlink" title="动态trace"></a>动态trace</h4><ol>
+<li><p>打开终端 1，trace 上面 demo 里的<code>run</code>函数，可以看到打印出 <code>listenerId: 1</code></p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">[arthas@<span class="hljs-number">59161</span>]$ trace demo.MathGame run<br>Press Q <span class="hljs-keyword">or</span> Ctrl+C <span class="hljs-keyword">to</span> abort.<br>Affect(<span class="hljs-keyword">class</span> count: <span class="hljs-number">1</span> , <span class="hljs-keyword">method</span> <span class="hljs-title function_">count</span>: <span class="hljs-number">1</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">112</span> ms, listenerId: <span class="hljs-number">1</span><br>`---ts=<span class="hljs-number">2020</span>-<span class="hljs-number">07</span>-<span class="hljs-number">09</span> <span class="hljs-number">16</span>:<span class="hljs-number">48</span>:<span class="hljs-number">11</span><span class="hljs-punctuation">;</span>thread_name=main<span class="hljs-punctuation">;</span>id=<span class="hljs-number">1</span><span class="hljs-punctuation">;</span>is_daemon=<span class="hljs-keyword">false</span><span class="hljs-punctuation">;</span>priority=<span class="hljs-number">5</span><span class="hljs-punctuation">;</span>TCCL=sun.misc.Launcher$AppClassLoader@<span class="hljs-number">3</span>d4eac69<br>    `---[<span class="hljs-number">1.389634</span>ms] demo.MathGame:run()<br>        `---[<span class="hljs-number">0.123934</span>ms] demo.MathGame:primeFactors() <span class="hljs-string">#24</span> [throws Exception]<br><br>`---ts=<span class="hljs-number">2020</span>-<span class="hljs-number">07</span>-<span class="hljs-number">09</span> <span class="hljs-number">16</span>:<span class="hljs-number">48</span>:<span class="hljs-number">12</span><span class="hljs-punctuation">;</span>thread_name=main<span class="hljs-punctuation">;</span>id=<span class="hljs-number">1</span><span class="hljs-punctuation">;</span>is_daemon=<span class="hljs-keyword">false</span><span class="hljs-punctuation">;</span>priority=<span class="hljs-number">5</span><span class="hljs-punctuation">;</span>TCCL=sun.misc.Launcher$AppClassLoader@<span class="hljs-number">3</span>d4eac69<br>    `---[<span class="hljs-number">3.716391</span>ms] demo.MathGame:run()<br>        +---[<span class="hljs-number">3.182813</span>ms] demo.MathGame:primeFactors() <span class="hljs-string">#24</span><br>        `---[<span class="hljs-number">0.167786</span>ms] demo.MathGame:print() <span class="hljs-string">#25</span><br><br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>现在想要深入子函数<code>primeFactors</code>，可以打开一个新终端 2，使用<code>telnet localhost 3658</code>连接上 arthas,再 trace <code>primeFactors</code>时，指定<code>listenerId</code>。这时终端 2 打印的结果，说明已经增强了一个函数：<code>Affect(class count: 1 , method count: 1)</code>，但不再打印更多的结果。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-string">[arthas@59161]</span>$ trace demo.MathGame primeFactors --listenerId <span class="hljs-number">1</span><br>Press Q <span class="hljs-keyword">or</span> Ctrl+C to abort.<br>Affect(<span class="hljs-keyword">class</span> <span class="hljs-symbol">count: <span class="hljs-symbol">1</span></span> , <span class="hljs-symbol">method</span> <span class="hljs-symbol">count: <span class="hljs-symbol">1</span></span>) <span class="hljs-symbol">cost</span> <span class="hljs-symbol">in</span> <span class="hljs-symbol">34</span> <span class="hljs-symbol">ms, <span class="hljs-symbol">listenerId</span>: <span class="hljs-symbol">1</span></span><br><br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>再查看终端 1，可以发现 trace 的结果增加了一层，打印了<code>primeFactors</code>函数里的内容：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">`<span class="hljs-params">---ts=2020-07-09</span> 16<span class="hljs-function">:49</span><span class="hljs-function">:29</span>;thread_name=main;id=1;is_daemon=<span class="hljs-literal">false</span>;priority=5;TCCL=sun.misc.Launcher$AppClassLoader@3d4eac69<br>    `<span class="hljs-params">---</span>[0.492551ms] demo.MathGame<span class="hljs-function">:run</span><span class="hljs-params">()</span><br>        `<span class="hljs-params">---</span>[0.113929ms] demo.MathGame<span class="hljs-function">:primeFactors</span><span class="hljs-params">()</span> <span class="hljs-comment">#24 [throws Exception]</span><br>            `<span class="hljs-params">---</span>[0.061462ms] demo.MathGame<span class="hljs-function">:primeFactors</span><span class="hljs-params">()</span><br>                `<span class="hljs-params">---</span>[0.001018ms] throw<span class="hljs-function">:java.lang.IllegalArgumentException</span><span class="hljs-params">()</span> <span class="hljs-comment">#46</span><br><br>`<span class="hljs-params">---ts=2020-07-09</span> 16<span class="hljs-function">:49</span><span class="hljs-function">:30</span>;thread_name=main;id=1;is_daemon=<span class="hljs-literal">false</span>;priority=5;TCCL=sun.misc.Launcher$AppClassLoader@3d4eac69<br>    `<span class="hljs-params">---</span>[0.409446ms] demo.MathGame<span class="hljs-function">:run</span><span class="hljs-params">()</span><br>        +<span class="hljs-params">---</span>[0.232606ms] demo.MathGame<span class="hljs-function">:primeFactors</span><span class="hljs-params">()</span> <span class="hljs-comment">#24</span><br>        |   `<span class="hljs-params">---</span>[0.1294ms] demo.MathGame<span class="hljs-function">:primeFactors</span><span class="hljs-params">()</span><br>        `<span class="hljs-params">---</span>[0.084025ms] demo.MathGame<span class="hljs-function">:print</span><span class="hljs-params">()</span> <span class="hljs-comment">#25</span><br><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="3-6-stack-命令——查看方法调用堆栈"><a href="#3-6-stack-命令——查看方法调用堆栈" class="headerlink" title="3.6 stack 命令——查看方法调用堆栈"></a><strong>3.6 stack 命令——查看方法调用堆栈</strong></h3><p>有时不仅仅想知道当前方法的情况，也想知道是谁调用了当前方法，此时可以查看方法的调用堆栈。</p>
+<p>其使用方法和 watch 及 trace 类似，均可使用条件表达式进行有选择性的查看调用堆栈，参数说明为：</p>
+<p><strong>参数说明</strong></p>
+<p>class-pattern: 类名表达式匹配</p>
+<p>method-pattern: 方法名表达式匹配</p>
+<p>condition-express: 条件表达式</p>
+<p>[E]: 开启正则表达式匹配，默认为通配符匹配</p>
+<p>[n:]: 执行次数限制</p>
+<p>一个简单的示例：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@70</span>]<span class="hljs-variable">$ </span>stack com.kuaishou.kwaishop.merchant.janus.center.core.service.impl.brand.<span class="hljs-title class_">ShopBrandInternalServiceImpl</span> getTradeMarks  -n <span class="hljs-number">1</span><br><span class="hljs-title class_">Press</span> Q <span class="hljs-keyword">or</span> <span class="hljs-title class_">Ctrl</span>+C to abort.<br><span class="hljs-title class_">Affect</span>(<span class="hljs-keyword">class</span> <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span> , method <span class="hljs-symbol">count:</span> <span class="hljs-number">1</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">654</span> ms, <span class="hljs-symbol">listenerId:</span> <span class="hljs-number">3</span><br>ts=<span class="hljs-number">2023</span>-<span class="hljs-number">05</span>-<span class="hljs-number">05</span> <span class="hljs-number">14</span><span class="hljs-symbol">:</span><span class="hljs-number">40</span><span class="hljs-symbol">:</span><span class="hljs-number">05</span>;thread_name=krpc-server-worker-<span class="hljs-number">25</span>;id=<span class="hljs-number">515</span>;is_daemon=<span class="hljs-literal">true</span>;priority=<span class="hljs-number">5</span>;<span class="hljs-variable constant_">TCCL</span>=org.springframework.boot.loader.<span class="hljs-title class_">LaunchedURLClassLoader</span><span class="hljs-variable">@6433a2</span><br>    <span class="hljs-variable">@com</span>.kuaishou.kwaishop.merchant.janus.center.core.service.impl.brand.<span class="hljs-title class_">ShopBrandInternalServiceImpl</span>.getTradeMarks()<br>        at com.kuaishou.kwaishop.merchant.janus.center.core.service.impl.brand.<span class="hljs-title class_">ShopBrandInternalServiceImpl</span>.getShopBrandBaseByBrandIds(<span class="hljs-title class_">ShopBrandInternalServiceImpl</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">854</span>)<br>        at com.kuaishou.kwaishop.merchant.janus.center.core.krpc.brand.<span class="hljs-title class_">ShopBrandKRpcService</span>.getShopBrandBaseByBrandIds(<span class="hljs-title class_">ShopBrandKRpcService</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">498</span>)<br>        at com.kuaishou.kwaishop.merchant.janus.center.core.krpc.brand.<span class="hljs-title class_">ShopBrandKRpcService</span><span class="hljs-variable">$$</span><span class="hljs-title class_">FastClassBySpring</span>CGLIB<span class="hljs-variable">$$</span>c4da3140.invoke(&lt;generated&gt;<span class="hljs-symbol">:-</span><span class="hljs-number">1</span>)<br>        at org.springframework.cglib.proxy.<span class="hljs-title class_">MethodProxy</span>.invoke(<span class="hljs-title class_">MethodProxy</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">218</span>)<br>        at org.springframework.aop.framework.<span class="hljs-title class_">CglibAopProxy</span><span class="hljs-variable">$CglibMethodInvocation</span>.invokeJoinpoint(<span class="hljs-title class_">CglibAopProxy</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">750</span>)<br>        at org.springframework.aop.framework.<span class="hljs-title class_">ReflectiveMethodInvocation</span>.proceed(<span class="hljs-title class_">ReflectiveMethodInvocation</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">163</span>)<br>        at org.springframework.aop.aspectj.<span class="hljs-title class_">MethodInvocationProceedingJoinPoint</span>.proceed(<span class="hljs-title class_">MethodInvocationProceedingJoinPoint</span>.<span class="hljs-symbol">java:</span><span class="hljs-number">88</span>)<br>  			......<br><span class="hljs-title class_">Command</span> execution times exceed <span class="hljs-symbol">limit:</span> <span class="hljs-number">1</span>, so command will exit. <span class="hljs-title class_">You</span> can set it with -n option.<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-7-monitor-命令——监控方法执行情况"><a href="#3-7-monitor-命令——监控方法执行情况" class="headerlink" title="3.7 monitor 命令——监控方法执行情况"></a><strong>3.7 monitor 命令——监控方法执行情况</strong></h3><p>这个命令可以实时监控方法的执行成功次数和执行失败率</p>
+<p><strong>监控项说明</strong></p>
+<p>timestamp: 时间戳</p>
+<p>class: Java 类</p>
+<p>method: 方法（构造方法、普通方法）</p>
+<p>total: 调用次数</p>
+<p>success: 成功次数</p>
+<p>fail: 失败次数</p>
+<p>avg-rt: 平均 RT</p>
+<p>fail-rate: 失败率</p>
+<p>使用 -c 10 限定统计周期为 10 秒，-n 2 表示只监控两个周期</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@70</span>]<span class="hljs-variable">$ </span>monitor com.kuaishou.kwaishop.merchant.janus.center.core.krpc.category.<span class="hljs-title class_">MerchantShopCategoryLimitKRpcService</span> isUserPassCategoryLimit  -n <span class="hljs-number">2</span>  -c <span class="hljs-number">10</span><br><span class="hljs-title class_">Press</span> Q <span class="hljs-keyword">or</span> <span class="hljs-title class_">Ctrl</span>+C to abort.<br><span class="hljs-title class_">Affect</span>(<span class="hljs-keyword">class</span> <span class="hljs-symbol">count:</span> <span class="hljs-number">2</span> , method <span class="hljs-symbol">count:</span> <span class="hljs-number">2</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">1182</span> ms, <span class="hljs-symbol">listenerId:</span> <span class="hljs-number">5</span><br> timestamp                    <span class="hljs-keyword">class</span>                                                      method                     total      success      fail        avg-rt(ms)      fail-rate<br>-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br> <span class="hljs-number">2023</span>-<span class="hljs-number">05</span>-<span class="hljs-number">05</span> <span class="hljs-number">15</span><span class="hljs-symbol">:</span><span class="hljs-number">21</span><span class="hljs-symbol">:</span><span class="hljs-number">54</span>          com.kuaishou.kwaishop.merchant.janus.center.core.krpc.cat  isUserPassCategoryLimit    <span class="hljs-number">4</span>          <span class="hljs-number">4</span>            <span class="hljs-number">0</span>           <span class="hljs-number">26.10</span>           <span class="hljs-number">0.00</span>%<br>                              egory.<span class="hljs-title class_">MerchantShopCategoryLimitKRpcService</span><br> <span class="hljs-number">2023</span>-<span class="hljs-number">05</span>-<span class="hljs-number">05</span> <span class="hljs-number">15</span><span class="hljs-symbol">:</span><span class="hljs-number">21</span><span class="hljs-symbol">:</span><span class="hljs-number">54</span>          com.kuaishou.kwaishop.merchant.janus.center.core.krpc.cat  isUserPassCategoryLimit    <span class="hljs-number">4</span>          <span class="hljs-number">4</span>            <span class="hljs-number">0</span>           <span class="hljs-number">27.41</span>           <span class="hljs-number">0.00</span>%<br>                              egory.<span class="hljs-title class_">MerchantShopCategoryLimitKRpcService</span><span class="hljs-variable">$$</span><span class="hljs-title class_">EnhancerBySpr</span><br>                              ingCGLIB<span class="hljs-variable">$$</span>5395b8d6<br><br> timestamp                    <span class="hljs-keyword">class</span>                                                      method                     total      success      fail        avg-rt(ms)      fail-rate<br>-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br> <span class="hljs-number">2023</span>-<span class="hljs-number">05</span>-<span class="hljs-number">05</span> <span class="hljs-number">15</span><span class="hljs-symbol">:</span><span class="hljs-number">22</span><span class="hljs-symbol">:</span><span class="hljs-number">04</span>          com.kuaishou.kwaishop.merchant.janus.center.core.krpc.cat  isUserPassCategoryLimit    <span class="hljs-number">2</span>          <span class="hljs-number">2</span>            <span class="hljs-number">0</span>           <span class="hljs-number">18.29</span>           <span class="hljs-number">0.00</span>%<br>                              egory.<span class="hljs-title class_">MerchantShopCategoryLimitKRpcService</span><br> <span class="hljs-number">2023</span>-<span class="hljs-number">05</span>-<span class="hljs-number">05</span> <span class="hljs-number">15</span><span class="hljs-symbol">:</span><span class="hljs-number">22</span><span class="hljs-symbol">:</span><span class="hljs-number">04</span>          com.kuaishou.kwaishop.merchant.janus.center.core.krpc.cat  isUserPassCategoryLimit    <span class="hljs-number">2</span>          <span class="hljs-number">2</span>            <span class="hljs-number">0</span>           <span class="hljs-number">18.65</span>           <span class="hljs-number">0.00</span>%<br>                              egory.<span class="hljs-title class_">MerchantShopCategoryLimitKRpcService</span><span class="hljs-variable">$$</span><span class="hljs-title class_">EnhancerBySpr</span><br>                              ingCGLIB<span class="hljs-variable">$$</span>5395b8d6<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-8-tt-命令——方法执行数据的时空隧道"><a href="#3-8-tt-命令——方法执行数据的时空隧道" class="headerlink" title="3.8 tt 命令——方法执行数据的时空隧道"></a><strong>3.8 tt 命令——方法执行数据的时空隧道</strong></h3><p>watch 和 trace 命令虽然很方便和灵活，但需要提前想清楚观察表达式，因为很多时候并不清楚问题在哪里，只能靠蛛丝马迹进行猜测。所以此时若能记录下当时方法调用的所有入参和返回值、抛出的异常等信息，会对整个问题的思考与判断非常有帮助。</p>
+<p><strong>参数说明</strong></p>
+<p>class-pattern: 类名表达式匹配</p>
+<p>method-pattern: 方法名表达式匹配</p>
+<p>condition-express: 条件表达式</p>
+<p>[t]: 开启记录模式</p>
+<p>[l]: 列出当前所有时间片记录</p>
+<p>[s]: 对时间片记录进行搜索筛选</p>
+<p>[i]: 对某一时间片查看详细调用信息</p>
+<p>[p]: 重做调用，通常可配合 –replay-times 指定调用次数，通过 –replay-interval 指定多次调用间隔 (单位 ms, 默认 1000ms)</p>
+<p>[w]: 观察时空隧道</p>
+<p>[E]: 开启正则表达式匹配，默认为通配符匹配</p>
+<p>[n:]: 执行次数限制</p>
+<p>借用插件可以快捷生成命令：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-09ae7f17ef7d36924115febc791dca27.png" srcset="/img/loading.gif" lazyload></p>
+<p>下面是一个示例：</p>
+<h4 id="采集信息"><a href="#采集信息" class="headerlink" title="采集信息"></a><strong>采集信息</strong></h4><p>下面采集了 ChatServiceImpl#chatNormalConversation 方法的 5 次调用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">[arthas@71]$ </span><span class="language-bash">tt -t com.kuaishou.kwaishop.merchant.answerize.center.core.service.ChatService chat -n 5</span><br>Press Q or Ctrl+C to abort.<br>Affect(class count: 2 , method count: 1) cost in 436 ms, listenerId: 75<br> INDEX           TIMESTAMP                               COST(ms)           IS-RET          IS-EXP          OBJECT                CLASS                         METHOD<br>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br> 1011            2023-05-05 16:15:52                     1572.648716        true            false           0x7469e76f            ChatServiceImpl               chat<br> 1012            2023-05-05 16:16:20                     8623.702255        true            false           0x7469e76f            ChatServiceImpl               chat<br> 1013            2023-05-05 16:16:54                     3600.742563        true            false           0x7469e76f            ChatServiceImpl               chat<br> 1014            2023-05-05 16:18:53                     6.255935           false           true            0x7469e76f            ChatServiceImpl               chat<br> 1015            2023-05-05 16:19:08                     978.456102         true            false           0x7469e76f            ChatServiceImpl               chat<br>Command execution times exceed limit: 5, so command will exit. You can set it with -n option.<br></code></pre></td></tr></table></figure>
+
+<p>其中 INDEX 为该时间片的唯一标识，IS-RET 为 true 表示该方法正常返回，IS-EXP 为 true 表示该方法抛出异常。</p>
+<h4 id="查看时间片信息"><a href="#查看时间片信息" class="headerlink" title="查看时间片信息"></a><strong>查看时间片信息</strong></h4><p>查看上面非正常返回的一次调用的信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">[arthas@71]$ </span><span class="language-bash">tt -i 1014</span><br> INDEX            1014<br> GMT-CREATE       2023-05-05 16:18:53<br> COST(ms)         6.255935<br> OBJECT           0x7469e76f<br> CLASS            com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.ChatServiceImpl<br> METHOD           chat<br> IS-RETURN        false<br> IS-EXCEPTION     true<br> PARAMETERS[0]    @String[yanghao12]<br> PARAMETERS[1]    @String[hello]<br> PARAMETERS[2]    @String[invite]<br> THROW-EXCEPTION  com.kuaishou.kwaishop.merchant.answerize.center.common.exception.AnswerizeBaseException: 目前没有对应领域存在<br>                        at com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.ChatServiceImpl.chatDomainConversation(ChatServiceImpl.java:139)<br>                        at com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.ChatServiceImpl.chat(ChatServiceImpl.java:61)<br>                        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br>                        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)<br>                        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br>												......<br></code></pre></td></tr></table></figure>
+
+<p>使用 -w 对该时间片进行观察</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">[arthas@71]$ </span><span class="language-bash">tt -w <span class="hljs-string">&#x27;&#123;method.name,params,returnObj,throwExp&#125;&#x27;</span> -x 3 -i 1014</span><br>@ArrayList[<br>    @String[chat],<br>    @Object[][<br>        @String[yanghao12],<br>        @String[hello],<br>        @String[invite],<br>    ],<br>    null,<br>    com.kuaishou.kwaishop.merchant.answerize.center.common.exception.AnswerizeBaseException: 目前没有对应领域存在<br>        at com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.ChatServiceImpl.chatDomainConversation(ChatServiceImpl.java:139)<br>        at com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.ChatServiceImpl.chat(ChatServiceImpl.java:61)<br>        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br>        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)<br>        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br>  			......<br>,<br>]<br>Affect(row-cnt:1) cost in 3 ms.<br></code></pre></td></tr></table></figure>
+
+<h4 id="重新调用，返回现场"><a href="#重新调用，返回现场" class="headerlink" title="重新调用，返回现场"></a><strong>重新调用，返回现场</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs plain">[arthas@71]$ tt -p -i 1014<br> RE-INDEX         1014<br> GMT-REPLAY       2023-05-05 16:25:24<br> OBJECT           0x7469e76f<br> CLASS            com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.ChatServiceImpl<br> METHOD           chat<br> PARAMETERS[0]    @String[yanghao12]<br> PARAMETERS[1]    @String[hello]<br> PARAMETERS[2]    @String[invite]<br> IS-RETURN        false<br> IS-EXCEPTION     true<br> THROW-EXCEPTION  com.kuaishou.kwaishop.merchant.answerize.center.common.exception.AnswerizeBaseException: 目前没有对应领域存在<br>                        at com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.ChatServiceImpl.chatDomainConversation(ChatServiceImpl.java:139)<br>                        at com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.ChatServiceImpl.chat(ChatServiceImpl.java:61)<br>                        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br>                        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)<br>                        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br>												......<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-9-jvm-相关命令——查看当前-JVM-信息"><a href="#3-9-jvm-相关命令——查看当前-JVM-信息" class="headerlink" title="3.9 jvm  相关命令——查看当前 JVM 信息"></a><strong>3.9 jvm  相关命令——查看当前 JVM 信息</strong></h3><p><strong>dashboard——当前系统的实时数据面板，包含JVM线程、内存信息</strong></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-98c85e18000df0c2162f651254229e40.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>jvm——查看当前 JVM 的信息</strong></p>
+<p><strong>可以查看到JVM运行时信息、类加载器、垃圾收集、内存分布及占用、线程信息</strong></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-6b67276bafa40a45b648f408dad816f3.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-7db7e8b2409d1b83f7e7c504f6545db5.png" srcset="/img/loading.gif" lazyload><br><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1685359435-0279ae777c2b029ebcb016b21fa88e29.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>sc——查看JVM已加载的类信息（-d 查看详细信息，-f 查看 field）</strong></p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">[arthas@<span class="hljs-number">70</span>]$ sc com.kuaishou.kwaishop.merchant.janus.center.core.config.kconf.KconfSupplier<br>com.kuaishou.kwaishop.merchant.janus.center.core.config.kconf.KconfSupplier<br>com.kuaishou.kwaishop.merchant.janus.center.core.config.kconf.MerchantInviteJsonConfigKey<br>com.kuaishou.kwaishop.merchant.janus.center.core.config.kconf.MerchantJanusBooleanConfigKey<br>com.kuaishou.kwaishop.merchant.janus.center.core.config.kconf.MerchantJanusObjectConfigKey<br>com.kuaishou.kwaishop.merchant.janus.center.core.config.kconf.MerchantJanusStringListConfigKey<br>com.kuaishou.kwaishop.merchant.janus.center.core.config.kconf.MerchantJanusTailNumberKey<br>Affect(row-cnt:<span class="hljs-number">6</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">143</span> ms.<br>  <br>[arthas@<span class="hljs-number">70</span>]$ sc -d com.kuaishou.kwaishop.merchant.janus.center.core.config.kconf.MerchantJanusStringListConfigKey<br> <span class="hljs-keyword">class</span>-info        com.kuaishou.kwaishop.merchant.janus.center.core.config.kconf.MerchantJanusStringListConfigKey<br> code-source       file:<span class="hljs-regexp">/home/web_server/kuaishou-runner/webapps/kwaishop-merchant-janus-center-core.jar!/BOOT-INF/classes!/</span><br> name              com.kuaishou.kwaishop.merchant.janus.center.core.config.kconf.MerchantJanusStringListConfigKey<br> isInterface       <span class="hljs-literal">false</span><br> isAnnotation      <span class="hljs-literal">false</span><br> isEnum            <span class="hljs-literal">true</span><br> isAnonymousClass  <span class="hljs-literal">false</span><br> isArray           <span class="hljs-literal">false</span><br> isLocalClass      <span class="hljs-literal">false</span><br> isMemberClass     <span class="hljs-literal">false</span><br> isPrimitive       <span class="hljs-literal">false</span><br> isSynthetic       <span class="hljs-literal">false</span><br> simple-name       MerchantJanusStringListConfigKey<br> modifier          final,public<br> annotation<br> interfaces        com.kuaishou.kwaishop.merchant.janus.center.core.config.kconf.KconfSupplier<br> super-<span class="hljs-keyword">class</span>       +-java.lang.Enum<br>                     +-java.lang.<span class="hljs-built_in">Object</span><br> <span class="hljs-keyword">class</span>-loader      +-org.springframework.boot.loader.LaunchedURLClassLoader@<span class="hljs-number">6433</span>a2<br>                     +-jdk.internal.loader.ClassLoaders$AppClassLoader@<span class="hljs-number">55054057</span><br>                       +-jdk.internal.loader.ClassLoaders$PlatformClassLoader@<span class="hljs-number">352e4</span>b6d<br> classLoaderHash   <span class="hljs-number">6433</span>a2<br><br>Affect(row-cnt:<span class="hljs-number">1</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">90</span> ms.<br></code></pre></td></tr></table></figure>
+
+<p><strong>sm——查看已加载类的方法信息（可使用 sm -d 查看方法详细信息）</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span>sm com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span> chat<br>com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span> chat(<span class="hljs-title class_">Ljava</span>/lang/<span class="hljs-title class_">String</span>;<span class="hljs-title class_">Ljava</span>/lang/<span class="hljs-title class_">String</span>;<span class="hljs-title class_">Ljava</span>/lang/<span class="hljs-title class_">String</span>;)<span class="hljs-title class_">Ljava</span>/lang/<span class="hljs-title class_">String</span>;<br><span class="hljs-title class_">Affect</span>(row-<span class="hljs-symbol">cnt:</span><span class="hljs-number">1</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">28</span> ms.<br><br>[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span>sm com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span> chat -d<br> declaring-<span class="hljs-keyword">class</span>  com.kuaishou.kwaishop.merchant.answerize.center.core.service.impl.<span class="hljs-title class_">ChatServiceImpl</span><br> method-name      chat<br> modifier         <span class="hljs-keyword">public</span><br> annotation<br> parameters       java.lang.<span class="hljs-title class_">String</span><br>                  java.lang.<span class="hljs-title class_">String</span><br>                  java.lang.<span class="hljs-title class_">String</span><br> <span class="hljs-keyword">return</span>           java.lang.<span class="hljs-title class_">String</span><br> exceptions<br> classLoaderHash  749ab7b4<br><br><span class="hljs-title class_">Affect</span>(row-<span class="hljs-symbol">cnt:</span><span class="hljs-number">1</span>) cost <span class="hljs-keyword">in</span> <span class="hljs-number">32</span> ms.<br></code></pre></td></tr></table></figure>
+
+<p>mc——内存编译器，内存编译.java文件为.class文件</p>
+<p>retransform——加载外部的.class文件，retransform到JVM里</p>
+<p>redefine——加载外部的.class文件，redefine到JVM里</p>
+<p>dump——dump 已加载类的 byte code 到特定目录</p>
+<p>classloader——查看classloader的继承树，urls，类加载信息，使用classloader去getResource</p>
+<p>sysprop——查看和修改JVM的系统属性</p>
+<p>sysenv——查看JVM的环境变量</p>
+<p>vmoption——查看和修改JVM里诊断相关的option</p>
+<p>perfcounter——查看当前 JVM 的Perf Counter信息</p>
+<p>logger——查看和修改logger</p>
+<p><strong>getstatic——查看类的静态属性</strong></p>
+<p>ognl——执行ognl表达式</p>
+<p>mbean——查看 Mbean 的信息</p>
+<p>heapdump——dump java heap, 类似jmap命令的heap dump功能</p>
+<p>vmtool——从jvm里查询对象，执行forceGc</p>
+<h3 id="3-9-手动调用方法"><a href="#3-9-手动调用方法" class="headerlink" title="3.9 手动调用方法"></a><strong>3.9 手动调用方法</strong></h3><p>Karthas  中集成了 MVEL，MVEL 是一种基于 Java 的表达式语言（expression language），本质上就是对 Java 反射的抽象。同时内部已写好函数并自动加载 bean：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby">getBeanByName = def (name) &#123; com.kuaishou.framework.spring.<span class="hljs-title class_">BeanFactory</span>.getBean(name) &#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="spring-bean-方法"><a href="#spring-bean-方法" class="headerlink" title="spring bean 方法"></a><strong>spring bean 方法</strong></h4><p>可通过以下的方式，来对 spring bean 进行直接方法调用：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@70</span>]<span class="hljs-variable">$ </span><span class="hljs-title class_">ShopBrandService</span>.getByShop(<span class="hljs-number">5004175295</span>, <span class="hljs-number">0</span>)<br><span class="hljs-variable">@ArrayList</span>[<br>    <span class="hljs-variable">@ShopBrand</span>[<br>        shopId=<span class="hljs-variable">@Long</span>[<span class="hljs-number">5004175295</span>],<br>        brandId=<span class="hljs-variable">@Long</span>[<span class="hljs-number">15131</span>],<br>        authType=<span class="hljs-variable">@Integer</span>[<span class="hljs-number">4</span>],<br>        brandType=<span class="hljs-variable">@Integer</span>[<span class="hljs-number">2</span>],<br>        status=<span class="hljs-variable">@Integer</span>[<span class="hljs-number">1</span>],<br>        validDate=<span class="hljs-variable">@Long</span>[<span class="hljs-number">1704009221536</span>],<br>        upgradingFlag=<span class="hljs-variable">@Integer</span>[<span class="hljs-number">0</span>],<br>        id=<span class="hljs-variable">@Long</span>[<span class="hljs-number">1220270</span>],<br>        createTime=<span class="hljs-variable">@Long</span>[<span class="hljs-number">1683193994173</span>],<br>        updateTime=<span class="hljs-variable">@Long</span>[<span class="hljs-number">1683193994173</span>],<br>    ],<br>    <span class="hljs-variable">@ShopBrand</span>[<br>        shopId=<span class="hljs-variable">@Long</span>[<span class="hljs-number">5004175295</span>],<br>        brandId=<span class="hljs-variable">@Long</span>[<span class="hljs-number">346976</span>],<br>        authType=<span class="hljs-variable">@Integer</span>[<span class="hljs-number">4</span>],<br>        brandType=<span class="hljs-variable">@Integer</span>[<span class="hljs-number">2</span>],<br>        status=<span class="hljs-variable">@Integer</span>[<span class="hljs-number">1</span>],<br>        validDate=<span class="hljs-variable">@Long</span>[<span class="hljs-number">1704009352828</span>],<br>        upgradingFlag=<span class="hljs-variable">@Integer</span>[<span class="hljs-number">0</span>],<br>        id=<span class="hljs-variable">@Long</span>[<span class="hljs-number">1220271</span>],<br>        createTime=<span class="hljs-variable">@Long</span>[<span class="hljs-number">1683193994209</span>],<br>        updateTime=<span class="hljs-variable">@Long</span>[<span class="hljs-number">1683193994209</span>],<br>    ],<br>]<br></code></pre></td></tr></table></figure>
+
+<h4 id="类静态方法"><a href="#类静态方法" class="headerlink" title="类静态方法"></a><strong>类静态方法</strong></h4><p>使用全类名+方法进行调用</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span><span class="hljs-title class_">GenerateIdUtil</span>.generateId()<br><span class="hljs-title class_">Failed</span> to get static, exception <span class="hljs-symbol">message:</span> [<span class="hljs-title class_">Error</span>: could <span class="hljs-keyword">not</span> <span class="hljs-symbol">access:</span> <span class="hljs-title class_">GenerateIdUtil</span>; <span class="hljs-keyword">in</span> <span class="hljs-symbol">class:</span> java.util.<span class="hljs-title class_">HashMap</span>]<br>[<span class="hljs-title class_">Near</span> : &#123;... <span class="hljs-title class_">GenerateIdUtil</span>.generateId() ....&#125;]<br>             ^<br>[<span class="hljs-title class_">Line</span>: <span class="hljs-number">1</span>, <span class="hljs-title class_">Column</span>: <span class="hljs-number">1</span>], please check <span class="hljs-variable">$HOME</span>/logs/arthas/arthas.log <span class="hljs-keyword">for</span> more details.<br>[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span>com.kuaishou.kwaishop.merchant.answerize.center.common.util.<span class="hljs-title class_">GenerateIdUtil</span>.generateId()<br><span class="hljs-string">&quot;483040520382451800&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="非-spring-bean-的非静态方法"><a href="#非-spring-bean-的非静态方法" class="headerlink" title="非 spring bean 的非静态方法"></a><strong>非 spring bean 的非静态方法</strong></h4><p>构造对象后进行调用</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span>chatCompletionDTO = new com.kuaishou.kwaishop.merchant.answerize.center.common.dto.chat.<span class="hljs-title class_">ChatCompletion</span>DTO()<br>&#123;&#125;<br>[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span>chatCompletionDTO.tokens()<br><span class="hljs-number">0</span><br>[arthas<span class="hljs-variable">@71</span>]<span class="hljs-variable">$ </span>chatCompletionDTO.maxToken()<br><span class="hljs-number">4096</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-10-retransform动态加载指定类"><a href="#3-10-retransform动态加载指定类" class="headerlink" title="3.10 retransform动态加载指定类"></a>3.10 retransform动态加载指定类</h3><p>jad 反编译文件class -&gt; java</p>
+<p>mc 在把java编译为class</p>
+<p>retransform 把指定的class动态加载到jvm中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">## 将class文件反编译为java文件</span><br>jad --source-only com.example.demo.arthas.user.UserController &gt; /tmp/UserController.java<br><br><span class="hljs-comment">## 查看当前的类加载器，spring项目通常是LaunchedURLClassLoader</span><br>classloader<br><br><span class="hljs-comment">## 根据指定的类加载器，编译java文件</span><br>mc --classLoaderClass org.springframework.boot.loader.LaunchedURLClassLoader /tmp/BranchTeamService.java -d /tmp<br><br><span class="hljs-comment">## https://arthas.aliyun.com/doc/retransform.html</span><br>retransform /tmp/com/example/demo/arthas/user/UserController.class<br></code></pre></td></tr></table></figure>
+
+<p>需要注意jad不保证完成成果反编译class <a target="_blank" rel="noopener" href="https://github.com/alibaba/arthas/issues/1158">https://github.com/alibaba/arthas/issues/1158</a></p>
+<p>第一个更加推荐使用本地的java文件修改并上传到服务上（yum install lrzsz  安装sz和rz）</p>
+<p>然后通过mc在java文件编译为class文件</p>
+<h3 id="3-11-异步后台执行，并把日志写入指定文件"><a href="#3-11-异步后台执行，并把日志写入指定文件" class="headerlink" title="3.11 异步后台执行，并把日志写入指定文件"></a>3.11 异步后台执行，并把日志写入指定文件</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">watch com<span class="hljs-selector-class">.kuaishou</span><span class="hljs-selector-class">.kdev</span><span class="hljs-selector-class">.common</span><span class="hljs-selector-class">.service</span><span class="hljs-selector-class">.repo</span><span class="hljs-selector-class">.RepoCommitService</span> getCommitsPage <span class="hljs-string">&#x27;&#123;params,returnObj,throwExp&#125;&#x27;</span>  -n <span class="hljs-number">5</span>  -x <span class="hljs-number">3</span> <span class="hljs-string">&#x27;throwExp != null&#x27;</span> &gt; /tmp/log<span class="hljs-selector-class">.txt</span> &amp;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>throwExp != null</code>发生异常才记录</li>
+<li><code>&gt;</code> 写入文件</li>
+<li><code>&amp;</code> 后台异步执行</li>
+</ul>
+<p>这个时候使用quit命令 退出arthas控制台，让arthas 服务继续运行（stop 会停止arthas 服务）,等一段时间之后就可以来查看这个文件是否有异常信息进行相关的bug诊断。</p>
+<h3 id="3-12-获取类的静态属性"><a href="#3-12-获取类的静态属性" class="headerlink" title="3.12 获取类的静态属性"></a>3.12 获取类的静态属性</h3><p>1、通过getstatic</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">getstatic com<span class="hljs-selector-class">.kuaishou</span><span class="hljs-selector-class">.kdev</span><span class="hljs-selector-class">.common</span><span class="hljs-selector-class">.service</span><span class="hljs-selector-class">.RepoService</span> X_NEXT_PAGE -x <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<p>2、通过ognl</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">ognl <span class="hljs-attr">--classLoaderClass</span> org<span class="hljs-selector-class">.springframework</span><span class="hljs-selector-class">.boot</span><span class="hljs-selector-class">.loader</span><span class="hljs-selector-class">.LaunchedURLClassLoader</span> -x <span class="hljs-number">3</span> <span class="hljs-string">&#x27;@com.kuaishou.kdev.common.service.RepoService@X_NEXT_PAGE&#x27;</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="3-13-使用tt获取spring-context上下文-获取spring-bean"><a href="#3-13-使用tt获取spring-context上下文-获取spring-bean" class="headerlink" title="3.13 使用tt获取spring context上下文(获取spring bean)"></a>3.13 使用tt获取spring context上下文(获取spring bean)</h3><p><strong>1、原理</strong></p>
+<ul>
+<li>SpringMVC 的请求会通过 <code>RequestMappingHandlerAdapter</code> 执行 <code>invokeHandlerMethod</code> 到达目标接口上进行处理</li>
+<li>而在 <code>RequestMappingHandlerAdapter</code> 类中有 getApplicationContext（）</li>
+</ul>
+<p><strong>2、执行过程</strong></p>
+<ul>
+<li>arthas 执行 tt,任意执行一次 web 请求，tt 即可捕获</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">tt -t org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter invokeHandlerMethod<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>根据目标的索引，执行自定义 OGNL 表达式即可</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">tt -i 1000 -w &#x27;target.getApplicationContext().getBean(&quot;targetBean&quot;).targetMethod()&#x27;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>3、一个可执行的命令demo</strong></p>
+<ul>
+<li>方法定义<code>public UserDetailVO getSingleUserDetail(String userName)&#123;&#125;</code></li>
+<li>类定义 <code>public class PermissionUserServiceImpl extends ServiceImpl&lt;PermissionUserMapper, PermissionUser&gt;     implements IPermissionUserService</code></li>
+<li>tt执行命令</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-comment"># 固定命令</span></span><br>tt -t org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter invokeHandlerMethod<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-comment"># 根据不同的bean和method而改变</span></span><br>tt -i 1109 -w &#x27;target.getApplicationContext().getBean(&quot;permissionUserServiceImpl&quot;).getSingleUserDetail(&quot;xieshijie&quot;)&#x27;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>注意事项<ul>
+<li>getBean的参数，需要根据类名来获取，把首字母小写</li>
+<li>方法有参数需要指定具体指，如果是字符串，则需要用双引号</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://arthas.aliyun.com/doc/commands.html">arthas官方文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/arthas-idea-plugin/help">arthas idea plugin 使用文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/arthas/issues?q=label:user-case">arthas的一些高级使用用法</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/arthas/issues/482">Arthas实践–获取到Spring Context</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/" class="category-chain-item">其他技能</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/" class="category-chain-item">问题定位</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/">#问题定位</a>
+      
+        <a href="/tags/arthas/">#arthas</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>arthas使用指南</div>
+      <div>http://coder-xieshijie.cn/2023/06/01/其他技能/问题定位/arthas使用指南/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月1日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年9月18日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/06/06/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%AE%9E%E9%99%85%E5%88%86%E6%9E%90Mysql%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/" title="实际分析Mysql死锁问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">实际分析Mysql死锁问题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/13/AIGC/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BB%B0%E6%9C%9B%E6%98%9F%E7%A9%BA%E5%92%8C%E8%84%9A%E8%B8%8F%E5%AE%9E%E5%9C%B0/" title="AI大模型的仰望星空和脚踏实地">
+                        <span class="hidden-mobile">AI大模型的仰望星空和脚踏实地</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

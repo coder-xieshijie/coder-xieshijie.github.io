@@ -1,0 +1,1218 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="流量录制回放介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="流量录制回放介绍">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/08/04/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E6%B5%81%E9%87%8F%E5%BD%95%E5%88%B6%E5%9B%9E%E6%94%BE%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="流量录制回放介绍">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949666.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-1062789.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949638.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949598.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193950041.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949601.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949640.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949644.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949653.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949683.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949771.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193950101.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949698.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193950153.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949765.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193950586.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193950088.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193950240.png">
+<meta property="article:published_time" content="2023-08-04T02:43:32.000Z">
+<meta property="article:modified_time" content="2023-08-04T02:43:32.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="工作领域">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949666.png">
+  
+  
+  
+  <title>流量录制回放介绍 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="流量录制回放介绍"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-04 10:43" pubdate>
+          2023年8月4日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="个人成长"
+        id="heading-4bb4c17853d4334983452b5e69aae37f" role="tab" data-toggle="collapse" href="#collapse-4bb4c17853d4334983452b5e69aae37f"
+        aria-expanded="true"
+      >
+        个人成长
+        <span class="list-group-count">(13)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4bb4c17853d4334983452b5e69aae37f"
+           role="tabpanel" aria-labelledby="heading-4bb4c17853d4334983452b5e69aae37f">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="工作"
+        id="heading-9a018b21ab114a51dd7b5979198a941b" role="tab" data-toggle="collapse" href="#collapse-9a018b21ab114a51dd7b5979198a941b"
+        aria-expanded="false"
+      >
+        工作
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-9a018b21ab114a51dd7b5979198a941b"
+           role="tabpanel" aria-labelledby="heading-9a018b21ab114a51dd7b5979198a941b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/12/28/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87%E5%B7%A5%E4%BD%9C%E8%83%BD%E5%8A%9B/" title="如何提升工作能力"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">如何提升工作能力</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="工作领域"
+        id="heading-55abb1d63814821a409e19025282f4cb" role="tab" data-toggle="collapse" href="#collapse-55abb1d63814821a409e19025282f4cb"
+        aria-expanded="true"
+      >
+        工作领域
+        <span class="list-group-count">(7)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-55abb1d63814821a409e19025282f4cb"
+           role="tabpanel" aria-labelledby="heading-55abb1d63814821a409e19025282f4cb">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/23/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/Gitlab-redis%E5%A4%9AAZ%E5%AE%B9%E7%81%BE%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94/" title="Gitlab redis多AZ容灾高可用方案调研"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Gitlab redis多AZ容灾高可用方案调研</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/10/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/Serverless-Faas%E6%9E%B6%E6%9E%84-%E5%88%9B%E6%96%B0%E8%AF%95%E9%94%99%E5%BF%AB%E9%80%9F%E8%B5%B7%E6%9C%8D%E5%8A%A1/" title="Serverless + Faas架构 创新试错快速起服务"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Serverless + Faas架构 创新试错快速起服务</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/10/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/gitlab-%E9%AB%98%E5%8F%AF%E7%94%A8/" title="gitlab 高可用"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">gitlab 高可用</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/30/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/kuai-%E9%87%8D%E8%A6%81git%E5%B7%A5%E7%A8%8B%E8%AE%B0%E5%BD%95/" title="kuai 重要git工程记录"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">kuai 重要git工程记录</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/14/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E4%BB%A3%E7%A0%81%E7%B4%A2%E5%BC%95%E6%9E%84%E5%BB%BAscip/" title="代码索引构建scip"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">代码索引构建scip</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/04/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E6%B5%81%E9%87%8F%E5%BD%95%E5%88%B6%E5%9B%9E%E6%94%BE%E4%BB%8B%E7%BB%8D/" title="流量录制回放介绍"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">流量录制回放介绍</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/03/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E6%B5%81%E9%87%8F%E5%BD%95%E5%88%B6%E6%96%B9%E6%A1%88%E6%A2%B3%E7%90%86/" title="流量录制方案梳理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">流量录制方案梳理</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="感悟"
+        id="heading-70bca7959b017c8aff4dcb82689dacfe" role="tab" data-toggle="collapse" href="#collapse-70bca7959b017c8aff4dcb82689dacfe"
+        aria-expanded="false"
+      >
+        感悟
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-70bca7959b017c8aff4dcb82689dacfe"
+           role="tabpanel" aria-labelledby="heading-70bca7959b017c8aff4dcb82689dacfe">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/17/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E7%81%B5%E5%85%89%E5%92%8C%E6%84%9F%E6%82%9F/" title="灵光和感悟"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">灵光和感悟</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="晋升"
+        id="heading-e5cab0a89361246aeafb550302f030db" role="tab" data-toggle="collapse" href="#collapse-e5cab0a89361246aeafb550302f030db"
+        aria-expanded="false"
+      >
+        晋升
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-e5cab0a89361246aeafb550302f030db"
+           role="tabpanel" aria-labelledby="heading-e5cab0a89361246aeafb550302f030db">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/06/22/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E6%99%8B%E5%8D%87/2023%E5%B9%B42%E6%9C%88-%E6%99%8B%E5%8D%87%E7%AD%94%E8%BE%A9-2b-3a/" title="2023年2月 晋升答辩(2b-3a)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">2023年2月 晋升答辩(2b-3a)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/22/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E6%99%8B%E5%8D%87/%E4%B8%93%E4%B8%9A%E6%99%8B%E5%8D%87%E6%A8%A1%E6%9D%BF-ks%E7%89%88/" title="专业晋升模板(ks版)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">专业晋升模板(ks版)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/22/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E6%99%8B%E5%8D%87/%E5%8F%AA%E6%98%AF%E5%AE%8C%E6%88%90%E4%BA%86%E9%9C%80%E6%B1%82%EF%BC%8C%E7%A0%94%E5%8F%91%E7%9A%84%E7%AB%9E%E4%BA%89%E4%BC%98%E5%8A%BF%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F/" title="只是完成了需求，研发的竞争优势在哪里？"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">只是完成了需求，研发的竞争优势在哪里？</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/22/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E6%99%8B%E5%8D%87/%E6%99%8B%E5%8D%87%E6%B1%87%E6%8A%A5%E4%B9%8B%E9%81%93-%E6%89%93%E6%80%AA%E5%85%BD%E7%89%88/" title="晋升汇报之道(打怪兽版)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">晋升汇报之道(打怪兽版)</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">流量录制回放介绍</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-什么是流量录制回放"><a href="#1-什么是流量录制回放" class="headerlink" title="1.什么是流量录制回放"></a><strong>1.什么是流量录制回放</strong></h1><p>流量录制回放是一种自动化<strong>测试手段：</strong>将生产环境流量录制下来在测试环境回放</p>
+<p><strong>流量：</strong>  接口入出参，以及内部中间件调用的入出参</p>
+<h2 id="1-1-传统测试手段面临的问题"><a href="#1-1-传统测试手段面临的问题" class="headerlink" title="1.1 传统测试手段面临的问题"></a><strong>1.1</strong> <strong>传统测试手段面临的问题</strong></h2><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949666.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="1-2-流量录制回放工作过程"><a href="#1-2-流量录制回放工作过程" class="headerlink" title="1.2 流量录制回放工作过程"></a><strong>1.2 流量录制回放工作过程</strong></h2><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-1062789.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>线上真实数据</strong></li>
+<li><strong>数据量大，覆盖足够多场景</strong></li>
+<li><strong>自动化录制回放，人工成本低</strong></li>
+<li><strong>适合批量、巡检</strong></li>
+<li><strong>一次录制多次使用</strong></li>
+</ul>
+<h2 id="1-3-什么场景适合使用流量回放"><a href="#1-3-什么场景适合使用流量回放" class="headerlink" title="1.3 什么场景适合使用流量回放"></a><strong>1.3 什么场景适合使用流量回放</strong></h2><ul>
+<li><strong>客户端协议不变，服务端重构：</strong> 例如海外的双AZ\Trinity项目</li>
+<li><strong>确认不确定</strong>：代码变更后， 预期是对其它接口无影响， 但是又不能完全肯定，而手工测试这些接口成本又太高</li>
+<li><strong>测试场景覆盖不全：</strong>无法构造线上case</li>
+<li><strong>快速回归测试：</strong>可以是上线前的回归测试， 也可以是测试过程中BUG修复后的回归测试</li>
+<li><strong>自动生成KAT自动化测试用例</strong></li>
+</ul>
+<h2 id="1-4-业内成功案例"><a href="#1-4-业内成功案例" class="headerlink" title="1.4 业内成功案例"></a><strong>1.4 业内成功案例</strong></h2><table>
+<thead>
+<tr>
+<th>引擎名（所属公司）</th>
+<th>核心技术</th>
+<th>优点</th>
+<th>缺点</th>
+<th>开源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DOOM(阿里)</td>
+<td>SpringAOP+字节码插桩</td>
+<td>业务代码零改造可以录制&#x2F;mock任意方法</td>
+<td>问题定位困难降级困难， 往往需要重启从风险角度看，难以让所有实例都接入，阿里也是选取少量服务器接入</td>
+<td>否</td>
+</tr>
+<tr>
+<td>回声墙（蚂蚁）</td>
+<td>微服务框架+SpringAOP</td>
+<td>风险可控，可迅速降级对系统影响小， ms级别在切面中实现, 可以录制bean实例的任意方法</td>
+<td>无法录制非bean的方法接入系统需要升级改造</td>
+<td>否</td>
+</tr>
+<tr>
+<td>Sandbox Repeater(阿里)</td>
+<td>字节码插桩</td>
+<td>同DOOM</td>
+<td>同DOON</td>
+<td>是</td>
+</tr>
+<tr>
+<td>Bytecopy(字节)</td>
+<td>类tcp copy</td>
+<td>灰度引流测试用于与真实环境交互</td>
+<td>不支持线下测试不支持下游和中间件的录制</td>
+<td>否</td>
+</tr>
+<tr>
+<td>好未来&#x2F;汽车之家&#x2F;以及其他</td>
+<td>sandbox</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>业内优秀案例优点：</strong></p>
+<ul>
+<li>业务零改造</li>
+<li>侵入少量机器</li>
+</ul>
+<p><strong>我们的建设原则：</strong></p>
+<ul>
+<li>兼容业内优点</li>
+<li>同时支持C++ 和 JAVA</li>
+<li>避免DIFF效率低</li>
+</ul>
+<p>​	</p>
+<h1 id="2-流量录制回放架构"><a href="#2-流量录制回放架构" class="headerlink" title="2.流量录制回放架构"></a><strong>2.流量录制回放架构</strong></h1><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949638.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h1 id="3-主要功能介绍"><a href="#3-主要功能介绍" class="headerlink" title="3.主要功能介绍"></a><strong>3.主要功能介绍</strong></h1><p><strong>流量录制回放是一件复杂的事情， 需要用户具备以下能力</strong></p>
+<ol>
+<li>对被录制服务足够了解，包括服务的读写动作、中间件依赖情况、入出参含义、高&#x2F;平峰QPS等</li>
+<li>熟悉KTraffic平台的使用，包括平台各种参数、配置的含义。</li>
+<li>具备一定的问题排查能力， 了解kbox等常用问题定位手段的应用。</li>
+<li>简单了解录制、回放工作原理。</li>
+</ol>
+<p>因为一次配置多次使用的特点，所以为学习使用方式做出的付出还是值得的。</p>
+<h2 id="3-1-流量录制"><a href="#3-1-流量录制" class="headerlink" title="3.1 流量录制"></a><strong>3.1 流量录制</strong></h2><p><strong>3.1.1 我们能录制什么</strong></p>
+<p>我们支持录制<strong>被测服务</strong>（即待回放服务）的<strong>主流量</strong>及其<strong>N-1层子流量</strong></p>
+<ul>
+<li><p><strong>被测服务</strong>目前支持的包括：</p>
+</li>
+<li><ul>
+<li>使用spring mvc提供的http服务</li>
+<li>使用ksboot提供的http服务</li>
+<li>使用java 提供的grpc服务</li>
+<li>使用c++提供的grpc服务</li>
+</ul>
+</li>
+<li><p><strong>主流量：</strong>即被测服务的入参和出参。</p>
+</li>
+<li><p><strong>N-1层子流量：</strong> 被测服务在其进程内发起的远程调用。 例如被测服务A在其进程内发起了向GRPC服务B的调用， 在A的进程中可以得的B的入参与出参， 此时B的入参出参被称为服务A的<strong>N-1层子流量</strong>，而在服务B的进程内产生的一切子调用都不会被录制（因为服务B没有打开录制配置，甚至根本就没有集成录制组件）。目前<strong>JAVA服务</strong>支持录制的子流量类型包括:</p>
+</li>
+</ul>
+<ol>
+<li>G&#x2F;KRPC</li>
+<li>mysql</li>
+<li>redis</li>
+<li>memcached</li>
+<li>kconf</li>
+<li>loadingcached</li>
+<li>kafka producer</li>
+<li>rocketmq</li>
+<li>keycenter</li>
+<li>idseq</li>
+<li>kswitch</li>
+</ol>
+<p>   即被测服务A发起以上7种中间件的子调用时， 其流量都可以被录制。</p>
+<h3 id="3-1-2-流量录制原理"><a href="#3-1-2-流量录制原理" class="headerlink" title="3.1.2 流量录制原理"></a><strong>3.1.2 流量录制原理</strong></h3><p><strong>录制流程</strong></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949598.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li>中间件client 包括：g&#x2F;krpc 、mysql、kconf等7种常用中间件的client</li>
+<li>HTTP的录制是通过集成具备录制功能的filter进行。</li>
+</ul>
+<p><strong>录制关键架构</strong></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193950041.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="3-1-3-使用方如何集成流量录制组件"><a href="#3-1-3-使用方如何集成流量录制组件" class="headerlink" title="3.1.3 使用方如何集成流量录制组件"></a><strong>3.1.3</strong> <strong>使用方如何集成流量录制组件</strong></h3><ul>
+<li>g&#x2F;krpc、mysql、kconf等KTraffic支持的**(非HTTP**)中间件的client通过root pom集成， 用户无需改造。</li>
+<li>基于ksboot&#x2F;springmvc的HTTP服务配置方式见：<a target="_blank" rel="noopener" href="https://docs.corp.kuaishou.com/k/home/VX8v5do5Oc4I/fcACIVeHe-P6p-dqnGj6TfoI3#section=h.8na0jw3c2oab">HTTP服务添加录制依赖</a></li>
+</ul>
+<p>其它说明：</p>
+<ul>
+<li>目前不支持HTTP类型的<strong>子流量</strong>的录制</li>
+</ul>
+<h3 id="3-1-4-流程与功能"><a href="#3-1-4-流程与功能" class="headerlink" title="3.1.4 流程与功能"></a><strong>3.1.4 流程与功能</strong></h3><p><strong>创建录制任务的流程</strong></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949601.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>录制功能介绍</strong></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949640.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="3-2-流量回放"><a href="#3-2-流量回放" class="headerlink" title="3.2 流量回放"></a><strong>3.2 流量回放</strong></h2><h3 id="3-2-1-MOCK能力"><a href="#3-2-1-MOCK能力" class="headerlink" title="3.2.1 MOCK能力"></a><strong>3.2.1 MOCK能力</strong></h3><p><strong>为什么要有MOCK能力？</strong></p>
+<p>在流量回放建设之初，因为没有mock能力，我们仅支持回放与生产环境使用同源数据库的服务。所以只能回放读服务，否则会对线上产生脏数据。因此流量回放能力一般被使用在集成测试阶段， 对线上的服务做最后的回归。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949644.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>而更多的测试行为发生在staging环境， 为了使线上录制下来的数据能在staging环境回放，我们开发了MOCK能力。</p>
+<p><strong>MOCK能力扩大了流量回放的使用场景</strong></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949653.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>MOCK配置能力</strong></p>
+<p>很多情况下， 因为线上线下的环境差异、参数随机性等因素， 即使有了基本的mock能力，线上的数据也不能在线下自如使用。例如以下场景</p>
+<ul>
+<li><p>分库分表场景。线上一般为会分库分表， 线下一般为单表，回放过程中会因为表名不同而无法匹配到MOCK数据。</p>
+</li>
+<li><ul>
+<li>redis、memcached也存在类似问题</li>
+</ul>
+</li>
+<li><p>随机数（噪音）问题。例如时间戳是在调用发起时生成，每次都不同， MOCK时需要忽略。</p>
+</li>
+<li><p>mock组件范围限定。 只mock选定的几个中间件，其余中间件访问真是服务。</p>
+</li>
+<li><p>mock数据范围限定。 对于同类组件的mock， 只mock一定范围的数据， 例如mysql, 只mock固定的几张表</p>
+</li>
+<li><p>降噪范围限定。 只对固定的表降噪</p>
+</li>
+<li><p>动作MOCK限定。 例如至mock update 和insert的操作， select 选择性放行。</p>
+</li>
+<li><p>等等</p>
+</li>
+</ul>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949683.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>MOCK组件配置示例：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949771.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>MYSQL MOCK规则配置示例：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193950101.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="3-2-2-回放流程"><a href="#3-2-2-回放流程" class="headerlink" title="3.2.2 回放流程"></a><strong>3.2.2 回放流程</strong></h3><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949698.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="3-2-3-回放功能"><a href="#3-2-3-回放功能" class="headerlink" title="3.2.3 回放功能"></a><strong>3.2.3 回放功能</strong></h3><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193950153.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="3-2-4-回放执行流程"><a href="#3-2-4-回放执行流程" class="headerlink" title="3.2.4  回放执行流程"></a><strong>3.2.4  回放执行流程</strong></h3><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193949765.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="3-3-流量Diff"><a href="#3-3-流量Diff" class="headerlink" title="3.3 流量Diff"></a><strong>3.3 流量Diff</strong></h2><p>流量回放之后，对比返回值是我们发现被测代码是否存在BUG的主要手段， 因此在DIFF返回上，我们开发了大量的功能， 期望能满足各个业务方不同的Diff需求。 常用的主要是以下三种diff能力</p>
+<ol>
+<li><strong>Diff 报告</strong> —— 反映一次回放任务（包含多条流量）整体的Diff情况</li>
+<li><strong>子流量Diff</strong> —— Diff一条流量的在回放过程中的中间状态</li>
+<li><strong>单条流量文本Diff</strong> —— 用于调试diff策略或者排查单条流量的回放情况</li>
+</ol>
+<h3 id="3-3-1-Diff报告"><a href="#3-3-1-Diff报告" class="headerlink" title="3.3.1 Diff报告"></a><strong>3.3.1 Diff报告</strong></h3><p>一次回放任务通常会包含多条流量， 甚至会有数万条流量，如果一条一条去看diff结果显然不现实，因此我们参考了twitter的 Diffy，设计了Diff报告。 并且增加了<a target="_blank" rel="noopener" href="https://docs.corp.kuaishou.com/k/home/VX8v5do5Oc4I/fcACIVeHe-P6p-dqnGj6TfoI3#section=h.ifjdc3ohk2z2"><strong>自定义diff策略</strong></a>、<a target="_blank" rel="noopener" href="https://docs.corp.kuaishou.com/d/home/fcABxoYiFaY0Ld8YY34OBs3Sx"><strong>diff规则</strong></a>、<strong>对象下钻</strong>的能力。</p>
+<p><strong>什么是</strong><a target="_blank" rel="noopener" href="https://docs.corp.kuaishou.com/k/home/VX8v5do5Oc4I/fcACIVeHe-P6p-dqnGj6TfoI3#section=h.ifjdc3ohk2z2"><strong>diff策略</strong></a>？</p>
+<p>一条流量通常会有上百个字段， 其中不乏包含一些噪音字段，例如timestamp、随机数等， 以及一些本次测试不需要diff的字段， 因此，我需要创建个一个diff策略来描述本次流量回放我们要对比哪些字段。</p>
+<p><strong>什么是</strong><a target="_blank" rel="noopener" href="https://docs.corp.kuaishou.com/d/home/fcABxoYiFaY0Ld8YY34OBs3Sx"><strong>diff规则</strong></a>？</p>
+<p>对比一个字段的两个值， 我们通常除了等于这种简单的对比规则之外， 还需要大于小于、范围对比，如果是数组类型，可能还涉及到排序对比。因此我们设计了diff规则，用来支持此类情况，目前我们已经支持了19种diff规则。</p>
+<p><strong>为什么要对象下钻？</strong></p>
+<p>例如我们对比的内容是一个元素为对象的数组， 如果想排查问题， 我们要先下钻的数组里面去，然后再下钻到每个对象中， 再看具体是哪个基本类型的字段值不同。</p>
+<p><em>下图展示了一个diff报告的形态， 左侧为报告整体， 右侧为每个字段的对比明细</em></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193950586.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="3-3-2-子流量diff"><a href="#3-3-2-子流量diff" class="headerlink" title="3.3.2 子流量diff"></a><strong>3.3.2 子流量diff</strong></h3><p>发现一条流量存在diff的时候， 接下来动作应该是排查这条diff为什么会存在， 常规的方法是去看日志、远程debug 或 使用kbox排查。 但如果我们能在KTraffic平台上看到这条流量的每个中间远程访问的入参与线上录制到的入参的差异，就会一定程度上帮助我们快速为问题。</p>
+<p><em>如下图，展示一条流量的所有grpc的中间访问过程，类似的还可以查看mysql、redis等。</em></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193950088.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="3-3-3-单条流量文本diff"><a href="#3-3-3-单条流量文本diff" class="headerlink" title="3.3.3 单条流量文本diff"></a><strong>3.3.3 单条流量文本diff</strong></h3><p>只是单纯对比两条流量的response， 如下图。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230803193950240.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="3-3-4-流量管理"><a href="#3-3-4-流量管理" class="headerlink" title="3.3.4 流量管理"></a><strong>3.3.4 流量管理</strong></h3><p>流量录制回放是一个存储高消耗的使用场景，面临较高的存储成本， 因此对于不活跃的录制回放任务，我们只存储<strong>三个月</strong>，三个月后我们会定期删除。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/" class="category-chain-item">个人成长</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/" class="category-chain-item">工作领域</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/">#工作领域</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>流量录制回放介绍</div>
+      <div>http://coder-xieshijie.cn/2023/08/04/个人成长/工作领域汇总/流量录制回放介绍/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/06/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis%E5%92%8Cmysql%E7%9A%84%E5%8F%8C%E5%86%99%E9%97%AE%E9%A2%98/" title="redis和mysql的双写问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">redis和mysql的双写问题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/03/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E6%B5%81%E9%87%8F%E5%BD%95%E5%88%B6%E6%96%B9%E6%A1%88%E6%A2%B3%E7%90%86/" title="流量录制方案梳理">
+                        <span class="hidden-mobile">流量录制方案梳理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

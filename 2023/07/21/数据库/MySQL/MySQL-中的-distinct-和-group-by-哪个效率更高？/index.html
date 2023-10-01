@@ -1,0 +1,1057 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MySQL 中的 distinct 和 group by 哪个效率更高？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 中的 distinct 和 group by 哪个效率更高？">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/07/21/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL-%E4%B8%AD%E7%9A%84-distinct-%E5%92%8C-group-by-%E5%93%AA%E4%B8%AA%E6%95%88%E7%8E%87%E6%9B%B4%E9%AB%98%EF%BC%9F/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="MySQL 中的 distinct 和 group by 哪个效率更高？">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-07-21T15:16:42.000Z">
+<meta property="article:modified_time" content="2023-07-21T15:16:42.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>MySQL 中的 distinct 和 group by 哪个效率更高？ - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MySQL 中的 distinct 和 group by 哪个效率更高？"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-21 23:16" pubdate>
+          2023年7月21日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          51 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="数据库"
+        id="heading-68051bf4aa2743b030984b694628ee9c" role="tab" data-toggle="collapse" href="#collapse-68051bf4aa2743b030984b694628ee9c"
+        aria-expanded="true"
+      >
+        数据库
+        <span class="list-group-count">(11)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-68051bf4aa2743b030984b694628ee9c"
+           role="tabpanel" aria-labelledby="heading-68051bf4aa2743b030984b694628ee9c">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="MySQL"
+        id="heading-62a004b95946bb97541afa471dcca73a" role="tab" data-toggle="collapse" href="#collapse-62a004b95946bb97541afa471dcca73a"
+        aria-expanded="true"
+      >
+        MySQL
+        <span class="list-group-count">(8)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-62a004b95946bb97541afa471dcca73a"
+           role="tabpanel" aria-labelledby="heading-62a004b95946bb97541afa471dcca73a">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/21/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL-%E4%B8%AD%E7%9A%84-distinct-%E5%92%8C-group-by-%E5%93%AA%E4%B8%AA%E6%95%88%E7%8E%87%E6%9B%B4%E9%AB%98%EF%BC%9F/" title="MySQL 中的 distinct 和 group by 哪个效率更高？"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">MySQL 中的 distinct 和 group by 哪个效率更高？</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/26/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/mysql%E7%9A%84explain%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" title="mysql的explain关键字使用说明"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">mysql的explain关键字使用说明</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/24/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/sql%E8%AF%AD%E5%8F%A5%E5%90%84%E4%B8%AA%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/" title="sql语句各个关键字的执行顺序"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">sql语句各个关键字的执行顺序</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/20/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%A4%8D%E6%9D%82%E6%9F%A5%E8%AF%A2sql%E6%95%B4%E7%90%86/" title="复杂查询sql整理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">复杂查询sql整理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/06/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%AE%9E%E9%99%85%E5%88%86%E6%9E%90Mysql%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/" title="实际分析Mysql死锁问题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">实际分析Mysql死锁问题</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/07/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%B8%B8%E7%94%A8sql%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/" title="常用sql命令整理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">常用sql命令整理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/06/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81/" title="数据库锁"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">数据库锁</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E7%B4%A2%E5%BC%95%E7%9A%84%E8%AE%B0%E8%B4%A6%E6%9C%AC/" title="索引的记账本"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">索引的记账本</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="es"
+        id="heading-12470fe406d44017d96eab37dd65fc14" role="tab" data-toggle="collapse" href="#collapse-12470fe406d44017d96eab37dd65fc14"
+        aria-expanded="false"
+      >
+        es
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-12470fe406d44017d96eab37dd65fc14"
+           role="tabpanel" aria-labelledby="heading-12470fe406d44017d96eab37dd65fc14">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/08/29/%E6%95%B0%E6%8D%AE%E5%BA%93/elasticsearch-%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/" title="elasticsearch 概念介绍"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">elasticsearch 概念介绍</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="redis"
+        id="heading-86a1b907d54bf7010394bf316e183e67" role="tab" data-toggle="collapse" href="#collapse-86a1b907d54bf7010394bf316e183e67"
+        aria-expanded="false"
+      >
+        redis
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-86a1b907d54bf7010394bf316e183e67"
+           role="tabpanel" aria-labelledby="heading-86a1b907d54bf7010394bf316e183e67">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/22/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis-key%E5%80%BC%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%88%B0value/" title="redis key值如何定位到value"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">redis key值如何定位到value</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/06/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis%E5%92%8Cmysql%E7%9A%84%E5%8F%8C%E5%86%99%E9%97%AE%E9%A2%98/" title="redis和mysql的双写问题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">redis和mysql的双写问题</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MySQL 中的 distinct 和 group by 哪个效率更高？</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>先说结论：  </p>
+<blockquote>
+<ul>
+<li><p>在语义相同，有索引的情况下：<code>group by</code>和distinct都能使用索引，效率相同。</p>
+</li>
+<li><p>在语义相同，无索引的情况下：distinct效率高于<code>group by</code>。原因是distinct 和 <code>group by</code>都会进行分组操作，但<code>group by</code>可能会进行排序，触发filesort，导致sql执行效率低下。</p>
+</li>
+</ul>
+</blockquote>
+<p>基于这个结论，你可能会问：</p>
+<ul>
+<li><p>为什么在语义相同，有索引的情况下，<code>group by</code>和distinct效率相同？</p>
+</li>
+<li><p>在什么情况下，<code>group by</code>会进行排序操作？</p>
+</li>
+</ul>
+<p>带着这两个问题找答案。接下来，我们先来看一下distinct和<code>group by</code>的基础使用。</p>
+<hr>
+<h2 id="distinct"><a href="#distinct" class="headerlink" title="distinct"></a>distinct</h2><h3 id="distinct用法"><a href="#distinct用法" class="headerlink" title="distinct用法"></a>distinct用法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">SELECT DISTINCT columns FROM table_name WHERE where_conditions;<br></code></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs plain">mysql&gt; select distinct age from student;<br>+------+<br>| age  |<br>+------+<br>|   10 |<br>|   12 |<br>|   11 |<br>| NULL |<br>+------+<br>4 rows in set (0.01 sec)<br></code></pre></td></tr></table></figure>
+
+<p><code>DISTINCT</code> 关键词用于返回唯一不同的值。放在查询语句中的第一个字段前使用，且作用于主句所有列。</p>
+<p>如果列具有NULL值，并且对该列使用<code>DISTINCT</code>子句，MySQL将保留一个NULL值，并删除其它的NULL值，因为<code>DISTINCT</code>子句将所有NULL值视为相同的值。</p>
+<h3 id="distinct多列去重"><a href="#distinct多列去重" class="headerlink" title="distinct多列去重"></a>distinct多列去重</h3><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzI3ODcxMzQzMw==&mid=2247569519&idx=2&sn=4fd70315f2335377f28fc27228ad873f&chksm=eb515559dc26dc4f6caad4ef91b34863d3278660350ffd143dcc5def252d454a816eb370203b&scene=21#wechat_redirect">distinct多列的去重，则是根据指定的去重的列信息来进行，即只有所有指定的列信息都相同，才会被认为是重复的信息。</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs plain">SELECT DISTINCT column1,column2 FROM table_name WHERE where_conditions;<br>mysql&gt; select distinct sex,age from student;<br>+--------+------+<br>| sex    | age  |<br>+--------+------+<br>| male   |   10 |<br>| female |   12 |<br>| male   |   11 |<br>| male   | NULL |<br>| female |   11 |<br>+--------+------+<br>5 rows in set (0.02 sec)<br></code></pre></td></tr></table></figure>
+
+<h2 id="group-by"><a href="#group-by" class="headerlink" title="group by"></a>group by</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><blockquote>
+<p>对于基础去重来说，<code>group by</code>的使用和distinct类似:</p>
+</blockquote>
+<h3 id="单列去重"><a href="#单列去重" class="headerlink" title="单列去重"></a>单列去重</h3><p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">SELECT columns FROM table_name WHERE where_conditions GROUP BY columns;<br></code></pre></td></tr></table></figure>
+
+<p>执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs plain">mysql&gt; select age from student group by age;<br>+------+<br>| age  |<br>+------+<br>|   10 |<br>|   12 |<br>|   11 |<br>| NULL |<br>+------+<br>4 rows in set (0.02 sec)<br></code></pre></td></tr></table></figure>
+
+<h3 id="多列去重"><a href="#多列去重" class="headerlink" title="多列去重"></a>多列去重</h3><p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">SELECT columns FROM table_name WHERE where_conditions GROUP BY columns;<br></code></pre></td></tr></table></figure>
+
+<p>执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs plain">mysql&gt; select sex,age from student group by sex,age;<br>+--------+------+<br>| sex    | age  |<br>+--------+------+<br>| male   |   10 |<br>| female |   12 |<br>| male   |   11 |<br>| male   | NULL |<br>| female |   11 |<br>+--------+------+<br>5 rows in set (0.03 sec)<br></code></pre></td></tr></table></figure>
+
+<h2 id="区别示例"><a href="#区别示例" class="headerlink" title="区别示例"></a>区别示例</h2><p>两者的语法区别在于，<code>group by</code>可以进行单列去重，<code>group by</code>的原理是先对结果进行分组排序，然后返回每组中的第一条数据。且是根据<code>group by</code>的后接字段进行去重的。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs plain">mysql&gt; select sex,age from student group by sex;<br>+--------+-----+<br>| sex    | age |<br>+--------+-----+<br>| male   |  10 |<br>| female |  12 |<br>+--------+-----+<br>2 rows in set (0.03 sec)<br></code></pre></td></tr></table></figure>
+
+<h3 id="distinct和group-by原理"><a href="#distinct和group-by原理" class="headerlink" title="distinct和group by原理"></a>distinct和group by原理</h3><blockquote>
+<p>在大多数例子中，<code>DISTINCT</code>可以被看作是特殊的<code>GROUP BY</code>，它们的实现都基于分组操作，且都可以通过松散索引扫描、紧凑索引扫描来实现。</p>
+</blockquote>
+<p><code>DISTINCT</code>和<code>GROUP BY</code>都是可以使用索引进行扫描搜索的。例如以下两条sql（只单单看表格最后extra的内容），我们对这两条sql进行分析，可以看到，在extra中，这两条sql都使用了紧凑索引扫描<code>Using index for group-by</code>。</p>
+<p>所以，在一般情况下，对于相同语义的<code>DISTINCT</code>和<code>GROUP BY</code>语句，我们可以对其使用相同的索引优化手段来进行优化。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs plain">mysql&gt; explain select int1_index from test_distinct_groupby group by int1_index;<br>+----+-------------+-----------------------+------------+-------+---------------+---------+---------+------+------+----------+--------------------------+<br>| id | select_type | table                 | partitions | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra                    |<br>+----+-------------+-----------------------+------------+-------+---------------+---------+---------+------+------+----------+--------------------------+<br>|  1 | SIMPLE      | test_distinct_groupby | NULL       | range | index_1       | index_1 | 5       | NULL |  955 |   100.00 | Using index for group-by |<br>+----+-------------+-----------------------+------------+-------+---------------+---------+---------+------+------+----------+--------------------------+<br>1 row in set (0.05 sec)<br><br>mysql&gt; explain select distinct int1_index from test_distinct_groupby;<br>+----+-------------+-----------------------+------------+-------+---------------+---------+---------+------+------+----------+--------------------------+<br>| id | select_type | table                 | partitions | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra                    |<br>+----+-------------+-----------------------+------------+-------+---------------+---------+---------+------+------+----------+--------------------------+<br>|  1 | SIMPLE      | test_distinct_groupby | NULL       | range | index_1       | index_1 | 5       | NULL |  955 |   100.00 | Using index for group-by |<br>+----+-------------+-----------------------+------------+-------+---------------+---------+---------+------+------+----------+--------------------------+<br>1 row in set (0.05 sec)<br></code></pre></td></tr></table></figure>
+
+
+
+<p>但对于<code>GROUP BY</code>来说，在MYSQL8.0之前，<code>GROUP Y</code>默认会依据字段进行隐式排序。</p>
+<p>可以看到，下面这条sql语句在使用了临时表的同时，还进行了filesort。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs plain">mysql&gt; explain select int6_bigger_random from test_distinct_groupby GROUP BY int6_bigger_random;<br>+----+-------------+-----------------------+------------+------+---------------+------+---------+------+-------+----------+---------------------------------+<br>| id | select_type | table                 | partitions | type | possible_keys | key  | key_len | ref  | rows  | filtered | Extra                           |<br>+----+-------------+-----------------------+------------+------+---------------+------+---------+------+-------+----------+---------------------------------+<br>|  1 | SIMPLE      | test_distinct_groupby | NULL       | ALL  | NULL          | NULL | NULL    | NULL | 97402 |   100.00 | Using temporary; Using filesort |<br>+----+-------------+-----------------------+------------+------+---------------+------+---------+------+-------+----------+---------------------------------+<br>1 row in set (0.04 sec)<br></code></pre></td></tr></table></figure>
+
+<h3 id="隐式排序"><a href="#隐式排序" class="headerlink" title="隐式排序"></a>隐式排序</h3><p>对于隐式排序，我们可以参考Mysql官方的解释：</p>
+<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/order-by-optimization.html">https://dev.mysql.com/doc/refman/5.7/en/order-by-optimization.html</a></p>
+<blockquote>
+<p>GROUP BY implicitly sorts by default (that is, in the absence of ASC or DESC designators for GROUP BY columns). However, relying on implicit GROUP BY sorting (that is, sorting in the absence of ASC or DESC designators) or explicit sorting for GROUP BY (that is, by using explicit ASC or DESC designators for GROUP BY columns) is deprecated. To produce a given sort order, provide an ORDER BY clause.</p>
+</blockquote>
+<p>大致解释一下：</p>
+<blockquote>
+<p>GROUP BY 默认隐式排序（指在 GROUP BY 列没有 ASC 或 DESC 指示符的情况下也会进行排序）。然而，GROUP BY进行显式或隐式排序已经过时（deprecated）了，要生成给定的排序顺序，请提供 ORDER BY 子句。</p>
+</blockquote>
+<p>所以，在Mysql8.0之前,<code>Group by</code>会默认根据作用字段（<code>Group by</code>的后接字段）对结果进行排序。在能利用索引的情况下，<code>Group by</code>不需要额外进行排序操作；但当无法利用索引排序时，Mysql优化器就不得不选择通过使用临时表然后再排序的方式来实现<code>GROUP BY</code>了。</p>
+<p>且当结果集的大小超出系统设置临时表大小时，Mysql会将临时表数据copy到磁盘上面再进行操作，语句的执行效率会变得极低。这也是Mysql选择将此操作（隐式排序）弃用的原因。</p>
+<p>基于上述原因，Mysql在8.0时，对此进行了优化更新：</p>
+<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/order-by-optimization.html">https://dev.mysql.com/doc/refman/8.0/en/order-by-optimization.html</a></p>
+<blockquote>
+<p>Previously (MySQL 5.7 and lower), GROUP BY sorted implicitly under certain conditions. In MySQL 8.0, that no longer occurs, so specifying ORDER BY NULL at the end to suppress implicit sorting (as was done previously) is no longer necessary. However, query results may differ from previous MySQL versions. To produce a given sort order, provide an ORDER BY clause.</p>
+</blockquote>
+<p>大致解释一下：</p>
+<blockquote>
+<p>从前（Mysql5.7版本之前），Group by会根据确定的条件进行隐式排序。在mysql 8.0中，已经移除了这个功能，所以不再需要通过添加<code>order by null</code> 来禁止隐式排序了，但是，查询结果可能与以前的 MySQL 版本不同。要生成给定顺序的结果，请按通过ORDER BY指定需要进行排序的字段。</p>
+</blockquote>
+<p>因此，我们的结论也出来了：</p>
+<ul>
+<li>在语义相同，有索引的情况下：</li>
+</ul>
+<p><code>group by</code>和distinct都能使用索引，效率相同。因为<code>group by</code>和distinct近乎等价，distinct可以被看做是特殊的<code>group by</code>。</p>
+<ul>
+<li>在语义相同，无索引的情况下：</li>
+</ul>
+<p>distinct效率高于<code>group by</code>。原因是distinct 和 <code>group by</code>都会进行分组操作，但<code>group by</code>在Mysql8.0之前会进行隐式排序，导致触发filesort，sql执行效率低下。</p>
+<p>但从Mysql8.0开始，Mysql就删除了隐式排序，所以，此时在语义相同，无索引的情况下，<code>group by</code>和distinct的执行效率也是近乎等价的。</p>
+<p>推荐group by的原因</p>
+<ol>
+<li><p><code>group by</code>语义更为清晰</p>
+</li>
+<li><p><code>group by</code>可对数据进行更为复杂的一些处理</p>
+</li>
+</ol>
+<p>相比于distinct来说，<code>group by</code>的语义明确。且由于distinct关键字会对所有字段生效，在进行复合业务处理时，<code>group by</code>的使用灵活性更高，<code>group by</code>能根据分组情况，对数据进行更为复杂的处理，例如通过having对数据进行过滤，或通过聚合函数对数据进行运算。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MySQL 中的 distinct 和 group by 哪个效率更高？</div>
+      <div>http://coder-xieshijie.cn/2023/07/21/数据库/MySQL/MySQL-中的-distinct-和-group-by-哪个效率更高？/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年7月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/07/22/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis-key%E5%80%BC%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%88%B0value/" title="redis key值如何定位到value">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">redis key值如何定位到value</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/07/17/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E7%81%B5%E5%85%89%E5%92%8C%E6%84%9F%E6%82%9F/" title="灵光和感悟">
+                        <span class="hidden-mobile">灵光和感悟</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

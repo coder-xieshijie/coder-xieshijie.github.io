@@ -1,0 +1,1153 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="AI大模型的仰望星空和脚踏实地">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI大模型的仰望星空和脚踏实地">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/04/13/AIGC/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BB%B0%E6%9C%9B%E6%98%9F%E7%A9%BA%E5%92%8C%E8%84%9A%E8%B8%8F%E5%AE%9E%E5%9C%B0/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="AI大模型的仰望星空和脚踏实地">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231439425.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231438924.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231437002.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231441505.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231432007.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231434777.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231443032.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231443658.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231440524.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231440149.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231444145.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231447074.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231447977.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231443228.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231455610.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231446948.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231445848.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231500270.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231449349.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231448790.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231449089.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231454307.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231449670.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231452927.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231455265.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231455417.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231456151.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231455855.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231500617.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231504422.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231507997.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231501992.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231505695.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231513171.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231507486.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231504053.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231505048.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231505441.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231505934.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231506839.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231507083.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231508211.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231507360.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231508344.png">
+<meta property="article:published_time" content="2023-04-13T04:44:37.000Z">
+<meta property="article:modified_time" content="2023-04-13T04:44:37.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="ChatGPT">
+<meta property="article:tag" content="stable diffusion">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out.png">
+  
+  
+  
+  <title>AI大模型的仰望星空和脚踏实地 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AI大模型的仰望星空和脚踏实地"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-13 12:44" pubdate>
+          2023年4月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          93 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="AI"
+        id="heading-0a40e3c91a3a55c9a37428c6d194d0e5" role="tab" data-toggle="collapse" href="#collapse-0a40e3c91a3a55c9a37428c6d194d0e5"
+        aria-expanded="true"
+      >
+        AI
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-0a40e3c91a3a55c9a37428c6d194d0e5"
+           role="tabpanel" aria-labelledby="heading-0a40e3c91a3a55c9a37428c6d194d0e5">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="ChatGPT"
+        id="heading-62239e6c0f995ae1fdc00d18b7905eac" role="tab" data-toggle="collapse" href="#collapse-62239e6c0f995ae1fdc00d18b7905eac"
+        aria-expanded="true"
+      >
+        ChatGPT
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-62239e6c0f995ae1fdc00d18b7905eac"
+           role="tabpanel" aria-labelledby="heading-62239e6c0f995ae1fdc00d18b7905eac">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/04/13/AIGC/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BB%B0%E6%9C%9B%E6%98%9F%E7%A9%BA%E5%92%8C%E8%84%9A%E8%B8%8F%E5%AE%9E%E5%9C%B0/" title="AI大模型的仰望星空和脚踏实地"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">AI大模型的仰望星空和脚踏实地</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/04/12/AIGC/%E6%B3%A8%E5%86%8Cchatgpt%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%94%BB%E7%95%A5-%E9%95%BF%E6%9C%9F%E6%9C%89%E6%95%88/" title="注册ChatGPT保姆级攻略(长期有效~)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">注册ChatGPT保姆级攻略(长期有效~)</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">AI大模型的仰望星空和脚踏实地</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>AI正在以天为周期进化，给人前所未有的压迫感，AI读心术？数字生命？AI大模型正在以其无与伦比的效率颠覆我们的生活。比尔盖茨表示：这就像当年我第一次见到图形界面操作系统。黄仁勋在发布会上强调，我们正在经历又一个Iphone Moment</p>
+</blockquote>
+<p>ChatGPT在今年1月推出，也就是推出仅两个月后。活跃活跃用户就达到了1个亿，成为了历史上增长最快的消费应用，排名第二TikTok用了13个月才达到1个亿</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out.png" srcset="/img/loading.gif" lazyload></p>
+<p>这两个月世界变化巨大，而变化来自于AI。</p>
+<p>3.15号，Open AI发布了GPT 4，也就是新版本的AI大模型，这就像第一次图形界面或iPhone第一次发布，带给了互联网无与伦比的冲击。</p>
+<h1 id="OpenAI掀起的狂潮"><a href="#OpenAI掀起的狂潮" class="headerlink" title="OpenAI掀起的狂潮"></a><strong>OpenAI掀起的狂潮</strong></h1><hr>
+<h2 id="3-16号-微软发布Copilot"><a href="#3-16号-微软发布Copilot" class="headerlink" title="3.16号 微软发布Copilot"></a><strong>3.16号 微软发布Copilot</strong></h2><p>微软发布的office办公工具基于GPT大语言模型的，以后不管是在world Excel PPT还是邮件系统，都会多出来一个对话框，也就是一个人工智能助手，他可以帮你改文章做PPT查询数据。</p>
+<ul>
+<li>比如当你在用Excel查公司数据的时候，你可以跟他直接说，请把过去一年公司增长的原因找出来，他就会把关键增长部门的数据划重点，提示你。</li>
+<li>如果你错过了一个重要的会议，可以根据会议记录问他，会议主要讨论了啥呀，各方面都有什么观点啊，最后有什么问题没有被解决啊</li>
+<li>当然也可以用word文档直接生成PPT</li>
+</ul>
+<p>相当于让每个人，都拥有了一个高校毕业的秘书</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231439425.png" srcset="/img/loading.gif" lazyload></p>
+<p>﻿</p>
+<h2 id="3-16号-Midjourney-V5发布"><a href="#3-16号-Midjourney-V5发布" class="headerlink" title="3.16号 Midjourney V5发布"></a><strong>3.16号 Midjourney V5发布</strong></h2><p>midjourney是AI图片生成工具，基本上解决了之前AI画不好手指的问题，整体产出的图片不像之前的版本那么天马行空，但却更接近真实场景，很多时候让人难辨真假</p>
+<p><a target="_blank" rel="noopener" href="https://www.midjourney.com/showcase/recent">https://www.midjourney.com/showcase/recent/</a></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231438924.png" srcset="/img/loading.gif" lazyload><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231437002.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-16号-百度发布文心一言"><a href="#3-16号-百度发布文心一言" class="headerlink" title="3.16号 百度发布文心一言"></a><strong>3.16号 百度发布文心一言</strong></h2><p>百度的大语言模型文心一言3.16号发布公测，成为第一个发布大模型语言模型的国内互联网大厂</p>
+<h2 id="3-21号-英伟达年度开发者大会"><a href="#3-21号-英伟达年度开发者大会" class="headerlink" title="3.21号 英伟达年度开发者大会"></a><strong>3.21号 英伟达年度开发者大会</strong></h2><p>在大会上，黄仁勋做了演讲，通篇没有一处提到游戏显卡，而是在软件部分，发布了100多个基于英伟达特用GPU和扩大架构的加速计算工具</p>
+<p>包括流体力学仿真数据库处理、光刻机眼膜设计和AI等，更新了工业园宇宙Omniverse，在硬件部分发布了4款AI推理芯片，整体上把AI的运算效率提升了一个档次，还发布了三个基于AI大模型的云服务，分别面向文本处理、图片处理和生物医药的研究</p>
+<p>核心思想就是：All In AI</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231441505.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-21号-Google-Bard聊天机器人公测"><a href="#3-21号-Google-Bard聊天机器人公测" class="headerlink" title="3.21号 Google Bard聊天机器人公测"></a><strong>3.21号 Google Bard聊天机器人公测</strong></h2><p>GPT-4发布一周后，谷歌聊天机器人Bard开放测试</p>
+<p>高情商：跟搜索保持距离，搜索的补充体验</p>
+<p>低情商：依托答辩</p>
+<h2 id="3-23号-Github发布copilot-x"><a href="#3-23号-Github发布copilot-x" class="headerlink" title="3.23号 Github发布copilot x"></a><strong>3.23号 Github发布copilot x</strong></h2><p>随着 OpenAI 的 GPT-4 模型的发布，GitHub 紧接着就发布了新版本的 GitHub Copilot X。Copilot X 的 AI 模型采用的是最新 OpenAI GPT-4，毕竟 GitHub 是微软的亲儿子。</p>
+<p>GitHub Copilot X 致力于改进开发者体验，将提供聊天和语音界面，支持拉取请求，回答文档问题，并通过 GPT-4 实现更个性化的开发者体验。使用 GitHub Copilot X，它可以解释代码的用途，还可以在遇到 bugs 时让 Copilot X 尝试去修复它，甚至还可以顺带生成单元测试。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231432007.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-23号-Runway发布Gen-2"><a href="#3-23号-Runway发布Gen-2" class="headerlink" title="3.23号 Runway发布Gen 2"></a><strong>3.23号 Runway发布Gen 2</strong></h2><p>不同于上个版本Gen 1，需要输入文字加图像才能生成视频，Gen 2只要输入文本就能生成视频</p>
+<p><a target="_blank" rel="noopener" href="https://research.runwayml.com/gen2">https://research.runwayml.com/gen2</a></p>
+<h2 id="3-25号-Open-AI推出ChatGPT插件能力"><a href="#3-25号-Open-AI推出ChatGPT插件能力" class="headerlink" title="3.25号 Open AI推出ChatGPT插件能力"></a><strong>3.25号 Open AI推出ChatGPT插件能力</strong></h2><p>该能力可以把你的网站或者app跟Chatgbt连上。</p>
+<p>起到作用类似于比如说你你把美团跟chatgbt连上，然后用户就可以给AI助理下指示，周末我要带女朋友去大理玩，然后他就会根据美团上的商家数据和用户评论数据，过几秒钟就帮你把行程酒店机票餐厅全都安排了，然后你跟他说太贵了，然后他就会给你整体根据优惠然后再安排一遍</p>
+<p>这就开始想象chatgpt应用的无限场景，更大的改变是有可能以后大家就不上美团了，也不再应用商城下美团APP了，而是直接在chatgpt里面用美团或者别的什么生活服务APP了，直接重购了互联网流量入口。</p>
+<p>AI正在以天为周期进化，给人前所未有的压迫感，对此比尔盖茨和英伟达老板黄仁勋的表态是最有代表性的</p>
+<blockquote>
+<p><strong>比尔盖茨表示：这就像当年我第一次见到图形界面操作系统</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>黄仁勋在发布会上三次强调：我们正在经历又一个iPhone Moment</strong></p>
+</blockquote>
+<p>比尔盖茨靠着抄MAC图形界面操作系统操的够快以及设计出了快速扩张的商业模式，率领微软登上巅峰成为世界首富。黄仁勋因为错过了iPhone带来的移动互联网革命，他的公司股价从2007年高峰的接近10美元一度掉到接近1美元。所以我相信这两个人对他们口中的那个时刻一定是印象深刻的</p>
+<blockquote>
+<p><strong>而此次此刻恰如彼时彼刻！</strong></p>
+</blockquote>
+<h1 id="仰望星空"><a href="#仰望星空" class="headerlink" title="仰望星空"></a><strong>仰望星空</strong></h1><hr>
+<h2 id="AI大模型的底层逻辑"><a href="#AI大模型的底层逻辑" class="headerlink" title="AI大模型的底层逻辑"></a><strong>AI大模型的底层逻辑</strong></h2><blockquote>
+<p><strong>这是一张末代皇后婉容的照片，AI模型上色之后就成了这样</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231434777.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>同时他还可以有很多别的配色</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231443032.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>那么AI是怎么完成黑白照片的上色的呢？</strong></p>
+</blockquote>
+<p>如果让我这个人类去给这张照片上色的话，我能想到两种方法</p>
+<p><strong>方法1：</strong>我先去调查婉容这件衣服的材质，甚至尝试去找到这件衣服的本体，在结合史料上拍张照片的时间地点、当天的天气光照，确定一种最有可能的颜色给它涂上去，这种方法叫做分析推理方法。</p>
+<p><strong>方法2：</strong>我随便找个看着不那么突兀的颜色，就给他涂上去，所有的背景事物照此操作，最后出来的照片像那么回事就行，因为我看过很多女人穿着类似衣服的彩色照片，这种方法我们姑且称之为套模板</p>
+<blockquote>
+<p><strong>AI并不擅长分析推理，但他非常擅长套模板</strong></p>
+</blockquote>
+<p>然后总结成模板到处套，特别是在最近这一轮大模型革命之后，AI变得非常非常擅长总结模板到处套，这既体现为他无与伦比的效率，也体现为他无人可及的能力。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231443658.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="无与伦比的效率"><a href="#无与伦比的效率" class="headerlink" title="无与伦比的效率"></a><strong>无与伦比的效率</strong></h2><p>AI大模型很难承担真正的原创性工作，也就是说他无法替代去形成目标决心底层的策略，但他能比任何人都更高效的完成<strong>扩展翻译总结查找</strong></p>
+<p>这里的扩<strong>展翻译总结查找</strong>，都是广义上的说法</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231440524.png" srcset="/img/loading.gif" lazyload></p>
+<p>于是基于广义扩展翻译总结查找，围绕AI大模型就产生了大量的应用</p>
+<ul>
+<li>比如说文字转图片的<strong>midjourney、stable diffusion、dall·e 2</strong></li>
+<li>文字转PPT的<strong>Tommy、copilot</strong></li>
+<li>文字转视频的<strong>Runway</strong></li>
+<li>文字转网站代码的<strong>copilot x</strong></li>
+<li>等等等等</li>
+</ul>
+<p>现在美国的互联网新产品发布平台<strong>Product Hunt</strong>，上面已经有一半以上的新发应用是基于AI，帮你解决各种各样的小问题的：比如说在繁杂的Excel数据当中找出关键的增长指标就是查找，这些本来需要投入几小时甚至几天去完成的工作，现在AI能在几秒钟之内帮你完成</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231440149.png" srcset="/img/loading.gif" lazyload></p>
+<p>在用AI完成基础的工作之后，数据会保存在数据库里，而不是人类的脑子里，也就是提取和传输的限制条件是内存和限宽，而不是人类的发声习惯，信息在组织内部上传下达平级沟通的效率也急剧加速</p>
+<p>就比如在管理软件领域的大数据分析，现在的大型连锁商店，都会收集大量经营数据来分析，但是当运营人员真的提出要看某些数据的时候，首先数据涉及到敏感的商业机密不能让你随便看，然后你的电脑也跑不了那么大的数据库，这时候就需要专业的工程师去帮你调取特定的数据，会根据先来后到轻重缓急，给调取数据的需求排个序，你会进入到排队队列，真正拿到数据的时候可能是2个月以后了，而AI大模型能把这个时间缩短到几秒钟。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231444145.png" srcset="/img/loading.gif" lazyload></p>
+<p>实际上我们日常的工作当中，只有非常非常少的一部分是严格意义上的原创，而有大量的信息搜索总结翻译扩展，大量的沟通上传下达，当AI充分介入之后，这些流程将会不复存在，大集团公司老板和国家领导人将可以直接获取最基层的信息，而绝大多数产品的开发周期都会缩短到一天之内，上午形成想法晚上网站上线，甚至配合日益成熟的3D打印技术，上午形成想法晚上零件入库，这就是AI大模型能给我们带来无与伦比的效率。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231447074.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="AI读心术"><a href="#AI读心术" class="headerlink" title="AI读心术"></a><strong>AI读心术</strong></h2><blockquote>
+<p><strong>更激动人心的是AI创造了新的可能性</strong></p>
+</blockquote>
+<p>有一种医疗诊断技术叫做FMRI（功能性磁共振成像）可以观测记录到大脑血流的微小变化，大脑在工作的时候，比如说看一张图片，必然会导致各部分的神经元产生不同的对能量氧气的需求，进而导致血流量的微小变化，而这个数据是可以通过FMRI记录下来的</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231447977.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>那有没有可能，这种血流的微小变化数据跟我们现在看到的图像存在对应的关系呢？</strong></p>
+</blockquote>
+<p>肯定是有可能的，但是人能看得出来我信你个鬼，因为这里这个对应的模板模型太复杂了，完全超出了人脑的理解能力，而一个日本大阪大学的团队用stable diffusion AI模型，利用FMRI的数据画出了这样的图像</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231443228.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>患者看到的原图是这样的</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231455610.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>对比图（左侧stable diffusion绘制，右侧人眼观测）</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231446948.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>这是AI画出来的</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231445848.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>这是患者看到的</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231500270.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>对比图（左侧stable diffusion绘制，右侧人眼观测）</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231449349.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>这是AI画出来的</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231448790.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>这是患者看到的</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231449089.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>对比图（左侧stable diffusion绘制，右侧人眼观测）</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231454307.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>这为我们展现了一种实现非侵入式脑机接口的可能性，人类可以通过意念进行沟通交流。后面在瘫痪患者的治疗，在义肢轮椅等领域会有巨大的应用前景！</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231449670.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>而如果说的科幻一点这就是在字面意义上实现了读心术啊，短短11页的论文实现了读心术！是不是很大胆！</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231452927.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="数字生命"><a href="#数字生命" class="headerlink" title="数字生命"></a><strong>数字生命</strong></h2><p>更大胆的是</p>
+<blockquote>
+<p><strong>像这样我们知道两件事，两组数据之间的关联，而人脑不知道如何对上的情况，在人类社会比比皆是</strong></p>
+</blockquote>
+<p>马丁路德金曾说我梦想有一天，我的四个孩子，将在一个不以他们的肤色，而是以他们的品格优劣来评价他们的国度里生活</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231455265.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>什么叫做一个人的品格呢？</strong></p>
+</blockquote>
+<p>这曾经是一个非常抽象的概念，体现为一个人的所有行为举止的集合。</p>
+<p>而人的行为举止这个数据，其实是可以记录的，对于一个心智成熟的成年人来说，他在网络上未来的行为可以认为是过去行为的一种延续，于是只需要提取你在网络上的所有足迹：看过什么、发过什么、做过什么</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231455417.png" srcset="/img/loading.gif" lazyload></p>
+<p>把这些数据做一个记录，然后让AI大模型去学习这组数据就可以生成一个数字化的你，这个你可以替你去发评论发弹幕、发文章、私信、表白甚至可以替你花钱网购</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231456151.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>这就是一个人的品格，他被AI破解了，我们看到的新闻内容的点点滴滴，而这个点点滴滴跟真实感之间的关联，本来应该是抽象的，而现在已经被AI破解了，以后再也没有眼见为实了</strong></p>
+</blockquote>
+<p>这些案例看起来可能会感觉有点疯狂可怕，你这么感觉就对了，我也有这样的感受，自200万年前以来人类一直是已知世界智能最高的存在，我们早已对此习以为常</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231455855.png" srcset="/img/loading.gif" lazyload></p>
+<p>我思故我在，体现了人类的独特性，而如今一种新的智能正在破解我们所有抽象的概念，破解人类的独特性。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231500617.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>人类进化到现在的智慧水平用了200万年，AI大模型需要多久？</strong></p>
+</blockquote>
+<h1 id="脚踏实地"><a href="#脚踏实地" class="headerlink" title="脚踏实地"></a><strong>脚踏实地</strong></h1><hr>
+<blockquote>
+<p><strong>当然，倒也不需要过度恐慌，也不用对AI大模型的产品畏之如虎，我很认同一句话：AI不会淘汰你，但是第一批使用AI工具的人会淘汰你！</strong></p>
+</blockquote>
+<p><strong>结合我最近使用的两个工具，抛砖引玉，让我们一起步入这个新的时代！</strong></p>
+<h2 id="stable-diffusion-生成个性图片"><a href="#stable-diffusion-生成个性图片" class="headerlink" title="stable diffusion 生成个性图片"></a><strong>stable diffusion 生成个性图片</strong></h2><p>先上一个我自己生成的效果(就是在我的Mac上用CPU生成的)</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231504422.png" srcset="/img/loading.gif" lazyload></p>
+<p>官网：<a target="_blank" rel="noopener" href="https://stablediffusionweb.com/">https://stablediffusionweb.com/</a></p>
+<p>官网提供的在线上能力比较弱鸡，而且很多参数不能调节，使用次数还有限制，不推荐</p>
+<p>推荐一个Github上的一个大神：<a target="_blank" rel="noopener" href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">https://github.com/AUTOMATIC1111/stable-diffusion-webui</a></p>
+<p>这个是本地搭建一个stable diffusion模型，自由度非常高，配合<a target="_blank" rel="noopener" href="https://civitai.com/">https://civitai.com/</a> 这个网站，基本可以定制化生产任意图片</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231507997.png" srcset="/img/loading.gif" lazyload></p>
+<p>我在这里简要说一下我的搭建过程，以供参考</p>
+<p>1、Mac的安装参考：<a target="_blank" rel="noopener" href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Installation-on-Apple-Silicon">https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Installation-on-Apple-Silicon</a></p>
+<p>安装3.10版本的Python（其他版本都有些问题） 拉取仓库 运行.&#x2F;webui.sh 然后就会自动下载各种依赖和默认的模型，命令行出现下面的日志就代表成功了</p>
+<p>2、在<a target="_blank" rel="noopener" href="https://civitai.com/%E6%89%BE%E4%B8%80%E4%B8%AA%E5%90%88%E9%80%82%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%B9%B6%E4%B8%8B%E8%BD%BD">https://civitai.com/找一个合适的模型并下载</a></p>
+<p>3、下载完成之后，把checkpoint拖入下面这个文件夹，然后重启服务</p>
+<p>然后就能在模型列表找到你刚刚下载的模型了</p>
+<p>4、填写参数，需要注意5个参数</p>
+<ul>
+<li><p>checkpoint&#x2F;模型，我选择的是国风3模型<a target="_blank" rel="noopener" href="https://civitai.com/models/10415/3-guofeng3?modelVersionId=17414">https://civitai.com/models/10415/3-guofeng3?modelVersionId=17414</a> </p>
+</li>
+<li><p>正向词和负向词 </p>
+</li>
+<li><p>Sampling </p>
+</li>
+<li><p>step </p>
+</li>
+<li><p>CFG scale </p>
+</li>
+<li><p>Seed (这个我理解就是一个框架，比如说描述词有【站立】，但是站立还有很多种正面站还是侧面站，这个seed就是用规范一个大概的范围，-1是随机)</p>
+</li>
+</ul>
+<p>参数我放这里，大家自取哈</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver"><span class="hljs-comment">## checkpoint</span><br><span class="hljs-keyword">https</span>://civitai.com/models/<span class="hljs-number">10415</span>/<span class="hljs-number">3</span>-guofeng3?modelVersionId=<span class="hljs-number">17414</span><br><br><span class="hljs-comment">## 正向词</span><br>best quality, masterpiece, highres, <span class="hljs-number">1</span>girl,china dress,hair ornament,necklace, jewelry,Beautiful face,upon_body, tyndall effect,photorealistic, dark studio, rim lighting, <span class="hljs-literal">two</span> tone lighting,(high <span class="hljs-keyword">detailed</span> skin:<span class="hljs-number">1.2</span>), <span class="hljs-number">8</span>k uhd, dslr, soft lighting, high quality, volumetric lighting, candid, Photograph, high resolution, <span class="hljs-number">4</span>k, <span class="hljs-number">8</span>k, Bokeh<br><br><span class="hljs-comment">## 负向词</span><br>(((simple background))),monochrome ,lowres, bad anatomy, bad hands, <span class="hljs-keyword">text</span>, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, <span class="hljs-keyword">normal</span> quality, jpeg artifacts, signature, watermark, username, blurry, lowres, bad anatomy, bad hands, <span class="hljs-keyword">text</span>, error, extra digit, fewer digits, cropped, worst quality, low quality, <span class="hljs-keyword">normal</span> quality, jpeg artifacts, signature, watermark, username, blurry, ugly,pregnant,vore,duplicate,morbid,mut ilated,tran nsexual, hermaphrodite,<span class="hljs-keyword">long</span> neck,mutated hands,poorly drawn hands,poorly drawn face,mutation,deformed,blurry,bad anatomy,bad proportions,malformed limbs,extra limbs,cloned face,disfigured,gross proportions, (((missing arms))),(((missing legs))), (((extra arms))),(((extra legs))),pubic hair, plump,bad legs,error legs,username,blurry,bad feet<br><br><span class="hljs-comment">## Sampling step</span><br><span class="hljs-number">30</span><br><br><span class="hljs-comment">## CFG scale</span><br><span class="hljs-number">7</span><br><br><span class="hljs-comment">## Seed</span><br><span class="hljs-number">2467180841</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>5、生成图片</p>
+<p>填写完参数就可以点击右上的Generate，命令行可以看进度，差不多3分钟就可以生成</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231501992.png" srcset="/img/loading.gif" lazyload></p>
+<p>6、提升分辨率</p>
+<p>先拿到图片</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231505695.png" srcset="/img/loading.gif" lazyload></p>
+<p>选择Extra，并把刚刚生成的图片放入，并设置Upscaler1和Upscaler2均为R-ESRGAN 4X + Anime6B</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231513171.png" srcset="/img/loading.gif" lazyload></p>
+<p>放下修复之后的对比图</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231507486.png" srcset="/img/loading.gif" lazyload></p>
+<p>注意事项</p>
+<ul>
+<li>Mac基本没有GPU所以这个生产过程基本都是用CPU去模拟的，生成过程CPU会飙升，请大家在非工作时间操作，否则造成电脑卡死概不负责哈</li>
+<li>明明参数配置一样，就是跟模型的不一样，这个是正常的，因为这个有多重因素干扰，不同的显卡甚至效果也不一样，显卡越好生产的效果越好，模型网站的图片基本都是顶级显卡跑出来的</li>
+</ul>
+<h2 id="ChatGPT-辅助编程"><a href="#ChatGPT-辅助编程" class="headerlink" title="ChatGPT 辅助编程"></a><strong>ChatGPT 辅助编程</strong></h2><blockquote>
+<p><strong>背景：</strong></p>
+</blockquote>
+<p>平时会编写博客，并且会把这个博客上传到github上，然后自己买一个域名挂到github上。</p>
+<p>我平时编写的博客会有一些图片来辅助说明的，写完之后如果我把图片和文字全部都上传到博客网站，后期图片很多时就会导致网站加载特别慢</p>
+<p>所以想把图片存储在一个公共的对象存储平台（腾讯云的cos服务），这样只要上传一个公共访问链接即可，极大的减少存储空间。</p>
+<blockquote>
+<p><strong>需求：</strong></p>
+</blockquote>
+<p>每次写完博客都要手动上传图片，然后把得到的链接在复制到本地的markdown文件中，如果一篇文章的图片特别多，这简直就是灾难！所以我想</p>
+<ol>
+<li><p>给一个文件路径，自动把markdown文件中本地的图片上传到腾讯云的cos平台，并获取公共链接</p>
+</li>
+<li><p>把本地的文章的链接自动替换为公共链接</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>调研和设计</strong></p>
+</blockquote>
+<p>腾讯云cos服务是提供这样的接口的，但是接口需要鉴权，所以我把上诉的需求拆解为三部分</p>
+<ul>
+<li>生成鉴权sign_key</li>
+<li>调用腾讯云的接口上传图片，并获取链接</li>
+<li>输入markdown文件，找到本地图片链接，上传并替换为公共链接</li>
+</ul>
+<h3 id="错误示范"><a href="#错误示范" class="headerlink" title="错误示范"></a><strong>错误示范</strong></h3><blockquote>
+<p><strong>我阅读腾讯云的cos文档，需要提供签名，一共需要八个步骤才能生成</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231504053.png" srcset="/img/loading.gif" lazyload><br><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231505048.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>我把这八个过程每一个过程都复制给chatgpt，让他帮我写</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231505441.png" srcset="/img/loading.gif" lazyload><br><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231505934.png" srcset="/img/loading.gif" lazyload><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231506839.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>后面太多我就不演示了，我直接说总结：</strong></p>
+</blockquote>
+<ul>
+<li>在这个过程中给我的代码基本都是可以运行的，我只需要微调一下就可以用，报错直接扔给他也基本都可以解决</li>
+<li>但是整个过程还是需要我理解每一步，并且把这八个步骤进行汇总和调整</li>
+<li><strong>比Google搜索要好用一点，但是还没有那么好用，总感觉差点意思</strong></li>
+</ul>
+<h3 id="正确示范"><a href="#正确示范" class="headerlink" title="正确示范"></a><strong>正确示范</strong></h3><blockquote>
+<p><strong>生成上面的签名之后，我就让他去写上传接口</strong></p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231507083.png" srcset="/img/loading.gif" lazyload><br><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231508211.png" srcset="/img/loading.gif" lazyload></p>
+<p>仔细阅读一下上面的第二张图片，我要求<strong>【<strong><strong>把其中的url的uri替换为文件名</strong></strong>】</strong>，然后它给我代码并解释这是做什么，它说这是上传到<strong>【腾讯云的cos服务】</strong>，要知道我在这之前是完全没有提到过<strong>【腾讯云】、【cos服务】</strong>等字眼的，也就是它只依赖我提供的host<strong>【</strong><a target="_blank" rel="noopener" href="http://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/"><strong>coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com</strong></a><strong>】</strong>这个域名，就判断出我这是腾讯云的cos服务，这就有点厉害了，更厉害的是，当然要求他写一个测试用例：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231507360.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>它直接把我之前费力八个步骤生成的签名直接生成了！这太离谱了！</strong></p>
+</blockquote>
+<ul>
+<li><strong>我以为：</strong>chatgpt不知道腾讯云cos签名的生成过程，然后我阅读文档，把八个步骤重组并依次喂给chatgpt，让他帮我写</li>
+<li><strong>实际上：</strong>chatgpt不仅知道腾讯云cos，在我要求他上传时，就自动把官方推荐的生成签名的方式给我生成了！</li>
+</ul>
+<blockquote>
+<p><strong>这意味着以后大部分网络开源的内容，你甚至不用阅读啃文档，你只要知道一个概念，剩下的就交给他就可以！</strong></p>
+</blockquote>
+<p>后面的上传和替换markdown的内容我就不截图，后面对于chatgpt就非常简单了，最后附上完整的代码(95%是chatgpt写的)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding=utf-8</span><br><span class="hljs-keyword">import</span> hmac<br><span class="hljs-keyword">import</span> hashlib<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> re<br><span class="hljs-keyword">import</span> requests<br><br><span class="hljs-comment"># 定义 SecretKey 和 KeyTime</span><br><span class="hljs-comment"># 替换为自己的key和id</span><br>secret_key = <span class="hljs-string">&quot;xieshijie_key&quot;</span><br>key_time = <span class="hljs-string">&quot;1680947045;2980950645&quot;</span><br>secret_id = <span class="hljs-string">&quot;xieshijie_id&quot;</span><br>http_method = <span class="hljs-string">&#x27;put&#x27;</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_url_param_list</span>():<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_header_list</span>():<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_sign_key_val</span>(<span class="hljs-params">uri_pathname</span>):<span class="hljs-comment"># 生成 SignKey</span><br>    sign_key = hmac.new(<br>        secret_key.encode(),<br>        key_time.encode(),<br>        hashlib.sha1<br>    ).hexdigest()<br><br>    <span class="hljs-comment"># 生成 HttpString</span><br>    http_string = <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;http_method.lower()&#125;</span>\n<span class="hljs-subst">&#123;uri_pathname&#125;</span>\n&quot;</span><br><br>    http_string += <span class="hljs-string">&quot;\n&quot;</span><br><br>    http_string += <span class="hljs-string">&quot;\n&quot;</span><br><br>    <span class="hljs-comment"># 生成 StringToSign</span><br>    string_to_sign = <span class="hljs-string">f&quot;sha1\n<span class="hljs-subst">&#123;key_time&#125;</span>\n<span class="hljs-subst">&#123;hashlib.sha1(http_string.encode()).hexdigest()&#125;</span>\n&quot;</span><br><br>    <span class="hljs-comment"># 生成 Signature</span><br>    signature = hmac.new(<br>        sign_key.encode(),<br>        string_to_sign.encode(),<br>        hashlib.sha1<br>    ).hexdigest()<br><br>    <span class="hljs-comment"># 生成签名</span><br>    sign_key_val = <span class="hljs-string">f&quot;q-sign-algorithm=sha1&quot;</span> \<br>                   <span class="hljs-string">f&quot;&amp;q-ak=<span class="hljs-subst">&#123;secret_id&#125;</span>&quot;</span> \<br>                   <span class="hljs-string">f&quot;&amp;q-sign-time=<span class="hljs-subst">&#123;key_time&#125;</span>&quot;</span> \<br>                   <span class="hljs-string">f&quot;&amp;q-key-time=<span class="hljs-subst">&#123;key_time&#125;</span>&quot;</span> \<br>                   <span class="hljs-string">f&quot;&amp;q-header-list=<span class="hljs-subst">&#123;generate_header_list()&#125;</span>&quot;</span> \<br>                   <span class="hljs-string">f&quot;&amp;q-url-param-list=<span class="hljs-subst">&#123;generate_url_param_list()&#125;</span>&quot;</span> \<br>                   <span class="hljs-string">f&quot;&amp;q-signature=<span class="hljs-subst">&#123;signature&#125;</span>&quot;</span><br><br>    <span class="hljs-keyword">return</span> sign_key_val<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_file_name</span>(<span class="hljs-params">file_path</span>):<span class="hljs-comment"># 获取文件名return file_path.split(&#x27;/&#x27;)[-1]</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">put_request</span>(<span class="hljs-params">file_path, sign_key</span>):<span class="hljs-comment"># 设置请求头</span><br>    headers = &#123;<br>        <span class="hljs-string">&#x27;host&#x27;</span>: <span class="hljs-string">&#x27;coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com&#x27;</span>,<br>        <span class="hljs-string">&#x27;Authorization&#x27;</span>: sign_key<br>    &#125;<br><br>    <span class="hljs-comment"># 设置请求体with open(file_path, &#x27;rb&#x27;) as f:</span><br>        data = f.read()<br><br>    uri = generate_file_name(file_path)<br><br>    <span class="hljs-comment"># 发送 PUT 请求</span><br>    url = <span class="hljs-string">f&#x27;https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/<span class="hljs-subst">&#123;uri&#125;</span>&#x27;</span><br>    response = requests.put(url, headers=headers, data=data)<br><br>    <span class="hljs-comment"># 判断响应状态码并返回结果if response.status_code == 200:</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;本地图片上传成功&#x27;</span>)<br>        <span class="hljs-keyword">return</span> url<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;本地图片上传失败&#x27;</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;fail&#x27;</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">replace_local_image_links</span>(<span class="hljs-params">file_path</span>):﻿<span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    读取Markdown文件，提取其中的本地图片链接并替换为基于图片名称计算的新链接。</span><br><span class="hljs-string">    Args:</span><br><span class="hljs-string">        file_path (str): Markdown文件路径。</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><span class="hljs-comment"># 判断文件是否是Markdown格式if not file_path.endswith(&#x27;.md&#x27;):</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;该文件不是Markdown格式。&#x27;</span>)<br>        <span class="hljs-keyword">return</span><br><br>    <span class="hljs-comment"># 读取Markdown文件内容with open(file_path, &#x27;r&#x27;, encoding=&#x27;utf-8&#x27;) as f:</span><br>        content = f.read()<br><br>    <span class="hljs-comment"># 匹配所有本地图片链接  匹配形式为：![...](...)</span><br>    regex = <span class="hljs-string">r&quot;!\[\S+\]\((\S+)\)&quot;</span><br>    matches = re.findall(regex, content)<br><br>    <span class="hljs-comment"># 替换本地图片链接为新链接for match in matches:# 判断链接是否是本地路径if not match.startswith(&#x27;http&#x27;):# 获取图片名称和路径if os.path.isabs(match):</span><br>                image_name = os.path.basename(<span class="hljs-keyword">match</span>)<br>                image_path = <span class="hljs-keyword">match</span><br>            <span class="hljs-keyword">else</span>:<br>                image_name = os.path.basename(<span class="hljs-keyword">match</span>)<br>                image_path = os.path.abspath(os.path.join(os.path.dirname(file_path), <span class="hljs-keyword">match</span>))<br>            sign_key = generate_sign_key_val(<span class="hljs-string">&#x27;/&#x27;</span> + image_name)<br>            <span class="hljs-comment"># 上传图片到COS并计算新链接</span><br>            new_link = put_request(image_path, sign_key)<br>            <span class="hljs-comment"># 替换Markdown文件中的链接</span><br>            content = content.replace(<span class="hljs-keyword">match</span>, new_link)<br><br>    <span class="hljs-comment"># 将替换后的Markdown内容写回文件with open(file_path, &#x27;w&#x27;, encoding=&#x27;utf-8&#x27;) as f:</span><br>        f.write(content)<br><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;本地图片链接替换完成。&#x27;</span>)<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-comment"># 测试替换</span><br>    replace_local_image_links(<span class="hljs-string">&quot;/Users/xieshijie/Desktop/test.md&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<p>我用了差不多半天的时间完成这件事，大部分时间是阅读腾讯云的cos服务文档和分步骤生成签名的过程，<strong>如果正确使用实际我觉得可以缩短到1个小时！</strong></p>
+<p>然后，我果断充了一个GPT-4</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230411231508344.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI/" class="category-chain-item">AI</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI/ChatGPT/" class="category-chain-item">ChatGPT</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/">#AI</a>
+      
+        <a href="/tags/ChatGPT/">#ChatGPT</a>
+      
+        <a href="/tags/stable-diffusion/">#stable diffusion</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AI大模型的仰望星空和脚踏实地</div>
+      <div>http://coder-xieshijie.cn/2023/04/13/AIGC/AI大模型的仰望星空和脚踏实地/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/06/01/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/arthas%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="arthas使用指南">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">arthas使用指南</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/12/AIGC/%E6%B3%A8%E5%86%8Cchatgpt%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%94%BB%E7%95%A5-%E9%95%BF%E6%9C%9F%E6%9C%89%E6%95%88/" title="注册ChatGPT保姆级攻略(长期有效~)">
+                        <span class="hidden-mobile">注册ChatGPT保姆级攻略(长期有效~)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

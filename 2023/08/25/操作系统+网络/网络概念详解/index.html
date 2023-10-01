@@ -1,0 +1,1088 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="网络概念详解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络概念详解">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/08/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F+%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="网络概念详解">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-bbfe99ab1f184972f57e7051950aaa11.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-9b699fb7d415aa51bd80631152b3b739.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-b1dc4632ed78f78fe6e44543ae667714.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-12c9798853ef0b45541f49b7460f5845.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-59803e43510254e0127c839ceb213c4b.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-9faf08a32973cd9478982b724868d939.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-38e77fb6686eba22932c5b30d32b5469.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-9e71f930ba78cf15b3b951e1e89a7df4.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-3ed2150ecf376fde584094f14358cf1b.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-e93169981f03f26c1f1c79f06de9913f.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-49df378dece10e306f8ae8958b8ae9b0.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-cc37d0f416a2259defbcbc9abd2a06b3.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-dea2ea7424cab0587f9f68bd765afee1.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-4a24bf9b65aecd94bcb0bd9612d17392.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-1676f7e35f4820a6b7c7bfc238167b60.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-79f766ff9fc67c08919a7d0d997897c7.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-bbfe99ab1f184972f57e7051950aaa11.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-a1ca5132b8ad8c904d655167f9ba93f4.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-6ec94f9a068c2524499302a180894fd4.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-e8d4532589df09cdd457593d07f94f69.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-735d7915a0e964df175b0ec32659d5ef.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-f1341cf7c64f26a0df32590c7f3a0199.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-e56d4cb2efc2d6578922dce8a5605e34.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-5aecd81acf18f257a47a558f7396965a.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-a1ca5132b8ad8c904d655167f9ba93f4.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-426f8afe9ace3b659a99d599dccc4de8.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-b31ca36a43c2171b1dd7b129c5be62ce.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-75b5a759865ed2044f33d3a9a954e893.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-4be9313f6d0f283218c136e93b31969e.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-33e5e321e25bebda642aa71ef0c80104.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-43ca4efef7756af3115ac270e84548c1.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-6febb8e3bc31b9204e002749273bf32e.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-09c6fb1320d226149c728b96a621fb29.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-7b7f2affb1145a1a203064910175af18.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-80745a795634ac151a30531e9ec5e559.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-23114aa49447bbd6697863ea62f2cc88.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-dcef236e6b61d08bc05bdcc82e0291d0.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-f669dc195ed921fc7b2fdbaf6807efac.webp">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-b4921a868468af31a018862640ede5b0.webp">
+<meta property="article:published_time" content="2023-08-25T09:42:55.000Z">
+<meta property="article:modified_time" content="2023-08-25T09:42:55.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-bbfe99ab1f184972f57e7051950aaa11.webp">
+  
+  
+  
+  <title>网络概念详解 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="网络概念详解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-25 17:42" pubdate>
+          2023年8月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          19k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          155 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="操作系统+网络"
+        id="heading-e0b06f91134e1cbccea1022fbbdd9192" role="tab" data-toggle="collapse" href="#collapse-e0b06f91134e1cbccea1022fbbdd9192"
+        aria-expanded="true"
+      >
+        操作系统+网络
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-e0b06f91134e1cbccea1022fbbdd9192"
+           role="tabpanel" aria-labelledby="heading-e0b06f91134e1cbccea1022fbbdd9192">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="网络"
+        id="heading-7ddbe15c845fa27a2bab496183042ca6" role="tab" data-toggle="collapse" href="#collapse-7ddbe15c845fa27a2bab496183042ca6"
+        aria-expanded="true"
+      >
+        网络
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7ddbe15c845fa27a2bab496183042ca6"
+           role="tabpanel" aria-labelledby="heading-7ddbe15c845fa27a2bab496183042ca6">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/08/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F+%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5%E8%AF%A6%E8%A7%A3/" title="网络概念详解"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">网络概念详解</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">网络概念详解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一文熟知网络-–-文章巨长，但是很详细"><a href="#一文熟知网络-–-文章巨长，但是很详细" class="headerlink" title="一文熟知网络 – 文章巨长，但是很详细"></a>一文熟知网络 – 文章巨长，但是很详细</h1><h3 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h3><p>网络是一个比较有趣的事情，但是其内容确相对的枯燥，决定写这篇文章的时候，忽然想起来，网络才是我当年的本专业呀，写了这么多文章的，好像就网络没怎么说过，趁着最近对F5的好奇心就展开描述一下吧。</p>
+<p>网络有趣的点在于它的落地应用，网络枯燥的事儿在于那些字典般的协议，所以本文就穿插着讲吧，少说一点原理，多一点实践；就从一个最常见的场景来描述网络：“你点了一个链接”。</p>
+<h3 id="1-我点了一个链接"><a href="#1-我点了一个链接" class="headerlink" title="1.我点了一个链接"></a>1.我点了一个链接</h3><p>当你开了一个链接，比如点了下<a href="https://link.zhihu.com/?target=http://baidu.com">http://baidu.com</a>或者某个钓鱼邮件。</p>
+<p>这里放一下“我点了一个链接” 全局的链路图，大家可以前置看下会涉及哪些点，可以节选阅读。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-bbfe99ab1f184972f57e7051950aaa11.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-1这是个链接？"><a href="#1-1这是个链接？" class="headerlink" title="1.1这是个链接？"></a>1.1这是个链接？</h3><p>首先你的浏览器得知道你要进行什么资源访问，就是要根据你的url地址解析出：“你要什么？” 这里的url（资源定位符），就是一种用于找资源的协议：</p>
+<p><code>protocol : // hostname[:port] / path / [;parameters][?query]#fragment</code></p>
+<p>浏览器能对这段字符串做识别和解析并完成一个请求，这里最常见的就是各种http&#x2F;https链接。但除此以外，每个app 都会有的URL scheme，我们也可以定义自己的私有协议，app 间开屏跳来跳去大家一定感受过吧，本质上就是触发了其他app的 url scheme 访问，这里有兴趣可以搜一搜“chrome 自定义 protocol” 、 “url scheme”。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-9b699fb7d415aa51bd80631152b3b739.webp" srcset="/img/loading.gif" lazyload></p>
+<p>除了协议相关，浏览器还会尝试对于链接进行合法性校验，保证执行的正确性。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-b1dc4632ed78f78fe6e44543ae667714.webp" srcset="/img/loading.gif" lazyload></p>
+<p>继续说http，检测到是http协议时则会尝试进行host的解析，极小部分是直接ip:host访问的，但是由于ip（Internet Protocol，互联网定位用的协议）这东西记起来相当费劲，并且可能会有多个ip地址，所以就诞生了域名（Domain Name）。</p>
+<p>要想解析域名就需要DNS（Domain Name System）。接下来就看下这个过程是怎么发生的，是如何找到服务者的。</p>
+<h3 id="1-2谁来提供服务"><a href="#1-2谁来提供服务" class="headerlink" title="1.2谁来提供服务"></a>1.2谁来提供服务</h3><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-12c9798853ef0b45541f49b7460f5845.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-2-1-DNS的由来"><a href="#1-2-1-DNS的由来" class="headerlink" title="1.2.1 DNS的由来"></a>1.2.1 DNS的由来</h3><p>名称到IP的映射，最原始的方式就是本地维护一个hosts文件，用来记录域名到ip的映射。但是随着域名数量越来越大，完全依赖本地文件已经<code>庞大难以维护</code>，并且没有集中式的维护，<code>名称会冲突</code>，就算有集中的站点，这个站点也扛不了这么大的访问量。</p>
+<p>所以，DNS就诞生了，由DNS完成域名到映射的集中存储，并且建设了一个高可用的、合理组织的集群部署。</p>
+<h3 id="1-2-2-DNS的架构"><a href="#1-2-2-DNS的架构" class="headerlink" title="1.2.2 DNS的架构"></a>1.2.2 DNS的架构</h3><p>接下来就看下这个服务是怎么落地的：</p>
+<h3 id="dns命名"><a href="#dns命名" class="headerlink" title="dns命名"></a>dns命名</h3><p>首先DNS规范了命名，DNS规定的命名是一种层次结构，首先是顶级域名，然后是二级域名，然后三级，以此类推。</p>
+<p>目前已有250个顶级域名，二级&#x2F;三级的数量基本是指数级膨胀。这些域名ICANN 负责管理，例如<a href="https://link.zhihu.com/?target=http://www.baidu.com">http://www.baidu.com</a> 一级域是com、二级域是<a href="https://link.zhihu.com/?target=http://baidu.com">http://baidu.com</a>、三级域是<a href="https://link.zhihu.com/?target=http://www.baidu.com">http://www.baidu.com</a></p>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>站在最上层来看，最初名称和IP的映射，存储的数据结构就是一个大MAP，NAME：IP 或者 NAME：List，后来随着上面所说问题的愈演愈烈，DNS孕育而生，此时简单的map结构存储已经不满足需求了，后来就变成一种树形的存储结构（非本地），这颗树要尽可能的扁平。</p>
+<p>整体来看就是一个大的索引结构，叶子结点就是真正的映射信息，至于为什么这么来设计，主要是管理效率和部署设计上的考量，单就效率和存储而言map没啥问题。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-59803e43510254e0127c839ceb213c4b.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="部署架构"><a href="#部署架构" class="headerlink" title="部署架构"></a>部署架构</h3><p>单机无论是带宽、计算能力、存储极限都不可能承载全球的流量访问，而这个问题的解决方案就是 “将服务集群化，并把不同的数据按照层次及地域属性等，合理分布到各地域的服务器集群上”，简单来看就是做了一个DNS映射数据的分布式数据库。</p>
+<h3 id="解析流程"><a href="#解析流程" class="headerlink" title="解析流程"></a>解析流程</h3><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-9faf08a32973cd9478982b724868d939.webp" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs plain">1. 客户端发起一个DNS请求，先查看本地浏览器是否有这个域名的缓存，有解析结束<br>2. 没有则去看操作系统是否有缓存，有解析结束<br>3. 没有则去看本地host文件，有解析结束<br>4. 没有则发送该请求到本地DNS服务器，如果本地DNS服务器存在则返回<br>5. 不存在本地DNS服务器则请求根域名服务器，比如请求&quot;www.baidu.com&quot;，根域名服务器告诉本地DNS “.com” 顶级域名服务器的位置<br>6. 本地DNS服务器收到顶级域名服务器位置后则向顶级域名服务器请求&quot;www.baidu.com&quot;的IP地址，顶级域名服务器收到后则告诉本地DNS服务器&quot;www.baidu.com&quot;的权威域名服务器地址<br>7. 本地DNS服务器再向权威DNS服务器发起请求，权威DNS服务器查询后将对应的IP地址告诉本地DNS<br>8. 本地DNS服务器缓存该域名与对应IP然后返回IP给客户端<br>9. 浏览器根据TTL缓存该值<br></code></pre></td></tr></table></figure>
+
+<h3 id="劫持"><a href="#劫持" class="headerlink" title="劫持"></a>劫持</h3><p>整体的访问流程中加了DNS这一层，优点不言而喻，但是加这一层也带来了不少的问题，比如说可用性、安全、性能等问题，可用性、性能这些都是可以通过技术手段压到最小。</p>
+<p>但是安全性问题是一直存在的，本机、DNS服务都有概率被劫持，并且DNS 劫持指向钓鱼网站，如果是单调的转发倒是还行，如果骗你输入点密码啥的就比较有趣了。</p>
+<h3 id="为什么是UDP？为什么是TCP？"><a href="#为什么是UDP？为什么是TCP？" class="headerlink" title="为什么是UDP？为什么是TCP？"></a>为什么是UDP？为什么是TCP？</h3><p>接下来看下DNS底层的协议细节，DNS 域名解析过程的传输层协议是基于UDP的，DNS服务内部通信是基于TCP的。</p>
+<p>为什么这样操作呢？</p>
+<h3 id="详细聊聊差异"><a href="#详细聊聊差异" class="headerlink" title="详细聊聊差异"></a>详细聊聊差异</h3><p>首先对于传递方式而言，TCP是面向连接的，基于一个个的有序数据包从而构成可靠的传输；而UDP 是基于数据报、无序的而导致不可靠的传输方式；而这些差异也从侧面说明了实现上的差异，首先TCP要想面向连接，就得有连接建立的过程，要想有序就要有确认机制，而这些就要求是双工的。</p>
+<p>对于传输效率上，上面说的这些工作必然导致了TCP必然比UDP的头部开销（或者叫元数据开销）要大的多，而且准备工作更多，也就意味着对于一条消息传递，UDP没这么多事儿，要简单得多，效率也就更高。</p>
+<p>对于数据传输上，TCP是面向连接的，可以切成多个数据包来传，而UDP面向报文的，一次性不可能传过大的信息。</p>
+<p>对于可靠性上，TCP 基于连接和确认机制可以保证更可靠，而UDP对于发出去的消息是否成功毫不关注（可以应用层解决的）。</p>
+<p>这就导致了使用场景上的差异，首先对实时性要求极高，比如游戏场景、语音场景、实时视频等，还有多点通讯场景 UDP刚刚好，偶尔的丢失也问题不大。其他场景如果对可靠性较高，那就直接TCP吧。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-38e77fb6686eba22932c5b30d32b5469.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="根据场景来判定"><a href="#根据场景来判定" class="headerlink" title="根据场景来判定"></a>根据场景来判定</h3><p>DNS此时最核心的问题是效率和可靠性的取舍，上面提到过DNS的解析过程是一个迭代查询的过程，尤其对于一些冷门域名，通常需要查询多次，才能查询到对应的权威服务器。基于这个查询过程，UDP 是基于报文广播的，相对于TCP面向连接的处理过程，UDP 少了握手的过程（尤其对于小数据传输场景），头字段更短，效率也就更高了。</p>
+<p>而对于服务内部，信息同步的可靠性是非常必要的，并且内部传递的信息包长也比较大，所以这里就直接用TCP了，那直接用UDP不行吗，也行，在应用层之上补齐ACK机制就可以啦，很多IM应用就是这么做的。</p>
+<p>当然啦，UDP 也有自己的劣势，由于某些原因（协议限制、以太网数据帧限制、UDP发送缓冲区），最小的MTU是576，而DNS为了不超576，把报文长度限制到了512，一旦超过512就会截断，也就导致了报文的不完整。</p>
+<p>针对这种情况，DNS 启用了TCP 重试机制，就目前而言，DNS 是完整支持TCP 和 UDP的，不仅是降级重试使用。虽然RFC6891 中引入了 EDNS 机制，它允许我们使用 UDP 最多传输 4096 字节的数据，但仅仅是从UDP的角度而言。由于MTU 的限制，导致的传输数据分片以及丢失，这个过程是不可靠的，存在被切片和丢弃的可能。</p>
+<p>TCP 和 UDP 的效率差异本质上是相对而言的，如果要传输的数据包越大、建立的连接越少，链接所产生的开销影响也就越小，要根据具体场景分析来看哈，就一次连接尝试分析来看：</p>
+<p>TCP 协议（共 330 字节）:</p>
+<p><em>三次握手 — 14×3(Ethernet) + 20×3(IP) + 44 + 44 + 32 字节</em></p>
+<p>查询协议头 — 14(Ethernet) + 20(IP) + 20(TCP) 字节</p>
+<p>响应协议头 — 14(Ethernet) + 20(IP) + 20(TCP) 字节</p>
+<p>UDP 协议（共 84 字节）</p>
+<p><em>查询协议头 — 14(Ethernet) + 20(IP) + 8(UDP) 字节</em></p>
+<p>响应协议头 — 14(Ethernet) + 20(IP) + 8(UDP) 字节</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-9e71f930ba78cf15b3b951e1e89a7df4.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-3手剥笋"><a href="#1-3手剥笋" class="headerlink" title="1.3手剥笋"></a>1.3手剥笋</h3><p>拿到具体的IP地址之后，下一步就是开始发起调用了，整体协议层次是HTTP -&gt; TCP -&gt; IP -&gt; 更底层的协议（暂时就先说到IP哈）。 要研究这个，过程非常像手剥笋的逆过程，先是具体请求内容，然后把请求内容包进HTTP请求中，再把HTTP 请求报文包进TCP 数据包，然后再抱进IP 数据报，然后再往下执行包装和传输。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-3ed2150ecf376fde584094f14358cf1b.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-3-1-HTTP-是怎么工作的"><a href="#1-3-1-HTTP-是怎么工作的" class="headerlink" title="1.3.1 HTTP 是怎么工作的"></a>1.3.1 HTTP 是怎么工作的</h3><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-e93169981f03f26c1f1c79f06de9913f.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="HTTP-概要"><a href="#HTTP-概要" class="headerlink" title="HTTP 概要"></a>HTTP 概要</h3><p>一个http请求通常由Request-Line、Header、Body 构成</p>
+<p>Request-Line：请求方法、Request-URI、HTTP-version、CRLF构成</p>
+<p>Header：一堆键值对 </p>
+<p>Body：请求的业务数据</p>
+<p>然后返回也相对类似，返回的Status-Line（http-version、status-code、Reason-Phrase）、Header、Body 先来看一个HTTP 请求：</p>
+<p><code>curl -H “Content-Type: application/json” -H “Cookie: cc=2333” -X POST —data ‘&#123;&#125;’ http://localhost:8080/say-hello</code></p>
+<h3 id="HTTP-拆解"><a href="#HTTP-拆解" class="headerlink" title="HTTP 拆解"></a>HTTP 拆解</h3><p>构建一个http 请求报文，先生成一个request-line，指定好uri、version等，会有部分数据存放于URI中，这里会进行对应的urlEncode</p>
+<p>进行header的填充，常用的比如有keep-alive 可以让链接保活（复用下层链接）；User-agent 标示一下客户端信息、Accept表明一下要接受什么数据、Cookie 记录的端信息等、Content-Type表明body编码，你也可以自定一些业务属性的header来封装一些共性的逻辑，避免每次都操作Body</p>
+<p>然后把业务数据放到body中，body通常会有三种编码格式：application&#x2F;json、application&#x2F;x-www-form-urlencoded、multipart&#x2F;form-data、raw、binary，具体的类型可以看下请求的content type，表达方式不同而已，在使用上会有差异，但是对于网络本身都差不多，对于使用上，基于约定、做好统一就OK了。</p>
+<p>然后请求按照不同的Method 发起请求，比如最常见的get&#x2F;post，再或者依赖HTTP语义（get&#x2F;post&#x2F;put&#x2F;delete等）的RestFull使用方式。</p>
+<p>至此就完成了一个HTTP请求，然后把报文交给下一层了，然后等HTTP Response 就好了。</p>
+<h3 id="HTTP-状态码"><a href="#HTTP-状态码" class="headerlink" title="HTTP 状态码"></a>HTTP 状态码</h3><p>等请求返回时，如写一般，获取对应的header、body信息即可，但是Status-line 相对Requet-Line多了一部分状态标示。这里放一点经常会出现的错误码，比如200、302。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs plain">1XX 标示一些中间状态码，比如100收到header、101协议切换、102 处理中等等<br><br>2XX 标示成功，200成功返回、201创建资源成功、204返回了寂寞、202处理中等等<br><br>3XX 标示重定向，常见的有301/308永久重定向（记得刚开始学编程时，发现301很多浏览器会对于post请求丢失body）、302/303 临时重定向、304 未发生变化、307临时重定向，通常用于upload场景的定向，具体重定向的实现要看浏览器，标准是标准，实现是实现<br><br>4XX 标示客户端错误，400 bad request 格式有问题、401 需要认证信息、403 无权限、404 uri资源丢失、405 不支持的方法、408 接受请求超时<br><br>5XX 标示服务端错误，500 server端异常、502 访问代理正常但是Server丢了、504 代理访问server超时、505 不支持对应的http版本<br></code></pre></td></tr></table></figure>
+
+<h3 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h3><p>提到HTTP不得不提的就是https，https其实就是在http体系之中插了一层SSL协议（Secure Socket Layer），SSL 是作用于传输层的，对于传输层进行加密完成应用层的安全传输。</p>
+<p>SSL分为记录协议和握手协议，其中记录协议建立在可靠的传输协议（如TCP）之上，为高层协议提供数据封装、压缩、加密等基本功能的支持。而握手协议建立在SSL记录协议之上，用于在实际的数据传输开始前，通讯双方进行身份认证、协商加密算法、交换加密密钥等。</p>
+<p>本质上是在传输层协议和应用层协议之间的一层处理切面，是对于传输层进行加密，进而赋能应用层。至于更高层的协议是什么，SSL是不关注的，所以认为它是传输层的协议。</p>
+<p>SSL基于非对称加密，提供信息加密服务；同时利用机密共享和hash策略提供完整性校验；并且SSL是双向认证的，握手时交换各自的识别号，避免冒名。</p>
+<h3 id="1-3-2-TCP-是怎么工作的"><a href="#1-3-2-TCP-是怎么工作的" class="headerlink" title="1.3.2 TCP 是怎么工作的"></a>1.3.2 TCP 是怎么工作的</h3><p>拿到http 等应用层报文之后，下一步是将这些报文放到TCP数据包中。数据包的组装还原都是由操作系统完成的，应用程序并不感知具体的TCP细节，操作系统负责TCP 数据的完整性，对应的TCP中的具体数据完全由应用程序感知，操作系统毫不关心。</p>
+<p>TCP 是面向连接的，并且TCP是可靠的数据传输，核心原因是TCP的连接机制和ACK校验机制。 记住：when in doubt，use TCP。</p>
+<h3 id="TCP-包格式"><a href="#TCP-包格式" class="headerlink" title="TCP 包格式"></a>TCP 包格式</h3><p>大体看一下TCP的包结构，不用刻意去记，碰到具体场景，就知道是做什么的了</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-49df378dece10e306f8ae8958b8ae9b0.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="链接建立"><a href="#链接建立" class="headerlink" title="链接建立"></a>链接建立</h3><p>首先是三次握手 建立连接，发送端一个seq&#x3D;x，然后接受端收到之后，会应答一个SYN&#x3D;1,ack&#x3D;1,并回执一个seq &#x3D; y,ack&#x3D;x+1，然后发送端应答一个SYN&#x3D;0, ack&#x3D;1，并回执一个seq&#x3D;y+1,ack&#x3D;y+1 这个握手过程是为了校验两端的发送&#x2F;接受状态是否ok，如果校验通过则完成连接建立，3次数字是一个刚刚好的值，多了冗余，少了不够用。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-cc37d0f416a2259defbcbc9abd2a06b3.webp" srcset="/img/loading.gif" lazyload></p>
+<p>尝试翻译一下，先是发送端发送没问题，然后接收端接受没问题，回执告知接收没问题，验证接受端发送没问题，然后回执告知接收端发动端接收没问题，至此两端就知道了双方都没问题，开启传送。</p>
+<h3 id="可靠性与效率的兼顾：ACK-慢重启"><a href="#可靠性与效率的兼顾：ACK-慢重启" class="headerlink" title="可靠性与效率的兼顾：ACK &amp; 慢重启"></a>可靠性与效率的兼顾：ACK &amp; 慢重启</h3><p>网络传输当然是越快越好，发送、传输、接受都是有限制的，并且硬件不完全是可靠的，过热、缓冲溢出，如果拥堵程度过高或者硬件不稳定时，很有可能发生丢包。</p>
+<p>发的越快，丢的越多，重试的也就越多，效率反而底下，还不如慢慢发，但是磨磨叽叽的也不合适，那就需要找一个最佳的传输速度。而这个传输速度完全是试出来的，怎么试呢？</p>
+<p>收到消息时，接受端会回执一个ACK，这个ACK中包含两个信息，一个是序号，另一个是接收窗口的剩余容量。</p>
+<p>定义丢包：接受到数据包时，就会回执下一个消息的需要，如果发送端发现持续在回执已发送的一个序号，那说明此前发过的包就丢了。包丢了怎么办呢，就从那个位置开始重新发送。</p>
+<p>接受窗口：发送端和接受端的窗口通常是不相通的，我们发送的数据包不能超过窗口的大小。</p>
+<p>就以这两个信息未基准，开始慢慢启动，寻找最优速率，通常从第10个数据包启动（这个是 TCP_INIT_CWND 这个常量定义的），即时带宽很大，TCP 主要是兼顾可靠性和传输效率。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-dea2ea7424cab0587f9f68bd765afee1.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="可靠性与效率的兼顾：拥塞避免-快恢复"><a href="#可靠性与效率的兼顾：拥塞避免-快恢复" class="headerlink" title="可靠性与效率的兼顾：拥塞避免 &amp; 快恢复"></a>可靠性与效率的兼顾：拥塞避免 &amp; 快恢复</h3><p>大量的持续性拥塞会导致丢包数量加剧，这会导致整个传输的可用性下降，除了慢重启探索最佳的传输效率，另外两个手段是拥塞避免和快恢复。</p>
+<p>首先对于是否拥塞，TCP 有个变量记录拥塞窗口（cwnd），本质上就是个发送方发送数据的滑动窗口。</p>
+<p>这里有个阈值（ssthresh），到达阈值之前慢重启指数级增量探索cwnd，然后在用拥塞避免算法线性增加窗口，如果发现丢包啦，也就是开始重传了。</p>
+<p>这里丢包的原因可能有两个， 一个是确实网络环境差（没有收到回执），一个是偶现丢失（重复的ACK），对于这两种情况处理策略是不同的。</p>
+<p>对于网络环境确实差，直接重新慢启动。</p>
+<p>对于偶现的丢包，把cwnd&#x2F;2+3，ssthresh&#x3D;cwnd，进入快速恢复阶段，等收到新数据的ACK之后，再从慢重启阈值进入拥塞避免阶段。</p>
+<p>TCP差不多就是这样来兼顾可靠性和效率，以此榨干带宽的。</p>
+<h3 id="怎么看下TCP的过程呢？"><a href="#怎么看下TCP的过程呢？" class="headerlink" title="怎么看下TCP的过程呢？"></a>怎么看下TCP的过程呢？</h3><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-4a24bf9b65aecd94bcb0bd9612d17392.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-3-3-IP-是怎么工作的"><a href="#1-3-3-IP-是怎么工作的" class="headerlink" title="1.3.3 IP 是怎么工作的"></a>1.3.3 IP 是怎么工作的</h3><p>在拿到TCP的包之后，下一步就是对于这个包进行再包装，加上IP的头，这个IP的头里包含了IP相关的信息（核心是自身IP和目标IP）</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-1676f7e35f4820a6b7c7bfc238167b60.webp" srcset="/img/loading.gif" lazyload></p>
+<p>IP协议下是怎么工作的呢？</p>
+<p>首先最早期的网络是通过MAC地址进行传输的，但是如果机器不在一个子网络内是无法知道对方mac地址的，怎么办呢，IP就诞生了，用来连接多个子网络。</p>
+<p>首先电脑要想上网，有这么几个信息必须要关注：本机的IP地址、子网掩码、网关的IP地址。</p>
+<h3 id="本机IP"><a href="#本机IP" class="headerlink" title="本机IP"></a>本机IP</h3><p>本机IP 分两种，静态分配和动态获得，所谓的动态IP就是基于DHCP协议，发送一个DHCP数据包申请对应的IP地址和对应的网络参数。</p>
+<p>DHCP 是一个应用层协议，建立在UDP之上，设置自己的MAC地址后，直接对外广播（无目的IP和MAC地址），只有DHCP知道是发给自己的，然后按照对应的MAC地址分配IP执行应答。</p>
+<h3 id="子网掩码-网关"><a href="#子网掩码-网关" class="headerlink" title="子网掩码 &amp; 网关"></a>子网掩码 &amp; 网关</h3><p>子网掩码是用来校验要访问的目的IP是否为子网内的IP，他会对于自己的IP进行AND运算，然后对目的IP也进行AND运算，如果结果不同，则不是一个子网，必须通过访问网关来访问其他的子网络。</p>
+<p>然后数据包就根据这些目标IP和网关之间各种大街小巷的传递了 netstat&#x2F;route 可以看对应的信息</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-79f766ff9fc67c08919a7d0d997897c7.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="扯点下一层"><a href="#扯点下一层" class="headerlink" title="扯点下一层"></a>扯点下一层</h3><p>仅仅知道IP是不够的，真正的物理层传输还是需要MAC地址的，拿到IP地址后怎么知道访问哪台机器呢，ARP协议、RARP协议就是干这个事儿的，每个主机内部都维护了个映射表，用于解析出IP对应的是哪个地址。再往下一层就是介质访问协议了。</p>
+<h3 id="1-4-到达服务端"><a href="#1-4-到达服务端" class="headerlink" title="1.4 到达服务端"></a>1.4 到达服务端</h3><p>你的请求兜兜转转终于到了服务端，但是最初接触到的并不是直接的服务者，我们日常访问的网站，背后的服务器都是数以万计的，并且这些服务承载着各种各样的职责，比如说流量接入、各种业务功能提供（登录、处理你的请求）、数据存储、缓存提速、协同、负载均衡、数据计算等等若干的能力。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-bbfe99ab1f184972f57e7051950aaa11.webp" srcset="/img/loading.gif" lazyload></p>
+<p>再回顾一下这个图，接下来就看下冰山一角的背后到底发生了什么？</p>
+<h3 id="1-4-1-流量接入"><a href="#1-4-1-流量接入" class="headerlink" title="1.4.1 流量接入"></a>1.4.1 流量接入</h3><p>首先一台机器是不可能扛的了百万、甚至千万的qps的，必然要做集群，再后来为了系统的可维护性、可用性，并且由于康威定律等因素按照功能进行了拆分，每个业务系统一个或者多个业务Server集群，多个Server合作构成整体的服务，呈分布式架构。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-a1ca5132b8ad8c904d655167f9ba93f4.webp" srcset="/img/loading.gif" lazyload></p>
+<p>最初的web互联网，功能相对简单，流量也小，DNS做流量分发足够了。但是后来，我们有了多个业务Server集群，完全按照DNS进行分发是不现实的。</p>
+<p>同一个服务不同功能用不同域？ 一个域名解出2w台机器？ 业务Server不可用了DNS发现不了呀！ 这个功能的机器32核？ 这个功能2核心？这DNS去哪知道 想在流量入口处加一点通用逻辑？对不起，每个Server都改一下吧 加了台机器，好久才生效啊！</p>
+<p>怎么整呢？起一个单独的集群来搞定这件事儿吧，把负载均衡这个事儿控制控制在自己手里吧。</p>
+<p>首先我们要做的事儿是把负载合理的分摊到各个后端的服务上。现状是，主机和主机的通信是基于ip+端口的，软件能实现的流量分发只能在4-7层，再向下第2-3层 需要相关的硬件支持。</p>
+<h3 id="1-4-1-1-负载均衡"><a href="#1-4-1-1-负载均衡" class="headerlink" title="1.4.1.1 负载均衡"></a>1.4.1.1 负载均衡</h3><p>负载均衡主要是三大应用场景：</p>
+<p>链路负载均衡（LLB）：运营商的链路选择，通常用于企业或数据中心的网络出口，选择不同的网络运营商，完成负载分担，并且流量的源进源出做到同源，来降低时延。</p>
+<p>全局负载均衡（GLB）：全局负载均衡的本质是智能DNS，当解析流量到达各个数据中心GLB时，GLB会根据用户local DNS的具体区域来返回对应的IP</p>
+<p>服务器负载均衡（SLB）：就是本片要说的内容，如何将负载合理的分摊到后端的服务上。</p>
+<h3 id="1-4-1-2-每一层的负载均衡"><a href="#1-4-1-2-每一层的负载均衡" class="headerlink" title="1.4.1.2 每一层的负载均衡"></a>1.4.1.2 每一层的负载均衡</h3><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-6ec94f9a068c2524499302a180894fd4.webp" srcset="/img/loading.gif" lazyload></p>
+<p>在第二层做负载均衡：单臂 硬件可以直接对MAC地址进行处理，对外虚拟一个MAC地址，然后接受请求后分配真实的MAC地址，业务请求处理完成后直接返回给客户端。</p>
+<p>在第三层做负载均衡：单臂 跟MAC地址的处理类似，提供虚拟IP，接受请求后分配真实的IP地址。通常用于一个路由域内，同样业务请求处理完成后直接返回给客户端。</p>
+<p>在第四层做负载均衡： 在网络层之上，也就是传输层加以逻辑做处理，修改数据包中的IP + 端口，转发给对应的后端服务。</p>
+<p>再高层做负载均衡： 基于应用层协议，起一个专门做流量入口然后分发到各个服务的请求处理集群，或者直接做一个应用，然后让它来代理业务Server，把分发的职责给落地。比如HTTP，根据URI进行请求的转发。</p>
+<p>对于SLB而言，最佳的落地是传输层负载均衡（四层）和应用层负载均衡（七层），接下来看为什么及业界的最佳实践。</p>
+<h3 id="1-4-1-3-基于硬件的负载均衡"><a href="#1-4-1-3-基于硬件的负载均衡" class="headerlink" title="1.4.1.3 基于硬件的负载均衡"></a>1.4.1.3 基于硬件的负载均衡</h3><p>直接基于硬件去做，比如F5 Network Big-IP，从硬件层面做了优化，可以理解为就是一个非常强大的网络交换机，每秒百万级的处理轻轻松松，完整的网络处理解决方案，易用性、功能丰富度都不错，省心省力，就是贵。</p>
+<h3 id="1-4-1-4-基于软件的负载均衡-–-LVS"><a href="#1-4-1-4-基于软件的负载均衡-–-LVS" class="headerlink" title="1.4.1.4 基于软件的负载均衡 – LVS"></a>1.4.1.4 基于软件的负载均衡 – LVS</h3><p>首当其冲的就是LVS，分为DR模式、IP TUNNEL模式、NAT模式 DR模式就如上面说的，直接对于MAC地址进行虚拟和分配，要求负载均衡服务和后端服务必须在一个VLAN内，由于数据包由后端服务器直接返回给客户端，因此也会要求后端服务器必须绑定公网 IP，这个模式性能最好，但是对于组网要求非常苛刻。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-e8d4532589df09cdd457593d07f94f69.webp" srcset="/img/loading.gif" lazyload></p>
+<p>IP TUNNEL模式，将客户端请求数据包报文首部再封装一层 IP 报文，目标地址为后端服务，包通信通过 TUNNEL 模式实现，可以完成跨VLAN通信，但TUNNEL 模式走的隧道模式，运维起来比较困难，在实际应用中不常用。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-735d7915a0e964df175b0ec32659d5ef.webp" srcset="/img/loading.gif" lazyload></p>
+<p>NAT模式，在传输层对于IP和端口进行修改（以虚拟IP对外提供访问，然后篡改目标IP地址，可以理解为三层+四层负载，在四层上干了点三层的事儿，就一次链接），中间完整插了一层LVS Server，请求和响应都需要经过LVS Server。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-f1341cf7c64f26a0df32590c7f3a0199.webp" srcset="/img/loading.gif" lazyload></p>
+<p>还有一种更加彻底的 NAT 模式：即均衡器在转发时，不仅修改目标IP 地址，连源IP 地址也一起改了，源地址就改成均衡器自己的 IP，称作 Source NAT（SNAT）。</p>
+<p>阿里云对LVS增加了一种模式，封装了个SLB，新增转发模式 FULLNAT，实现了NAT下跨VLAN通信，有兴趣可以查一下。</p>
+<h3 id="1-4-1-5-基于软件的负载均衡-–-HAProxy"><a href="#1-4-1-5-基于软件的负载均衡-–-HAProxy" class="headerlink" title="1.4.1.5 基于软件的负载均衡 – HAProxy"></a>1.4.1.5 基于软件的负载均衡 – HAProxy</h3><p>NGINX&#x2F;HAProxy下的四层负载均衡，直接暴露的是负载均衡服务的IP地址（纯粹的四层负载），会单独同后端服务新建立连接，所以能跨VLAN了。算上最初的请求，整体会有两次链接发生。很多mysql集群的接入就是用HAProxy来做的。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-e56d4cb2efc2d6578922dce8a5605e34.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-4-1-6-基于软件的负载均衡-–-Nginx"><a href="#1-4-1-6-基于软件的负载均衡-–-Nginx" class="headerlink" title="1.4.1.6 基于软件的负载均衡 – Nginx"></a>1.4.1.6 基于软件的负载均衡 – Nginx</h3><p>估计是大家接触最多的一个应用啦，实现于应用层，属于第七层负载，根据HTTP协议内容进行相关的负载均衡工作。 首先客户端同Nginx Server建立连接，然后nginx server 同后端Server建立连接，会有两次链接发生，同时由于是应用层协议，会多1次拆包、装包的过程，处理应用层协议的过程。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-5aecd81acf18f257a47a558f7396965a.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-4-1-7-业界的通常实践"><a href="#1-4-1-7-业界的通常实践" class="headerlink" title="1.4.1.7 业界的通常实践"></a>1.4.1.7 业界的通常实践</h3><p>直接拿F5&#x2F;LVS NAT做入口负载均衡，然后再挂一层nginx 做具有业务属性的负载均衡，然后然后内网中使用LVS DR或者NAT或者HAProxy再针对服务集群单独做负载均衡。 就是最开始看到的这样子：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-a1ca5132b8ad8c904d655167f9ba93f4.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-4-1-8-负载均衡算法"><a href="#1-4-1-8-负载均衡算法" class="headerlink" title="1.4.1.8 负载均衡算法"></a>1.4.1.8 负载均衡算法</h3><p>轮询法： 将请求按顺序轮流地分配到后端服务器上，它均衡地对待后端的每一台服务器，而不关心服务器实际的连接数和当前的系统负载。</p>
+<p>随机法： 通过系统的随机算法，根据后端服务器的列表大小值来随机选取其中的一台服务器进行访问。由概率统计理论可以得知，随着客户端调用服务端的次数增多，其实际效果越来越接近于平均分配调用量到后端的每一台服务器，也就是轮询的结果。</p>
+<p>源地址哈希法： 源地址哈希的思想是根据获取客户端的IP地址，通过哈希函数计算得到的一个数值，用该数值对服务器列表的大小进行取模运算，得到的结果便是客服端要访问服务器的序号。采用源地址哈希法进行负载均衡，同一IP地址的客户端，当后端服务器列表不变时，它每次都会映射到同一台后端服务器进行访问。</p>
+<p>加权轮询法： 不同的后端服务器可能机器的配置和当前系统的负载并不相同，因此它们的抗压能力也不相同。给配置高、负载低的机器配置更高的权重，让其处理更多的请；而配置低、负载高的机器，给其分配较低的权重，降低其系统负载，加权轮询能很好地处理这一问题，并将请求顺序且按照权重分配到后端。</p>
+<p>加权随机法： 与加权轮询法一样，加权随机法也根据后端机器的配置，系统的负载分配不同的权重。不同的是，它是按照权重随机请求后端服务器，而非顺序。</p>
+<p>最小连接数法： 最小连接数算法比较灵活和智能，由于后端服务器的配置不尽相同，对于请求的处理有快有慢，它是根据后端服务器当前的连接情况，动态地选取其中当前。</p>
+<h3 id="1-4-1-9-部署方式汇总"><a href="#1-4-1-9-部署方式汇总" class="headerlink" title="1.4.1.9 部署方式汇总"></a>1.4.1.9 部署方式汇总</h3><p>有三种部署方式：路由模式、桥接模式、服务直接返回模式。</p>
+<p>路由模式： 路由模式的部署方式，服务器的网关必须设置成负载均衡机的LAN口地址，且与WAN口分署不同的逻辑网络。因此所有返回的流量也都经过负载均衡。</p>
+<p>桥接模式： 桥接模式配置简单，不改变现有网络。负载均衡的WAN口和LAN口分别连接上行设备和下行服务器。LAN口不需要配置IP（WAN口与LAN口是桥连接），所有的服务器与负载均衡均在同一逻辑网络中。</p>
+<p>服务直接返回模式： 这种安装方式负载均衡的LAN口不使用，WAN口与服务器在同一个网络中，互联网的客户端访问负载均衡的虚IP（VIP），虚IP对应负载均衡机的WAN口，负载均衡根据策略将流量分发到服务器上，服务器直接响应客户端的请求。因此对于客户端而言，响应他的IP不是负载均衡机的虚IP（VIP），而是服务器自身的IP地址。也就是说返回的流量是不经过负载均衡的。因此这种方式适用大流量高带宽要求的服务。</p>
+<h3 id="1-4-2-业务Server-开始处理"><a href="#1-4-2-业务Server-开始处理" class="headerlink" title="1.4.2 业务Server 开始处理"></a>1.4.2 业务Server 开始处理</h3><p>经过n层的负载均衡处理之后，接下来真正进入业务Server的处理流程，首先到达的API Web Server，这些业务通常是运行在web容器中的，比如说tomcat、apache，后这些API Server 背后，通过网络依赖了各种功能职责的基于RPC框架的业务Server，然后业务逻辑的处理过程中会用到各种各样的中间件，比如Redis、Kafka、Mysql，这些技术中间件也有着自己的部署集群，要想访问也大多存在网络过程，这些API服务、RPC服务、中间件服务共同完成了业务功能。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-426f8afe9ace3b659a99d599dccc4de8.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-4-2-1-网络IO"><a href="#1-4-2-1-网络IO" class="headerlink" title="1.4.2.1 网络IO"></a>1.4.2.1 网络IO</h3><p>站在业务Server实现的角度而言，处理跨越千山万水而来的请求，首先第一步是接受请求、第二步解析请求、第三步处理业务逻辑、第四步写入响应并返回。而接受请求的处理，就是如何去处理网络IO（发起请求也是一样的，叙述顺序放在这里感觉更流畅）。</p>
+<p>在TCP完成握手之后，接收缓冲区就开始不断的被写入数据，然后应用程序就从缓冲区（内核）中读取数据，复制到进程缓冲区（用户），这个过程就是指网络IO的处理过程。</p>
+<p>网络IO的处理模式发展到现在，常见的有这么几种：阻塞IO、非阻塞IO、多路复用的IO。</p>
+<h3 id="盘盘概念-—-阻塞-非阻塞"><a href="#盘盘概念-—-阻塞-非阻塞" class="headerlink" title="盘盘概念 — 阻塞&#x2F;非阻塞"></a>盘盘概念 — 阻塞&#x2F;非阻塞</h3><p>阻塞IO就是在应用程序创建一个线程&#x2F;进程读取缓冲时，如果数据没准备好，那（线程&#x2F;进程）就一直等着。 非阻塞IO就是应用程序创建一个线程&#x2F;进程读取缓冲时，如果数据没准备好，那（线程&#x2F;进程）不会等待，先去干点别的。</p>
+<p>至于IO多路复用，就是应用程序创建一个或者几个线程&#x2F;进程 去读取缓冲，在非阻塞的基础上，去读那些准备好的数据，常见的有select、poll、epoll。</p>
+<h3 id="盘盘概念-—-同步-异步"><a href="#盘盘概念-—-同步-异步" class="headerlink" title="盘盘概念 — 同步&#x2F;异步"></a>盘盘概念 — 同步&#x2F;异步</h3><p>阻塞&#x2F;非阻塞的参考标准是执行对象（线程&#x2F;进程），被挂起等待就是阻塞的，反之非阻塞；相信大家肯定还看过“同步&#x2F;异步”这俩词儿，参考标准是事儿的执行对象是谁，同步是当前线程&#x2F;进程是操作的执行者，异步是非当前线程&#x2F;进程作为执行者。</p>
+<p>很清晰，同步异步指的是执行者是否为当前线程，阻塞非阻塞指的是当前线程是否被挂起，组合一下有这么三种模式：</p>
+<p>同步阻塞IO，每次起一个线程&#x2F;进程，夯在那里读数据，开销极高，性能比较差。</p>
+<p>同步非阻塞IO，select、poll、epoll模式都是同步非阻塞的，由当前线程不断的检查是否有数据可读并完成读取，根本差异是对于活跃链接、非活跃链接的维护方式不同。</p>
+<p>比如epoll红黑树存放监听链接、双向链表存放就绪链接，当tcp三次握手，对端反馈ack，socket进入rcvd状态时标为可读、established状态时标为可读、</p>
+<h3 id="另外"><a href="#另外" class="headerlink" title="另外"></a>另外</h3><p>异步IO需要内核的支持，一次性把数据读取这个事儿做完，然后通知应用线程&#x2F;进程。</p>
+<p>不少编程语言在同步非阻塞之上利用通知机制做出了异步编程模型。</p>
+<h3 id="1-4-2-2-C10K-epoll"><a href="#1-4-2-2-C10K-epoll" class="headerlink" title="1.4.2.2 C10K &amp; epoll"></a>1.4.2.2 C10K &amp; epoll</h3><p>想要高效就用epoll吧。</p>
+<p>往前数大约20年，网络方面最头疼的问题应该是C10K问题，目前单机处理1w连接不是什么难事儿，但是20年前如何单机如何突破网络处理的性能极限，如何小资源成本完成大连接数的处理，是一个业界最大的难题。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-b31ca36a43c2171b1dd7b129c5be62ce.webp" srcset="/img/loading.gif" lazyload></p>
+<p>C10K问题最核心的是早期基于进程&#x2F;线程处理模型的BIO模式，如果要扛10k链接，就需要10k个线程或进程，但是进程是一个极耗资源的操作，一台机器常驻10k网络处理的进程是不现实的，虽然可以用分布式来解决单机极限，但是机器成本确无法忽视，并且一味的提升机器配置也不解决问题，链接数膨胀所带来的额外开销是指数级上升的。</p>
+<p>C10K 问题本质上是操作系统的问题，早期的操作系统并没有提供小成本的网络链接处理方法，BIO模式所带来的线程&#x2F;进程上下文切换、数据拷贝的成本极高，导致CPU消耗过高，以至于极少链接就会到达CPU处理极限。</p>
+<p>对于这个问题的解决就是IO多路复用，用有限的线程&#x2F;进程处理无限的网络链接，如果单线程处理多链接，首先要解决的就是阻塞问题，一个阻塞就大家就都没的玩了，落地的实现有select、poll、epoll。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-75b5a759865ed2044f33d3a9a954e893.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="首先是select："><a href="#首先是select：" class="headerlink" title="首先是select："></a>首先是select：</h3><p>用一个fd_set 结构体来告诉内核同时监控多个文件句柄（网络链接），当其中有文件句柄的状态发生指定变化（例如某句柄由不可用变为可用）或超时，则调用返回。这种模式对于处理上有小规模的提升，但是句柄数量的上限是有限的，并且遍历检查每个句柄效率比较低。</p>
+<h3 id="然后是poll："><a href="#然后是poll：" class="headerlink" title="然后是poll："></a>然后是poll：</h3><p>poll 的处理模式跟select一致，主要是解决了句柄数量上限的问题，通过一个 pollfd 数组向内核传递需要关注的事件消除文件句柄上限，但是遍历检查效率低的问题依旧没有解决。</p>
+<h3 id="最后憋了个大招，epoll："><a href="#最后憋了个大招，epoll：" class="headerlink" title="最后憋了个大招，epoll："></a>最后憋了个大招，epoll：</h3><p>既然轮询所有的文件句柄效率太低，那么是不是可以只关注活跃的链接，epoll就是这个思路，把链接分为活跃和非活跃，当链接有事件发生时，回调epoll的api，把链接放到遍历的双向链表中，由于现实情况活跃链接在整体链接中的占比相对较小，epoll能处理的链接数要远超poll、select，比起BIO更是高了几个数量级。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-4be9313f6d0f283218c136e93b31969e.webp" srcset="/img/loading.gif" lazyload></p>
+<p>目前基于epoll落地的编程模型就是异步非阻塞回调模型，也可以叫做Reactor、事件驱动、事件轮询。epoll 本身是同步非阻塞的哈，nginx、libevent、node.js 都是当时epoll产生之后的产物。</p>
+<p>epoll是linux上的产物，win有对应的IOCP、Solaris推出了&#x2F;dev&#x2F;poll。</p>
+<h3 id="C10M"><a href="#C10M" class="headerlink" title="C10M"></a>C10M</h3><p>C10K问题的研究是一个非常好的开端，下一个时代，网络应用继续膨胀，我们要面临的可能就是C10M问题了，我们现在看C10M，就同20年前看C10K是一样的，一座大山，上来了，也就上来了。盲猜一下解决的角度，首先是协议的角度；其次是对于数据包的处理模式（内核的角度）；CPU核心处理的专用优化（硬件的角度）。</p>
+<h3 id="1-4-2-3-Web容器-—-api-Server"><a href="#1-4-2-3-Web容器-—-api-Server" class="headerlink" title="1.4.2.3 Web容器 — api Server"></a>1.4.2.3 Web容器 — api Server</h3><p>web容器顾名思义，存放web服务的容器，业界最常使用的web容器应该就是Tomcat了，tomcat就是在Java EE的JSP、Servlet标准下的web服务器，从上学那会儿就是必看科目，工作这么些年了，还是它。</p>
+<p>tomcat 涉及到的内容非常多，对应的servlet规范、网络处理模型、work模型等等，这里不展开，仅说和网络相关的内容。</p>
+<p>首先Tomcat由Java语言实现，处理的是HTTP请求，站在实现的角度而言就是处理网络IO，解析出请求后进行业务处理。</p>
+<p>Java 中对于网络IO的处理发展到现在有：BIO、NIO、AIO BIO就是同步阻塞式IO，性能很差，NIO（New IO）指得是同步非阻塞IO，通常我们的服务是部署在Linux之上的，NIO是基于epoll实现的。</p>
+<h3 id="举个例子tomcat-处理模型"><a href="#举个例子tomcat-处理模型" class="headerlink" title="举个例子tomcat 处理模型"></a>举个例子tomcat 处理模型</h3><p>接下来看下tomcat整体的处理细节，tomcat是一个web server，然后其中运行的服务是service，然后每个service有两大关键部分，connector、container，connector负责链接的处理、container负责具体的业务请求处理。 我们要关注网络相关的，最核心的就是connector。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-33e5e321e25bebda642aa71ef0c80104.webp" srcset="/img/loading.gif" lazyload></p>
+<p>首先连接器中的acceptor监听对应的socket链接，然后handler处理接受到的scoket，内部调用，交由processor处理生成对应的Request对象，然后将request交付对应Servlet进行处理。</p>
+<p>根据协议和端口确定Service和engine，根据域名找到对应的host，然后根据uri找到对应的context和对应的Servlet实例。</p>
+<p>engine是运行servlet处理器的引擎，host就是主机的能力，context代表应用程序，wrapper是一个servlet实例。</p>
+<p>springMVC里面就一个Servlet，所以模型大致是这样子：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-43ca4efef7756af3115ac270e84548c1.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-4-2-4-rpc框架-—-分布式利器"><a href="#1-4-2-4-rpc框架-—-分布式利器" class="headerlink" title="1.4.2.4 rpc框架 — 分布式利器"></a>1.4.2.4 rpc框架 — 分布式利器</h3><p>在微服务&#x2F;分布式架构下，由若干个服务共同构成了完整的服务功能，而服务和服务之间的协作&#x2F;通信就是依赖rpc框架来完成的。rpc全称是远程过程调用，说白了就是像使用本地方法一样使用隔着网络远端的方法，这个调用就被称为rpc，rpc框架的意义就是能忽略网络相关的细节，隐藏网络编程细节。</p>
+<p>常见的框架有dubbo、sofa、grpc、brpc等，实现原理都差不多，但底层细节差异较大。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-6febb8e3bc31b9204e002749273bf32e.webp" srcset="/img/loading.gif" lazyload></p>
+<p>对于同一个事物，在使用的时候细节更重要，在学习时“设计方法”更重要，所以，看rpc的本质就好了，对于RPC核心工作是隐藏网络细节：</p>
+<p>对于网络高效操作，最核心的就是编解码、网络链接处理，只要把这两点搞定了就问题不大； 对于隐藏，尽可能的提升易用性，减少声明、调用时的难度，符合大家的开发习惯就问题不大。</p>
+<p>这里主要说网络相关的，一个rpc协议比较核心的通常是通信协议、编码协议、序列化格式，客户端对传输内容（数据+指令） 进行序列化、协议编码、网络传输到远程服务器端，服务端接受输入对传输内容进行解码、反序列化完成数据的逻辑计算，产生输出后，同样方式传递给客户端，完成整个RPC调用。</p>
+<p>除此之外，一个RPC框架除实现RPC协议外，通常提供了负载均衡、容错机制、服务注册发现等附加功能：（这些功能并不是RPC所必需的）</p>
+<p>在调用过程中，为了解决分布式环境下机器&amp;服务数量巨大&amp;状态繁多导致的难以管理的问题，RPC框架通常还集成了 “如何鉴别调用哪些机器，哪些机器是死是活” 的服务注册&amp;发现功能。对于分布式环境下必然存在的网络不稳定问题，提供了一定的容错机制。针对合理使用机器&amp;网络资源，保证各个机器的稳定程度，提供了一定的负载均衡功能。</p>
+<h3 id="通信协议"><a href="#通信协议" class="headerlink" title="通信协议"></a>通信协议</h3><p>在通信协议方面，RPC跨越了传输层和应用层，像grpc 就直接基于http 2.0的协议、dubbo在tcp基础上研发的应用层传输协议。</p>
+<h3 id="编码协议"><a href="#编码协议" class="headerlink" title="编码协议"></a>编码协议</h3><p>首先RPC协议是语言无关的，客户端的实现语言与服务端的实现语言可以是相同的也可以是不同的，在RPC调用时必然需要一种标准的编码协议来约定接口数据格式、处理传输内容的编码解码操作，具体要看框架的实现程度和支持。 后续会对业界常见的 基于文本编码的json、xml、基于二进制编码protobuf 为例进行介绍。</p>
+<h3 id="举个例子，看看grpc-网络实现"><a href="#举个例子，看看grpc-网络实现" class="headerlink" title="举个例子，看看grpc 网络实现"></a>举个例子，看看grpc 网络实现</h3><p>GRPC 框架完全是基于HTTP2.0的，而http2.0相对于http1.x，编码格式是二进制的，相对于纯明文传输体积是要小的，并且http2.0是完全多路复用的，一个链接实现多http报文传输，链接利用率更高，并且解决了队头阻塞的问题，并且http2.0头部开销更小。 链接处理方面，GRPC基于边缘触发的epoll，将epoll的性能发挥到了极致，epoll的数据读取分为两种，边缘触发是缓冲区发生变化时就会通知读取，需要一次性读完，而水平触发是只要可读就会通知。边缘触发比起水平触发 通知次数更少，并要求一次性读完，性能更好，但可能存在数据丢失的情况，但是可解。</p>
+<h3 id="1-4-2-5-epoll的使用-—-关于netty的小白常问"><a href="#1-4-2-5-epoll的使用-—-关于netty的小白常问" class="headerlink" title="1.4.2.5 epoll的使用 — 关于netty的小白常问"></a>1.4.2.5 epoll的使用 — 关于netty的小白常问</h3><p>问题一： 为什么需要netty，netty是对于Java网络相关库的一种补充，基于Java NIO实现，隐藏了部分网络编程的细节，netty写出来的程序，通常不会太差，让不擅长网络编程的同学能够网络编程。</p>
+<p>可以看下大致的过程，注册channel就是注册文件描述符，loop中会调Selectors.select方法，对应就会在内核中调用epoll_wait函数，内部事件就是epoll维护的就绪队列，靠中断激活然后回调加入队列。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-09c6fb1320d226149c728b96a621fb29.webp" srcset="/img/loading.gif" lazyload></p>
+<p>要没有netty，你得自己实现这些东西，JDK还有bug…</p>
+<p>落地实现有三种线程模型，单线程模式、多线程模式、主从reactor多线程，单线程是由一个线程完成链接读写和业务处理（跟单线程redis的处理模式很像）；多线程是reactor只负责链接读写，业务动作找到handler后提交到worker线程池处理；主reactor接受链接，分发给子reactor进行读写，然后业务动作由worker线程池处理。</p>
+<p>这三种模式的差异主要是面临IO场景下：链接建立、IO读写、业务处理占比及成本情况。 一些RPC 框架通常是后两种，业务代价太高，如果读写也同样很大的话，可能就是第三种，区分版本&#x2F;配置查看，通常都支持。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-7b7f2affb1145a1a203064910175af18.webp" srcset="/img/loading.gif" lazyload></p>
+<p>问题二： 为什么同样的机器配置，tomcat比netty落地的rpc框架性能差这么多，首先不能这么比哈，一个是web 容器、一个是通信框架。</p>
+<p>非得比的话，核心原因是tomcat的servlet规范，虽然网络处理性能在NIO之后就提上来了，但是完成链接处理后的tomcat，阻塞的业务处理模式下由于servlet规范依旧很差，除此之外，还有编码&#x2F;序列化协议的差异性，那为什么还用tomcat，因为稳定和替换代价。在多线程业务阻塞处理模型下，rpc框架的处理复杂度、协议跟tomcat一致了，性能其实差不多。</p>
+<p>对啦，如果觉着当前同步模式下的编程方式性能差，试试reactive编程吧。</p>
+<p>问题三： 为什么看上去proactor比reactor 性能更好呀，为什么大量的应用还是reactor啊，因为proactor写不明白呀，复杂度过高，还需要操作系统支持，linux支持的还不太好。不过，一些中间件还是适合用proactor的，给业务用的框架，还是乖乖reactor吧。</p>
+<h3 id="看个完整的从入口到tomcat再到gRPC的调用demo"><a href="#看个完整的从入口到tomcat再到gRPC的调用demo" class="headerlink" title="看个完整的从入口到tomcat再到gRPC的调用demo"></a>看个完整的从入口到tomcat再到gRPC的调用demo</h3><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-80745a795634ac151a30531e9ec5e559.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-4-2-6-关于长链接"><a href="#1-4-2-6-关于长链接" class="headerlink" title="1.4.2.6 关于长链接"></a>1.4.2.6 关于长链接</h3><p>http长链接、tcp长链接，是一回事儿嘛，为什么要有长链接呢？keepalive是怎么保活的呢？</p>
+<p>链接的建立是需要成本的，即时这个成本很小，很多场景下确无法忽略。端到端负载较小时还好，当负载很大时，同一个端不同请求链接建立的成本所带来的CPU成本就无法忽略了；当时延要求较高的场景，链接建立所带来的时间开销也无法忽略。</p>
+<h3 id="TCP长链接"><a href="#TCP长链接" class="headerlink" title="TCP长链接"></a>TCP长链接</h3><p>http长链接是long-polling实现的，在应用层http请求中我们可以指定<code>“Connection: keep-alive”</code>开启长链接，当设置keepalive时，tcp链接就不会主动断开，并且启用 long-polling，保证链接存活。</p>
+<h3 id="保活机制"><a href="#保活机制" class="headerlink" title="保活机制"></a>保活机制</h3><p>首先HTTP 的keepalive保活和TCP的保活不是一回事儿，HTTP保活是为了不断开链接，而TCP保活是保证连接是正常存活的。</p>
+<p>启用 TCP Keepalive的一端会启动一个计时器，当这个计时器数值到达0之后，一个 TCP 探测包便会被发出。这个 TCP 探测包是一个纯ACK包，其Seq号与上一个包是重复的，所以其实探测保活报文不在窗口控制范围内。</p>
+<p>这么做主要是为了避免过多的半打开连接，因为当连接的任意一方崩溃时，这个链接就进入了半开状态，如果不探活，这类链接会越来越多。</p>
+<p>很多时候为了让链接是活的，需要在应用层再挂一层保活机制，因为TCP默认的两小时活跃并不可靠，运营商经常会回收空闲链接。</p>
+<h3 id="什么时候需要长链接"><a href="#什么时候需要长链接" class="headerlink" title="什么时候需要长链接"></a>什么时候需要长链接</h3><p>长链接的长期维护对Server端是具有较大开销的，常规的web应用短链足够了，但对于游戏场景时延要求极高&amp;大量同一端到端请求&amp;具有推送诉求、Server端服务和服务间的调用、mysql的调用就比较适合使用长链接了（将链接入池） 看个demo</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-23114aa49447bbd6697863ea62f2cc88.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-4-3-到中间件了"><a href="#1-4-3-到中间件了" class="headerlink" title="1.4.3 到中间件了"></a>1.4.3 到中间件了</h3><p>请求从客户端启动，找到地址，发起请求，到达接入层入口，执行4层负载均衡，到达nginx Server，执行7层负载均衡，然后到达API Server，通过RPC client发起调用，到达RPC Server，然后在RPC Server间兜兜转转，有的逻辑访问了Redis，有的逻辑调用了mysql，接下来看下对于这些中间件是怎么调用的。</p>
+<h3 id="1-4-3-1-redis调用"><a href="#1-4-3-1-redis调用" class="headerlink" title="1.4.3.1 redis调用"></a>1.4.3.1 redis调用</h3><p>常见的redis集群架构有两种，豌豆荚的codis模式、redis-cluster模式，两者的网络链路差异较大，业界比较常用的是codis模式。 codis模式透过proxy根据一致性Hash策略，到达对应的redis实例，而redis-cluster模式则有client直接到达redis实例。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-dcef236e6b61d08bc05bdcc82e0291d0.webp" srcset="/img/loading.gif" lazyload></p>
+<p>目前redis的版本已经有多线程模式了，将读写动作换做其他线程来执行了。</p>
+<p>到达redis实例之后，单线程处理多链接，可以理解为近似netty的单线程模式，因为redis完全基于内存操作，成本极小，这种模式就够了。相关内容已经说过了，跟netty实现模式有一定的差异，可以参照redis-ae-epoll实现方式（server.c 主函数中initServer调用了aeCreateEventLoop、anetTcpServer、anetNonBlock来完成初始化）</p>
+<h3 id="主从同步"><a href="#主从同步" class="headerlink" title="# 主从同步"></a># 主从同步</h3><p>redis在master操作完成后，会基于命令传播（AOF）将对应的命令写入从库。新挂从库时会基于RDB快照复制的方式写入从实例。 主从之间是通过长链接进行数据传输的，细节基本和前面描述的一致。</p>
+<h3 id="1-4-3-2-mysql调用"><a href="#1-4-3-2-mysql调用" class="headerlink" title="1.4.3.2 mysql调用"></a>1.4.3.2 mysql调用</h3><p>同样的通过长链接先到接入层，mysql常用的有HAProxy（前面提到过），然后透过proxy跟mysql实例的长链接到达具体实例，执行对应的动作。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-f669dc195ed921fc7b2fdbaf6807efac.webp" srcset="/img/loading.gif" lazyload></p>
+<p>执行完成写入动作之后，通过binlog同步的方式完成主从同步，同步的方式是三种：同步、半同步、异步，业界的落地常用方式通常是半同步模式，根据超时时间来确定最终的同步方式，或强制指定，延迟就摘掉。根据不同的场景（数据一致性要求）选择不同的模式。但是这三种模式的通信都是依赖于长链接完成的。</p>
+<p>如果你的mysql集群是多活部署的，通常还会有通过网络专线完成的跨地域数据同步，完成多主的数据同步。</p>
+<h3 id="1-4-3-2-其他中间件"><a href="#1-4-3-2-其他中间件" class="headerlink" title="1.4.3.2 其他中间件"></a>1.4.3.2 其他中间件</h3><p>有一个共性，对于网络方面中间件为了追求效率通常是基于长链接、自定义应用层协议落地的。</p>
+<h3 id="1-5-网络优化tips"><a href="#1-5-网络优化tips" class="headerlink" title="1.5 网络优化tips"></a>1.5 网络优化tips</h3><p>至此所有的处理都完成了，剩下的就是一层层的响应，完成返回了。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1692359474-b4921a868468af31a018862640ede5b0.webp" srcset="/img/loading.gif" lazyload></p>
+<p>经过这么长的剖析，大家应该对网络链路有了一个相对清晰的感知，接下来看下对于网络的处理，我们日常有哪些优化操作。</p>
+<p>1: 网络是一件开销较大的事儿，首先要做的是避免发生网络IO。 2: 如果一定会有IO链路产生，那就尽可能的剪短IO链路，比如说异步操作。 3: 如果网络操作无法避免，要节省网络中的动作，比如使用长链接、批处理，但长链接一定要因地制宜。 4: 使用高效的工具，别自己瞎整，netty、广泛使用的RPC框架，成熟的接入层等等。 5: 如果非要进行网络编程，合理利用epoll。 6: 从顶向下进行优化，优化到极致还不解决问题，再去动底层。 7: 别猜，代码都是人写的。</p>
+<h3 id="2-写在最后"><a href="#2-写在最后" class="headerlink" title="2. 写在最后"></a>2. 写在最后</h3><p>网络是一件有趣且复杂的事情，只是一个普通的业务研发，没那么专业，文章中可能会有一些描述不准确或者错误的事情，如果说错了，恳请斧正。</p>
+<p>研究网络的过程中，发现了较多的设计启发，比如DNS的架构模式、网络的多层处理、负载均衡的设计、reactor的模式、容灾设计、设计的出发点等等，对于技术本身的研究会带来较多的日常设计的启示，也希望大家读文章的时候能有对于网络之外的设计启发。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%BD%91%E7%BB%9C/" class="category-chain-item">操作系统+网络</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C/" class="category-chain-item">网络</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%BD%91%E7%BB%9C/">#网络</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>网络概念详解</div>
+      <div>http://coder-xieshijie.cn/2023/08/25/操作系统+网络/网络概念详解/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/28/DevOps/Git/Code-Review%E7%BB%88%E6%9E%81%E5%A4%A7%E6%B3%95/" title="Code Review终极大法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Code Review终极大法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/10/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/Serverless-Faas%E6%9E%B6%E6%9E%84-%E5%88%9B%E6%96%B0%E8%AF%95%E9%94%99%E5%BF%AB%E9%80%9F%E8%B5%B7%E6%9C%8D%E5%8A%A1/" title="Serverless + Faas架构 创新试错快速起服务">
+                        <span class="hidden-mobile">Serverless + Faas架构 创新试错快速起服务</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

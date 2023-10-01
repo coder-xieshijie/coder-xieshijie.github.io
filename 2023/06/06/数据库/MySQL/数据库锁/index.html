@@ -1,0 +1,1258 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数据库锁">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库锁">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/06/06/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="数据库锁">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-32492148fccd82b903b680ef3732e749.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-058986c18b10e8bdfd629401a5110246.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-c07ede16b6be0f0f50fa643cc65b319f.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-67680187d8a0954715cd73714f110da3.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-56abd3f23255a70823bafe379f43c5d1.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-51745fe5ad3a4b5b9bafbf62b72d2444.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-b8786b28a7b725a279e6ed368cff6577.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-d2c5a2f2968ad5c1e5f9b4f246dc19ad.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-3b3ea79ee40fa48120d18007caaaf21b.png">
+<meta property="article:published_time" content="2023-06-06T10:23:25.000Z">
+<meta property="article:modified_time" content="2023-06-06T10:23:25.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-32492148fccd82b903b680ef3732e749.png">
+  
+  
+  
+  <title>数据库锁 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据库锁"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-06 18:23" pubdate>
+          2023年6月6日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          71 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="数据库"
+        id="heading-68051bf4aa2743b030984b694628ee9c" role="tab" data-toggle="collapse" href="#collapse-68051bf4aa2743b030984b694628ee9c"
+        aria-expanded="true"
+      >
+        数据库
+        <span class="list-group-count">(11)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-68051bf4aa2743b030984b694628ee9c"
+           role="tabpanel" aria-labelledby="heading-68051bf4aa2743b030984b694628ee9c">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="MySQL"
+        id="heading-62a004b95946bb97541afa471dcca73a" role="tab" data-toggle="collapse" href="#collapse-62a004b95946bb97541afa471dcca73a"
+        aria-expanded="true"
+      >
+        MySQL
+        <span class="list-group-count">(8)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-62a004b95946bb97541afa471dcca73a"
+           role="tabpanel" aria-labelledby="heading-62a004b95946bb97541afa471dcca73a">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/21/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL-%E4%B8%AD%E7%9A%84-distinct-%E5%92%8C-group-by-%E5%93%AA%E4%B8%AA%E6%95%88%E7%8E%87%E6%9B%B4%E9%AB%98%EF%BC%9F/" title="MySQL 中的 distinct 和 group by 哪个效率更高？"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MySQL 中的 distinct 和 group by 哪个效率更高？</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/26/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/mysql%E7%9A%84explain%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" title="mysql的explain关键字使用说明"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">mysql的explain关键字使用说明</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/24/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/sql%E8%AF%AD%E5%8F%A5%E5%90%84%E4%B8%AA%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/" title="sql语句各个关键字的执行顺序"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">sql语句各个关键字的执行顺序</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/20/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%A4%8D%E6%9D%82%E6%9F%A5%E8%AF%A2sql%E6%95%B4%E7%90%86/" title="复杂查询sql整理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">复杂查询sql整理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/06/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%AE%9E%E9%99%85%E5%88%86%E6%9E%90Mysql%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/" title="实际分析Mysql死锁问题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">实际分析Mysql死锁问题</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/07/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%B8%B8%E7%94%A8sql%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/" title="常用sql命令整理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">常用sql命令整理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/06/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81/" title="数据库锁"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">数据库锁</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E7%B4%A2%E5%BC%95%E7%9A%84%E8%AE%B0%E8%B4%A6%E6%9C%AC/" title="索引的记账本"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">索引的记账本</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="es"
+        id="heading-12470fe406d44017d96eab37dd65fc14" role="tab" data-toggle="collapse" href="#collapse-12470fe406d44017d96eab37dd65fc14"
+        aria-expanded="false"
+      >
+        es
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-12470fe406d44017d96eab37dd65fc14"
+           role="tabpanel" aria-labelledby="heading-12470fe406d44017d96eab37dd65fc14">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/08/29/%E6%95%B0%E6%8D%AE%E5%BA%93/elasticsearch-%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/" title="elasticsearch 概念介绍"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">elasticsearch 概念介绍</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="redis"
+        id="heading-86a1b907d54bf7010394bf316e183e67" role="tab" data-toggle="collapse" href="#collapse-86a1b907d54bf7010394bf316e183e67"
+        aria-expanded="false"
+      >
+        redis
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-86a1b907d54bf7010394bf316e183e67"
+           role="tabpanel" aria-labelledby="heading-86a1b907d54bf7010394bf316e183e67">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/22/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis-key%E5%80%BC%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%88%B0value/" title="redis key值如何定位到value"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">redis key值如何定位到value</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/06/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis%E5%92%8Cmysql%E7%9A%84%E5%8F%8C%E5%86%99%E9%97%AE%E9%A2%98/" title="redis和mysql的双写问题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">redis和mysql的双写问题</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据库锁</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="数据库锁"><a href="#数据库锁" class="headerlink" title="数据库锁"></a>数据库锁</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-32492148fccd82b903b680ef3732e749.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h2 id="1-为什么需要加锁"><a href="#1-为什么需要加锁" class="headerlink" title="1. 为什么需要加锁"></a>1. 为什么需要加锁</h2><blockquote>
+<p>在日常生活中，如果你心情不好想静静，不想被比别人打扰，你就可以把自己关进房间里，并且反锁。这就是生活中的<strong>加锁</strong>。</p>
+</blockquote>
+<p>同理，对于MySQL数据库来说的话，一般的对象都是一个事务一个事务来说的。所以，如果一个事务内，一个SQL正在更新某条记录，我们肯定不想它被别的事务影响到嘛？因此，数据库设计大叔，给该行数据加上锁(行锁)。</p>
+<blockquote>
+<p>专业一点的说法: 如果有多个并发请求存取数据，在数据就可能会产生多个事务同时操作同一行数据。如果并发操作不加控制，不加锁的话，就可能写入了不正确的数据，或者导致读取了不正确的数据，破坏了数据的一致性。因此需要考虑加锁。</p>
+</blockquote>
+<h2 id="2-InnoDB有哪些锁？"><a href="#2-InnoDB有哪些锁？" class="headerlink" title="2. InnoDB有哪些锁？"></a>2. InnoDB有哪些锁？</h2><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-058986c18b10e8bdfd629401a5110246.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="2-1-共享-排他锁"><a href="#2-1-共享-排他锁" class="headerlink" title="2.1 共享&#x2F;排他锁"></a>2.1 共享&#x2F;排他锁</h3><p>InnoDB呢实现了两种标准的<strong>行级锁</strong>：共享锁（简称S锁）、排他锁（简称X锁）。</p>
+<ul>
+<li><p>共享锁：简称为S锁，在事务要读取一条记录时，需要先获取该记录的S锁。</p>
+</li>
+<li><p>排他锁：简称X锁，在事务需要改动一条记录时，需要先获取该记录的X锁。</p>
+</li>
+</ul>
+<p>如果事务<code>T1</code>持有行R的<code>S</code>锁，那么另一个事务<code>T2</code>请求访问这条记录时，会做如下处理：</p>
+<ul>
+<li><p>T2 请求<code>S</code>锁立即被允许，结果<code>T1和T2</code>都持有R行的<code>S</code>锁</p>
+</li>
+<li><p>T2 请求<code>X</code>锁不能被立即允许,此操作会阻塞</p>
+</li>
+</ul>
+<p>如果<code>T1</code>持有行R的<code>X</code>锁，那么<code>T2</code>请求R的<code>X、S</code>锁都不能被立即允许，<code>T2</code>必须等待<code>T1</code>释放<code>X</code>锁才可以，因为<code>X</code>锁与任何的锁都不兼容。</p>
+<p>S锁和X锁的兼容关系如下图表格：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-c07ede16b6be0f0f50fa643cc65b319f.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<p><code>X</code>锁和<code>S</code>锁是对于行记录来说的话，因此可以称它们为行级锁或者行锁。我们认为行锁的粒度就比较细，其实一个事务也可以在表级别下加锁，对应的，我们称之为表锁。给表加的锁，也是可以分为<code>X</code>锁和<code>S</code>锁的哈。</p>
+<p>如果一个事务给表已经加了<code>S</code>锁，则：</p>
+<ul>
+<li><p>别的事务可以继续获得该表的<code>S</code>锁，也可以获得该表中某些记录的<code>S</code>锁。</p>
+</li>
+<li><p>别的事务不可以继续获得该表的<code>X</code>锁，也不可以获得该表中某些记录的<code>X</code>锁。</p>
+</li>
+</ul>
+<p>如果一个事务给表加了<code>X</code>锁，那么</p>
+<ul>
+<li><p>别的事务不可以获得该表的<code>S</code>锁，也不可以获得该表某些记录的<code>S</code>锁。</p>
+</li>
+<li><p>别的事务不可以获得该表的<code>X</code>锁，也不可以继续获得该表某些记录的<code>X</code>锁。</p>
+</li>
+</ul>
+<h3 id="2-2-意向锁"><a href="#2-2-意向锁" class="headerlink" title="2.2 意向锁"></a>2.2 意向锁</h3><p>什么是意向锁呢？意向锁是<strong>一种不与行级锁冲突的表级锁</strong>。未来的某个时刻，事务可能要加共享或者排它锁时，先提前声明一个意向。注意一下，意向锁，是一个<strong>表级别的锁哈</strong>。</p>
+<p><strong>为什么需要意向锁呢？</strong> 或者换个通俗的说法，为什么要加共享锁或排他锁时的时候，需要提前声明个意向锁呢呢？</p>
+<blockquote>
+<p>因为InnoDB是支持表锁和行锁共存的，如果一个事务A获取到某一行的排他锁，并未提交，这时候事务B请求获取同一个表的表共享锁。因为<strong>共享锁和排他锁是互斥的</strong>，因此事务B想对这个表加共享锁时，需要保证没有其他事务持有这个表的表排他锁，同时还要保<strong>证没有其他事务持有表中任意一行的排他锁</strong>。</p>
+<p>然后问题来了，你要保证没有其他事务持有表中任意一行的排他锁的话，去遍历每一行？这样显然是一个效率很差的做法。<strong>为了解决这个问题，InnoDb的设计大叔提出了意向锁。</strong></p>
+</blockquote>
+<p><strong>意向锁是如何解决这个问题的呢？</strong>  我们来看下</p>
+<p>意向锁分为两类：</p>
+<ul>
+<li><p>意向共享锁：简称<code>IS</code>锁，当事务准备在某些记录上加S锁时，需要现在表级别加一个<code>IS</code>锁。</p>
+</li>
+<li><p>意向排他锁：简称<code>IX</code>锁，当事务准备在某条记录上加上X锁时，需要现在表级别加一个<code>IX</code>锁。</p>
+</li>
+</ul>
+<p>比如：</p>
+<ul>
+<li><p><code>select ... lock in share mode</code>，要给表设置<code>IS</code>锁;</p>
+</li>
+<li><p><code>select ... for update</code>，要给表设置<code>IX</code>锁;</p>
+</li>
+</ul>
+<p>意向锁又是如何解决这个效率低的问题呢：</p>
+<blockquote>
+<p>如果一个事务A获取到某一行的排他锁，并未提交,这时候表上就有<code>意向排他锁</code>和这一行的<code>排他锁</code>。这时候事务B想要获取这个表的共享锁，此时因为检测到事务A持有了表的<code>意向排他锁</code>，因此事务A必然持有某些行的排他锁，也就是说事务B对表的加锁请求需要阻塞等待，不再需要去检测表的每一行数据是否存在排他锁啦。</p>
+</blockquote>
+<p>意向锁仅仅表明意向的锁，意向锁之间不会互斥，是可以并行的，整体兼容性如下：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-67680187d8a0954715cd73714f110da3.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="2-3-记录锁（Record-Lock）"><a href="#2-3-记录锁（Record-Lock）" class="headerlink" title="2.3 记录锁（Record Lock）"></a>2.3 记录锁（Record Lock）</h3><p>记录锁是最简单的行锁，仅仅锁住一行。如：<code>SELECT c1 FROM t WHERE c1 = 10 FOR UPDATE</code>，如果C1字段是主键或者是唯一索引的话，这个SQL会加一个记录锁（Record Lock）</p>
+<p>记录锁永远都是加在索引上的，即使一个表没有索引，InnoDB也会隐式的创建一个索引，并使用这个索引实施记录锁。它会阻塞其他事务对这行记录的插入、更新、删除。</p>
+<p>一般我们看死锁日志时，都是找关键词，比如<code>lock_mode X locks rec but not gap</code>），就表示一个X型的记录锁。记录锁的关键词就是<strong>rec but not gap</strong>。以下就是一个记录锁的日志：</p>
+<p><code>RECORD LOCKS space id 58 page no 3 n bits 72 index `PRIMARY` of table `test`.`t`    trx id 10078 lock_mode X locks rec but not gap   Record lock, heap no 2 PHYSICAL RECORD: n_fields 3; compact format; info bits 0    0: len 4; hex 8000000a; asc     ;;    1: len 6; hex 00000000274f; asc     &#39;O;;    2: len 7; hex b60000019d0110; asc        ;;   </code></p>
+<h3 id="2-4-间隙锁（Gap-Lock）"><a href="#2-4-间隙锁（Gap-Lock）" class="headerlink" title="2.4 间隙锁（Gap Lock）"></a>2.4 间隙锁（Gap Lock）</h3><p>为了解决幻读问题，InnoDB引入了间隙锁<code>(Gap Lock)</code>。间隙锁是一种加在两个索引之间的锁，或者加在第一个索引之前，或最后一个索引之后的间隙。它锁住的是<strong>一个区间</strong>，而不仅仅是这个区间中的每一条数据。</p>
+<p>比如<code>lock_mode X locks gap before rec</code>表示X型gap锁。以下就是一个间隙锁的日志：</p>
+<p><code>RECORD LOCKS space id 177 page no 4 n bits 80 index idx_name of table `test2`.`account`    trx id 38049 lock_mode X locks gap before rec   Record lock, heap no 6 PHYSICAL RECORD: n_fields 2; compact format; info bits 0    0: len 3; hex 576569; asc Wei;;    1: len 4; hex 80000002; asc     ;;   </code></p>
+<h3 id="2-5-临键锁-Next-Key-Lock"><a href="#2-5-临键锁-Next-Key-Lock" class="headerlink" title="2.5 临键锁(Next-Key Lock)"></a>2.5 临键锁(Next-Key Lock)</h3><p>Next-key锁是<strong>记录锁和间隙锁的组合</strong>，它指的是加在某条记录以及这条记录前面间隙上的锁。说得更具体一点就是:临键锁会封锁索引记录本身，以及索引记录之前的区间，即它的锁区间是前开后闭，比如<code>(5,10]</code>。</p>
+<p>如果一个会话占有了索引记录R的共享&#x2F;排他锁，其他会话不能立刻在R之前的区间插入新的索引记录。</p>
+<blockquote>
+<p>If one session has a shared or exclusive lock on record R in an index, another session cannot insert a new index record in the gap immediately before R in the index order.</p>
+</blockquote>
+<h3 id="2-6-插入意向锁"><a href="#2-6-插入意向锁" class="headerlink" title="2.6 插入意向锁"></a>2.6 插入意向锁</h3><p>插入意向锁,是插入一行记录操作之前设置的<strong>一种间隙锁</strong>，这个锁释放了一种插入方式的信号。它解决的问题：多个事务，在同一个索引，同一个范围区间插入记录时，如果插入的位置不冲突，不会阻塞彼此。</p>
+<p>假设有索引值4、7，几个不同的事务准备插入5、6，每个锁都在获得插入行的独占锁之前用插入意向锁各自锁住了4、7之间的间隙，但是不阻塞对方因为插入行不冲突。以下就是一个插入意向锁的日志：</p>
+<p><code>RECORD LOCKS space id 31 page no 3 n bits 72 index `PRIMARY` of table `test`.`child`   trx id 8731 lock_mode X locks gap before rec insert intention waiting   Record lock, heap no 3 PHYSICAL RECORD: n_fields 3; compact format; info bits 0    0: len 4; hex 80000066; asc    f;;    1: len 6; hex 000000002215; asc     &quot; ;;    2: len 7; hex 9000000172011c; asc     r  ;;...      </code></p>
+<p>锁模式兼容矩阵（横向是已持有锁，纵向是正在请求的锁）：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-56abd3f23255a70823bafe379f43c5d1.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<h3 id="2-7-自增锁"><a href="#2-7-自增锁" class="headerlink" title="2.7 自增锁"></a>2.7 自增锁</h3><p><strong>自增锁是一种特殊的表级别锁</strong>。它是专门针对<code>AUTO_INCREMENT</code>类型的列，对于这种列，如果表中新增数据时就会去持有自增锁。简言之，如果一个事务正在往表中插入记录，所有其他事务的插入必须等待，以便第一个事务插入的行，是连续的主键值。</p>
+<p>官方文档是这么描述的：</p>
+<blockquote>
+<p>An AUTO-INC lock is a special table-level lock taken by transactions inserting into tables with AUTO_INCREMENT columns. In the simplest case, if one transaction is inserting values into the table, any other transactions must wait to do their own inserts into that table, so that rows inserted by the first transaction receive consecutive primary key values.</p>
+</blockquote>
+<p>假设有表：</p>
+<p><code>mysql&gt; create table t0 (id int NOT NULL AUTO_INCREMENT,name varchar(16),primary key ( id));      mysql&gt; show variables like &#39;%innodb_autoinc_lock_mode%&#39;;   +--------------------------+-------+   | Variable_name            | Value |   +--------------------------+-------+   | innodb_autoinc_lock_mode | 1     |   +--------------------------+-------+   1 row in set, 1 warning (0.01 sec)   </code></p>
+<p>设置事务A和B交替执行流程如下：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-51745fe5ad3a4b5b9bafbf62b72d2444.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<p>通过上图我们可以看到，当我们在事务A中进行自增列的插入操作时，另外会话事务B也进行插入操作，这种情况下会发生2个奇怪的现象：</p>
+<ul>
+<li><p>事务A会话中的自增列好像直接增加了2个值。（如上图中步骤7、8）</p>
+</li>
+<li><p>事务B会话中的自增列直接从2开始增加的。（如上图步骤5、6）</p>
+</li>
+</ul>
+<p>自增锁是一个表级别锁，那为什么会话A事务还没结束，事务B可以执行插入成功呢？不是应该锁表嘛？这是因为在参数<code>innodb_autoinc_lock_mode</code>上，这个参数设置为<code>1</code>的时候，相当于将这种<code>auto_inc lock</code>弱化为了一个更轻量级的互斥自增长机制去实现，官方称之为<code>mutex</code>。</p>
+<p>innodb_autoinc_lock_mode还可以设置为0或者2，</p>
+<ul>
+<li><p><strong>0</strong>：表示传统锁模式，使用<code>表级AUTO_INC</code>锁。一个事务的<code>INSERT-LIKE</code>语句在语句执行结束后释放AUTO_INC表级锁，而不是在事务结束后释放。</p>
+</li>
+<li><p><strong>1</strong>: 连续锁模式,连续锁模式对于<code>Simple inserts</code>不会使用表级锁，而是使用一个轻量级锁来生成自增值，因为InnoDB可以提前直到插入多少行数据。自增值生成阶段使用轻量级互斥锁来生成所有的值，而不是一直加锁直到插入完成。对于<code>bulk inserts</code>类语句使用AUTO_INC表级锁直到语句完成。</p>
+</li>
+<li><p><strong>2</strong>:交错锁模式,所有的<code>INSERT-LIKE</code>语句都不使用表级锁，而是使用轻量级互斥锁。</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><p><strong>INSERT-LIKE</strong>:指所有的插入语句，包括：INSERT、REPLACE、INSERT…SELECT、REPLACE…SELECT,LOAD DATA等。</p>
+</li>
+<li><p><strong>Simple inserts</strong>:指在插入前就能确定插入行数的语句，包括：INSERT、REPLACE，不包含INSERT…ON DUPLICATE KEY UPDATE这类语句。</p>
+</li>
+<li><p><strong>Bulk inserts</strong>: 指在插入钱不能确定行数的语句，包括：INSERT … SELECT&#x2F;REPLACE … SELECT&#x2F;LOAD DATA。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="3-什么是死锁？如何防止死锁？"><a href="#3-什么是死锁？如何防止死锁？" class="headerlink" title="3. 什么是死锁？如何防止死锁？"></a>3. 什么是死锁？如何防止死锁？</h2><p><strong>什么是死锁？</strong></p>
+<p>死锁是指两个或多个事务在同一资源上相互占用，并请求锁定对方的资源，从而导致恶性循环的现象。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-b8786b28a7b725a279e6ed368cff6577.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<p><strong>如何防止死锁？</strong></p>
+<ul>
+<li><p>尽量约定固定的顺序访问表，因为交叉访问更容易造成事务等待回路。</p>
+</li>
+<li><p>尽量避免大事务，建议拆成多个小事务。因为大事务占用的锁资源越多，越容易出现死锁。</p>
+</li>
+<li><p>降低数据库隔离级别，比如RR降低为RC，因为RR隔离级别，存在GAP锁，死锁概率大很多。</p>
+</li>
+<li><p>死锁与索引是密不可分的，合理优化你的索引，死锁概率降低。</p>
+</li>
+<li><p>如果业务处理不好可以用分布式事务锁或者使用乐观锁</p>
+</li>
+</ul>
+<h2 id="4-数据库的乐观锁和悲观锁"><a href="#4-数据库的乐观锁和悲观锁" class="headerlink" title="4.数据库的乐观锁和悲观锁"></a>4.数据库的乐观锁和悲观锁</h2><p><strong>悲观锁：</strong></p>
+<blockquote>
+<p>悲观锁她专一且缺乏安全感了，她的心只属于当前事务，每时每刻都担心着它 心爱的数据可能被别的事务修改，所以一个事务拥有（获得）悲观锁后，其他任何事务都不能对数据进行修改啦，只能等待锁被释放才可以执行。<code>select…for update</code>就是<strong>MySQL悲观锁</strong>的应用。</p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-d2c5a2f2968ad5c1e5f9b4f246dc19ad.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<p><strong>乐观锁：</strong></p>
+<blockquote>
+<p>乐观锁的“乐观情绪”体现在，它认为数据的变动不会太频繁。因此，它允许多个事务同时对数据进行变动。实现方式：乐观锁一般会通过version版本号&#x2F;时间戳判断记录是否被更改过，一般配合CAS算法实现。</p>
+</blockquote>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1686046776-3b3ea79ee40fa48120d18007caaaf21b.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<p>大家可以看下这篇文章哈：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3NzU5NTIwNg==&mid=2247487996&idx=1&sn=cafae3423e5ffa903a0c0a94a355f981&source=41&scene=21#wechat_redirect">图文并茂的带你彻底理解悲观锁与乐观锁</a></p>
+<h2 id="5-select-for-update加的是表锁还是行锁"><a href="#5-select-for-update加的是表锁还是行锁" class="headerlink" title="5. select for update加的是表锁还是行锁"></a>5. select for update加的是表锁还是行锁</h2><p>这道面试题，一般需要分两种数据库隔离级别（RR和RC），还需要分查询条件是唯一索引、主键、一般索引、无索引等几种情况分开讨论</p>
+<p><strong>在RC隔离级别下</strong></p>
+<ul>
+<li><p>如果查询条件是唯一索引，会加<code>IX</code>意向排他锁（表级别的锁，不影响插入）、两把<code>X</code>排他锁（行锁，分别对应唯一索引，主键索引）</p>
+</li>
+<li><p>如果查询条件是主键，会加<code>IX</code>意向排他锁（表级别的锁，不影响插入）、一把对应主键的<code>X</code>排他锁（行锁，会锁住主键索引那一行）。</p>
+</li>
+<li><p>如果查询条件是普通索引，<strong>如果查询命中记录</strong>，会加<code>IX</code>意向排他锁（表锁）、两把<code>X</code>排他锁（行锁，分别对应普通索引的<code>X</code>锁，对应主键的<code>X</code>锁）;<strong>如果没有命中数据库表的记录</strong>，只加了一把<code>IX</code>意向排他锁（表锁，不影响插入）</p>
+</li>
+<li><p>如果查询条件是无索引，会加两把锁，IX意向排他锁（表锁）、一把X排他锁（行锁，对应主键的X锁）。</p>
+</li>
+</ul>
+<blockquote>
+<p>查询条件是无索引，为什么不锁表呢？MySQL会走聚簇(主键)索引进行全表扫描过滤。每条记录都会加上X锁。但是，为了效率考虑，MySQL在这方面进行了改进，在扫描过程中，若记录不满足过滤条件，会进行解锁操作。同时优化违背了2PL原则。</p>
+</blockquote>
+<p><strong>在RR隔离级别</strong></p>
+<ul>
+<li><p>如果查询条件是唯一索引，命中数据库表记录时，一共会加三把锁：一把IX意向排他锁 （表锁，不影响插入），一把对应主键的X排他锁（行锁），一把对应唯一索引的X排他锁 （行锁）。</p>
+</li>
+<li><p>如果查询条件是主键，会加<code>IX</code>意向排他锁（表级别的锁，不影响插入）、一把对应主键的<code>X</code>排他锁（行锁，会锁住主键索引那一行）。</p>
+</li>
+<li><p>如果查询条件是普通索引，命中查询记录的话，除了会加X锁（行锁），IX锁（表锁，不影响插入），还会加Gap 锁（间隙锁，会影响插入）。</p>
+</li>
+<li><p>如果查询条件是无索引，会加一个IX锁（表锁，不影响插入），每一行实际记录行的X锁，还有对应于supremum pseudo-record的虚拟全表行锁。这种场景，通俗点讲，其实就是锁表了。</p>
+</li>
+</ul>
+<p>大家可以看下我之前写的这篇文章哈：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3NzU5NTIwNg==&mid=2247503596&idx=1&sn=f81da0f3321b383c9690ee028da54a62&chksm=cf2211c5f85598d382badfd868c178d9474811a822acff6866219b65c0e571a5e49b896f6ca5&token=1563979917&lang=zh_CN&scene=21#wechat_redirect">聊聊select for update到底加了什么锁</a></p>
+<h2 id="6-如何使用数据库分布式锁"><a href="#6-如何使用数据库分布式锁" class="headerlink" title="6.如何使用数据库分布式锁"></a>6.如何使用数据库分布式锁</h2><p>一般可以使用<code>select ... for update</code>来实现数据库的分布式锁。它的优点是：简单，使用方便，不需要引入Redis、zookeeper等中间件。缺点是：不适合高并发的场景，db操作性能较差。</p>
+<p>我之前这篇文章，有详细介绍数据库分布式锁的实现，大家可以看看哈：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3NzU5NTIwNg==&mid=2247498595&idx=1&sn=4e5308930e151a609baa2df820e48a89&chksm=cf22244af855ad5c71822cb33e828ce652c6f34202096a9344922b86dcbc08076d7922acde5f&token=1563979917&lang=zh_CN&scene=21#wechat_redirect">面试必备：聊聊分布式锁的多种实现！</a></p>
+<h2 id="7-表级锁和行级锁，页面锁有什么区别"><a href="#7-表级锁和行级锁，页面锁有什么区别" class="headerlink" title="7.表级锁和行级锁，页面锁有什么区别"></a>7.表级锁和行级锁，页面锁有什么区别</h2><p>不同的存储引擎：</p>
+<ul>
+<li><p>MyISAM存储引擎，它只支持<strong>表锁</strong>，并发写的时候，性能差。</p>
+</li>
+<li><p>InnoDB存储引擎，即支持表锁，也支持行锁，默认为<strong>行级锁</strong>。</p>
+</li>
+<li><p>BDB 存储引擎，它支持<strong>表锁和页锁</strong>。</p>
+</li>
+</ul>
+<p><strong>表级锁和行级锁的区别</strong>：</p>
+<ul>
+<li><p>表锁：开销小，加锁快；锁定力度大，发生锁冲突概率高，并发度最低;不会出现死锁。</p>
+</li>
+<li><p>行锁：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高，行级锁能大大减少数据库操作的冲突</p>
+</li>
+<li><p>页面锁：开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界于表锁和行锁之间，并发度一般。</p>
+</li>
+</ul>
+<h2 id="8-Mysql一条SQL是如何加锁的？"><a href="#8-Mysql一条SQL是如何加锁的？" class="headerlink" title="8. Mysql一条SQL是如何加锁的？"></a>8. Mysql一条SQL是如何加锁的？</h2><p>一条SQL加锁，可以分9种情况进行：</p>
+<ul>
+<li><p>组合一：id 列是主键，RC 隔离级别</p>
+</li>
+<li><p>组合二：id 列是二级唯一索引，RC 隔离级别</p>
+</li>
+<li><p>组合三：id 列是二级非唯一索引，RC 隔离级别</p>
+</li>
+<li><p>组合四：id 列上没有索引，RC 隔离级别</p>
+</li>
+<li><p>组合五：id 列是主键，RR 隔离级别</p>
+</li>
+<li><p>组合六：id 列是二级唯一索引，RR 隔离级别</p>
+</li>
+<li><p>组合七：id 列是二级非唯一索引，RR 隔离级别</p>
+</li>
+<li><p>组合八：id 列上没有索引，RR 隔离级别</p>
+</li>
+<li><p>组合九：Serializable 隔离级别</p>
+</li>
+</ul>
+<p>可以看我这篇文章，第3小节有详细讲到哈：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3NzU5NTIwNg==&mid=2247499275&idx=1&sn=ca72f48a290e4fd2a2ded6ef6fd045be&chksm=cf222122f855a8347b911352cebdd722b17ea45733b91ff169353c0805d9f31cea5261ef01b9&token=1990623072&lang=zh_CN&scene=21#wechat_redirect">两万字详解！InnoDB 锁专题！</a></p>
+<h2 id="9-并发情况下，如何做到安全的修改同一行数据"><a href="#9-并发情况下，如何做到安全的修改同一行数据" class="headerlink" title="9. 并发情况下，如何做到安全的修改同一行数据"></a>9. 并发情况下，如何做到安全的修改同一行数据</h2><p>要安全的修改同一行数据，就要保证一个线程在修改时其它线程无法更新这行 记录。其实一般有悲观锁和乐观锁两种思想，</p>
+<p><strong>悲观锁思想</strong>就是，当前线程要进来修改数据时，别的线程都得拒之门外~ 比如， 可以使用 <code>select…for update ~</code>，</p>
+<p><code>select * from User where name=‘jay’ for update   </code></p>
+<p>以上这条 sql 语句会锁定了<code>User</code>表中所有符合检索条件（name&#x3D;‘jay’）的记 录。本次事务提交之前，别的线程都无法修改这些记录。</p>
+<p>还可以使用<strong>乐观锁思想</strong>：</p>
+<blockquote>
+<p>所谓乐观锁思想，就是有线程过来，先放过去修改，如果看到别的线程没修改过， 就可以修改成功，如果别的线程修改过，就修改失败或者重试。实现方式：乐 观锁一般会使用版本号机制或 CAS 算法实现。可以看一下我这篇文章，主要是思路哈~ <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3NzU5NTIwNg==&mid=2247487937&idx=1&sn=206a37bf6d6a7aa1d05674c479ed7a72&chksm=cf21cee8f85647fe7a082049a41c0f640f54976d2cdf4302b24c5517ca42b854eb84b13ece10&token=1712314640&lang=zh_CN&scene=21#wechat_redirect">CAS 乐观锁解决并发问题的一次实践</a></p>
+</blockquote>
+<p>当然，回答这个问题的时候呢，你可以提到<strong>分布式锁</strong>。分布式锁有这三种实现方式：</p>
+<ul>
+<li><p>数据库分布式锁</p>
+</li>
+<li><p>Redis分布式锁</p>
+</li>
+<li><p>Zookeeper分布式锁</p>
+</li>
+</ul>
+<p>大家可以看我这篇文章哈：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3NzU5NTIwNg==&mid=2247498595&idx=1&sn=4e5308930e151a609baa2df820e48a89&chksm=cf22244af855ad5c71822cb33e828ce652c6f34202096a9344922b86dcbc08076d7922acde5f&token=1563979917&lang=zh_CN&scene=21#wechat_redirect">面试必备：聊聊分布式锁的多种实现！</a></p>
+<h2 id="10-RR隔离级别下的加锁规则是怎么样的？"><a href="#10-RR隔离级别下的加锁规则是怎么样的？" class="headerlink" title="10. RR隔离级别下的加锁规则是怎么样的？"></a>10. RR隔离级别下的加锁规则是怎么样的？</h2><p>其实，极客时间丁奇的<strong>MySQL45讲</strong>有讲到，RR隔离级别，是如何加锁的。大家有兴趣可以去订购看下哈，非常不错的课程。</p>
+<p>首先MySQL的版本，是<code>5.x 系列 &lt;=5.7.24，8.0 系列 &lt;=8.0.13</code>。加锁规则一共包括：两个原则、两个优化和一个bug。</p>
+<ul>
+<li><p>原则1：加锁的基本单位都是<code>next-key lock</code>。next-key lock（临键锁）是前开后闭区间。</p>
+</li>
+<li><p>原则2：查找过程中访问到的对象才会加锁。</p>
+</li>
+<li><p>优化1：索引上的等值查询，给唯一索引加锁的时候，<code>next-key lock</code>退化为行锁<code>（Record lock）</code>。</p>
+</li>
+<li><p>优化 2：索引上的等值查询，向右遍历时且最后一个值不满足等值条件的时候，<code>next-key lock</code>退化为间隙锁<code>（Gap lock）</code>。</p>
+</li>
+<li><p>一个 bug：唯一索引上的范围查询会访问到不满足条件的第一个值为止。</p>
+</li>
+</ul>
+<p>大家可以看我这篇文章，第4小节有详细讲到哈：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3NzU5NTIwNg==&mid=2247499275&idx=1&sn=ca72f48a290e4fd2a2ded6ef6fd045be&chksm=cf222122f855a8347b911352cebdd722b17ea45733b91ff169353c0805d9f31cea5261ef01b9&token=1990623072&lang=zh_CN&scene=21#wechat_redirect">两万字详解！InnoDB 锁专题！</a></p>
+<h2 id="11-InnoDB-中行级锁时如何实现的？InnoDB三种行锁的算法"><a href="#11-InnoDB-中行级锁时如何实现的？InnoDB三种行锁的算法" class="headerlink" title="11. InnoDB 中行级锁时如何实现的？InnoDB三种行锁的算法"></a>11. InnoDB 中行级锁时如何实现的？InnoDB三种行锁的算法</h2><p>MySQL上的行级锁是通过给索引上的<strong>索引项加锁</strong>来实现，只有通过索引条件检索数据，InnoDB才使用行级锁，否则，InnoDB将使用表锁。同时，当两条不同行的记录使用了相同的索引键时，也是会发生锁冲突的。</p>
+<p>比如这条SQL：</p>
+<p><code>select * from t where id = 666 for update;复制代码   for update</code> </p>
+<p>可以根据条件来完成行锁锁定，并且 id 是有索引键的列，如果 id 不是索引键那么InnoDB将实行表锁。</p>
+<p><strong>InnoDB</strong>行锁的3种算法：</p>
+<ul>
+<li><p>Record Lock：单个索引记录上的锁，</p>
+</li>
+<li><p>Gap Lock ：间隙锁，锁定一个范围，但不包含记录本身</p>
+</li>
+<li><p>Next-Key Lock：它等于<code>Gap Lock + Record Lock</code>，锁定一个范围，并且锁定记录本身。</p>
+</li>
+</ul>
+<p>如果查询条件的是唯一索引，或者主键时，<code>Next-Key Lock</code>会降为<code>Record Lock</code>。如果是普通索引，将对下一个键值加上<code>gap lock</code>，其实就是对下一个键值的范围为加锁。<code>gap lock</code>间隙锁，就是为了解决幻读问题而设计出来的。</p>
+<p>间隙锁是RR隔离级别的，如果你想关闭间隙锁，你可以修改隔离级别。也可以修改这个数据库参数<code>innodb_locks_unsafe_for_binlog</code>为<code>1</code>.</p>
+<h2 id="12-MySQL-遇到过死锁问题吗，你是如何解决的？"><a href="#12-MySQL-遇到过死锁问题吗，你是如何解决的？" class="headerlink" title="12. MySQL 遇到过死锁问题吗，你是如何解决的？"></a>12. MySQL 遇到过死锁问题吗，你是如何解决的？</h2><p>我排查死锁的一般步骤是酱紫的：</p>
+<ul>
+<li><p>查看死锁日志<code>show engine innodb status</code>;</p>
+</li>
+<li><p>找出死锁<code>Sql</code></p>
+</li>
+<li><p>分析<code>sql</code>加锁情况</p>
+</li>
+<li><p>模拟死锁案发</p>
+</li>
+<li><p>分析死锁日志</p>
+</li>
+<li><p>分析死锁结果</p>
+</li>
+</ul>
+<p>可以看我这两篇文章哈：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3NzU5NTIwNg==&mid=2247487979&idx=1&sn=588c83d77a8851f3b3c18cd68ed9c454&chksm=cf21cec2f85647d4a77cc239ae9a4cfd31bb8832be3d98540a08ea8b4a1f46b38cf736210a02&token=1495321435&lang=zh_CN&scene=21#wechat_redirect">手把手教你分析Mysql死锁问题</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg3NzU5NTIwNg==&mid=2247499275&idx=1&sn=ca72f48a290e4fd2a2ded6ef6fd045be&chksm=cf222122f855a8347b911352cebdd722b17ea45733b91ff169353c0805d9f31cea5261ef01b9&token=1712314640&lang=zh_CN&scene=21#wechat_redirect">两万字详解！InnoDB锁专题！</a></p>
+</li>
+</ul>
+<p>引自：</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/VEU5p85aTvyBKf2XP5QTSg">数据库锁的12连问</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数据库锁</div>
+      <div>http://coder-xieshijie.cn/2023/06/06/数据库/MySQL/数据库锁/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/06/07/java/java%E5%9F%BA%E7%A1%80/%E4%B8%BAJava%E5%8A%A0%E5%85%A5%E7%94%9F%E6%88%90%E5%99%A8-Generator-%E7%89%B9%E6%80%A7/" title="为Java加入生成器(Generator)特性">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">为Java加入生成器(Generator)特性</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/06/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%AE%9E%E9%99%85%E5%88%86%E6%9E%90Mysql%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/" title="实际分析Mysql死锁问题">
+                        <span class="hidden-mobile">实际分析Mysql死锁问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1285 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="gitlab 高可用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gitlab 高可用">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/07/10/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/gitlab-%E9%AB%98%E5%8F%AF%E7%94%A8/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="gitlab 高可用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201159069.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201159234.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201159445.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201255212.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201257340.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201256870.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201255887.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201255419.png">
+<meta property="article:published_time" content="2023-07-10T14:59:33.000Z">
+<meta property="article:modified_time" content="2023-07-10T14:59:33.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="工作领域">
+<meta property="article:tag" content="gitlab">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201159069.png">
+  
+  
+  
+  <title>gitlab 高可用 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="gitlab 高可用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-10 22:59" pubdate>
+          2023年7月10日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="个人成长"
+        id="heading-4bb4c17853d4334983452b5e69aae37f" role="tab" data-toggle="collapse" href="#collapse-4bb4c17853d4334983452b5e69aae37f"
+        aria-expanded="true"
+      >
+        个人成长
+        <span class="list-group-count">(13)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4bb4c17853d4334983452b5e69aae37f"
+           role="tabpanel" aria-labelledby="heading-4bb4c17853d4334983452b5e69aae37f">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="工作"
+        id="heading-9a018b21ab114a51dd7b5979198a941b" role="tab" data-toggle="collapse" href="#collapse-9a018b21ab114a51dd7b5979198a941b"
+        aria-expanded="false"
+      >
+        工作
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-9a018b21ab114a51dd7b5979198a941b"
+           role="tabpanel" aria-labelledby="heading-9a018b21ab114a51dd7b5979198a941b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/12/28/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87%E5%B7%A5%E4%BD%9C%E8%83%BD%E5%8A%9B/" title="如何提升工作能力"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">如何提升工作能力</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="工作领域"
+        id="heading-55abb1d63814821a409e19025282f4cb" role="tab" data-toggle="collapse" href="#collapse-55abb1d63814821a409e19025282f4cb"
+        aria-expanded="true"
+      >
+        工作领域
+        <span class="list-group-count">(7)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-55abb1d63814821a409e19025282f4cb"
+           role="tabpanel" aria-labelledby="heading-55abb1d63814821a409e19025282f4cb">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/23/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/Gitlab-redis%E5%A4%9AAZ%E5%AE%B9%E7%81%BE%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94/" title="Gitlab redis多AZ容灾高可用方案调研"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Gitlab redis多AZ容灾高可用方案调研</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/10/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/Serverless-Faas%E6%9E%B6%E6%9E%84-%E5%88%9B%E6%96%B0%E8%AF%95%E9%94%99%E5%BF%AB%E9%80%9F%E8%B5%B7%E6%9C%8D%E5%8A%A1/" title="Serverless + Faas架构 创新试错快速起服务"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Serverless + Faas架构 创新试错快速起服务</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/10/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/gitlab-%E9%AB%98%E5%8F%AF%E7%94%A8/" title="gitlab 高可用"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">gitlab 高可用</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/30/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/kuai-%E9%87%8D%E8%A6%81git%E5%B7%A5%E7%A8%8B%E8%AE%B0%E5%BD%95/" title="kuai 重要git工程记录"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">kuai 重要git工程记录</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/14/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E4%BB%A3%E7%A0%81%E7%B4%A2%E5%BC%95%E6%9E%84%E5%BB%BAscip/" title="代码索引构建scip"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">代码索引构建scip</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/04/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E6%B5%81%E9%87%8F%E5%BD%95%E5%88%B6%E5%9B%9E%E6%94%BE%E4%BB%8B%E7%BB%8D/" title="流量录制回放介绍"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">流量录制回放介绍</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/03/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E6%B5%81%E9%87%8F%E5%BD%95%E5%88%B6%E6%96%B9%E6%A1%88%E6%A2%B3%E7%90%86/" title="流量录制方案梳理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">流量录制方案梳理</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="感悟"
+        id="heading-70bca7959b017c8aff4dcb82689dacfe" role="tab" data-toggle="collapse" href="#collapse-70bca7959b017c8aff4dcb82689dacfe"
+        aria-expanded="false"
+      >
+        感悟
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-70bca7959b017c8aff4dcb82689dacfe"
+           role="tabpanel" aria-labelledby="heading-70bca7959b017c8aff4dcb82689dacfe">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/17/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E7%81%B5%E5%85%89%E5%92%8C%E6%84%9F%E6%82%9F/" title="灵光和感悟"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">灵光和感悟</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="晋升"
+        id="heading-e5cab0a89361246aeafb550302f030db" role="tab" data-toggle="collapse" href="#collapse-e5cab0a89361246aeafb550302f030db"
+        aria-expanded="false"
+      >
+        晋升
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-e5cab0a89361246aeafb550302f030db"
+           role="tabpanel" aria-labelledby="heading-e5cab0a89361246aeafb550302f030db">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/06/22/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E6%99%8B%E5%8D%87/2023%E5%B9%B42%E6%9C%88-%E6%99%8B%E5%8D%87%E7%AD%94%E8%BE%A9-2b-3a/" title="2023年2月 晋升答辩(2b-3a)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">2023年2月 晋升答辩(2b-3a)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/22/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E6%99%8B%E5%8D%87/%E4%B8%93%E4%B8%9A%E6%99%8B%E5%8D%87%E6%A8%A1%E6%9D%BF-ks%E7%89%88/" title="专业晋升模板(ks版)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">专业晋升模板(ks版)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/22/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E6%99%8B%E5%8D%87/%E5%8F%AA%E6%98%AF%E5%AE%8C%E6%88%90%E4%BA%86%E9%9C%80%E6%B1%82%EF%BC%8C%E7%A0%94%E5%8F%91%E7%9A%84%E7%AB%9E%E4%BA%89%E4%BC%98%E5%8A%BF%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F/" title="只是完成了需求，研发的竞争优势在哪里？"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">只是完成了需求，研发的竞争优势在哪里？</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/22/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E6%99%8B%E5%8D%87/%E6%99%8B%E5%8D%87%E6%B1%87%E6%8A%A5%E4%B9%8B%E9%81%93-%E6%89%93%E6%80%AA%E5%85%BD%E7%89%88/" title="晋升汇报之道(打怪兽版)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">晋升汇报之道(打怪兽版)</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">gitlab 高可用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="2022年"><a href="#2022年" class="headerlink" title="2022年"></a>2022年</h1><h1 id="OKR回顾"><a href="#OKR回顾" class="headerlink" title="OKR回顾"></a><strong>OKR回顾</strong></h1><p>整体聚焦三部分:</p>
+<table>
+<thead>
+<tr>
+<th><strong>OKR</strong></th>
+<th><strong>成果</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Gitlab高可用与稳定性保障：</strong>维持<strong>可用性99.95%以上</strong>，<strong>不出现T1+&#x2F;P2+故障</strong>，不出现影响时间在15分钟以上的单业务访问可用性故障</td>
+<td><strong>未出现评级故障</strong>。几次小问题（物理机故障、kgw影响），自身<strong>监控及时发现</strong>，并<strong>分钟级快速自愈恢复</strong>，<strong>影响时间和范围较小</strong>。</td>
+</tr>
+<tr>
+<td><strong>Gitlab自身能力建设与性能提升，</strong>版本升级，提升推拉代码等性能</td>
+<td>Git关键操作**整体性能提升约30%<strong>版本升级</strong>时间和人力成本降低60%**对用户和平台研发交付效率的影响降低</td>
+</tr>
+<tr>
+<td><strong>KDev&amp;Keep等研发效能工具和业务线研发需求能力支持，提升研发交付效率。</strong></td>
+<td>KDev&amp;Keep等研发工具<strong>交付流程优化</strong>和<strong>效率提升</strong>支持<strong>游戏业务</strong>价值千万级高保密代码资产保护</td>
+</tr>
+</tbody></table>
+<h1 id="工作总结"><a href="#工作总结" class="headerlink" title="工作总结"></a><strong>工作总结</strong></h1><h2 id="1-Gitlab能力建设与提升"><a href="#1-Gitlab能力建设与提升" class="headerlink" title="1.Gitlab能力建设与提升"></a><strong>1.Gitlab能力建设与提升</strong></h2><h3 id="1-1-行业怎么做（望远镜）"><a href="#1-1-行业怎么做（望远镜）" class="headerlink" title="1.1 行业怎么做（望远镜）"></a><strong>1.1 行业怎么做（望远镜）</strong></h3><table>
+<thead>
+<tr>
+<th><strong>阿里、腾讯、字节、百度、京东</strong></th>
+<th><strong>滴滴</strong></th>
+<th><strong>Gitlab社区</strong></th>
+<th><strong>快手</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>全自研代码托管平台</strong>（多为小团队维护、大的更新频率较低）</td>
+<td><strong>基于早期Gitlab改造，完全脱离社区</strong>（2~3人小团队维护、主要支持上层研发工具，无大的更新）</td>
+<td><strong>开源、版本不断更新迭代</strong>（60多个国家、3000+贡献者维护每月一个小版本，每年一个大版本）</td>
+<td><strong>两面开花</strong>跟随社区版本升级（2~3次&#x2F;年），同时因地制宜的自研支持</td>
+</tr>
+</tbody></table>
+<h3 id="1-2-做什么-显微镜"><a href="#1-2-做什么-显微镜" class="headerlink" title="1.2 做什么( 显微镜)"></a><strong>1.2 做什么( 显微镜)</strong></h3><p>诉求或痛点？</p>
+<table>
+<thead>
+<tr>
+<th><strong>普通研发视角</strong></th>
+<th><strong>研发工具平台视角</strong></th>
+<th><strong>安全视角</strong></th>
+<th><strong>我的视角</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>代码库上传下载速度快、性能好，尤其是移动端主站等大仓库代码评审方便、高效、加载快、协作流畅</td>
+<td>接口响应速度快、性能高大diff、大mr、大接口优化</td>
+<td>无安全漏洞，代码安全</td>
+<td>运维及oncall成本低系统稳定无bug，全年365*24*60不宕机</td>
+</tr>
+</tbody></table>
+<ul>
+<li><h4 id="Gitlab版本升级（13-12-14-0-14-4-14-10）"><a href="#Gitlab版本升级（13-12-14-0-14-4-14-10）" class="headerlink" title="Gitlab版本升级（13.12-&gt;14.0-&gt;14.4-&gt;14.10）"></a><strong>Gitlab版本升级（13.12-&gt;14.0-&gt;14.4-&gt;14.10）</strong></h4></li>
+</ul>
+<p><strong>【背景或动机】：</strong></p>
+<ol>
+<li>存在<strong>重大安全漏洞</strong>，基础服务代码资产安全重要性，<strong>公司安全部要求升级</strong></li>
+<li><strong>相信开源的力量，充分利用社区开源成果</strong></li>
+</ol>
+<p><strong>【价值收益】：提升代码拉取和上传性能、接口性能，降低pg数据库和gitaly压力；安全漏洞修复</strong></p>
+<ul>
+<li><strong>代码处理性能提升</strong></li>
+</ul>
+<ol>
+<li>提升大库代码<strong>拉取性能</strong>（clone&#x2F;pull&#x2F;fetch），支持git v2协议，可<strong>减少拉取耗时67% （</strong>主站移动端仓库<strong>）</strong></li>
+<li>大幅提升大库的<strong>push代码性能，</strong>其中批量push check<strong>阶段耗时可降低90+%</strong></li>
+<li>提升底层**处理git对象性能30%**左右，降低gitaly内存压力</li>
+<li>提升底层**处理hook事件性能10%**以上，降低gitlay CPU压力</li>
+</ol>
+<ul>
+<li><strong>接口性能提升（尤其是大数据量的接口）</strong></li>
+</ul>
+<ol>
+<li>mr列表接口性能提升（大仓库3000个mr），<strong>接口耗时减少50%（1.5s降为700+ms）</strong></li>
+<li>compare diff接口性能提升（大diff比较），**接口耗时减少50%**（5.5s降为2.7s）</li>
+<li>项目列表、tag列表等大数据量获取接口性能提升</li>
+</ol>
+<ul>
+<li><strong>其他</strong></li>
+</ul>
+<ol>
+<li>pg表存储优化，<strong>减少大表的存储空间</strong></li>
+<li>支持<strong>repo仓库增量备份</strong>，大幅减少备份耗时</li>
+<li>导入外部代码仓库的方式注入重大安全漏洞等修复</li>
+</ol>
+<ul>
+<li><h4 id="Gitlab版本升级主要工作"><a href="#Gitlab版本升级主要工作" class="headerlink" title="Gitlab版本升级主要工作"></a><strong>Gitlab版本升级主要工作</strong></h4></li>
+</ul>
+<p><strong>【难点与挑战】</strong></p>
+<ol>
+<li><strong>Gitlab社区</strong>连续小版本升级支持不停机（前提条件限制），<strong>跨版本升级必须要停机</strong></li>
+<li><strong>缺少行业参考和最佳实践指引</strong>，社区的<strong>帮助文档参考</strong>，<strong>不一定全面和适用</strong></li>
+<li><strong>我们的架构（高可用、多AZ部署）和自研代码改动</strong>与社区官方都<strong>有很大的差异，</strong>两面开花如何高效低成本的合并与适配兼容？</li>
+<li>每次版本升级都是一个庞大的工程，要投入大量的时间和精力去调研评估、环境准备、实践验证、回归测试、架构适配、自研改动兼容等等。</li>
+</ol>
+<p>gitlab版本升级并非简单的按照文档可一键升级，<strong>很多问题是没有相关文档或文档也发现不了的</strong>，需要因地制宜、大量实践验证（<strong>比如最近升级14.10两个pg数据库混部署导致升级失败问题</strong>）</p>
+<p>做了哪些工作？</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201159069.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>【价值和收益】</strong>：</p>
+<ol>
+<li><p>用于支撑gitlab版本升级，<strong>获得上述版本升级的收益价值</strong></p>
+</li>
+<li><p>同时自身工作提效，<strong>降低gitlab版本升级成本（时间和人力）50%</strong></p>
+</li>
+<li><p><strong>gitlab升级停机时间减少60%（150min降为60min），降低对用户和平台研发交付效率</strong>的影响。</p>
+</li>
+<li><ol>
+<li><strong>Gitlab自身数据</strong> ：<strong>500+&#x2F;min</strong>拉取代码次数、<strong>1~2&#x2F;min</strong>推送代码次数、API请求<strong>4000+&#x2F;min</strong>、<strong>QPM 6000+</strong> </li>
+<li><strong>CI-Pipeline影响</strong>：公司pipeline流水线执行次数110+&#x2F;min，每次升级即<strong>可避免1w多次流水线拉取代码失败</strong></li>
+</ol>
+</li>
+</ol>
+<p>注：以上数据为<strong>非工作日低峰期均值</strong> </p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201159234.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<table>
+<thead>
+<tr>
+<th><strong>时间</strong></th>
+<th><strong>目标版本</strong></th>
+<th><strong>停服不可用时长（分钟）</strong></th>
+<th><strong>操作时长（分钟）</strong></th>
+<th><strong>操作人力(人)</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>图示</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2020.12</td>
+<td>13.6</td>
+<td>30</td>
+<td>30</td>
+<td>2</td>
+<td><strong>逐步升高的原因：</strong>高可用架构复杂度，部署节点越来越多（36台服务器），笨办法、基本靠手动操作自研变更feature越来越多，代码复杂度提升使用数据量增加，升级DB迁移耗时长</td>
+<td><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201159445.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+</tr>
+<tr>
+<td>2021.5</td>
+<td>13.10</td>
+<td>60</td>
+<td>60</td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2021.8</td>
+<td>13.12</td>
+<td>90</td>
+<td>90</td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2022.4</td>
+<td>14.0.12</td>
+<td>150</td>
+<td>210</td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2022.7</td>
+<td>14.4.5</td>
+<td>120</td>
+<td>180</td>
+<td>1</td>
+<td><strong>开始下降的原因：1、准备工作、操作和验证实现自动化、流程化、并行化、可复用<br />2、灰度部署、降级预留升级部署方案</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>2022.11</td>
+<td>14.10.5</td>
+<td>60</td>
+<td>120</td>
+<td>1</td>
+<td>多AZ多机房部署，架构进一步复杂</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="2-Gitlab高可用与稳定性建设"><a href="#2-Gitlab高可用与稳定性建设" class="headerlink" title="2.Gitlab高可用与稳定性建设"></a><strong>2.Gitlab高可用与稳定性建设</strong></h2><p><strong>诉求或痛点？</strong></p>
+<ul>
+<li><p>多AZ建设，阻塞点：Gitlab对象存储不满足，不支持AZ逃生</p>
+</li>
+<li><p>依赖治理，降低三方依赖对gitlab稳定性影响</p>
+</li>
+<li><p>上线变更缺少规范化、流程化、标准化管控</p>
+</li>
+<li><p>缺少gitlab问题或故障标准快速处理流程，应急处理指导</p>
+</li>
+<li><p>Gitlab多环境建设不规范，不完整，缺少线上模拟环境和数据</p>
+</li>
+<li><h3 id="多AZ建设，依赖治理、降低三方依赖对gitlab稳定性影响"><a href="#多AZ建设，依赖治理、降低三方依赖对gitlab稳定性影响" class="headerlink" title="多AZ建设，依赖治理、降低三方依赖对gitlab稳定性影响"></a><strong>多AZ建设，依赖治理、降低三方依赖对gitlab稳定性影响</strong></h3></li>
+</ul>
+<ol>
+<li>对象存储迁移改造，由ceph s3迁移至blobstore。实现完成<strong>四种对象3.7TB数据</strong>的<strong>零停机</strong>、<strong>用户无感</strong>的迁移改造。<strong>对象存储依赖具备AZ逃生能力</strong>，降低依赖故障对gitlab影响</li>
+<li>LB负载均衡依赖改造，gitlab内部组件改造为使用域名替换IP直连LB方式，降低单点故障影响，提升故障自愈能力。（曾出现过LB变更影响导致gitlab故障）</li>
+</ol>
+<p><strong>【高可用成果举例】：</strong></p>
+<ul>
+<li><p>gitlab服务其中1台物理机故障（3次），机器宕机。gitlab服务10s自动检测故障节点并摘除。机器重启后服务自动恢复。故障造成影响单节点时长1min左右（冷启动时长）</p>
+</li>
+<li><h3 id="上线变更管控，故障处理SOP等流程化、标准化实现。降低变更风险，提升故障应急处理能力。"><a href="#上线变更管控，故障处理SOP等流程化、标准化实现。降低变更风险，提升故障应急处理能力。" class="headerlink" title="上线变更管控，故障处理SOP等流程化、标准化实现。降低变更风险，提升故障应急处理能力。"></a><strong>上线变更管控，故障处理SOP等流程化、标准化实现。降低变更风险，提升故障应急处理能力。</strong></h3></li>
+</ul>
+<p><strong>【价值与收益】：</strong>gitlab<strong>上线变更引起的故障数为0</strong></p>
+<hr>
+<h1 id="KDev命令行（15-）"><a href="#KDev命令行（15-）" class="headerlink" title="KDev命令行（15%）"></a><strong>KDev命令行（15%）</strong></h1><h2 id="OKR"><a href="#OKR" class="headerlink" title="OKR"></a><strong>OKR</strong></h2><p>（2022Q2）完善kdev命令行工具，支持较完整的从拉分支、commit、push到MR、提测等和kdev服务端交互功能，命令行工具支持完善灰度能力</p>
+<h2 id="完成情况"><a href="#完成情况" class="headerlink" title="完成情况"></a><strong>完成情况</strong></h2><ol>
+<li><p>功能需求方面，新增7个子命令，包括拉分支、mr等相关操作，交付了电商、移动端等使用方的多个需求。<a target="_blank" rel="noopener" href="https://docs.corp.kuaishou.com/d/home/fcADfTPfpKQFuP_KOarBFye8q">Kdev命令行使用文档</a></p>
+</li>
+<li><p>技术优化方面：</p>
+</li>
+<li><ol>
+<li>支持了二进制灰度发布能力，提高交付质量。</li>
+<li>改进了二进制升级方式，支持平滑升级，不再需要单独的升级步骤，提升用户体验。</li>
+<li>支持了命令行本地埋点日志及上报能力，用于了解命令行使用情况，问题诊断等方面。</li>
+<li>探索命令行自动补全（AutoComplete），支持了静态补全，动态补全方面还存在技术难点。</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201255212.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h1 id="Gitlab（80-）"><a href="#Gitlab（80-）" class="headerlink" title="Gitlab（80%）"></a><strong>Gitlab（80%）</strong></h1><h2 id="OKR-1"><a href="#OKR-1" class="headerlink" title="OKR"></a><strong>OKR</strong></h2><p>（2022Q2）问题定位与止损效率提升，目标单次问题15分钟内止损或恢复</p>
+<p>（2022Q3）建立完备的Gitlab周期冷备机制，后续压缩恢复时间到1小时以内</p>
+<p>（2022Q3）Gitlab双AZ建设，具备AZ逃生能力</p>
+<p>（2022Q4）检测自身可用性，并通过停止或者摘除入口，或者切换DNS等方式自动恢复</p>
+<p>（2022Q4）【愿景型】重构代码搜索功能，提升性能和体验</p>
+<h2 id="完成情况-1"><a href="#完成情况-1" class="headerlink" title="完成情况"></a><strong>完成情况</strong></h2><ol>
+<li><p>问题定位方面：<a target="_blank" rel="noopener" href="https://grafana.corp.kuaishou.com/d/vMlg_xUMk/gitlabjian-kong-da-pan?orgId=3">Gitlab监控大盘</a></p>
+</li>
+<li><p>首先尽量打通Gitlab内部各组件之间的correlation_id、username、client ip的传递。其次收集Gitlab日志到Clickhouse中，通过Clickhouse实现基于用户，仓库等粒度的监控及专项分析面板。对于常见类问题的定位（某个用户、仓库的突发大量调用、慢请求url提取）做到一眼看到，同时做了环比、同比分析，对于缓慢上升流量有预防监控的作用。<img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201257340.png" srcset="/img/loading.gif" lazyload alt="img"><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201256870.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li><p>补充e2e监控，从Gitlab集群外部进行拨测，对核心可用性进行监控，目前支持git clone、ssh连通性测试用例，后续待继续补充。</p>
+</li>
+<li><p>对错误日志分析，通过日志规则匹配，对于已经明确原因的错误日志，进行原因打标。目标对所有错误日志进行自动化判别，对于不能识别的错误日志发出报警。（能力建设基本完成，规则完善中）<img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201255887.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+</li>
+</ul>
+</li>
+<li><p>可用性提升方面：</p>
+</li>
+<li><p>已建立Gitlab冷备&amp;恢复机制，仓库数据支持仓库级别增量备份，整体恢复时间压缩到1小时以内。</p>
+<p>完成双AZ建设，支持整体，单组件AZ逃生能力，后续需要随着AZ2.0的推进，进一步规范物理机部署方式，避免逃生演练中故障域不清晰导致的无法逃生问题。<a target="_blank" rel="noopener" href="https://docs.corp.kuaishou.com/k/home/VMIVhPdD2nXg/fcACFqmSzxOt8ldxdMf3o0AVI">Gitlab跨AZ部署</a><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/out-20230105201255419.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>引入haproxy实现长连接限流与排队，达到削峰填谷的目的。</p>
+</li>
+<li><p>能力建设：</p>
+<ol>
+<li>实现Gitlab SMTP邮件代理服务，解决Gitlab邮件过多被限流，及sidekiq任务堆积问题。通过存储异步转发，分流发送等方式来解决，同时提供邮件通知转kim通知的能力，确保高优消息即使触达。<a target="_blank" rel="noopener" href="https://docs.corp.kuaishou.com/k/home/VIvYATzF6OoY/fcAADASM9OQmjAIrlmWrDq9Tt">gitlab smtp代理服务文档</a></li>
+<li>代码搜索：<a target="_blank" rel="noopener" href="https://docs.corp.kuaishou.com/k/home/VXvb_Vt1mavU/fcADdbJpRNtvpOhpOwJ-TODUA">Code Search</a><ol>
+<li>基于zoekt建立新的代码搜索服务，提供全量仓库代码快速搜索，时间上由当前版本的代码搜索的分钟级降到秒级，同时可以支持仓库粒度索引的即时更新，不再需要定期进行长达几个小时的重启以更新索引。（未上线）</li>
+<li>探索Gitlab Advanced Search（收费功能）自研改造，基于ES实现代码、issue、mr、评论等信息的实时秒级搜索（进行中）。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="SVN（5-）"><a href="#SVN（5-）" class="headerlink" title="SVN（5%）"></a><strong>SVN（5%）</strong></h1><h2 id="OKR-2"><a href="#OKR-2" class="headerlink" title="OKR"></a><strong>OKR</strong></h2><p>（2022Q3）建立完备的SVN周期冷备机制</p>
+<p>（2022Q4）完成SVN双AZ建设，具备AZ逃生能力</p>
+<h2 id="完成情况-2"><a href="#完成情况-2" class="headerlink" title="完成情况"></a><strong>完成情况</strong></h2><ol>
+<li>已建立SVN冷备&amp;恢复机制，整体恢复时间压缩到30分钟以内。</li>
+<li>完成SVN双AZ建设，由于SVN无服务自身限制，无法自动逃生需要手动操作，逃生时间在10分钟以内。</li>
+</ol>
+<h1 id="总结思考"><a href="#总结思考" class="headerlink" title="总结思考"></a><strong>总结思考</strong></h1><p>个别OKR完成情况不好。比如Gitlab的“单次问题15分钟内止损或恢复”：</p>
+<p>1、对目标思考的不够深入。想到的解决方案比较片面，初期认为监控做全就可以缩短故障定位止损时间，于是不停地在加监控，grafana上的图表接近上百，结果真的出现问题的时候看不过来，需要某个指标的时候也找不到，并且还是会发现有些监控缺失，然后继续加监控，整体收效甚微。</p>
+<p>2、缺乏对目标拆解，没有设立阶段性目标。这个目标不是一蹴而就的，需要一步步实现甚至长期演进。应该合理的划分阶段，定立里程碑，先达到什么效果，再做到什么程度，优先解决优先级较高的问题子域。</p>
+<p>3、没有考虑指标量化。既然目标中本身就有量化数据，在开始之前就应该搞清楚当前处理时间是多久，每完成一阶段的工作，提升了多少，都应该有体现。无法实现量化的结果就是，可能做了很多工作，却连自己都不知道到底有没有起到正向作用，最后也不知道到底是否达成目标。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/" class="category-chain-item">个人成长</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/" class="category-chain-item">工作领域</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/">#工作领域</a>
+      
+        <a href="/tags/gitlab/">#gitlab</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>gitlab 高可用</div>
+      <div>http://coder-xieshijie.cn/2023/07/10/个人成长/工作领域汇总/gitlab-高可用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年7月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/07/11/Spring/spring%E5%BD%93%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/" title="spring当中的事务">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">spring当中的事务</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/07/10/Spring/spring%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/" title="spring如何解决循环依赖">
+                        <span class="hidden-mobile">spring如何解决循环依赖</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

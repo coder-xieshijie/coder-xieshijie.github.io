@@ -1,0 +1,973 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="为Java加入生成器(Generator)特性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为Java加入生成器(Generator)特性">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/06/07/java/java%E5%9F%BA%E7%A1%80/%E4%B8%BAJava%E5%8A%A0%E5%85%A5%E7%94%9F%E6%88%90%E5%99%A8-Generator-%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="为Java加入生成器(Generator)特性">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-07T11:46:40.000Z">
+<meta property="article:modified_time" content="2023-06-07T11:46:40.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>为Java加入生成器(Generator)特性 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="为Java加入生成器(Generator)特性"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-07 19:46" pubdate>
+          2023年6月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          76 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Java"
+        id="heading-d52387880e1ea22817a72d3759213819" role="tab" data-toggle="collapse" href="#collapse-d52387880e1ea22817a72d3759213819"
+        aria-expanded="true"
+      >
+        Java
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-d52387880e1ea22817a72d3759213819"
+           role="tabpanel" aria-labelledby="heading-d52387880e1ea22817a72d3759213819">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="JVM"
+        id="heading-18b5a217c4dad25662d3a05edb0e39d7" role="tab" data-toggle="collapse" href="#collapse-18b5a217c4dad25662d3a05edb0e39d7"
+        aria-expanded="false"
+      >
+        JVM
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-18b5a217c4dad25662d3a05edb0e39d7"
+           role="tabpanel" aria-labelledby="heading-18b5a217c4dad25662d3a05edb0e39d7">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/08/02/java/java%E5%9F%BA%E7%A1%80/JVM-sandbox%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/" title="JVM sandbox原理和应用"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">JVM sandbox原理和应用</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Java基础"
+        id="heading-7568dca428fd0648065e01eb4396e97b" role="tab" data-toggle="collapse" href="#collapse-7568dca428fd0648065e01eb4396e97b"
+        aria-expanded="true"
+      >
+        Java基础
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-7568dca428fd0648065e01eb4396e97b"
+           role="tabpanel" aria-labelledby="heading-7568dca428fd0648065e01eb4396e97b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/06/07/java/java%E5%9F%BA%E7%A1%80/%E4%B8%BAJava%E5%8A%A0%E5%85%A5%E7%94%9F%E6%88%90%E5%99%A8-Generator-%E7%89%B9%E6%80%A7/" title="为Java加入生成器(Generator)特性"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">为Java加入生成器(Generator)特性</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">为Java加入生成器(Generator)特性</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一种全新的设计模式，数学美感与工程实用价值兼备，且不限编程语言。本文将以Java为样例，从无到有实现出完整的流式API，引入生成器特性，并介绍诸多应用场景。</p>
+<p>这篇文章不是工具推荐，也不是应用案例分享。其主题思想，是介绍<strong>一种全新的设计模式</strong>。它既拥有抽象的数学美感，仅仅从一个简单接口出发，就能推演出庞大的特性集合，引出许多全新概念。同时也有扎实的工程实用价值，由其实现的工具，性能均可显著超过同类的头部开源产品。</p>
+<p>这一设计模式并非因Java而生，而是诞生于一个十分简陋的脚本语言。它对语言特性的要求非常之低，因而其价值对众多现代编程语言都是普适的。</p>
+<h3 id="关于Stream"><a href="#关于Stream" class="headerlink" title="关于Stream"></a>关于Stream</h3><p>首先大概回顾下Java里传统的流式API。自Java8引入lambda表达式和Stream以来，Java的开发便捷性有了质的飞跃，Stream在复杂业务逻辑的处理上让人效率倍增，是每一位Java开发者都应该掌握的基础技能。但排除掉parallelStream也即并发流之外，它其实并不是一个好的设计。</p>
+<p>第一，封装过重，实现过于复杂，源码极其难读。我能理解这或许是为了兼容并发流所做的妥协，但毕竟耦合太深，显得艰深晦涩。每一位初学者被源码吓到之后，想必都会产生流是一种十分高级且实现复杂的特性的印象。实际上并不是这样，<strong>流其实可以用非常简单的方式构建</strong>。</p>
+<p>第二、API过于冗长。冗长体现在stream.collect这一部分，作为对比，Kotlin提供的toList&#x2F;toSet&#x2F;associate(toMap)等等丰富操作是可以直接作用在流上的。Java直到16才抠抠索索加进来一个Stream可以直接调用的toList，他们甚至不肯把toSet&#x2F;toMap一起加上。</p>
+<p>第三、API功能简陋。对于链式操作，在最初的Java8里只有map&#x2F;filter&#x2F;skip&#x2F;limit&#x2F;peek&#x2F;distinct&#x2F;sorted这七个，Java9又加上了takeWhile&#x2F;dropWhile。然而在Kotlin中，除了这几个之外人还有许多额外的实用功能，</p>
+<p>例如：</p>
+<p>mapIndexed, mapNotNull, filterIndexed, filterNotNull, onEachIndexed, distinctBy, sortedBy, sortedWith, zip, zipWithNext等等，翻倍了不止。这些东西实现起来并不复杂，就是个顺手的事，但对于用户而言有和没有的体验差异可谓巨大。</p>
+<p>在这篇文章里，我将提出一种全新的机制用于构建流。这个机制极其简单，任何能看懂lambda表达式(闭包)的同学都能亲手实现，<strong>任何支持闭包的编程语言都能利用该机制实现自己的流</strong>。也正是由于这个机制足够简单，所以开发者可以以相当低的成本撸出大量的实用API，使用体验甩开Stream两条街不是问题。</p>
+<h3 id="关于生成器"><a href="#关于生成器" class="headerlink" title="关于生成器"></a>关于生成器</h3><p>生成器(Generator)[1]是许多现代编程语言里一个广受好评的重要特性，在Python&#x2F;Kotlin&#x2F;C#&#x2F;Javascript等等语言中均有直接支持。它的核心API就是一个yield关键字(或者方法)。有了生成器之后，无论是iterable&#x2F;iterator，还是一段乱七八糟的闭包，都可以直接映射为一个流。举个例子，假设你想实现一个下划线字符串转驼峰的方法，在Python里你可以利用生成器这么玩</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">underscore_to_camelcase</span>(<span class="hljs-params">s</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">camelcase</span>():<br>        <span class="hljs-keyword">yield</span> <span class="hljs-built_in">str</span>.lower<br>        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>            <span class="hljs-keyword">yield</span> <span class="hljs-built_in">str</span>.capitalize<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(f(sub) <span class="hljs-keyword">for</span> sub, f <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(s.split(<span class="hljs-string">&#x27;_&#x27;</span>), camelcase()))<br></code></pre></td></tr></table></figure>
+
+<p>这短短几行代码可以说处处体现出了Python生成器的巧妙。首先，camelcase方法里出现了yield关键字，解释器就会将其看作是一个生成器，这个生成器会首先提供一个lower函数，然后提供无数的capitalize函数。由于生成器的执行始终是lazy的，所以用while true的方式生成无限流是十分常见的手段，不会有性能或者内存上的浪费。其次，Python里的流是可以和list一起进行zip的，有限的list和无限的流zip到一起，list结束了流自然也会结束。这段代码中，末尾那行join()括号里的东西，Python称之为生成器推导(Generator Comprehension)[2]，其本质上依然是一个流，一个zip流被map之后的string流，最终通过join方法聚合为一个string。</p>
+<p>以上代码里的操作， 在任何支持生成器的语言里都可以轻易完成，但是在Java里你恐怕连想都不敢想。Java有史以来，无论是历久弥新的Java8，还是最新的引入了Project Loom[3]的OpenJDK19，连协程都有了，依然没有直接支持生成器。</p>
+<p>本质上，生成器的实现要依赖于continuation[4]的挂起和恢复，所谓continuation可以直观理解为程序执行到指定位置后的断点，协程就是指在这个函数的断点挂起后跳到另一个函数的某个断点继续执行，而不会阻塞线程，生成器亦如是。Python通过栈帧的保存与恢复实现函数重入以及生成器[5]，Kotlin在编译阶段利用CPS(Continuation Passing Style)[6]技术对字节码进行了变换，从而在JVM上模拟了协程[7]。其他的语言要么大体如此，要么有更直接的支持。</p>
+<p>那么，有没有一种办法，可以在没有协程的Java里，实现或者至少模拟出一个yield关键字，从而动态且高性能地创建流呢。答案是，有。</p>
+<h2 id="流式API"><a href="#流式API" class="headerlink" title="流式API"></a>流式API</h2><p>Java里的流叫Stream，Kotlin里的流叫Sequence。我实在想不出更好的名字了，想叫Flow又被用了，简单起见姑且叫Seq。</p>
+<h3 id="概念定义"><a href="#概念定义" class="headerlink" title="概念定义"></a>概念定义</h3><p>首先给出Seq的接口定义</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Seq</span>&lt;T&gt; &#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">consume</span><span class="hljs-params">(Consumer&lt;T&gt; consumer)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>它本质上就是一个consumer of consumer，其真实含义我后边会讲。这个接口看似抽象，实则非常常见，java.lang.Iterable天然自带了这个接口，那就是大家耳熟能详的forEach。利用方法推导，我们可以写出第一个Seq的实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Integer&gt; list = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);<br>Seq&lt;Integer&gt; seq = list::forEach;<br></code></pre></td></tr></table></figure>
+
+<p>可以看到，在这个例子里<strong>consume和forEach是完全等价的</strong>，事实上这个接口我最早就是用forEach命名的，几轮迭代之后才改成含义更准确的consume。</p>
+<p>利用单方法接口在Java里会自动识别为FunctionalInteraface这一伟大特性，我们也可以用一个简单的lambda表达式来构造流，比如只有一个元素的流。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> &lt;T&gt; Seq&lt;T&gt; <span class="hljs-title function_">unit</span><span class="hljs-params">(T t)</span> &#123;<br>    <span class="hljs-keyword">return</span> c -&gt; c.accept(t);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个方法在数学上很重要（实操上其实用的不多），它定义了Seq这个泛型类型的单位元操作，即T -&gt; Seq&lt;T&gt;的映射。</p>
+<h3 id="map与flatMap"><a href="#map与flatMap" class="headerlink" title="map与flatMap"></a>map与flatMap</h3><p><strong>map</strong></p>
+<p>从forEach的直观角度出发，我们很容易写出map[8]，将类型为T的流，转换为类型为E的流，也即根据函数T -&gt; E得到Seq&lt;T&gt; -&gt; Seq&lt;E&gt;的映射。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">default</span> &lt;E&gt; Seq&lt;E&gt; <span class="hljs-title function_">map</span><span class="hljs-params">(Function&lt;T, E&gt; function)</span> &#123;<br>  <span class="hljs-keyword">return</span> c -&gt; consume(t -&gt; c.accept(function.apply(t)));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>flatMap</strong></p>
+<p>同理，可以继续写出flatMap，即将每个元素展开为一个流之后再合并。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">default</span> &lt;E&gt; Seq&lt;E&gt; <span class="hljs-title function_">flatMap</span><span class="hljs-params">(Function&lt;T, Seq&lt;E&gt;&gt; function)</span> &#123;<br>    <span class="hljs-keyword">return</span> c -&gt; consume(t -&gt; function.apply(t).consume(c));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>大家可以自己在IDEA里写写这两个方法，结合智能提示，写起来其实非常方便。如果你觉得理解起来不太直观，就把Seq看作是List，把consume看作是forEach就好。</p>
+<h3 id="filter与take-drop"><a href="#filter与take-drop" class="headerlink" title="filter与take&#x2F;drop"></a>filter与take&#x2F;drop</h3><p>map与flatMap提供了流的映射与组合能力，流还有几个核心能力：元素过滤与中断控制。</p>
+<p><strong>filter</strong></p>
+<p>过滤元素，实现起来也很简单</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">default</span> Seq&lt;T&gt; <span class="hljs-title function_">filter</span><span class="hljs-params">(Predicate&lt;T&gt; predicate)</span> &#123;<br>    <span class="hljs-keyword">return</span> c -&gt; consume(t -&gt; &#123;<br>        <span class="hljs-keyword">if</span> (predicate.test(t)) &#123;<br>            c.accept(t);<br>        &#125;<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>take</strong></p>
+<p>流的中断控制有很多场景，take是最常见的场景之一，即获取前n个元素，后面的不要——等价于Stream.limit。</p>
+<p>由于Seq并不依赖iterator，所以必须通过异常实现中断。为此需要构建一个全局单例的专用异常，同时取消这个异常对调用栈的捕获，以减少性能开销（由于是全局单例，不取消也没关系）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StopException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">RuntimeException</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">StopException</span> <span class="hljs-variable">INSTANCE</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StopException</span>();<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> Throwable <span class="hljs-title function_">fillInStackTrace</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>以及相应的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> &lt;T&gt; T <span class="hljs-title function_">stop</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">throw</span> StopException.INSTANCE;<br>&#125;<br><br><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">consumeTillStop</span><span class="hljs-params">(C consumer)</span> &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        consume(consumer);<br>    &#125; <span class="hljs-keyword">catch</span> (StopException ignore) &#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后就可以实现take了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">default</span> Seq&lt;T&gt; <span class="hljs-title function_">take</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> &#123;<br>    <span class="hljs-keyword">return</span> c -&gt; &#123;<br>        <span class="hljs-type">int</span>[] i = &#123;n&#125;;<br>        consumeTillStop(t -&gt; &#123;<br>            <span class="hljs-keyword">if</span> (i[<span class="hljs-number">0</span>]-- &gt; <span class="hljs-number">0</span>) &#123;<br>                c.accept(t);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                stop();<br>            &#125;<br>        &#125;);<br>    &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>drop</strong></p>
+<p>drop是与take对应的概念，丢弃前n个元素——等价于Stream.skip。它并不涉及流的中断控制，反而更像是filter的变种，一种带有状态的filter。观察它和上面take的实现细节，内部随着流的迭代，存在一个计数器在不断刷新状态，但这个计数器并不能为外界感知。这里其实已经能体现出流的干净特性，它哪怕携带了状态，也丝毫不会外露。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">default</span> Seq&lt;T&gt; <span class="hljs-title function_">drop</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> &#123;<br>    <span class="hljs-keyword">return</span> c -&gt; &#123;<br>        <span class="hljs-type">int</span>[] a = &#123;n - <span class="hljs-number">1</span>&#125;;<br>        consume(t -&gt; &#123;<br>            <span class="hljs-keyword">if</span> (a[<span class="hljs-number">0</span>] &lt; <span class="hljs-number">0</span>) &#123;<br>                c.accept(t);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                a[<span class="hljs-number">0</span>]--;<br>            &#125;<br>        &#125;);<br>    &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="onEach"><a href="#onEach" class="headerlink" title="onEach"></a>onEach</h3><p>对流的某个元素添加一个操作consumer，但是不执行流——对应Stream.peek。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">default</span> Seq&lt;T&gt; <span class="hljs-title function_">onEach</span><span class="hljs-params">(Consumer&lt;T&gt; consumer)</span> &#123;<br>    <span class="hljs-keyword">return</span> c -&gt; consume(consumer.andThen(c));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h3><p>流与一个iterable元素两两聚合，然后转换为一个新的流——在Stream里没有对应，但在Python里有同名实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">default</span> &lt;E, R&gt; Seq&lt;R&gt; <span class="hljs-title function_">zip</span><span class="hljs-params">(Iterable&lt;E&gt; iterable, BiFunction&lt;T, E, R&gt; function)</span> &#123;<br>    <span class="hljs-keyword">return</span> c -&gt; &#123;<br>        Iterator&lt;E&gt; iterator = iterable.iterator();<br>        consumeTillStop(t -&gt; &#123;<br>            <span class="hljs-keyword">if</span> (iterator.hasNext()) &#123;<br>                c.accept(function.apply(t, iterator.next()));<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                stop();<br>            &#125;<br>        &#125;);<br>    &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="终端操作"><a href="#终端操作" class="headerlink" title="终端操作"></a>终端操作</h3><p>上面实现的几个方法都是流的链式API，它们将一个流映射为另一个流，但流本身依然是lazy或者说尚未真正执行的。真正执行这个流需要使用所谓终端操作，对流进行消费或者聚合。在Stream里，消费就是forEach，聚合就是Collector。对于Collector，其实也可以有更好的设计，这里就不展开了。不过为了示例，可以先简单快速实现一个join。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">default</span> String <span class="hljs-title function_">join</span><span class="hljs-params">(String sep)</span> &#123;<br>    <span class="hljs-type">StringJoiner</span> <span class="hljs-variable">joiner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringJoiner</span>(sep);<br>    consume(t -&gt; joiner.add(t.toString()));<br>    <span class="hljs-keyword">return</span> joiner.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>以及toList。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">default</span> List&lt;T&gt; <span class="hljs-title function_">toList</span><span class="hljs-params">()</span> &#123;<br>    List&lt;T&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    consume(list::add);<br>    <span class="hljs-keyword">return</span> list;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>至此为止，我们仅仅只用几十行代码，就实现出了一个五脏俱全的流式API。在大部分情况下，这些API已经能覆盖百分之八九十的使用场景。你完全可以依样画葫芦，在其他编程语言里照着玩一玩，比如Go(笑)。</p>
+<h2 id="生成器的推导"><a href="#生成器的推导" class="headerlink" title="生成器的推导"></a>生成器的推导</h2><p>本文虽然从标题开始就在讲生成器，甚至毫不夸张的说生成器才是最核心的特性，但等到把几个核心的流式API写完了，依然没有解释生成器到底是咋回事——其实倒也不是我在卖关子，你只要仔细观察一下，生成器早在最开始讲到Iterable天生就是Seq的时候，就已经出现了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Integer&gt; list = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);<br>Seq&lt;Integer&gt; seq = list::forEach;<br></code></pre></td></tr></table></figure>
+
+<p>没看出来？那把这个方法推导改写为普通lambda函数，有</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">Seq&lt;Integer&gt; seq = c -&gt; list.forEach(c);<br></code></pre></td></tr></table></figure>
+
+<p>再进一步，把这个forEach替换为更传统的for循环，有</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plain">Seq&lt;Integer&gt; seq = c -&gt; &#123;<br>    for (Integer i : list) &#123;<br>        c.accept(i);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>由于已知这个list就是[1, 2, 3]，所以以上代码可以进一步等价写为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plain">Seq&lt;Integer&gt; seq = c -&gt; &#123;<br>    c.accept(1);<br>    c.accept(2);<br>    c.accept(3);<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>是不是有点眼熟？不妨看看Python里类似的东西长啥样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plain">def seq():<br>    yield 1<br>    yield 2<br>    yield 3<br></code></pre></td></tr></table></figure>
+
+<p>二者相对比，形式几乎可以说一模一样——这其实就已经是生成器了，这段代码里的accept就扮演了yield的角色，consume这个接口之所以取这个名字，含义就是指它是一个消费操作，所有的终端操作都是基于这个消费操作实现的。功能上看，它完全等价于Iterable的forEach，之所以又不直接叫forEach，是因为<strong>它的元素并不是本身自带的，而是通过闭包内的代码块临时生成的</strong>。</p>
+<p>这种生成器，并非传统意义上利用continuation挂起的生成器，而是利用闭包来捕获代码块里临时生成的元素，哪怕没有挂起，也能高度模拟传统生成器的用法和特性。其实上文所有链式API的实现，本质上也都是生成器，只不过生成的元素来自于原始的流罢了。</p>
+<p>有了生成器，我们就可以把前文提到的下划线转驼峰的操作用Java也依样画葫芦写出来了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> String <span class="hljs-title function_">underscoreToCamel</span><span class="hljs-params">(String str)</span> &#123;<br>    <span class="hljs-comment">// Java没有首字母大写方法，随便现写一个</span><br>    UnaryOperator&lt;String&gt; capitalize = s -&gt; s.substring(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).toUpperCase() + s.substring(<span class="hljs-number">1</span>).toLowerCase();<br>     <span class="hljs-comment">// 利用生成器构造一个方法的流</span><br>    Seq&lt;UnaryOperator&lt;String&gt;&gt; seq = c -&gt; &#123;<br>        <span class="hljs-comment">// yield第一个小写函数</span><br>        c.accept(String::toLowerCase);<br>        <span class="hljs-comment">// 这里IDEA会告警，提示死循环风险，无视即可</span><br>        <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>            <span class="hljs-comment">// 按需yield首字母大写函数</span><br>            c.accept(capitalize);<br>        &#125;<br>    &#125;;<br>    List&lt;String&gt; split = Arrays.asList(str.split(<span class="hljs-string">&quot;_&quot;</span>));<br>    <span class="hljs-comment">// 这里的zip和join都在上文给出了实现</span><br>    <span class="hljs-keyword">return</span> seq.zip(split, (f, sub) -&gt; f.apply(sub)).join(<span class="hljs-string">&quot;&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>大家可以把这几段代码拷下来跑一跑，看它是不是真的实现了其目标功能。</p>
+<p><strong>生成器的本质</strong></p>
+<p>虽然已经推导出了生成器，但似乎还是有点摸不着头脑，这中间到底发生了什么，死循环是咋跳出的，怎么就能生成元素了。为了进一步解释，这里再举一个大家熟悉的例子。</p>
+<h3 id="生产者-消费者模式"><a href="#生产者-消费者模式" class="headerlink" title="生产者-消费者模式"></a>生产者-消费者模式</h3><p>生产者与消费者的关系不止出现在多线程或者协程语境下，在单线程里也有一些经典场景。比如A和B两名同学合作一个项目，分别开发两个模块：A负责产出数据，B负责使用数据。A不关心B怎么处理数据，可能要先过滤一些，进行聚合后再做计算，也可能是写到某个本地或者远程的存储；B自然也不关心A的数据是怎么来的。这里边唯一的问题在于，数据条数实在是太多了，内存一次性放不下。在这种情况下，传统的做法是让A提供一个带回调函数consumer的接口，B在调用A的时候传入一个具体的consumer。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">produce</span><span class="hljs-params">(Consumer&lt;String&gt; callback)</span> &#123;<br>    <span class="hljs-comment">// do something that produce strings</span><br>    <span class="hljs-comment">// then use the callback consumer to eat them</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这种基于回调函数的交互方式实在是过于经典了，原本没啥可多说的。但是在已经有了生成器之后，我们不妨胆子放大一点稍微做一下改造：仔细观察上面这个produce接口，它输入一个consumer，返回void——咦，所以它其实也是一个Seq嘛！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">Seq&lt;String&gt; producer = this::produce;<br></code></pre></td></tr></table></figure>
+
+<p>接下来，我们只需要稍微调整下代码，就能对这个原本基于回调函数的接口进行一次升级，将它变成一个生成器。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plain">public Seq&lt;String&gt; produce() &#123;<br>    return c -&gt; &#123;<br>        // still do something that produce strings<br>        // then use the callback consumer to eat them<br>    &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>基于这一层抽象，作为生产者的A和作为消费者的B就真正做到完全的、彻底的解耦了。A只需要把数据生产过程放到生成器的闭包里，期间涉及到的所有副作用，例如IO操作等，都被这个闭包完全隔离了。B则直接拿到一个干干净净的流，他不需要关心流的内部细节，当然想关心也关心不了，他只用专注于自己想做的事情即可。</p>
+<p>更重要的是，A和B虽然在操作逻辑上完全解耦，互相不可见，<strong>但在CPU调度时间上它们却是彼此交错的</strong>，B甚至还能直接阻塞、中断A的生产流程——可以说没有协程，胜似协程。</p>
+<p>至此，我们终于成功发现了<strong>Seq作为生成器的真正本质：consumer of callback</strong>。明明是一个回调函数的消费者，摇身一变就成了生产者，实在是有点奇妙。不过仔细一想倒也合理：能够满足消费者需求(callback)的家伙，不管这需求有多么奇怪，可不就是生产者么。</p>
+<p>容易发现，基于callback机制的生成器，其调用开销完全就只有生成器闭包内部那堆代码块的执行开销，加上一点点微不足道的闭包创建开销。在诸多涉及到流式计算与控制的业务场景里，这将带来极为显著的内存与性能优势。后面我会给出展现其性能优势的具体场景实例。</p>
+<p>另外，观察这段改造代码，会发现produce输出的东西，根本就还是个函数，没有任何数据被真正执行和产出。这就是生成器作为一个匿名接口的天生优势：<strong>惰性计算</strong>——消费者看似得到了整个流，实际那只是一张爱的号码牌，可以涂写，可以废弃，但只有在拿着货真价实的callback去兑换的那一刻，才会真正的执行流。</p>
+<blockquote>
+<p>生成器的本质，正是人类本质的反面：鸽子克星——没有任何人可以鸽它</p>
+</blockquote>
+<p>引自：</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/v-HMKBWxtz1iakxFL09PDw">一种新的流：为Java加入生成器(Generator)特性</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/Java%E5%9F%BA%E7%A1%80/" class="category-chain-item">Java基础</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>为Java加入生成器(Generator)特性</div>
+      <div>http://coder-xieshijie.cn/2023/06/07/java/java基础/为Java加入生成器-Generator-特性/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/06/07/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%B8%B8%E7%94%A8sql%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/" title="常用sql命令整理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">常用sql命令整理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/06/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81/" title="数据库锁">
+                        <span class="hidden-mobile">数据库锁</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

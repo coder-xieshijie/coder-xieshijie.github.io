@@ -1,0 +1,1161 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一些索引的基本概念">
+<meta property="og:type" content="article">
+<meta property="og:title" content="索引的记账本">
+<meta property="og:url" content="http://coder-xieshijie.cn/2022/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E7%B4%A2%E5%BC%95%E7%9A%84%E8%AE%B0%E8%B4%A6%E6%9C%AC/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="一些索引的基本概念">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%B4%A2%E5%BC%95%E8%AE%B0%E8%B4%A6%E6%9C%AC/%E7%B4%A2%E5%BC%95%E8%AE%B0%E8%B4%A6%E6%9C%AC-1.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%B4%A2%E5%BC%95%E8%AE%B0%E8%B4%A6%E6%9C%AC/%E7%B4%A2%E5%BC%95%E8%AE%B0%E8%B4%A6%E6%9C%AC-2.png">
+<meta property="article:published_time" content="2022-11-13T10:32:59.000Z">
+<meta property="article:modified_time" content="2023-07-26T09:42:17.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%B4%A2%E5%BC%95%E8%AE%B0%E8%B4%A6%E6%9C%AC/%E7%B4%A2%E5%BC%95%E8%AE%B0%E8%B4%A6%E6%9C%AC-1.png">
+  
+  
+  
+  <title>索引的记账本 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="索引的记账本"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-13 18:32" pubdate>
+          2022年11月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="数据库"
+        id="heading-68051bf4aa2743b030984b694628ee9c" role="tab" data-toggle="collapse" href="#collapse-68051bf4aa2743b030984b694628ee9c"
+        aria-expanded="true"
+      >
+        数据库
+        <span class="list-group-count">(11)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-68051bf4aa2743b030984b694628ee9c"
+           role="tabpanel" aria-labelledby="heading-68051bf4aa2743b030984b694628ee9c">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="MySQL"
+        id="heading-62a004b95946bb97541afa471dcca73a" role="tab" data-toggle="collapse" href="#collapse-62a004b95946bb97541afa471dcca73a"
+        aria-expanded="true"
+      >
+        MySQL
+        <span class="list-group-count">(8)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-62a004b95946bb97541afa471dcca73a"
+           role="tabpanel" aria-labelledby="heading-62a004b95946bb97541afa471dcca73a">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/21/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL-%E4%B8%AD%E7%9A%84-distinct-%E5%92%8C-group-by-%E5%93%AA%E4%B8%AA%E6%95%88%E7%8E%87%E6%9B%B4%E9%AB%98%EF%BC%9F/" title="MySQL 中的 distinct 和 group by 哪个效率更高？"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">MySQL 中的 distinct 和 group by 哪个效率更高？</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/26/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/mysql%E7%9A%84explain%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" title="mysql的explain关键字使用说明"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">mysql的explain关键字使用说明</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/24/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/sql%E8%AF%AD%E5%8F%A5%E5%90%84%E4%B8%AA%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/" title="sql语句各个关键字的执行顺序"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">sql语句各个关键字的执行顺序</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/20/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%A4%8D%E6%9D%82%E6%9F%A5%E8%AF%A2sql%E6%95%B4%E7%90%86/" title="复杂查询sql整理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">复杂查询sql整理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/06/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%AE%9E%E9%99%85%E5%88%86%E6%9E%90Mysql%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/" title="实际分析Mysql死锁问题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">实际分析Mysql死锁问题</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/07/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E5%B8%B8%E7%94%A8sql%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/" title="常用sql命令整理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">常用sql命令整理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/06/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%81/" title="数据库锁"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">数据库锁</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E7%B4%A2%E5%BC%95%E7%9A%84%E8%AE%B0%E8%B4%A6%E6%9C%AC/" title="索引的记账本"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">索引的记账本</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="es"
+        id="heading-12470fe406d44017d96eab37dd65fc14" role="tab" data-toggle="collapse" href="#collapse-12470fe406d44017d96eab37dd65fc14"
+        aria-expanded="false"
+      >
+        es
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-12470fe406d44017d96eab37dd65fc14"
+           role="tabpanel" aria-labelledby="heading-12470fe406d44017d96eab37dd65fc14">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/08/29/%E6%95%B0%E6%8D%AE%E5%BA%93/elasticsearch-%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/" title="elasticsearch 概念介绍"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">elasticsearch 概念介绍</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="redis"
+        id="heading-86a1b907d54bf7010394bf316e183e67" role="tab" data-toggle="collapse" href="#collapse-86a1b907d54bf7010394bf316e183e67"
+        aria-expanded="false"
+      >
+        redis
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-86a1b907d54bf7010394bf316e183e67"
+           role="tabpanel" aria-labelledby="heading-86a1b907d54bf7010394bf316e183e67">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/22/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis-key%E5%80%BC%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%88%B0value/" title="redis key值如何定位到value"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">redis key值如何定位到value</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/06/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis%E5%92%8Cmysql%E7%9A%84%E5%8F%8C%E5%86%99%E9%97%AE%E9%A2%98/" title="redis和mysql的双写问题"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">redis和mysql的双写问题</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">索引的记账本</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年7月26日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <hr>
+<ul>
+<li>建立（a,b,c）索引</li>
+<li>a&#x3D;xxx,b&#x3D;xxx,c&#x3D;xxx 走（a,b,c）索引</li>
+<li>a&#x3D;xxx,c&#x3D;xxx,b&#x3D;xxx 走（a,b,c）索引，这种情况数据库会自动优化成联合索引</li>
+<li>a&#x3D;xxx,c&#x3D;xxx 走的是a索引</li>
+<li>a&#x3D;xxx,b!&#x3D;xxx 走的是a索引</li>
+<li>a&#x3D;xxx,b&lt;xxx,c&#x3D;xxx 走的是(a,b)索引，会在&lt;停止</li>
+<li>a&#x3D;xxx,order by b 走的是a索引，因为联合索引（a,b,c）是先排序a，在排序b，在排序c，而先排序b显然是不行的</li>
+<li>a&#x3D;xxx or d&#x3D;xxx ,不走索引</li>
+<li>a&#x3D;xxx and d&#x3D;xxx 只有a索引</li>
+<li>a&lt;xxx, 可能走a索引，也可能不走a索引，具体要看记录中符合<code>a&lt;xxx</code>的数量，如果符合的数量很多，那么优化器就会认为此时走索引的价值不大，会进行全表扫描，如果符合的数量很少，那么优化器会任务走索引的更快，从而走索引。这和<code>a=xxx,b&lt;xxx</code>走(a, b)索引并不冲突，因为先走a导致大部分数据已经被剔除了，索引此时走b索引是有价值的</li>
+</ul>
+<p>补充：如何看联合索引走的那几个所以，只要通过explain看一下key_len字段就可以了</p>
+<hr>
+<blockquote>
+<p><strong>核心概念</strong></p>
+</blockquote>
+<ul>
+<li><strong>主键索引&#x2F;二级索引</strong></li>
+<li><strong>聚簇索引&#x2F;非聚簇索引</strong></li>
+<li><strong>回表&#x2F;索引覆盖</strong></li>
+<li><strong>索引下推</strong></li>
+<li><strong>联合索引&#x2F;最左联合匹配</strong></li>
+<li><strong>前缀索引</strong></li>
+</ul>
+<h2 id="一、-索引定义"><a href="#一、-索引定义" class="headerlink" title="一、[索引定义]"></a>一、[索引定义]</h2><blockquote>
+<p><strong>1.索引定义</strong></p>
+</blockquote>
+<p>在数据之外，数据库系统还维护着<strong>满足特定查找算法的数据结构</strong>，这些数据结构以<strong>某种方式引用（指向）数据</strong>，这样就可以在这些数据结构上实现高级查找算法。<strong>这种数据结构，就是索引。</strong></p>
+<blockquote>
+<p><strong>2.索引的数据结构</strong></p>
+</blockquote>
+<ul>
+<li>B树 &#x2F; B+树 (mysql的innodb引擎默认选择B+树作为索引的数据结构)</li>
+<li>HASH表</li>
+<li>有序数组</li>
+</ul>
+<blockquote>
+<p><strong>3.选用B+树而不选用B树作为索引</strong></p>
+</blockquote>
+<ul>
+<li>B树的数据结构：record记录存放在树的节点中</li>
+<li>B+树的数据结构: record记录只存放在树的叶子节点中</li>
+</ul>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%B4%A2%E5%BC%95%E8%AE%B0%E8%B4%A6%E6%9C%AC/%E7%B4%A2%E5%BC%95%E8%AE%B0%E8%B4%A6%E6%9C%AC-1.png" srcset="/img/loading.gif" lazyload alt="B树"><br><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%B4%A2%E5%BC%95%E8%AE%B0%E8%B4%A6%E6%9C%AC/%E7%B4%A2%E5%BC%95%E8%AE%B0%E8%B4%A6%E6%9C%AC-2.png" srcset="/img/loading.gif" lazyload alt="B+树"></p>
+<ul>
+<li>假设一条数据大小1KB，索引大小16B，数据库采用磁盘数据页存储，磁盘页默认大小是16K。同样三次IO:<ol>
+<li>B树能获取16*16*16&#x3D;4096条数据</li>
+<li>B+树能够获取1000*1000*1000&#x3D;10亿条数据</li>
+</ol>
+</li>
+</ul>
+<h2 id="二、-索引类型"><a href="#二、-索引类型" class="headerlink" title="二、[索引类型]"></a>二、[索引类型]</h2><blockquote>
+<p><strong>1.主键索引和二级索引</strong></p>
+</blockquote>
+<ul>
+<li>主键索引：索引的叶子节点是数据行</li>
+<li>二级索引：索引的叶子节点是KEY字段加主键索引，因此，通过二级索引询首先查到是主键值，然后InnoDB再根据查到的主键值通过主键索引找到相应的数据块。</li>
+<li>innodb的主索引文件上 直接存放该行数据,称为聚簇索引,次索引指向对主键的引用</li>
+<li>myisam中, 主索引和次索引,都指向物理行(磁盘位置).</li>
+</ul>
+<blockquote>
+<p><strong>2.聚簇索引和非聚簇索引</strong></p>
+</blockquote>
+<ul>
+<li><p>聚簇索引是对磁盘上实际数据重新组织以按指定的一个或多个列的值排序的算法。特点是存储数据的顺序和索引顺序一致。一般情况下主键会默认创建聚簇索引，且一张表只允许存在一个聚簇索引（理由：数据一旦存储，顺序只能有一种）。</p>
+</li>
+<li><p>相较于聚簇索引的叶子点击是数据记录，非聚簇索引的叶子节点是指向数据记录的指针。非聚簇索引与聚簇索引最大的不同就是数据记录的顺序跟索引是不一致的，因此在数据</p>
+</li>
+<li><p>我们知道 Mysql 底层是用 B+ 树来存储索引的，且数据都存在叶子节点。对于 InnoDB 来说，它的主键索引和行记录是存储在一起的，因此叫做聚集索引（clustered index)。</p>
+<p>PS：MyISAM 的行记录是单独存储的，不和索引在一起，因此 MyISAM也就没有聚集索引。</p>
+<p>除了聚集索引，其它索引都叫做非聚集索引（secondary index）。包括普通索引，唯一索引等。</p>
+<p>另外需要注意，在 InnoDB 中有且只有一个聚集索引。它有三种情况：</p>
+<ol>
+<li>若表存在主键，则主键索引就是聚集索引。</li>
+<li>若不存在主键，则会把第一个非空的<strong>唯一索引</strong>作为聚集索引。</li>
+<li>否则，就会隐式的定义一个 rowid 作为聚集索引。</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p><strong>3.聚簇索引优劣</strong></p>
+</blockquote>
+<ul>
+<li><p>优势: 根据主键查询条目比较少时，不用回行(数据就在主键节点下)</p>
+</li>
+<li><p>劣势: 如果碰到不规则数据插入时，造成频繁的页分裂。</p>
+</li>
+</ul>
+<p>![image-20221109205205643](&#x2F;Users&#x2F;xieshijie&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20221109205205643.png)</p>
+<h2 id="三、-索引概念引申"><a href="#三、-索引概念引申" class="headerlink" title="三、[索引概念引申]"></a>三、[索引概念引申]</h2><blockquote>
+<p><strong>1.回表</strong></p>
+</blockquote>
+<p>回表的概念涉及到主键索引和非主键索引的查询区别</p>
+<ul>
+<li>如果语句是 <code>select * from T where ID=500</code>，<strong>即主键查询，则只需要搜索 ID 这棵树。</strong></li>
+<li>如果语句是 <code>select * from T where k=5</code>，即非主键索引查询，则需要<strong>先搜索 k 索引树，得到 ID 的值为 500，再到 ID 索引树搜索一次。</strong></li>
+<li><strong>从非主键索引回到主键索引的过程称为回表。</strong></li>
+</ul>
+<p><strong>基于非主键索引的查询需要多扫描一棵索引树。</strong>因此，我们在应用中应该尽量使用主键查询。而从存储空间的角度讲，因为非主键索引树的叶结点存放的是主键的值，那么，应该<strong>考虑让主键的字段尽量短，这样非主键索引的叶子结点就越小，非主键索引占用的空间也就越小。</strong>一般情况下，建议创建一个自增主键，这样非主键索引占用的空间最小。</p>
+<blockquote>
+<p><strong>2.索引覆盖</strong></p>
+</blockquote>
+<ul>
+<li>如果where子句中的一个条件是非主键索引，那么查询的时候，<strong>先通过非主键索引定位到主键索引（主键位于非主键索引搜索树的叶子节点）</strong>；然后通过主键索引定位到查询的内容。在这个过程中，回到主键索引树的过程，称为回表。</li>
+<li>但是当我们的<strong>查询内容是主键值，那么可以直接提供查询结果，不需要回表</strong>。也就是说，<strong>在这个查询里，非主键索引 已经 “覆盖了” 我们的查询需求，故称为覆盖索引。</strong></li>
+<li><strong>覆盖索引就是从辅助索引中就能直接得到查询结果，而不需要回表到聚簇索引中进行再次查询</strong>，所以可以减少搜索次数（不需要从辅助索引树回表到聚簇索引树），或者说减少 IO 操作（通过辅助索引树可以一次性从磁盘载入更多节点），从而提升性能。</li>
+</ul>
+<blockquote>
+<p><strong>3.联合索引</strong></p>
+</blockquote>
+<p><strong>联合索引是指对表上的多个列进行索引。</strong></p>
+<p><strong>场景一：</strong></p>
+<p>联合索引 (a, b) 是<strong>根据 a, b 进行排序（先根据 a 排序，如果 a 相同则根据 b 排序）</strong>。因此，下列语句可以直接使用联合索引得到结果（事实上，也就是用到了最左前缀原则）</p>
+<ul>
+<li><strong>select … from xxx where a&#x3D;xxx;</strong></li>
+<li><strong>select … from xxx where a&#x3D;xxx order by b;</strong></li>
+</ul>
+<p>而下列语句则不能使用联合查询：</p>
+<ul>
+<li><strong>select … from xxx where b&#x3D;xxx;</strong></li>
+</ul>
+<p><strong>场景二：</strong></p>
+<p>对于联合索引 (a, b, c)，下列语句同样可以直接通过联合索引得到结果：</p>
+<ul>
+<li><strong>select … from xxx where a&#x3D;xxx order by b;</strong></li>
+<li><strong>select … from xxx where a&#x3D;xxx and b&#x3D;xxx order by c;</strong></li>
+</ul>
+<p>而下列语句则不行，需要执行一次 filesort 排序操作。</p>
+<ul>
+<li><strong>select … from xxx where a&#x3D;xxx order by c;</strong></li>
+</ul>
+<p><strong>总结：</strong></p>
+<p><strong>以联合索引(a,b,c)为例，建立这样的索引相当于建立了索引a、ab、abc三个索引。</strong>一个索引顶三个索引当然是好事，毕竟每多一个索引，都会增加写操作的开销和磁盘空间的开销。</p>
+<blockquote>
+<p><strong>4.最左匹配原则</strong></p>
+</blockquote>
+<ul>
+<li>从上面联合索引的例子，可以体会到最左前缀原则。</li>
+<li><strong>不只是索引的全部定义，只要满足最左前缀，就可以利用索引来加速检索。这个最左前缀可以是联合索引的最左 N 个字段，也可以是字符串索引的最左 M 个字符。</strong>利用索引的 “最左前缀” 原则来定位记录，避免重复定义索引。</li>
+<li>因此，基于最左前缀原则，我们在定义联合索引的时候，考虑如何安排索引内的字段顺序就至关重要了！评估的标准就是索引的复用能力，比如，<strong>当已经有了 (a,b) 字段的索引，一般就不需要再单独在 a 上建立索引了。</strong></li>
+</ul>
+<blockquote>
+<p><strong>5.索引下推</strong></p>
+</blockquote>
+<p>MySQL 5.6 引入了索引下推优化，<strong>可以在索引遍历过程中，对索引中包含的字段先做判断，过滤掉不符合条件的记录，减少回表字数。</strong></p>
+<ul>
+<li>建表</li>
+</ul>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `test` (<br>  `id` <span class="hljs-type">bigint</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> AUTO_INCREMENT COMMENT <span class="hljs-string">&#x27;自增主键&#x27;</span>,<br>  `age` <span class="hljs-type">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">&#x27;0&#x27;</span>,<br>  `name` <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">&#x27;&#x27;</span>,<br>  <span class="hljs-keyword">PRIMARY</span> KEY (`id`),<br>  KEY `idx_name_age` (`name`,`age`)<br>) ENGINE<span class="hljs-operator">=</span>InnoDB <span class="hljs-keyword">DEFAULT</span> CHARSET<span class="hljs-operator">=</span>utf8mb4 <span class="hljs-keyword">COLLATE</span><span class="hljs-operator">=</span>utf8mb4_unicode_ci;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>创建数据</li>
+</ul>
+<p>![image-20221113182446821](&#x2F;Users&#x2F;xieshijie&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20221113182446821.png)</p>
+<ul>
+<li><p><code>SELECT * from user where  name like &#39;陈%&#39;</code> 最左匹配原则，命中idx_name_age索引</p>
+</li>
+<li><p><code>SELECT * from user where  name like &#39;陈%&#39; and age=20</code></p>
+<ul>
+<li>5.6版本之前，先根据name索引(此时是忽略<code>age=20</code>这个条件的)，匹配2条记录，然后找到对应的2个id。回表之后，在根据age&#x3D;20进行过滤</li>
+<li>5.6版本之后，会加入索引下推，在根据name匹配到2条数据之后，此时不会忽略<code>age=20</code>条件，在回表之前就会根据age进行过滤。此即索引下推，可以减少回表的数据量，增加查询性能</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>6.前缀索引</strong></p>
+</blockquote>
+<p>当<strong>索引是很长的字符序列时，这个索引将会很占内存，而且会很慢</strong>，这时候就会用到前缀索引了。通常可以索引开始的几个字符，而不是全部值，以节约空间并得到好的性能。所谓的<strong>前缀索引就是使用索引的前面几个字母作为索引</strong>，但是要降低索引的重复率，索引我们还必须要判断前缀索引的重复率。</p>
+<ul>
+<li>先计算当前字符串字段的唯一性占比：<code>select 1.0*count(distinct name)/count(*) from test </code></li>
+<li>在计算不同前缀的唯一性占比：<ul>
+<li><code>select 1.0*count(distinct left(name,1))/count(*) from test</code> 取name字符串第一个作为前缀索引的占比</li>
+<li><code>select 1.0*count(distinct left(name,2))/count(*) from test</code> 取name字符串前两个作为前缀索引的占比</li>
+<li>…</li>
+</ul>
+</li>
+<li>当<code>left(str, n)</code>的n不在显著增加时，此时可以选取n作为前缀索引的截取数</li>
+<li>创建索引<code>alter table test add key(name(n));</code></li>
+</ul>
+<p><strong>[引自]：</strong></p>
+<p>1.<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIxNzM0NjA1OQ==&mid=2247483878&idx=1&sn=cb23e89199530981136ab2a7c1b90d92&chksm=97fa7882a08df194efe0ce71d3b091bfdd6391573b48fdc21f179d1cb89c145c4b334d46a5d9&token=1235000206&lang=zh_CN#rd">再谈数据库索引</a></p>
+<p>2.<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000041290817">MySQL聚簇索引和非聚簇索引的理解</a></p>
+<p>3.<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/01313459b5a1">B+树作为Mysql索引结构的优点</a></p>
+<p>4.<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/121084592">Mysql性能优化：什么是索引下推？</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>索引的记账本</div>
+      <div>http://coder-xieshijie.cn/2022/11/13/数据库/MySQL/索引的记账本/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月13日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年7月26日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/18/%E9%9A%8F%E7%AC%94/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%85%B7%E7%82%AB%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="从零开始搭建一个酷炫的个人博客">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">从零开始搭建一个酷炫的个人博客</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/13/java/reflections%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="reflections使用总结">
+                        <span class="hidden-mobile">reflections使用总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

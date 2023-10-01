@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>coder.谢世杰</title>
+  
+  
+  <link href="http://coder-xieshijie.cn/atom.xml" rel="self"/>
+  
+  <link href="http://coder-xieshijie.cn/"/>
+  <updated>2023-09-19T02:29:26.000Z</updated>
+  <id>http://coder-xieshijie.cn/</id>
+  
+  <author>
+    <name>谢世杰</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jdk 21 virtual thread doc reading</title>
+    <link href="http://coder-xieshijie.cn/2023/09/19/%E9%9A%8F%E7%AC%94/doc%20reading/jdk-21-virtual-thread-doc-reading/"/>
+    <id>http://coder-xieshijie.cn/2023/09/19/%E9%9A%8F%E7%AC%94/doc%20reading/jdk-21-virtual-thread-doc-reading/</id>
+    <published>2023-09-19T02:29:26.000Z</published>
+    <updated>2023-09-19T02:29:26.000Z</updated>
+    
+    
+    <summary type="html">jdk 21 virtual thread doc reading</summary>
+    
+    
+    
+    <category term="随笔" scheme="http://coder-xieshijie.cn/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="doc-reading" scheme="http://coder-xieshijie.cn/categories/%E9%9A%8F%E7%AC%94/doc-reading/"/>
+    
+    
+    <category term="jdk21" scheme="http://coder-xieshijie.cn/tags/jdk21/"/>
+    
+    <category term="doc-reading" scheme="http://coder-xieshijie.cn/tags/doc-reading/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iterm2 + oh my zsh 打造舒适终端体验</title>
+    <link href="http://coder-xieshijie.cn/2023/09/10/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/iterm2-oh-my-zsh-%E6%89%93%E9%80%A0%E8%88%92%E9%80%82%E7%BB%88%E7%AB%AF%E4%BD%93%E9%AA%8C/"/>
+    <id>http://coder-xieshijie.cn/2023/09/10/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/iterm2-oh-my-zsh-%E6%89%93%E9%80%A0%E8%88%92%E9%80%82%E7%BB%88%E7%AB%AF%E4%BD%93%E9%AA%8C/</id>
+    <published>2023-09-10T09:06:23.000Z</published>
+    <updated>2023-09-10T09:06:23.000Z</updated>
+    
+    
+    <summary type="html">iterm2 + oh my zsh 打造舒适终端体验</summary>
+    
+    
+    
+    <category term="其他技能" scheme="http://coder-xieshijie.cn/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/"/>
+    
+    <category term="工具" scheme="http://coder-xieshijie.cn/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="其他技能" scheme="http://coder-xieshijie.cn/tags/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/"/>
+    
+    <category term="zsh" scheme="http://coder-xieshijie.cn/tags/zsh/"/>
+    
+    <category term="iterm2" scheme="http://coder-xieshijie.cn/tags/iterm2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>打造高效Mac工作环境</title>
+    <link href="http://coder-xieshijie.cn/2023/09/09/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/%E6%89%93%E9%80%A0%E9%AB%98%E6%95%88Mac%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/"/>
+    <id>http://coder-xieshijie.cn/2023/09/09/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/%E6%89%93%E9%80%A0%E9%AB%98%E6%95%88Mac%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/</id>
+    <published>2023-09-09T13:21:51.000Z</published>
+    <updated>2023-09-09T13:21:51.000Z</updated>
+    
+    
+    <summary type="html">打造高效Mac工作环境</summary>
+    
+    
+    
+    <category term="其他技能" scheme="http://coder-xieshijie.cn/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/"/>
+    
+    <category term="工具" scheme="http://coder-xieshijie.cn/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="其他技能" scheme="http://coder-xieshijie.cn/tags/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/"/>
+    
+    <category term="MAC" scheme="http://coder-xieshijie.cn/tags/MAC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>elasticsearch 概念介绍</title>
+    <link href="http://coder-xieshijie.cn/2023/08/29/%E6%95%B0%E6%8D%AE%E5%BA%93/elasticsearch-%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://coder-xieshijie.cn/2023/08/29/%E6%95%B0%E6%8D%AE%E5%BA%93/elasticsearch-%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/</id>
+    <published>2023-08-29T03:31:17.000Z</published>
+    <updated>2023-08-29T03:31:17.000Z</updated>
+    
+    
+    <summary type="html">elasticsearch 概念介绍</summary>
+    
+    
+    
+    <category term="数据库" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="es" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/es/"/>
+    
+    
+    <category term="数据库" scheme="http://coder-xieshijie.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="es" scheme="http://coder-xieshijie.cn/tags/es/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Code Review终极大法</title>
+    <link href="http://coder-xieshijie.cn/2023/08/28/DevOps/Git/Code-Review%E7%BB%88%E6%9E%81%E5%A4%A7%E6%B3%95/"/>
+    <id>http://coder-xieshijie.cn/2023/08/28/DevOps/Git/Code-Review%E7%BB%88%E6%9E%81%E5%A4%A7%E6%B3%95/</id>
+    <published>2023-08-28T06:46:15.000Z</published>
+    <updated>2023-08-28T06:46:15.000Z</updated>
+    
+    
+    <summary type="html">Code Review终极大法</summary>
+    
+    
+    
+    <category term="devops" scheme="http://coder-xieshijie.cn/categories/devops/"/>
+    
+    <category term="git" scheme="http://coder-xieshijie.cn/categories/devops/git/"/>
+    
+    
+    <category term="git" scheme="http://coder-xieshijie.cn/tags/git/"/>
+    
+    <category term="cr" scheme="http://coder-xieshijie.cn/tags/cr/"/>
+    
+    <category term="code review" scheme="http://coder-xieshijie.cn/tags/code-review/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网络概念详解</title>
+    <link href="http://coder-xieshijie.cn/2023/08/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F+%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://coder-xieshijie.cn/2023/08/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F+%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5%E8%AF%A6%E8%A7%A3/</id>
+    <published>2023-08-25T09:42:55.000Z</published>
+    <updated>2023-08-25T09:42:55.000Z</updated>
+    
+    
+    <summary type="html">网络概念详解</summary>
+    
+    
+    
+    <category term="操作系统+网络" scheme="http://coder-xieshijie.cn/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="网络" scheme="http://coder-xieshijie.cn/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="网络" scheme="http://coder-xieshijie.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Serverless + Faas架构 创新试错快速起服务</title>
+    <link href="http://coder-xieshijie.cn/2023/08/10/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/Serverless-Faas%E6%9E%B6%E6%9E%84-%E5%88%9B%E6%96%B0%E8%AF%95%E9%94%99%E5%BF%AB%E9%80%9F%E8%B5%B7%E6%9C%8D%E5%8A%A1/"/>
+    <id>http://coder-xieshijie.cn/2023/08/10/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/Serverless-Faas%E6%9E%B6%E6%9E%84-%E5%88%9B%E6%96%B0%E8%AF%95%E9%94%99%E5%BF%AB%E9%80%9F%E8%B5%B7%E6%9C%8D%E5%8A%A1/</id>
+    <published>2023-08-10T08:00:08.000Z</published>
+    <updated>2023-08-10T08:00:08.000Z</updated>
+    
+    
+    <summary type="html">Serverless + Faas架构 创新试错快速起服务</summary>
+    
+    
+    
+    <category term="个人成长" scheme="http://coder-xieshijie.cn/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/"/>
+    
+    <category term="工作领域" scheme="http://coder-xieshijie.cn/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/"/>
+    
+    
+    <category term="工作领域" scheme="http://coder-xieshijie.cn/tags/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/"/>
+    
+    <category term="serverless" scheme="http://coder-xieshijie.cn/tags/serverless/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spel使用实践</title>
+    <link href="http://coder-xieshijie.cn/2023/08/08/Spring/spel%E4%BD%BF%E7%94%A8%E5%AE%9E%E8%B7%B5/"/>
+    <id>http://coder-xieshijie.cn/2023/08/08/Spring/spel%E4%BD%BF%E7%94%A8%E5%AE%9E%E8%B7%B5/</id>
+    <published>2023-08-08T08:39:20.000Z</published>
+    <updated>2023-08-08T08:39:20.000Z</updated>
+    
+    
+    <summary type="html">spel使用实践</summary>
+    
+    
+    
+    <category term="Spring" scheme="http://coder-xieshijie.cn/categories/Spring/"/>
+    
+    
+    <category term="Spring" scheme="http://coder-xieshijie.cn/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ognl语言介绍和使用实践</title>
+    <link href="http://coder-xieshijie.cn/2023/08/07/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/ognl%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8%E5%AE%9E%E8%B7%B5/"/>
+    <id>http://coder-xieshijie.cn/2023/08/07/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/ognl%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8%E5%AE%9E%E8%B7%B5/</id>
+    <published>2023-08-07T09:53:39.000Z</published>
+    <updated>2023-08-07T09:53:39.000Z</updated>
+    
+    
+    <summary type="html">ognl语言介绍和使用实践</summary>
+    
+    
+    
+    <category term="其他技能" scheme="http://coder-xieshijie.cn/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/"/>
+    
+    <category term="问题定位" scheme="http://coder-xieshijie.cn/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/"/>
+    
+    
+    <category term="问题定位" scheme="http://coder-xieshijie.cn/tags/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/"/>
+    
+    <category term="ognl" scheme="http://coder-xieshijie.cn/tags/ognl/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis和mysql的双写问题</title>
+    <link href="http://coder-xieshijie.cn/2023/08/06/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis%E5%92%8Cmysql%E7%9A%84%E5%8F%8C%E5%86%99%E9%97%AE%E9%A2%98/"/>
+    <id>http://coder-xieshijie.cn/2023/08/06/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis%E5%92%8Cmysql%E7%9A%84%E5%8F%8C%E5%86%99%E9%97%AE%E9%A2%98/</id>
+    <published>2023-08-06T02:44:09.000Z</published>
+    <updated>2023-08-06T02:44:09.000Z</updated>
+    
+    
+    <summary type="html">redis和mysql的双写问题</summary>
+    
+    
+    
+    <category term="数据库" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="redis" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/"/>
+    
+    
+    <category term="数据库" scheme="http://coder-xieshijie.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="redis" scheme="http://coder-xieshijie.cn/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>流量录制回放介绍</title>
+    <link href="http://coder-xieshijie.cn/2023/08/04/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E6%B5%81%E9%87%8F%E5%BD%95%E5%88%B6%E5%9B%9E%E6%94%BE%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://coder-xieshijie.cn/2023/08/04/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E6%B5%81%E9%87%8F%E5%BD%95%E5%88%B6%E5%9B%9E%E6%94%BE%E4%BB%8B%E7%BB%8D/</id>
+    <published>2023-08-04T02:43:32.000Z</published>
+    <updated>2023-08-04T02:43:32.000Z</updated>
+    
+    
+    <summary type="html">流量录制回放介绍</summary>
+    
+    
+    
+    <category term="个人成长" scheme="http://coder-xieshijie.cn/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/"/>
+    
+    <category term="工作领域" scheme="http://coder-xieshijie.cn/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/"/>
+    
+    
+    <category term="工作领域" scheme="http://coder-xieshijie.cn/tags/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>流量录制方案梳理</title>
+    <link href="http://coder-xieshijie.cn/2023/08/03/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E6%B5%81%E9%87%8F%E5%BD%95%E5%88%B6%E6%96%B9%E6%A1%88%E6%A2%B3%E7%90%86/"/>
+    <id>http://coder-xieshijie.cn/2023/08/03/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E6%B5%81%E9%87%8F%E5%BD%95%E5%88%B6%E6%96%B9%E6%A1%88%E6%A2%B3%E7%90%86/</id>
+    <published>2023-08-03T02:52:06.000Z</published>
+    <updated>2023-08-03T02:52:06.000Z</updated>
+    
+    
+    <summary type="html">流量录制方案梳理</summary>
+    
+    
+    
+    <category term="个人成长" scheme="http://coder-xieshijie.cn/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/"/>
+    
+    <category term="工作领域" scheme="http://coder-xieshijie.cn/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/"/>
+    
+    
+    <category term="工作领域" scheme="http://coder-xieshijie.cn/tags/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM sandbox原理和应用</title>
+    <link href="http://coder-xieshijie.cn/2023/08/02/java/java%E5%9F%BA%E7%A1%80/JVM-sandbox%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/"/>
+    <id>http://coder-xieshijie.cn/2023/08/02/java/java%E5%9F%BA%E7%A1%80/JVM-sandbox%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/</id>
+    <published>2023-08-02T03:12:09.000Z</published>
+    <updated>2023-08-02T03:12:09.000Z</updated>
+    
+    
+    <summary type="html">JVM sandbox原理和应用</summary>
+    
+    
+    
+    <category term="Java" scheme="http://coder-xieshijie.cn/categories/Java/"/>
+    
+    <category term="JVM" scheme="http://coder-xieshijie.cn/categories/Java/JVM/"/>
+    
+    
+    <category term="Java" scheme="http://coder-xieshijie.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ConfigurationProperties和EnableConfigurationProperties的区别</title>
+    <link href="http://coder-xieshijie.cn/2023/07/31/Spring/ConfigurationProperties%E5%92%8CEnableConfigurationProperties%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://coder-xieshijie.cn/2023/07/31/Spring/ConfigurationProperties%E5%92%8CEnableConfigurationProperties%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
+    <published>2023-07-31T12:20:27.000Z</published>
+    <updated>2023-07-31T12:20:27.000Z</updated>
+    
+    
+    <summary type="html">ConfigurationProperties和EnableConfigurationProperties的区别</summary>
+    
+    
+    
+    <category term="Spring" scheme="http://coder-xieshijie.cn/categories/Spring/"/>
+    
+    
+    <category term="Spring" scheme="http://coder-xieshijie.cn/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>kuai 重要git工程记录</title>
+    <link href="http://coder-xieshijie.cn/2023/07/30/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/kuai-%E9%87%8D%E8%A6%81git%E5%B7%A5%E7%A8%8B%E8%AE%B0%E5%BD%95/"/>
+    <id>http://coder-xieshijie.cn/2023/07/30/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/kuai-%E9%87%8D%E8%A6%81git%E5%B7%A5%E7%A8%8B%E8%AE%B0%E5%BD%95/</id>
+    <published>2023-07-30T12:25:37.000Z</published>
+    <updated>2023-07-30T12:25:37.000Z</updated>
+    
+    
+    <summary type="html">kuai 重要git工程记录</summary>
+    
+    
+    
+    <category term="个人成长" scheme="http://coder-xieshijie.cn/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/"/>
+    
+    <category term="工作领域" scheme="http://coder-xieshijie.cn/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/"/>
+    
+    
+    <category term="git" scheme="http://coder-xieshijie.cn/tags/git/"/>
+    
+    <category term="工作领域" scheme="http://coder-xieshijie.cn/tags/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql的explain关键字使用说明</title>
+    <link href="http://coder-xieshijie.cn/2023/07/26/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/mysql%E7%9A%84explain%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"/>
+    <id>http://coder-xieshijie.cn/2023/07/26/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/mysql%E7%9A%84explain%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</id>
+    <published>2023-07-26T04:04:29.000Z</published>
+    <updated>2023-07-26T04:04:29.000Z</updated>
+    
+    
+    <summary type="html">mysql的explain关键字使用说明</summary>
+    
+    
+    
+    <category term="数据库" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="MySQL" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/"/>
+    
+    
+    <category term="数据库" scheme="http://coder-xieshijie.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sql语句各个关键字的执行顺序</title>
+    <link href="http://coder-xieshijie.cn/2023/07/24/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/sql%E8%AF%AD%E5%8F%A5%E5%90%84%E4%B8%AA%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/"/>
+    <id>http://coder-xieshijie.cn/2023/07/24/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/sql%E8%AF%AD%E5%8F%A5%E5%90%84%E4%B8%AA%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</id>
+    <published>2023-07-24T15:06:55.000Z</published>
+    <updated>2023-07-24T15:06:55.000Z</updated>
+    
+    
+    <summary type="html">sql语句各个关键字的执行顺序</summary>
+    
+    
+    
+    <category term="数据库" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="MySQL" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/"/>
+    
+    
+    <category term="数据库" scheme="http://coder-xieshijie.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Gitlab redis多AZ容灾高可用方案调研</title>
+    <link href="http://coder-xieshijie.cn/2023/07/23/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/Gitlab-redis%E5%A4%9AAZ%E5%AE%B9%E7%81%BE%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94/"/>
+    <id>http://coder-xieshijie.cn/2023/07/23/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/Gitlab-redis%E5%A4%9AAZ%E5%AE%B9%E7%81%BE%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94/</id>
+    <published>2023-07-23T14:22:28.000Z</published>
+    <updated>2023-07-23T14:22:28.000Z</updated>
+    
+    
+    <summary type="html">Gitlab redis多AZ容灾高可用方案调研</summary>
+    
+    
+    
+    <category term="个人成长" scheme="http://coder-xieshijie.cn/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/"/>
+    
+    <category term="工作领域" scheme="http://coder-xieshijie.cn/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/"/>
+    
+    
+    <category term="工作领域" scheme="http://coder-xieshijie.cn/tags/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/"/>
+    
+    <category term="gitlab" scheme="http://coder-xieshijie.cn/tags/gitlab/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis key值如何定位到value</title>
+    <link href="http://coder-xieshijie.cn/2023/07/22/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis-key%E5%80%BC%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%88%B0value/"/>
+    <id>http://coder-xieshijie.cn/2023/07/22/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/redis-key%E5%80%BC%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%88%B0value/</id>
+    <published>2023-07-22T14:34:27.000Z</published>
+    <updated>2023-07-22T14:34:27.000Z</updated>
+    
+    
+    <summary type="html">redis key值如何定位到value</summary>
+    
+    
+    
+    <category term="数据库" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="redis" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/"/>
+    
+    
+    <category term="数据库" scheme="http://coder-xieshijie.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="redis" scheme="http://coder-xieshijie.cn/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL 中的 distinct 和 group by 哪个效率更高？</title>
+    <link href="http://coder-xieshijie.cn/2023/07/21/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL-%E4%B8%AD%E7%9A%84-distinct-%E5%92%8C-group-by-%E5%93%AA%E4%B8%AA%E6%95%88%E7%8E%87%E6%9B%B4%E9%AB%98%EF%BC%9F/"/>
+    <id>http://coder-xieshijie.cn/2023/07/21/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL-%E4%B8%AD%E7%9A%84-distinct-%E5%92%8C-group-by-%E5%93%AA%E4%B8%AA%E6%95%88%E7%8E%87%E6%9B%B4%E9%AB%98%EF%BC%9F/</id>
+    <published>2023-07-21T15:16:42.000Z</published>
+    <updated>2023-07-21T15:16:42.000Z</updated>
+    
+    
+    <summary type="html">MySQL 中的 distinct 和 group by 哪个效率更高？</summary>
+    
+    
+    
+    <category term="数据库" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="MySQL" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/"/>
+    
+    
+    <category term="数据库" scheme="http://coder-xieshijie.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+</feed>

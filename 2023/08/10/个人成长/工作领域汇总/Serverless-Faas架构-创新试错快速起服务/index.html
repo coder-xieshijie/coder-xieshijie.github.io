@@ -1,0 +1,1243 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Serverless + Faas架构 创新试错快速起服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Serverless + Faas架构 创新试错快速起服务">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/08/10/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/Serverless-Faas%E6%9E%B6%E6%9E%84-%E5%88%9B%E6%96%B0%E8%AF%95%E9%94%99%E5%BF%AB%E9%80%9F%E8%B5%B7%E6%9C%8D%E5%8A%A1/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="Serverless + Faas架构 创新试错快速起服务">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-ea0e1be06785f297a7e3163f1b034061.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-71066be05cb192181ca2caf47ea78eb4.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-d15af6d2458a16a7ef421a33f19968e8.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-910e818f953c799f3c087172a8797728.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-6fa24d5e96192e385abb45d4a0b26f2b.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-75ba0979896ad565c8c93268ba466f1a.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-3375d44f21e922afb6fc989f0522dbc7.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-4035a89aee38df1b4c2ac0df3c0ce5c9.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-d321c1ded68cc446e2a395240d931ae5.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-323bbd67555a247a3dd3e54f732a8428.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-fdb1c74baebbeabf713d075c19d2812c.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-49658d8474080f373cc6866a3593b2e7.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-089321151cb11b84e2213f4677c3e52d.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-692b9a971724051ca727173205dca7a1.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-3d610ec3f72958abdaeaa595dc68f8f8.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-699fd31929205e8f3adf45964a76facf.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-5156de5385b50865218162f93ddbc07d.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-1b54f09237240bfd1c6a2fc11b7fa8a2.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-c85c0036f69f2b8c79fc5184926fadae.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-2752b2bf22b6efc2db232ef84aeb9e73.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-522e1c83ef428c3228668e8e82512232.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-69d475fb9c2e2a988a144f0fafe7d0f0.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-d5199fe29692d30a4eac744493fa0a7f.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-f7273a482064f0750e05c08c1a6927e5.png">
+<meta property="article:published_time" content="2023-08-10T08:00:08.000Z">
+<meta property="article:modified_time" content="2023-08-10T08:00:08.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="工作领域">
+<meta property="article:tag" content="serverless">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-ea0e1be06785f297a7e3163f1b034061.png">
+  
+  
+  
+  <title>Serverless + Faas架构 创新试错快速起服务 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Serverless + Faas架构 创新试错快速起服务"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-10 16:00" pubdate>
+          2023年8月10日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          88 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="个人成长"
+        id="heading-4bb4c17853d4334983452b5e69aae37f" role="tab" data-toggle="collapse" href="#collapse-4bb4c17853d4334983452b5e69aae37f"
+        aria-expanded="true"
+      >
+        个人成长
+        <span class="list-group-count">(13)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-4bb4c17853d4334983452b5e69aae37f"
+           role="tabpanel" aria-labelledby="heading-4bb4c17853d4334983452b5e69aae37f">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="工作"
+        id="heading-9a018b21ab114a51dd7b5979198a941b" role="tab" data-toggle="collapse" href="#collapse-9a018b21ab114a51dd7b5979198a941b"
+        aria-expanded="false"
+      >
+        工作
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-9a018b21ab114a51dd7b5979198a941b"
+           role="tabpanel" aria-labelledby="heading-9a018b21ab114a51dd7b5979198a941b">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/12/28/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87%E5%B7%A5%E4%BD%9C%E8%83%BD%E5%8A%9B/" title="如何提升工作能力"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">如何提升工作能力</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="工作领域"
+        id="heading-55abb1d63814821a409e19025282f4cb" role="tab" data-toggle="collapse" href="#collapse-55abb1d63814821a409e19025282f4cb"
+        aria-expanded="true"
+      >
+        工作领域
+        <span class="list-group-count">(7)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-55abb1d63814821a409e19025282f4cb"
+           role="tabpanel" aria-labelledby="heading-55abb1d63814821a409e19025282f4cb">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/23/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/Gitlab-redis%E5%A4%9AAZ%E5%AE%B9%E7%81%BE%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94/" title="Gitlab redis多AZ容灾高可用方案调研"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Gitlab redis多AZ容灾高可用方案调研</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/10/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/Serverless-Faas%E6%9E%B6%E6%9E%84-%E5%88%9B%E6%96%B0%E8%AF%95%E9%94%99%E5%BF%AB%E9%80%9F%E8%B5%B7%E6%9C%8D%E5%8A%A1/" title="Serverless + Faas架构 创新试错快速起服务"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Serverless + Faas架构 创新试错快速起服务</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/10/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/gitlab-%E9%AB%98%E5%8F%AF%E7%94%A8/" title="gitlab 高可用"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">gitlab 高可用</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/30/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/kuai-%E9%87%8D%E8%A6%81git%E5%B7%A5%E7%A8%8B%E8%AE%B0%E5%BD%95/" title="kuai 重要git工程记录"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">kuai 重要git工程记录</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/07/14/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E4%BB%A3%E7%A0%81%E7%B4%A2%E5%BC%95%E6%9E%84%E5%BB%BAscip/" title="代码索引构建scip"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">代码索引构建scip</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/04/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E6%B5%81%E9%87%8F%E5%BD%95%E5%88%B6%E5%9B%9E%E6%94%BE%E4%BB%8B%E7%BB%8D/" title="流量录制回放介绍"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">流量录制回放介绍</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/08/03/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F%E6%B1%87%E6%80%BB/%E6%B5%81%E9%87%8F%E5%BD%95%E5%88%B6%E6%96%B9%E6%A1%88%E6%A2%B3%E7%90%86/" title="流量录制方案梳理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">流量录制方案梳理</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="感悟"
+        id="heading-70bca7959b017c8aff4dcb82689dacfe" role="tab" data-toggle="collapse" href="#collapse-70bca7959b017c8aff4dcb82689dacfe"
+        aria-expanded="false"
+      >
+        感悟
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-70bca7959b017c8aff4dcb82689dacfe"
+           role="tabpanel" aria-labelledby="heading-70bca7959b017c8aff4dcb82689dacfe">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/07/17/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E7%81%B5%E5%85%89%E5%92%8C%E6%84%9F%E6%82%9F/" title="灵光和感悟"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">灵光和感悟</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="晋升"
+        id="heading-e5cab0a89361246aeafb550302f030db" role="tab" data-toggle="collapse" href="#collapse-e5cab0a89361246aeafb550302f030db"
+        aria-expanded="false"
+      >
+        晋升
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-e5cab0a89361246aeafb550302f030db"
+           role="tabpanel" aria-labelledby="heading-e5cab0a89361246aeafb550302f030db">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/06/22/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E6%99%8B%E5%8D%87/2023%E5%B9%B42%E6%9C%88-%E6%99%8B%E5%8D%87%E7%AD%94%E8%BE%A9-2b-3a/" title="2023年2月 晋升答辩(2b-3a)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">2023年2月 晋升答辩(2b-3a)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/22/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E6%99%8B%E5%8D%87/%E4%B8%93%E4%B8%9A%E6%99%8B%E5%8D%87%E6%A8%A1%E6%9D%BF-ks%E7%89%88/" title="专业晋升模板(ks版)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">专业晋升模板(ks版)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/22/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E6%99%8B%E5%8D%87/%E5%8F%AA%E6%98%AF%E5%AE%8C%E6%88%90%E4%BA%86%E9%9C%80%E6%B1%82%EF%BC%8C%E7%A0%94%E5%8F%91%E7%9A%84%E7%AB%9E%E4%BA%89%E4%BC%98%E5%8A%BF%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F/" title="只是完成了需求，研发的竞争优势在哪里？"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">只是完成了需求，研发的竞争优势在哪里？</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/06/22/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E6%99%8B%E5%8D%87/%E6%99%8B%E5%8D%87%E6%B1%87%E6%8A%A5%E4%B9%8B%E9%81%93-%E6%89%93%E6%80%AA%E5%85%BD%E7%89%88/" title="晋升汇报之道(打怪兽版)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">晋升汇报之道(打怪兽版)</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Serverless + Faas架构 创新试错快速起服务</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="就创新试错聊聊Serverless-Faas架构，赠送Groovy高性能规则引擎实践"><a href="#就创新试错聊聊Serverless-Faas架构，赠送Groovy高性能规则引擎实践" class="headerlink" title="就创新试错聊聊Serverless + Faas架构，赠送Groovy高性能规则引擎实践"></a>就创新试错聊聊Serverless + Faas架构，赠送Groovy高性能规则引擎实践</h1><h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>始前先看下整个文章的梗概：我会对于多变业务，比如“小步快跑”、“创新试错”下的业务开发模式和架构方案做出分析设计，最终推导出Faas + ServerLess架构，并就Java技术栈下，对于这种架构进行落地，实现基于自定义Groovy引擎的Faas+ServerLess架构下的“低代码”服务。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-ea0e1be06785f297a7e3163f1b034061.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="1-1-大体背景"><a href="#1-1-大体背景" class="headerlink" title="1.1 大体背景"></a>1.1 大体背景</h4><p>我由于是做营销活动相关的，日常经常会碰到一个场景：各种频出的创新的idea需要尝试，创新这件事儿意义很大。但是每个idea都去实践落地，成本又太高了，如果完全靠直觉和经验，很容易扼杀一些优秀的idea。</p>
+<p>所以就开始尝试降低创新的成本，比如说之前一个活动30人日，我们能不能降低到3人日，看上去这是一个很夸张的成本节省数量，但是理论上是可行的。</p>
+<h4 id="1-2-成本分析-–-需要提效"><a href="#1-2-成本分析-–-需要提效" class="headerlink" title="1.2 成本分析 – 需要提效"></a>1.2 成本分析 – 需要提效</h4><p>首先我们对于成本进行初步分析，一场活动的成本，大致分为：人力成本 + 活动预算 + 流量成本。</p>
+<p>对于idea的创新实践，我们初期并不需要过大的活动预算和大规模的资源流量，通常在前几天就能把效果论证出来，定向推送特征用户就好了，有传播倾向的idea，可以用延迟发奖来解决，效果好了就增加预算，效果差，钱也花不出去。</p>
+<p>所以剩下的，最核心的成本在于人力成本，人力成本可比大家想象的要重要的多，尤其是在这么个降本增效的大环境下，几十人日、几百人日的投入创新尝试是不现实的，所以我们要解决的关键性问题就是活动生产的效率问题。</p>
+<p>不仅是活动方面，其实每个具有创新属性、小步试错属性的场景，都有着类似的问题。</p>
+<h4 id="1-2-其他推荐"><a href="#1-2-其他推荐" class="headerlink" title="1.2 其他推荐"></a>1.2 其他推荐</h4><p>前面有几篇文章已经提到过大致的方法论和初步的实践思路了，有兴趣也可以前置的读一下，不过不读也不耽误本篇的阅读，部分内容是有一些重复的。</p>
+<p><a target="_blank" rel="noopener" href="http://www.zouzhiquan.com/%e6%8b%92%e7%bb%9d%e6%8d%a2%e7%9a%ae%e7%a7%91%e6%8a%80-%e8%90%a5%e9%94%80%e6%b4%bb%e5%8a%a8%e6%8f%90%e6%95%88%e4%b9%8b%e9%81%93/">营销活动提效之道</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.zouzhiquan.com/%e4%b8%9a%e5%8a%a1%e5%bc%80%e5%8f%91%e9%93%b6%e5%bc%b9-%e4%bd%8e%e4%bb%a3%e7%a0%81%e5%b9%b3%e5%8f%b0%e5%bb%ba%e8%ae%be%ef%bc%88%e4%bd%8e%e7%a0%81%e7%b2%be%e5%8d%8e%e7%af%87/">业务开发“银弹” – 低代码平台建设</a></p>
+<p>接下来进入正题，如何解决这种创新类、小步试错的“轻业务”。</p>
+<h2 id="2-可以有的思路，一通分析"><a href="#2-可以有的思路，一通分析" class="headerlink" title="2. 可以有的思路，一通分析"></a>2. 可以有的思路，一通分析</h2><p>要想节省成本，有两个思路：减少工作量、提升落地效率。</p>
+<p>事情得做，还得做作，需求不能砍，所以剩下的方法只有复用；提升落地效率，这个prd效率、前后端研发效率、测试效率每一个方面其实都可以去节省。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-71066be05cb192181ca2caf47ea78eb4.png" srcset="/img/loading.gif" lazyload></p>
+<p>我们就idea的落地流程，进行细节上的分析，看看如何来提升效率。</p>
+<h3 id="2-1-落地分析"><a href="#2-1-落地分析" class="headerlink" title="2.1 落地分析"></a>2.1 落地分析</h3><p>首先就整个流程进行分析，减少繁琐的流程，少一点大公司病，多一些创业状态，高生产效率的节奏下，快速idea落地体验，沟通对齐，是整体的目标。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-d15af6d2458a16a7ef421a33f19968e8.png" srcset="/img/loading.gif" lazyload></p>
+<p>做事前，先看最佳实践，一种好的、理想的方式是“我只关心本次创新的部分，也只需要执行本次创新的部分”</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-910e818f953c799f3c087172a8797728.png" srcset="/img/loading.gif" lazyload></p>
+<p>具体举措：<br>1: 要有机制能够保障只需要开发创新点，并且高效的开发创新点。<br>2: 影响能够隔离，只影响当前的创新尝试（测试范围），不影响其他任意功能或业务。<br>3: 线上无运维成本，即写即跑，不用申请存储、不用配nginx、不用起机群、不用部署上线，就小成本快速出个看板，关注具体效果就好。<br>4: 开发体验上，热更热部，0等待成本，大脑无线程间切换，快速心流模式。<br>5: 很轻松的就能复用，少量的复用适配成本。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-6fa24d5e96192e385abb45d4a0b26f2b.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-1-落地分析，我能想到的方案"><a href="#2-1-落地分析，我能想到的方案" class="headerlink" title="2.1 落地分析，我能想到的方案"></a>2.1 落地分析，我能想到的方案</h3><h3 id="2-1-1-开发过程"><a href="#2-1-1-开发过程" class="headerlink" title="2.1.1 开发过程"></a>2.1.1 开发过程</h3><p>根据上面的最小实现原则，我们不妨对于开发一个功能所涉及的工作进行分析，就拿营销活动来看，我们能想象这么几种方案:</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-75ba0979896ad565c8c93268ba466f1a.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>基于已有的逻辑做if-else变更<br>我们使用现有的活动做变更，支持给活动增加活动id之类的概念，用于区分不同的逻辑，在原有的逻辑上做新增，然后适配兼容。</li>
+</ul>
+<p>这种模式就本次开发和之后的维护成本来说都是最高的，可能改起来最不费劲，加一点代码就解决了，但兼容逻辑、废弃逻辑会越来越多。我们业务上的屎山通常就是这样出现的。</p>
+<p>而且对于单次活动的开发，影响面也没有控制住，可能会对既有逻辑产生一定的影响。</p>
+<p>这个方案基本上可以否了。</p>
+<ul>
+<li>完全纯新写<br>新起一组逻辑，完全用来支持当前的创新活动，与现有逻辑完全隔离，最小原则实现，和原有的逻辑完全做了隔离，这是业务发展初期、系统重构常用的思路，在成本不高的时候，是可行的。</li>
+</ul>
+<p>但是如果逻辑相对复杂，创新idea的成本是没有减少的，所以这个方案也暂时先否了。</p>
+<ul>
+<li>基于复制逻辑<br>copyOnWrite，把当前的代码做一份复制，在复制出来的代码上做修改，与现有逻辑变相隔离，不用适配老逻辑，直接做新增修改即可。</li>
+</ul>
+<p>这样是不是就做到了，即跟既有逻辑隔离，又减少了重复开发。但是现实是我们的活动开发并没有那么轻松就可以复制，整个的复制成本也会很高，除此之外，老逻辑修改至逻辑的成本还是太高，需要对老逻辑非常熟悉才行。</p>
+<p>要是有一种方式，能够一键复制就好了，比如就一个脚本，直接copy？这个思路没准能行。</p>
+<ul>
+<li>基于沉淀复用 + 纯新写组装逻辑<br>我们去沉淀大量的工具，在创新idea到来时，利用工具集去构建新的活动，由于沉淀的这部分是稳定的，变的通常是组合逻辑，是可行的。</li>
+</ul>
+<p>但是组装逻辑也相对庞大，能不能再省省。</p>
+<p>小朋友才做选择，大朋友选择都要，我们想要的已经清晰了：快捷复制 + 纯新部分新写 + 沉淀功能集</p>
+<h3 id="2-1-2-调试过程"><a href="#2-1-2-调试过程" class="headerlink" title="2.1.2 调试过程"></a>2.1.2 调试过程</h3><p>还记得写php和python的爽感嘛，语法精炼，热更热部。那能不能对于这种创新idea我们也采用这个技术栈，当然是可行的。想要提效，热更热部是必须的。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-3375d44f21e922afb6fc989f0522dbc7.png" srcset="/img/loading.gif" lazyload></p>
+<p>但是通常这个方式会收到各方面的制约，比如说技术栈不统一的问题，由于生态的原因，不得不否认Java是最主流的业务工程开发语言。并且对于活动场景来看性能要求是比较高的，php、python的性能说实话，还是差了一些的。</p>
+<p>我们需要一种模式提供热更热部，并且执行效率至少跟Java差不多，能兼容现有的功能集合语言上无缝兼容（如果调一个功能就来次rpc，成本太高了），顺道还能有Java的巨大生态便利。</p>
+<p>肯定有人杠，Java也能热更热部，我是觉着真的够难用，而且跟这种天然热的脚本类语言完全不是一个概念。</p>
+<h3 id="2-1-3-运维成本"><a href="#2-1-3-运维成本" class="headerlink" title="2.1.3 运维成本"></a>2.1.3 运维成本</h3><p>开发、调试完成、测试完成之后，下一步就是线上运维了，传统的开发模式，研发对于线上的机器资源、存储资源、中间件资源等感知太多了，但就一个上线过程就要耗费掉一天的时间，并且为了安全还要使用各种手段，一台台机器去灰，还要感知nginx、DB等中间件服务，需要时还得有各种前置工作。</p>
+<p>那能不能无需感知这些对于线上应用即写即跑，背后的资源毫不关心，让研发看不到“机器”，管控该做做，灰度就用流量灰。</p>
+<h3 id="2-2-Faas-ServerLess"><a href="#2-2-Faas-ServerLess" class="headerlink" title="2.2 Faas + ServerLess"></a>2.2 Faas + ServerLess</h3><p>把上面的方式总结下来看：</p>
+<ul>
+<li>开发过程<ul>
+<li>快速复制</li>
+<li>稳定的功能集合</li>
+</ul>
+</li>
+<li>调试过程<ul>
+<li>即写即跑，热更热部</li>
+</ul>
+</li>
+<li>运维过程<ul>
+<li>不感知服务器</li>
+</ul>
+</li>
+</ul>
+<p>总结下来这不就是Faas和 ServerLess架构嘛（面向的沉淀好的稳定功能集合，进行脚本化编程）。我们只需要给我们的系统，增加能执行创新idea的容器就好了。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-4035a89aee38df1b4c2ac0df3c0ce5c9.png" srcset="/img/loading.gif" lazyload></p>
+<p>用脚步写几个基础活动模版，然后实例化一个模版（复制一个出来），把创新的玩法在里面加进去，编写创新玩法时，使用我们沉淀好的功能集合，发布时就点一下，然后自动构建接口，自动识别存储。需要灰度就拿流量整个白名单推全，然后在整个脚本的版本系统，是不是问题就都解了。</p>
+<p>整体的方案就是这么简单，但是我们需要解决落地过程中的 **<code>Java兼容性问题</code>、<code>脚本对于功能库的识别</code>、<code>高效复用问题</code>、<code>脚本执行性能问题</code>、<code>服务稳定性问题</code>**，下面就具体来看，是怎么落地的。</p>
+<p>业界并没有一种完美的解决方案能把上面的几个问题妥善解决掉，在整个落地过程中做了较多的自主优化。</p>
+<h2 id="3-基于Groovy引擎的优化落地"><a href="#3-基于Groovy引擎的优化落地" class="headerlink" title="3. 基于Groovy引擎的优化落地"></a>3. 基于Groovy引擎的优化落地</h2><p>直接看下我们要落地的应用：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-d321c1ded68cc446e2a395240d931ae5.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-1-Java-兼容性问题"><a href="#3-1-Java-兼容性问题" class="headerlink" title="3.1 Java 兼容性问题"></a>3.1 Java 兼容性问题</h2><p>这里就拿业界最常用的Java技术栈来看落地，其他场景可能技术选型不同，但是思路是一致的。</p>
+<p>Groovy算是Java生态中最常用的语言了，纯粹的groovy语法十分精炼。并且与Java环境高度兼容，甚至可以直接在groovy脚本中写Java代码。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-323bbd67555a247a3dd3e54f732a8428.png" srcset="/img/loading.gif" lazyload></p>
+<p>在国内Groovy 最常用的场景是写单测脚本、写离线数据脚本等等，很大的原因就是跟Java兼容性极高，并且编写效率极高，对于Java开发同学没有成本。</p>
+<p>但是Groovy脚本性能是比较差的，测试来看比Java性能得低一个数量级，无论是用哪种执行方式，这个是脚本执行的通病，但是如果把性能问题解决了，Groovy脚本是不是就很香了。</p>
+<h2 id="3-2-脚本执行性能问题"><a href="#3-2-脚本执行性能问题" class="headerlink" title="3.2 脚本执行性能问题"></a>3.2 脚本执行性能问题</h2><p>Java环境中使用groovy脚本有这么几种模式：GroovyShell执行、GroovyClassLoader、GroovyScriptEngine 三种方式去执行脚本。这三种模式都是类似的，性能都比较差。</p>
+<h3 id="3-2-1-执行原理"><a href="#3-2-1-执行原理" class="headerlink" title="3.2.1 执行原理"></a>3.2.1 执行原理</h3><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-fdb1c74baebbeabf713d075c19d2812c.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>GroovyShell<br>GroovyShell 适用于执行片段脚本，具体执行过程，可以理解为把代码片段放到一个静态方法里，然后invokeStatic，然后完成处理。</li>
+</ul>
+<p>每次都要进行新groovy 脚本的拼接，然后编译成对应的class文件，然后再newInstance构建一个对象，然后向下转为GroovyObject，然后调用invokeStatic。</p>
+<p>整个拼接、编译、反射调用都是非常耗时的，然后次次编译产生大量的类，短时的方法区占用比较多。</p>
+<ul>
+<li>GroovyClassloader<br>GroovyClassloader 可以选择groovy文件进行编译，然后夹在对应的class文件，使用的方式也是newInstance对象，用GroovyObject中的invokeMethod方法，调用的是MetaClass中的invokeMethod方法，最底层就是lang.reflect，性能也比较差。</li>
+</ul>
+<p>相对于Groovy少了拼接、编译的过程，我们可以根据需要缓存对应的实例，每次的主要成本就是反射调用成本。</p>
+<ul>
+<li>GroovyScriptEngine<br>这东西就是在groovyClass、GroovyShell上封装了一下，可以指定url去进行当前目录的脚本访问，并且提供了缓存机制，能自主发现文件更新（检查md5），提供了使用上的便利性。</li>
+</ul>
+<p>但是这些便利性还不如不提供，反而引入了OOM风险，方法区不会进行卸载，然后每次变更会生成一个全新的class。并且性能方面虽然提供了缓存，但是反射调用的问题依旧无解，性能还是比较差</p>
+<h3 id="3-2-2-基础信息供给"><a href="#3-2-2-基础信息供给" class="headerlink" title="3.2.2 基础信息供给"></a>3.2.2 基础信息供给</h3><p>回忆点基础，设计过程需要大量的类加载、反射等相关知识。</p>
+<p>一个class对象的唯一标示是：类加载器 + 类全限定名称。</p>
+<p>一个class文件被装载后在方法区生成class对象（启动时），这个对象在整个运行过程中是无法被替换的，像重新加载要么换名字，要么换类加载器，要么改JVM（这个侵入性太大）。</p>
+<p>Java的类加载委派模型，最上层是bootstrap、然后是Extension、在是application，然后加载时会层层向上委派，主要是解决同一个类不同加载器问题。</p>
+<p>由于上面的实现，父类加载器加载的类，是没办法访问子类加载器加载的类的，这个隔离是在class文件装载时进行校验的。</p>
+<p>反射定义 是在运行状态中,对于任意一个类,都能够知道这个类的所有属性和方法;对于任意一个对象,都能够调用它的任意方法和属性;这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。</p>
+<p>有了前置的这部分信息，我们开始进行分析设计。</p>
+<h3 id="3-2-3-自定义引擎"><a href="#3-2-3-自定义引擎" class="headerlink" title="3.2.3 自定义引擎"></a>3.2.3 自定义引擎</h3><p>针对性能差的问题，我是做了对应的自定义实现，反正就是个编译 + 装载的过程。并且除性能以外，我需要对于整个过程都完全可控。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-49658d8474080f373cc6866a3593b2e7.png" srcset="/img/loading.gif" lazyload></p>
+<p>首先使用CompilerConfiguration进行脚本编译控制，编译成对应的class文件。（这里可以让编译过程可控）</p>
+<p>然后自定义classloader进行装载（只需要一个单纯的class文件，只需要一个装载功能，并且需要整个过程完全可控）</p>
+<p>然后ASM 进行对应目标class的代理类生成（ReflectASM），生成新的class：*****MethodAccess，然后再用代理类完成Groovy 脚本内方法反射调用（由于直接定位到方法调用，本质就是直接调用）。</p>
+<p>过程按照一定的策略缓存对应的代理对象，来避免次次编译、创建代理。</p>
+<p>这样使用grovvy的时候，就跟使用本地方法一致了。</p>
+<p>ps： 为什么ReflectASM比Java原生的反射快，而ASMReflect比直接调用性能差在哪，为什么能得到JIT的优化，下面尝试分析。</p>
+<ul>
+<li>直接调用<br>前置动作：java 代码 -&gt; 字节码 -&gt; class load</li>
+</ul>
+<p>执行时：根据加载好的类信息找到对应的方法引用，去执行就好</p>
+<ul>
+<li>Java 原生反射<br>前置动作：java 代码 -&gt; 字节码 -&gt; class load</li>
+</ul>
+<p>提前缓存：获取class信息 -&gt; 获取对应Method</p>
+<p>执行过程：检查系统状态和参数可以执行这个方法 -&gt; 和正常JVM执行方法一样执行这个方法</p>
+<ul>
+<li>ReflectASM 反射<br>前置动作：java 代码 -&gt; 字节码 -&gt; class load</li>
+</ul>
+<p>提前缓存：获取class信息 -&gt; 生成XXXXXXXMethodAccess类 -&gt; 完成新类load</p>
+<p>执行过程：使用向上转型后的代理对象（MethodAccess容器加载可识别）-&gt; 调用invoke方法 -&gt; 然后会走到具体的实现类（继承自MethodAccess）-&gt; 然后代理内部将脚本对象强转为对应的脚本对象 -&gt; 根据名称（for-each）或者方法序号（switch-case） 对于脚本对象的方法进行直接调用。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-089321151cb11b84e2213f4677c3e52d.png" srcset="/img/loading.gif" lazyload></p>
+<p>ReflectASM进行调用比直接调用就多了两层栈、一层for-each或者switch-case，性能近似相同。</p>
+<p>ReflectASM相对于原生JDK的反射，基本相当于直接调用和反射调用的差异，少了参数和状态检查的过程，并且能得到JIT的优化。</p>
+<p>ReflectASM能被JIT优化到，完全是因为这种模式本质上就是直接调用。</p>
+<p>看上去父类加载器访问了子类加载器加载的类，其实没有，装载过程都是没有任何问题的，这里就是利用了向上转型，编写时使用父类进行子类访问，然后再层层向上使用。</p>
+<h3 id="3-2-3-编译优化-–-内部函数链路优化"><a href="#3-2-3-编译优化-–-内部函数链路优化" class="headerlink" title="3.2.3 编译优化 – 内部函数链路优化"></a>3.2.3 编译优化 – 内部函数链路优化</h3><p>重写完引擎之后，发现性能还是差一些，然后一边压测一遍看了下对应火焰图，发现调用栈里多了一些我不认识的东西。并不是常规的函数调用栈。</p>
+<p>这里的问题是因为Groovy的动态性，grovvy编译后的class对象都默认实现了groovy.lang.GroovyObject（可以尝试反编译上面的class文件看看哈），里面有一个MetaClass持有了整个类的元信息，方法路由就是通过MetaClass来进行方法寻找的，可以用这个机制完成在运行时完成属性和方法的添加。（底层调用其实就是反射，只不过让反射的使用变简单了），具体可以去看下官方文档哈。</p>
+<p>这个动态性使性能大幅度下降，这时候我们就需要把这个特性给关掉：@CompileStatic 就行。</p>
+<p>ps-1: 外层依然有必要进行动态代理，没有其他的入口，防止JIT中断。</p>
+<p>ps-2: 很多时候JIT 去优化就是因为反射，具体可以看下对应的JIT 日志，-XX:+PrintCompilation -XX:+CITime</p>
+<h3 id="3-2-4-服务预热优化"><a href="#3-2-4-服务预热优化" class="headerlink" title="3.2.4 服务预热优化"></a>3.2.4 服务预热优化</h3><p>我们日常的服务在启动时都会有预热动作，让服务的刚开始的请求都能以正常的性能来提供。但是容器化之后，新脚本的预热是缺失的。</p>
+<p>预热缺失在除了会导致部分请求的平响增加，在流量极大的情况下是非常危险的，预热产生的开销和链接夯死有极大的概率导致服务奔溃，这里可以参照<a target="_blank" rel="noopener" href="http://www.zouzhiquan.com/%e6%9e%b6%e6%9e%84%e8%a7%86%e8%a7%92%e7%9a%84%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96/">《架构视角的性能优化》</a></p>
+<p>一个脚本中需要预热的是：client（初始化）、函数（实例化）、自身代码，核心重开销的是client、函数，自身代码的JIT热度其实还好。</p>
+<p>这里可以给脚本的下发过程做一点处理，提供预热入口，编写脚本时就能保证脚本是热的。这样可以根据脚本的内部逻辑进行针对性的预热，但是这样相对麻烦，我们需要感知发布逻辑，并且每次需要新增代码，不够优雅。</p>
+<p>最佳的方式是，服务启动时保证脚本中用到的函数、client这些都是热的，剩下的只有脚本逻辑了，这部分本质上的性能损耗非常少了，基本可以忽略不计。如果想要极致的优化方式，可以使用AOT编译，强制静态编译，这部分内容未曾实践落地，就不说了。</p>
+<h2 id="3-3-如何识别功能函数库"><a href="#3-3-如何识别功能函数库" class="headerlink" title="3.3 如何识别功能函数库"></a>3.3 如何识别功能函数库</h2><p>我们基于Faas落地组装逻辑，如果在开发过程中、运行过程中识别函数库呢。</p>
+<p>首先功能函数库，可以有两种落地形式，标准的服务（有状态函数）或工具服务（无状态函数），就使用场景来看有状态函数是我们最常用的，比如说库存、机会、计数、榜单这些，工具函数比如概率、规则引擎、决策服务等等。</p>
+<h3 id="3-3-1-编译时-–-SDK引入"><a href="#3-3-1-编译时-–-SDK引入" class="headerlink" title="3.3.1 编译时 – SDK引入"></a>3.3.1 编译时 – SDK引入</h3><h4 id="3-3-1-1-服务引入"><a href="#3-3-1-1-服务引入" class="headerlink" title="3.3.1.1 服务引入"></a>3.3.1.1 服务引入</h4><p>对于开发过程，由于是脚本 + 面向接口编程，可以直接利用类似于SPI的实现机制，引入一个SDK，只感知具体的接口，这个接口怎么实现、有哪些实现就由容器和运行环境来决定。</p>
+<h4 id="3-3-1-2-自定义函数库"><a href="#3-3-1-2-自定义函数库" class="headerlink" title="3.3.1.2 自定义函数库"></a>3.3.1.2 自定义函数库</h4><p>除了上面的这种方式，可以直接跳过接口，直接自己导入沉淀好的工具库，比如一个Jar包，里面包含了自身的业务功能函数等等。</p>
+<h4 id="3-3-1-3-RPC接入"><a href="#3-3-1-3-RPC接入" class="headerlink" title="3.3.1.3 RPC接入"></a>3.3.1.3 RPC接入</h4><p>可以向在Java开发一样，直接在脚本里使用其他的RPC服务，只需要包装个类似于ClientFactory就可以啦。</p>
+<h3 id="3-3-2-运行时-–-类加载模型扩展"><a href="#3-3-2-运行时-–-类加载模型扩展" class="headerlink" title="3.3.2 运行时 – 类加载模型扩展"></a>3.3.2 运行时 – 类加载模型扩展</h3><p>上面提到的都是各种开发时的引用方式，但是运行时怎么保证你的脚本们正常加载到对应的函数、容器又是怎么执行你的脚本呢。</p>
+<p>我们spring中的包是在application这一层所加载的，相当于容器的信息是application加载的。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-692b9a971724051ca727173205dca7a1.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="3-3-2-1-脚本识别"><a href="#3-3-2-1-脚本识别" class="headerlink" title="3.3.2.1 脚本识别"></a>3.3.2.1 脚本识别</h4><p>而脚本是子类加载器所加载的，我们想要访问，只能通过反射。（容器不感知脚本也非常的合理），所以就直接反射调用了。</p>
+<p>不过这里绕了一层，直接通过ASM生成字节码文件，做了层代理，生成代理类之后，使用被代理类的加载器（脚本类加载器）作为父类加载器构建一个子类加载器，然后代理类通过子类加载器进行装载，最终会委派至父类加载器装载，也就是脚本类加载器装载。</p>
+<p>具体可以看看，com.esotericsoftware.reflectasm.AccessClassLoader#get，逻辑不复杂。</p>
+<p><code>ps: 调用过程可以认定是反射调用，但性能是直接调用</code></p>
+<h4 id="3-3-2-2-脚本访问容器"><a href="#3-3-2-2-脚本访问容器" class="headerlink" title="3.3.2.2 脚本访问容器"></a>3.3.2.2 脚本访问容器</h4><p>而脚本中想要访问存放于容器中的接口畅通无阻。</p>
+<h4 id="3-3-2-3-脚本访问函数库"><a href="#3-3-2-3-脚本访问函数库" class="headerlink" title="3.3.2.3 脚本访问函数库"></a>3.3.2.3 脚本访问函数库</h4><p>然后再把自定义函数库加进去，只需要指定函数库Jar类加载器的父类加载器是application就好，然后再指定脚本的父类加载器是函数库Jar类加载器即可。</p>
+<p>这样就做到了，脚本中能够正常访问容器中的能力，又能访问函数库中的资源，同时容器能够正常访问对应的脚本资源。</p>
+<h3 id="3-3-3-整体来看"><a href="#3-3-3-整体来看" class="headerlink" title="3.3.3 整体来看"></a>3.3.3 整体来看</h3><p>整体盘下来，类加载视图长这样：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-3d610ec3f72958abdaeaa595dc68f8f8.png" srcset="/img/loading.gif" lazyload></p>
+<p>整体的调用链路长这样：</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-699fd31929205e8f3adf45964a76facf.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-4-服务稳定性问题"><a href="#3-4-服务稳定性问题" class="headerlink" title="3.4 服务稳定性问题"></a>3.4 服务稳定性问题</h2><p>解决完性能、兼容性、函数库识别之后，下一个问题是稳定性问题，要求其实很清晰，隔离性 + 故障屏蔽</p>
+<h3 id="3-4-1-隔离问题"><a href="#3-4-1-隔离问题" class="headerlink" title="3.4.1 隔离问题"></a>3.4.1 隔离问题</h3><p>脚本之间不能互相影响、不同业务的脚本之间不应该出现资源抢占的情况。</p>
+<p>首先脚本之间在上面说的那种模式落地之后，隔离逻辑非常好做，只要把整个脚本try掉就好了，无论任何错误不能导致影响容器运行。</p>
+<p>然后业务之间的脚本是互相隔离的，在一个资源上只能加载一个业务的脚本，或者只能加载其中一个脚本，必要时一个集群仅运行一个脚本也是十分有必要的，选择不同的套餐就好了。</p>
+<p>并且应该对于单个脚本进行逻辑隔离的治理，比如说这个脚本能使用多少存储、能用多少机器、最大多少流量，只需要在存储选择层面做合适的集群转发、流量入口处做限流、分发至不同的集群即可。</p>
+<h3 id="3-4-2-故障屏蔽"><a href="#3-4-2-故障屏蔽" class="headerlink" title="3.4.2 故障屏蔽"></a>3.4.2 故障屏蔽</h3><p>当一个脚本存在技术上的问题时，是不应该被发布成功的，在新脚本错误期应该保持当前可用脚本对外提供服务。并且在错误期间应该持续性报警，并且脚本发布流程夯住的。实现模式就是经典的上线单发布流程。</p>
+<p>对于业务性问题，我们是无法立即感知的，我们需要提供灰度过程，实现白名单用户、特征用户访问新的脚本，实现脚本的影响范围控制，如果小流量存在问题时，应该要有故障恢复能力。</p>
+<h3 id="3-4-3-故障恢复"><a href="#3-4-3-故障恢复" class="headerlink" title="3.4.3 故障恢复"></a>3.4.3 故障恢复</h3><p>提供脚本的快速回滚机制、脚本下线机制，在出现问题时能够快速的恢复。</p>
+<h2 id="3-5-复用的效率分析"><a href="#3-5-复用的效率分析" class="headerlink" title="3.5 复用的效率分析"></a>3.5 复用的效率分析</h2><p>可以参照我之前的文章<a target="_blank" rel="noopener" href="http://www.zouzhiquan.com/%e6%8b%92%e7%bb%9d%e6%8d%a2%e7%9a%ae%e7%a7%91%e6%8a%80-%e8%90%a5%e9%94%80%e6%b4%bb%e5%8a%a8%e6%8f%90%e6%95%88%e4%b9%8b%e9%81%93/">营销活动提效之道</a>，这部分内容为节选篇章，原理都是一致的。</p>
+<h3 id="3-5-1-颗粒度问题"><a href="#3-5-1-颗粒度问题" class="headerlink" title="3.5.1 颗粒度问题"></a>3.5.1 颗粒度问题</h3><p>通常来说复用机会和颗粒度大致呈负相关的关系，颗粒度越大，能够复用的机会就越小，颗粒度越小，能够复用的机会往往越大。</p>
+<p>拿一个活动来说，从大颗粒到小颗粒，可以大致分为活动、玩法、有状态函数、无状态函数、库函数。</p>
+<p>颗粒度越大成本节省越多，但是复用机会较小，颗粒度越小能够节省的成本越小，但是复用机会较大。就实践而言，单就成本节省带来的提效是有一个最优点的，这个点往往是有状态函数和玩法。那么我们复用的粒度基本就是围绕这个展开的。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-5156de5385b50865218162f93ddbc07d.png" srcset="/img/loading.gif" lazyload></p>
+<p>一场活动原封不动的直接复用几乎是不可能的，至少得换个皮吧，玩法复用机会明显大了很多，比如说抽奖、任务、签到等玩法复用，组成玩法的有状态函数复用机会就更大了，比如说机会、代币账务、库存、计数等等，再就是无状态函数，最后拆解到库函数，所有编程行为都是在这之上发生的，几乎完全复用。</p>
+<h3 id="3-5-2-创新限制问题"><a href="#3-5-2-创新限制问题" class="headerlink" title="3.5.2 创新限制问题"></a>3.5.2 创新限制问题</h3><p>衡量出成本节省之后，我们不能单单按照这个进行执行，我们应该加入整个复用方案对于活动创新上的限制的影响。颗粒度越小对于创新时的限制是越小的，所以尽可能围绕最优的复用粒度偏向小粒度。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-1b54f09237240bfd1c6a2fc11b7fa8a2.png" srcset="/img/loading.gif" lazyload></p>
+<p>就实践而言，颗粒度到达有状态功能函数之后，就基本没啥限制了，所以最佳的复用粒度往往就是这个。</p>
+<h3 id="3-5-2-善用组合拳"><a href="#3-5-2-善用组合拳" class="headerlink" title="3.5.2 善用组合拳"></a>3.5.2 善用组合拳</h3><p>前面一直在提创新的重要性，我们要做的是对于创新的提效。但是一场活动完完全全是创新玩法几乎是不可能，甚至完全全新的玩法对于用户并没有那么友好，通常是一个创新玩法带几个习惯玩法，这样才能做到让活动既陌生又熟悉，用户的体验才是最佳的。业界也基本都是这么实践的。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-c85c0036f69f2b8c79fc5184926fadae.png" srcset="/img/loading.gif" lazyload></p>
+<p>同时固有玩法的沉淀一样重要，这就要求我们的系统几个方向都得做，快速的玩法复用、快速的玩法变形、快速的创新玩法建设。</p>
+<h2 id="3-6-看下整体的逻辑视图"><a href="#3-6-看下整体的逻辑视图" class="headerlink" title="3.6 看下整体的逻辑视图"></a>3.6 看下整体的逻辑视图</h2><p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-2752b2bf22b6efc2db232ef84aeb9e73.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="4-一点启示"><a href="#4-一点启示" class="headerlink" title="4. 一点启示"></a>4. 一点启示</h2><h3 id="4-1-两万个配置问题"><a href="#4-1-两万个配置问题" class="headerlink" title="4.1 两万个配置问题"></a>4.1 两万个配置问题</h3><p>经常我们的会为了逻辑上的灵活性，增加很多的配置，曾经见过一些相对极端的代码，100行代码里10个配置项，如果发展到这样就没有必要了。</p>
+<p>零散配置维护带来的成本远比灵活性带来的收益要大，ROI完全打不正。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-522e1c83ef428c3228668e8e82512232.png" srcset="/img/loading.gif" lazyload></p>
+<p>这时候不如直接用整块代码的“规则引擎”解决问题，一块代码完成整体的决策，每次改动时还可以兼顾到整体的决策逻辑。</p>
+<h3 id="4-2-关于变化的收敛"><a href="#4-2-关于变化的收敛" class="headerlink" title="4.2 关于变化的收敛"></a>4.2 关于变化的收敛</h3><p>我们在进行代码编写时，如果想让代码稳定可维护（架构的可扩展性、灵活度方面），最重要的就是通过各类变化的收敛，让影响范围可控，让整个的架构变得清晰，让整个代码结构变得清晰。</p>
+<p>而变化可以大致分为这么几类：功能繁多&amp;耦合过重导致牵一发动全身、易变的串联关系、易变的组合关系、易变的单元逻辑、新增的单元逻辑。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-69d475fb9c2e2a988a144f0fafe7d0f0.png" srcset="/img/loading.gif" lazyload></p>
+<p>导致我们修改代码的都是业务功能上的变化，可以从业务功能上进行探索，最佳的实践是：<strong>“化整为零，分而治之”，对于易变单元 “切分易变逻辑，使用<code>中间件</code>收敛和控制变化”</strong>，具体来看</p>
+<ul>
+<li>对于<code>功能繁多&amp;耦合过重导致牵一发动全身</code>，我们可以在最上层做处理，拆分独立的服务（比如按照领域拆分），将各域的变化收敛到域内，不影响整体系统的变更。</li>
+<li>对于<code>易变的串联关系</code>，可以借鉴观察者模式，实现发布订阅等能力，完成整体的逻辑串联（落地形式可以是 基于总线的同步触发机制、又或者基于消息的异步触发机制），而不是硬编码来完成逻辑的串联。</li>
+<li>对于<code>易变的组合关系</code>，可以采用本文所说的这种模式，快速拼接现有的功能组成对外服务，而不是次次硬编码。</li>
+<li>对于<code>新增单元逻辑</code>，我们可以使用策略模式，完成单元逻辑的收敛，把新增的成本给解决掉。</li>
+<li>对于<code>易变的单元逻辑</code>，通常是由于业务逻辑多变引发的，最佳的就是拆分业务决策逻辑、代码决策逻辑，然后把代码抽象为执行模版，复杂的业务计算交给规则引擎。比如金额计算、过滤规则等等，还比如策略模式中的计算策略。</li>
+</ul>
+<p>之前描述的，<a target="_blank" rel="noopener" href="http://www.zouzhiquan.com/%e6%90%9e%e5%ae%9a%e8%90%a5%e9%94%80%e6%b4%bb%e5%8a%a8-%e6%b4%bb%e5%8a%a8%e6%b5%81%e7%a8%8b%e7%bc%96%e6%8e%92%ef%bc%88%e6%9e%b6%e6%9e%84%e8%ae%be%e8%ae%a1%e6%80%9d%e8%b7%af%ef%bc%89/">事件总线-流程编排</a>、<a target="_blank" rel="noopener" href="http://www.zouzhiquan.com/%e6%90%9e%e5%ae%9a%e8%90%a5%e9%94%80%e6%b4%bb%e5%8a%a8-%e7%94%a8%e6%88%b7%e4%ba%a4%e4%ba%92%e6%80%bb%e7%ba%bf/">交互总线</a>、<a target="_blank" rel="noopener" href="http://www.zouzhiquan.com/%e6%90%9e%e5%ae%9a%e8%90%a5%e9%94%80%e6%b4%bb%e5%8a%a8-%e8%b0%88%e4%b8%80%e8%b0%88%e8%a7%84%e5%88%99%e5%bc%95%e6%93%8e%e5%9c%a8%e6%b4%bb%e5%8a%a8%e7%b3%bb%e7%bb%9f%e4%b8%ad%e7%9a%84%e8%90%bd%e5%9c%b0/">规则引擎</a>、<a target="_blank" rel="noopener" href="http://www.zouzhiquan.com/%e6%90%9e%e5%ae%9a%e8%90%a5%e9%94%80%e6%b4%bb%e5%8a%a8-%e5%a6%82%e4%bd%95%e4%bb%8e%e5%ae%b9%e7%9a%84%e5%ba%94%e5%af%b9%e8%90%a5%e9%94%80%e6%b4%bb%e5%8a%a8%e5%a5%96%e5%8a%b1%e5%8f%91%e6%94%be/">通用奖励服务</a>、<a target="_blank" rel="noopener" href="http://www.zouzhiquan.com/%e6%90%9e%e5%ae%9a%e8%90%a5%e9%94%80%e6%b4%bb%e5%8a%a8-%e8%90%a5%e9%94%80%e6%b4%bb%e5%8a%a8%e4%b8%ad%e7%9a%84%e4%bb%a3%e5%b8%81%e6%9c%8d%e5%8a%a1/">代币账务</a>等，都是按照这个思路实践的，有兴趣可以看下。</p>
+<h3 id="4-3-创新的吞吐量-–-题外话"><a href="#4-3-创新的吞吐量-–-题外话" class="headerlink" title="4.3 创新的吞吐量 – 题外话"></a>4.3 创新的吞吐量 – 题外话</h3><p>说句题外话，从流程上来看，从idea提出到完整性够键、再到prd产出、研发开发、测试、线上运行，这几个阶段是否可并性，常规来说是不可行的，prd未产出细节可能会出现大量的变动，导致研发返工，研发阶段测试提前介入，会导致测试工作重复等。但是在成本极小的情况，这种模式是有落地可能性的，尤其是创新场景，直接研发写个demo上去也不是不行。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-d5199fe29692d30a4eac744493fa0a7f.png" srcset="/img/loading.gif" lazyload></p>
+<p>一定程度的并发，虽然整体工作量稍微增加，但是因为排期变短，整体的吞吐量是上升了的。</p>
+<h3 id="4-4-性能的优化"><a href="#4-4-性能的优化" class="headerlink" title="4.4 性能的优化"></a>4.4 性能的优化</h3><p>整个落地过程碰到了许多问题，允许我感慨下，代码都是人写的，所有的软件层面的引发的性能问题，都是可解的，只不过选择性能时我们需要牺牲一些东西，比如Groovy的动态性、比如空间换时间等等。</p>
+<p>考量性能最关键的指标就是，有效吞吐量、响应时间，基于这两个做综合判断，往往能达到性能优化的最佳状态。</p>
+<p>不要一堆问题混起来考量，分成单元问题逐个击破，就简单很多了。</p>
+<p>有兴趣可以读一下<a target="_blank" rel="noopener" href="http://www.zouzhiquan.com/%e6%9e%b6%e6%9e%84%e8%a7%86%e8%a7%92%e7%9a%84%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96/">架构视角的性能优化</a></p>
+<h3 id="4-5-易用性和灵活性"><a href="#4-5-易用性和灵活性" class="headerlink" title="4.5 易用性和灵活性"></a>4.5 易用性和灵活性</h3><p>每次做中间件或者工具设计时都会发现，易用性和灵活性天然是冲突的，易用和简单基本可以划等号，但是简单基本意味着变化可能性小，灵活性好不了。</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/1691654141-f7273a482064f0750e05c08c1a6927e5.png" srcset="/img/loading.gif" lazyload></p>
+<p>需要注意的是，易用性提升前期，比如新增一个功能能够让整体更好用，同灵活性并没有什么冲突。</p>
+<h3 id="4-6-架构的广度和深度"><a href="#4-6-架构的广度和深度" class="headerlink" title="4.6 架构的广度和深度"></a>4.6 架构的广度和深度</h3><p>日常扩大技术广度，使用时提升技术深度，是最佳的实践啦，有足够的技术视野才能做出优秀的架构，有足够的技术深度还能保证架构的有效落地。</p>
+<h2 id="5-写在最后"><a href="#5-写在最后" class="headerlink" title="5. 写在最后"></a>5. 写在最后</h2><p>本文描述了创新试错下的多变开发模式，我们可以通过何种方式，提升面对变化时的效率，并对于理想的方式进行了技术实践上的落地，并且切实解决该场景下的问题。</p>
+<p>其中技术实现，是以主流开发语言Java 作为基准的，如果你们是其他技术栈，可能实现细节不同，但是整体的思路肯定是相近的。</p>
+<p>对于这个思路都是类似的实践模式，相信做过Faas或者Serverless的朋友都有相同的感触吧，能根据场景，把思路落地才是关键。</p>
+<p>最后从整体的思考、设计、落地过程中总结了一点经验，也分享给了大家，如果有更好的思路，可以一起探讨。</p>
+<p>新的思路、新的技术总能带来一些较多的收益，带也会带来一些麻烦，完整考虑收益，因地制宜才好。  </p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/" class="category-chain-item">个人成长</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/" class="category-chain-item">工作领域</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%B7%A5%E4%BD%9C%E9%A2%86%E5%9F%9F/">#工作领域</a>
+      
+        <a href="/tags/serverless/">#serverless</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Serverless + Faas架构 创新试错快速起服务</div>
+      <div>http://coder-xieshijie.cn/2023/08/10/个人成长/工作领域汇总/Serverless-Faas架构-创新试错快速起服务/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F+%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5%E8%AF%A6%E8%A7%A3/" title="网络概念详解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">网络概念详解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/08/Spring/spel%E4%BD%BF%E7%94%A8%E5%AE%9E%E8%B7%B5/" title="spel使用实践">
+                        <span class="hidden-mobile">spel使用实践</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

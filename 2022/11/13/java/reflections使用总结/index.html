@@ -1,0 +1,878 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一个好用的反射工具类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="reflections使用总结">
+<meta property="og:url" content="http://coder-xieshijie.cn/2022/11/13/java/reflections%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="一个好用的反射工具类">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-13T04:38:03.000Z">
+<meta property="article:modified_time" content="2022-12-27T08:45:25.000Z">
+<meta property="article:author" content="谢世杰">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>reflections使用总结 - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="reflections使用总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-13 12:38" pubdate>
+          2022年11月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="java"
+        id="heading-93f725a07423fe1c889f448b33d21f46" role="tab" data-toggle="collapse" href="#collapse-93f725a07423fe1c889f448b33d21f46"
+        aria-expanded="true"
+      >
+        java
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-93f725a07423fe1c889f448b33d21f46"
+           role="tabpanel" aria-labelledby="heading-93f725a07423fe1c889f448b33d21f46">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/11/13/java/reflections%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="reflections使用总结"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">reflections使用总结</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">reflections使用总结</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2022年12月27日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、项目背景"><a href="#一、项目背景" class="headerlink" title="一、项目背景"></a>一、项目背景</h1><blockquote>
+<p>背景：项目中有解析jar的业务场景，通过解析指定注解标注的class获取指定注解标注的方法</p>
+</blockquote>
+<h1 id="二、reflections能力概览"><a href="#二、reflections能力概览" class="headerlink" title="二、reflections能力概览"></a>二、reflections能力概览</h1><p>reflections的部分能力如下</p>
+<ul>
+<li>类处理<ul>
+<li>获取jar包中的所有class对象</li>
+<li>获取jar中指定注解的所有class对象</li>
+<li>获取jar中指定类及其所有的子类的class对象</li>
+<li>…</li>
+</ul>
+</li>
+<li>方法处理<ul>
+<li>获取jar包中所有的method对象</li>
+<li>获取jar中被指定注解标记的method对象</li>
+<li>获取jar中返回值为指定类的method对象</li>
+<li>获取jar中入参为指定类的method对象</li>
+<li>…</li>
+</ul>
+</li>
+<li>字段处理<ul>
+<li>获取jar中被指定注解标记的filed对象</li>
+<li>…</li>
+</ul>
+</li>
+<li>资源处理<ul>
+<li>获取jar中resource中的properties文件</li>
+<li>…</li>
+</ul>
+</li>
+<li>工具类：<ul>
+<li>过滤类中方法(类似stream流式写法)</li>
+<li>…</li>
+</ul>
+</li>
+<li>序列化为xml&#x2F;json</li>
+<li>更多能力见官方文档：<a target="_blank" rel="noopener" href="https://github.com/ronmamo/reflections">https://github.com/ronmamo/reflections</a></li>
+</ul>
+<h1 id="三、使用demo"><a href="#三、使用demo" class="headerlink" title="三、使用demo"></a>三、使用demo</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Set&lt;Class&lt;?&gt;&gt; queryClass(String jarPath, String url) <span class="hljs-keyword">throws</span> MalformedURLException &#123;<br>  			<span class="hljs-comment">// 根据jarPath去构建classloader，此处是自定义classloader</span><br>        <span class="hljs-type">WarClassLoader</span> <span class="hljs-variable">warClassLoader</span> <span class="hljs-operator">=</span><br>                SwaggerGenerator.getWarClassLoader(jarPath, Thread.currentThread().getContextClassLoader());<br><br>  			<span class="hljs-comment">// 构建configuration，设置classloader和要解析的url</span><br>        <span class="hljs-type">ConfigurationBuilder</span> <span class="hljs-variable">config</span> <span class="hljs-operator">=</span> ConfigurationBuilder.build();<br>        config.addClassLoader((URLClassLoader) warClassLoader.getParent());<br>        config.setScanners(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ResourcesScanner</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">TypeAnnotationsScanner</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubTypesScanner</span>());<br>        config.getUrls().clear();<br>        config.getUrls().add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">URL</span>(url)); <span class="hljs-comment">// 需要解析哪一个jar就传入对应的url地址</span><br><br>  			<span class="hljs-comment">// 构建Reflection对象，获取符合指定注解的class</span><br>        <span class="hljs-type">Reflections</span> <span class="hljs-variable">ref</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Reflections</span>(config);<br>        Stream&lt;Class&lt;?&gt;&gt; apiStream = ref.getTypesAnnotatedWith(Api.class).stream();<br>        Stream&lt;Class&lt;?&gt;&gt; restStream = ref.getTypesAnnotatedWith(RestController.class).stream();<br>        Stream&lt;Class&lt;?&gt;&gt; apiAndDef = Stream.concat(apiStream, restStream);<br><br>        <span class="hljs-comment">// 反击class的set集合</span><br>        <span class="hljs-keyword">return</span> apiAndDef.collect(Collectors.toSet());<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>通过reflections.classes() 获取所有的class文件</li>
+<li>reflections需要传入configuration才能进行初始化</li>
+<li>configuration配置<ol>
+<li>classloader：声明要扫描哪一个classloader下的class</li>
+<li>scanner：声明需要扫描哪些内容：type和annotation的scanner</li>
+<li>url：真实要扫描的jar执行流程</li>
+</ol>
+</li>
+<li>初始化configuration并设置<ol>
+<li>classloader：声明要扫描哪一个classloader下的class</li>
+<li>scanner：声明需要扫描哪些内容：type和annotation的scanner</li>
+<li>url：真实要扫描的jar</li>
+</ol>
+</li>
+</ol>
+<h1 id="四、主要流程源码分析"><a href="#四、主要流程源码分析" class="headerlink" title="四、主要流程源码分析"></a>四、主要流程源码分析</h1><ol>
+<li><p>初始化, 调用 <code>new Reflections(config)</code>执行如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-title function_">Reflections</span><span class="hljs-params">(<span class="hljs-keyword">final</span> Configuration configuration)</span> &#123;<br>  			<span class="hljs-comment">// 设置configuration</span><br>        <span class="hljs-built_in">this</span>.configuration = configuration;<br>  			<span class="hljs-comment">// 设置存在class元信息的store对象，其内部维护 Map&lt;String, Multimap&lt;String, String&gt;&gt; storeMap</span><br>        store = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Store</span>(configuration);<br><br>        <span class="hljs-keyword">if</span> (configuration.getScanners() != <span class="hljs-literal">null</span> &amp;&amp; !configuration.getScanners().isEmpty()) &#123;<br>            <span class="hljs-comment">//inject to scanners</span><br>            <span class="hljs-keyword">for</span> (Scanner scanner : configuration.getScanners()) &#123;<br>                scanner.setConfiguration(configuration);<br>                scanner.setStore(store.getOrCreate(scanner.getClass().getSimpleName()));<br>            &#125;<br>						<span class="hljs-comment">// 扫描configuration中持有的所有url</span><br>            scan();<br>        &#125;<br>  &#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>扫描url, 调用<code>scan()</code>执行如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">scan</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// 一些代码...</span><br>  <br>  			<span class="hljs-comment">// 遍历configuration中的所有url</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">final</span> URL url : configuration.getUrls()) &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>              	<span class="hljs-comment">// 如果configuration配置了线程池，则把scan加入到线程池异步执行</span><br>                <span class="hljs-keyword">if</span> (executorService != <span class="hljs-literal">null</span>) &#123;<br>                    futures.add(executorService.submit(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Runnable</span>() &#123;<br>                        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>                            <span class="hljs-keyword">if</span> (log != <span class="hljs-literal">null</span> &amp;&amp; log.isDebugEnabled()) log.debug(<span class="hljs-string">&quot;[&quot;</span> + Thread.currentThread().toString() + <span class="hljs-string">&quot;] scanning &quot;</span> + url);<br>                            scan(url);<br>                        &#125;<br>                    &#125;));<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    scan(url);<br>                &#125;<br>                scannedUrls++;<br>            &#125; <span class="hljs-keyword">catch</span> (ReflectionsException e) &#123;<br>                <span class="hljs-keyword">if</span> (log != <span class="hljs-literal">null</span> &amp;&amp; log.isWarnEnabled()) log.warn(<span class="hljs-string">&quot;could not create Vfs.Dir from url. ignoring the exception and continuing&quot;</span>, e);<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 一些代码...</span><br>&#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">scan</span><span class="hljs-params">(URL url)</span> &#123;<br>      	<span class="hljs-comment">// 通过迭代器遍历url中的所有符合要求的文件</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">final</span> Vfs.File file : Vfs.fromURL(url).getFiles()) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">input</span> <span class="hljs-operator">=</span> file.getRelativePath().replace(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-string">&#x27;.&#x27;</span>);<br>            <span class="hljs-keyword">if</span> (configuration.getInputsFilter() == <span class="hljs-literal">null</span> || configuration.getInputsFilter().apply(input)) &#123;<br>                <span class="hljs-type">Object</span> <span class="hljs-variable">classObject</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>              	<span class="hljs-comment">// 遍历configuration中的声明的scanner实现类，扫描不同的内容并加入store</span><br>                <span class="hljs-keyword">for</span> (Scanner scanner : configuration.getScanners()) &#123;<br>                    <span class="hljs-keyword">try</span> &#123;<br>                        <span class="hljs-keyword">if</span> (scanner.acceptsInput(input)) &#123;<br>                            classObject = scanner.scan(file, classObject);<br>                        &#125;<br>                    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                        <br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>存储, 根据传入的scanner的不同，执行不同的scan扫描逻辑，这里以<code>new TypeAnnotationsScanner()</code>为例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">scan</span><span class="hljs-params">(<span class="hljs-keyword">final</span> Object cls)</span> &#123;<br>  <span class="hljs-comment">// 获取class name</span><br>		<span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">className</span> <span class="hljs-operator">=</span> getMetadataAdapter().getClassName(cls);<br><br>        <span class="hljs-keyword">for</span> (String annotationType : (List&lt;String&gt;) getMetadataAdapter().getClassAnnotationNames(cls)) &#123;<br><br>            <span class="hljs-keyword">if</span> (acceptResult(annotationType) ||<br>                annotationType.equals(Inherited.class.getName())) &#123; <span class="hljs-comment">//as an exception, accept Inherited as well</span><br>                <span class="hljs-comment">// 以(注解，class name)为键值对，存入private Multimap&lt;String, String&gt; store;</span><br>                getStore().put(annotationType, className);<br>            &#125;<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>获取class对象, 通过注解去store中获取类集合</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Set&lt;Class&lt;?&gt;&gt; getTypesAnnotatedWith(<span class="hljs-keyword">final</span> Class&lt;? <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Annotation</span>&gt; annotation, <span class="hljs-type">boolean</span> honorInherited) &#123;<br>  			<span class="hljs-comment">// 直接去store中根据注解name去获取对应的class列表</span><br>        Iterable&lt;String&gt; annotated = store.get(index(TypeAnnotationsScanner.class), annotation.getName());<br>        Iterable&lt;String&gt; classes = getAllAnnotated(annotated, annotation.isAnnotationPresent(Inherited.class), honorInherited);<br>        <span class="hljs-keyword">return</span> Sets.newHashSet(concat(forNames(annotated, loaders()), forNames(classes, loaders())));<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li><p>reflections需要传入configuration才能进行初始化</p>
+</li>
+<li><p>configuration配置</p>
+<ol>
+<li>classloader：声明要扫描哪一个classloader下的class</li>
+<li>scanner：声明需要扫描哪些内容：type和annotation的scanner</li>
+<li>url：真实要扫描的jar</li>
+</ol>
+</li>
+<li><p>执行流程</p>
+<ol>
+<li><p>初始化configuration并设置</p>
+</li>
+<li><p>classloader：声明要扫描哪一个classloader下的class</p>
+</li>
+<li><p>scanner：声明需要扫描哪些内容：type和annotation的scanner</p>
+</li>
+<li><p>url：真实要扫描的jar</p>
+</li>
+<li><p>执行scan，扫描指定url</p>
+</li>
+<li><p>根据设置的scanner，把对应的信息存入store</p>
+</li>
+<li><p>根据key去store获取指定信息</p>
+</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>reflections使用总结</div>
+      <div>http://coder-xieshijie.cn/2022/11/13/java/reflections使用总结/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月13日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年12月27日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/13/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/%E7%B4%A2%E5%BC%95%E7%9A%84%E8%AE%B0%E8%B4%A6%E6%9C%AC/" title="索引的记账本">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">索引的记账本</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/18/%E9%9A%8F%E7%AC%94/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E6%90%AD%E5%BB%BAdemo/" title="搭建demo">
+                        <span class="hidden-mobile">搭建demo</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

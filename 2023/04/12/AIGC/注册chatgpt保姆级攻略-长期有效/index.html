@@ -1,0 +1,999 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="谢世杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="注册ChatGPT保姆级攻略(长期有效~)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="注册ChatGPT保姆级攻略(长期有效~)">
+<meta property="og:url" content="http://coder-xieshijie.cn/2023/04/12/AIGC/%E6%B3%A8%E5%86%8Cchatgpt%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%94%BB%E7%95%A5-%E9%95%BF%E6%9C%9F%E6%9C%89%E6%95%88/index.html">
+<meta property="og:site_name" content="coder.谢世杰">
+<meta property="og:description" content="注册ChatGPT保姆级攻略(长期有效~)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401100825926.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401100850330.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401101451773.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401101253727.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401101947437.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230402105358425.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230402105452140.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230402122144417.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230402123313498.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401101817546.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401102422546.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401103201659.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401103224631.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401103329973.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401103354931.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401103524271.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401104628175.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401105204540.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401105334977.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401105524521.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401105936622.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110402177.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110333516.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110549793.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110637406.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110730672.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110856271.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110922420.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110957528.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111058674.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111141359.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111220408.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111313316.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111354046.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111431485.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111517641.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111716571.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111808206.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111747815.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111904599.png">
+<meta property="og:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111928871.png">
+<meta property="article:published_time" content="2023-04-12T04:39:01.000Z">
+<meta property="article:modified_time" content="2023-04-12T04:39:01.000Z">
+<meta property="article:author" content="谢世杰">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="ChatGPT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401100825926.png">
+  
+  
+  
+  <title>注册ChatGPT保姆级攻略(长期有效~) - coder.谢世杰</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"coder-xieshijie.cn","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","app_key":"TE706jTVEWqH6M91ndUC8sPa","server_url":"https://kbb6dkcs.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="coder.谢世杰" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>coder-xieshijie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/road.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="注册ChatGPT保姆级攻略(长期有效~)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-12 12:39" pubdate>
+          2023年4月12日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="AI"
+        id="heading-0a40e3c91a3a55c9a37428c6d194d0e5" role="tab" data-toggle="collapse" href="#collapse-0a40e3c91a3a55c9a37428c6d194d0e5"
+        aria-expanded="true"
+      >
+        AI
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-0a40e3c91a3a55c9a37428c6d194d0e5"
+           role="tabpanel" aria-labelledby="heading-0a40e3c91a3a55c9a37428c6d194d0e5">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="ChatGPT"
+        id="heading-62239e6c0f995ae1fdc00d18b7905eac" role="tab" data-toggle="collapse" href="#collapse-62239e6c0f995ae1fdc00d18b7905eac"
+        aria-expanded="true"
+      >
+        ChatGPT
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-62239e6c0f995ae1fdc00d18b7905eac"
+           role="tabpanel" aria-labelledby="heading-62239e6c0f995ae1fdc00d18b7905eac">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2023/04/13/AIGC/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BB%B0%E6%9C%9B%E6%98%9F%E7%A9%BA%E5%92%8C%E8%84%9A%E8%B8%8F%E5%AE%9E%E5%9C%B0/" title="AI大模型的仰望星空和脚踏实地"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">AI大模型的仰望星空和脚踏实地</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/04/12/AIGC/%E6%B3%A8%E5%86%8Cchatgpt%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%94%BB%E7%95%A5-%E9%95%BF%E6%9C%9F%E6%9C%89%E6%95%88/" title="注册ChatGPT保姆级攻略(长期有效~)"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">注册ChatGPT保姆级攻略(长期有效~)</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">注册ChatGPT保姆级攻略(长期有效~)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><strong>总结：</strong></p>
+<ol>
+<li>科学上网的条件：<a target="_blank" rel="noopener" href="https://sockboom.shop/auth/register?affid=677419">sockboom</a><ol>
+<li>先注册登录</li>
+<li>购买套餐</li>
+<li>安装clashx</li>
+<li>配置上网</li>
+</ol>
+</li>
+<li>接码平台：<a target="_blank" rel="noopener" href="https://sms-activate.org/">sms</a><ol>
+<li>先注册登录</li>
+<li>点击右上角的余额，下拉点击充值</li>
+<li>选择支付宝账号充值，PS：这个最低充值2美元，最开始没有最低额度的，因为chatgpt爆火，大量国人涌入，导致平台抬高了充值的价格，而且支付金额低于10美元时，佣金为3% + 0.03美元,要是有其他充值方式也可以不用选择这个</li>
+<li>我充值了10美元，付款之后直接到账</li>
+<li>点击左侧的服务列表中的openai服务，选中</li>
+</ol>
+</li>
+<li>注册google账号</li>
+<li>注册chatgpt，成功！</li>
+</ol>
+<p>注意事项</p>
+<ul>
+<li>科学上网的节点不要选择香港，最好选美国或者日本</li>
+</ul>
+<h2 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h2><p>科学上网平台还是建议选择大一点的平台，买贵一点的套餐，太便宜的那种机场ip被大量人使用，openai就会直接把这个ip拉黑，即便注册成功了后续登录也会被限制</p>
+<p>我使用的平台<a target="_blank" rel="noopener" href="https://sockboom.shop/auth/register?affid=677419">sockboom</a>, 点击<a target="_blank" rel="noopener" href="https://sockboom.shop/auth/register?affid=677419">这里</a>跳转到sockbook平台</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401100825926.png" srcset="/img/loading.gif" lazyload alt="sockboom平台"></p>
+<p>定期有一些活动，每天登录一次可以免费领流量</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401100850330.png" srcset="/img/loading.gif" lazyload alt="签到流量"></p>
+<p>节点列表，这个各个平台基本差不多，都是一些常见的</p>
+<ol>
+<li>美国</li>
+<li>俄罗斯</li>
+<li>日本</li>
+<li>香港</li>
+<li>新加坡</li>
+<li>土耳其</li>
+<li>韩国</li>
+<li>马来西亚</li>
+<li>等等</li>
+</ol>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401101451773.png" srcset="/img/loading.gif" lazyload alt="节点列表"></p>
+<p>套餐列表</p>
+<p>PS:我开了VIP(可以多选一些节点)，买了一年的套餐，一共花了￥80</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401101253727.png" srcset="/img/loading.gif" lazyload alt="套餐"></p>
+<p>使用非常简单，按照平台的提示即可</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401101947437.png" srcset="/img/loading.gif" lazyload alt="使用说明"></p>
+<p>我使用的是mac，点击到mac选项，先下载clashx并安装，</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230402105358425.png" srcset="/img/loading.gif" lazyload alt="mac的使用说明"></p>
+<p>然后点击一键导入clashx配置，更新完成之后，点击添加</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230402105452140.png" srcset="/img/loading.gif" lazyload alt="clash x配置"></p>
+<p>选择美国&#x2F;日本的接口(需要注意，选节点不要选香港，香港已经被openai划入黑名单了)，并设置全局代理即可科学上网</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230402122144417.png" srcset="/img/loading.gif" lazyload alt="选择节点"></p>
+<p>输入<a target="_blank" rel="noopener" href="https://tool.lu/ip/%EF%BC%8C%E9%AA%8C%E8%AF%81%E4%B8%80%E4%B8%8B%E5%BD%93%E5%89%8D%E7%9A%84ip">https://tool.lu/ip/，验证一下当前的ip</a></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230402123313498.png" srcset="/img/loading.gif" lazyload alt="ip验证"></p>
+<h2 id="接码平台"><a href="#接码平台" class="headerlink" title="接码平台"></a>接码平台</h2><p><a target="_blank" rel="noopener" href="https://sms-activate.org/">https://sms-activate.org/</a></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401101817546.png" srcset="/img/loading.gif" lazyload alt="sms-active"></p>
+<p>使用：</p>
+<ol>
+<li>先注册登录</li>
+<li>点击右上角的余额，下拉点击充值</li>
+<li>选择支付宝账号充值<ol>
+<li>PS：这个最低充值2美元，最开始没有最低额度的，因为chatgpt爆火，大量国人涌入，导致平台抬高了充值的价格，而且支付金额低于10美元时，佣金为3% + 0.03美元,要是有其他充值方式也可以不用选择这个</li>
+</ol>
+</li>
+<li>我充值了10美元，付款之后直接到账</li>
+<li>点击左侧的服务列表中的openai服务，选中</li>
+</ol>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401102422546.png" srcset="/img/loading.gif" lazyload alt="充值"></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401103201659.png" srcset="/img/loading.gif" lazyload alt="支付宝付账"></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401103224631.png" srcset="/img/loading.gif" lazyload alt="余额到账"></p>
+<p>选择openai服务</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401103329973.png" srcset="/img/loading.gif" lazyload alt="openai服务"></p>
+<p>看一下价格，选一个价格低的。</p>
+<p>一个国家有两个价格，前一个是批发价，后一个是零售价，选后面数字低的</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401103354931.png" srcset="/img/loading.gif" lazyload alt="服务计费"></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401103524271.png" srcset="/img/loading.gif" lazyload alt="chatgpt注册界面"></p>
+<p>目前直接使用邮箱的方式基本已经走不通了</p>
+<p>提示</p>
+<ul>
+<li>Signup is currently unavailable, please try again later.</li>
+<li>Signup is temporarily unavailable, please check back in an hour.</li>
+</ul>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401104628175.png" srcset="/img/loading.gif" lazyload alt="邮箱注册失败"></p>
+<h2 id="注册Google账号"><a href="#注册Google账号" class="headerlink" title="注册Google账号"></a>注册Google账号</h2><p>目前依然有效的方式，Google账号</p>
+<p>打开一个新的无痕窗口<img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401105204540.png" srcset="/img/loading.gif" lazyload alt="打开无痕窗口"></p>
+<p>访问：<a target="_blank" rel="noopener" href="https://accounts.google.com/%EF%BC%8C">https://accounts.google.com/，</a> <a target="_blank" rel="noopener" href="https://accounts.google.com/">点击这里直达</a></p>
+<p>语言选择English</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401105334977.png" srcset="/img/loading.gif" lazyload alt="google account"></p>
+<p>点击创建个人账号</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401105524521.png" srcset="/img/loading.gif" lazyload alt="personal"></p>
+<p>填写自己的账号密码</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401105936622.png" srcset="/img/loading.gif" lazyload alt="填写个人信息"></p>
+<p>确认你的手机号</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110402177.png" srcset="/img/loading.gif" lazyload alt="手机号"></p>
+<p>去刚刚注册的sms接码平台购买一个最便宜的Google服务虚拟号</p>
+<p>我选的是印度尼西亚</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110333516.png" srcset="/img/loading.gif" lazyload alt="界面平台购买虚拟号"></p>
+<p>把接码平台的号码粘帖进去并点击next</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110549793.png" srcset="/img/loading.gif" lazyload alt="复制虚拟号"></p>
+<p>如果出现：This phone number cannot be used for verification.</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110637406.png" srcset="/img/loading.gif" lazyload alt="此号码不行"></p>
+<p>去接码平台在重新选一个，先把当前激活的×掉，这样刚刚的费用就会推给你(如果20分钟之内没收到短信也会退给你，还是蛮良心的)</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110730672.png" srcset="/img/loading.gif" lazyload alt="重新购买，先取消之前的"></p>
+<p>我又重新选了一个巴西的账号，就成功验证了</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110856271.png" srcset="/img/loading.gif" lazyload alt="新的手机号"></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110922420.png" srcset="/img/loading.gif" lazyload alt="刷新得到验证码"></p>
+<p>验证码通过之后，填写自己的相关信息，生日和性别</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401110957528.png" srcset="/img/loading.gif" lazyload alt="信息填写"></p>
+<p>skip</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111058674.png" srcset="/img/loading.gif" lazyload alt="skip"></p>
+<p>aggre政策</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111141359.png" srcset="/img/loading.gif" lazyload alt="aggre政策"></p>
+<p>google账号申请完成！</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111220408.png" srcset="/img/loading.gif" lazyload alt="Google账号"></p>
+<h2 id="注册ChatGPT"><a href="#注册ChatGPT" class="headerlink" title="注册ChatGPT"></a>注册ChatGPT</h2><p>重新登录<a target="_blank" rel="noopener" href="https://chat.openai.com/">https://chat.openai.com/</a></p>
+<p>选择continue as google</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111313316.png" srcset="/img/loading.gif" lazyload alt="continue as google"></p>
+<p>选择你刚刚注册的google邮箱</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111354046.png" srcset="/img/loading.gif" lazyload alt="选择邮箱"></p>
+<p>成功进入手机号验证环节！</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111431485.png" srcset="/img/loading.gif" lazyload alt="验证通过"></p>
+<p>再次到接码平台，选择openai服务，购买一个虚拟账号</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111517641.png" srcset="/img/loading.gif" lazyload alt="解码平台购买openai虚拟号"></p>
+<p>填写手机号并点击NO，然后点击send code via sms</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111716571.png" srcset="/img/loading.gif" lazyload alt="via sms"></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111808206.png" srcset="/img/loading.gif" lazyload alt="验证码"></p>
+<p>填写验证码</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111747815.png" srcset="/img/loading.gif" lazyload alt="填写验证码"></p>
+<p>chatgpt申请成功！</p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111904599.png" srcset="/img/loading.gif" lazyload alt="success"></p>
+<p><img src="https://coder-xieshijie-img-1253784930.cos.ap-beijing.myqcloud.com/image-20230401111928871.png" srcset="/img/loading.gif" lazyload alt="第一个问题"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI/" class="category-chain-item">AI</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI/ChatGPT/" class="category-chain-item">ChatGPT</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/">#AI</a>
+      
+        <a href="/tags/ChatGPT/">#ChatGPT</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>注册ChatGPT保姆级攻略(长期有效~)</div>
+      <div>http://coder-xieshijie.cn/2023/04/12/AIGC/注册chatgpt保姆级攻略-长期有效/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>谢世杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/04/13/AIGC/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BB%B0%E6%9C%9B%E6%98%9F%E7%A9%BA%E5%92%8C%E8%84%9A%E8%B8%8F%E5%AE%9E%E5%9C%B0/" title="AI大模型的仰望星空和脚踏实地">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">AI大模型的仰望星空和脚踏实地</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/03/16/%E5%88%B7%E9%A2%98/%E5%89%91%E6%8C%87offer-easy/" title="剑指offer-easy">
+                        <span class="hidden-mobile">剑指offer-easy</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"KBB6DKcsyGUFtEfwrwyeUgVC-gzGzoHsz","appKey":"TE706jTVEWqH6M91ndUC8sPa","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
