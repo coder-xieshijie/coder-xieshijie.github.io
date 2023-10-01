@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>vim常用命令</title>
+      <link href="/2023/10/01/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+      <url>/2023/10/01/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h2 id="显示态"><a href="#显示态" class="headerlink" title="显示态"></a>显示态</h2><ol><li><code>shift g</code> 跳转到最后一行</li><li><code>gg</code> 跳转到第一行</li><li><code>0</code> 跳转到行起点</li><li><code>$</code> 跳转到行末尾</li></ol><h2 id="编辑态"><a href="#编辑态" class="headerlink" title="编辑态"></a>编辑态</h2><ol><li><code>/</code> 关键字查找</li><li><code>n</code> 下一个查找结果</li><li><code>N</code> 上一个查找结果</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 其他技能 </category>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 其他技能 </tag>
+            
+            <tag> vim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>jdk 21 virtual thread doc reading</title>
       <link href="/2023/09/19/%E9%9A%8F%E7%AC%94/doc%20reading/jdk-21-virtual-thread-doc-reading/"/>
       <url>/2023/09/19/%E9%9A%8F%E7%AC%94/doc%20reading/jdk-21-virtual-thread-doc-reading/</url>
@@ -1277,9 +1306,9 @@
             
             <tag> LeetCode </tag>
             
-            <tag> 剑指offer </tag>
-            
             <tag> easy </tag>
+            
+            <tag> 剑指offer </tag>
             
         </tags>
       
@@ -1368,9 +1397,9 @@
             
             <tag> LeetCode </tag>
             
-            <tag> easy </tag>
-            
             <tag> 树 </tag>
+            
+            <tag> easy </tag>
             
         </tags>
       

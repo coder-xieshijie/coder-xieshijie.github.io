@@ -6,7 +6,7 @@
   <link href="http://coder-xieshijie.cn/atom.xml" rel="self"/>
   
   <link href="http://coder-xieshijie.cn/"/>
-  <updated>2023-09-19T02:29:26.000Z</updated>
+  <updated>2023-10-01T10:57:40.000Z</updated>
   <id>http://coder-xieshijie.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vim常用命令</title>
+    <link href="http://coder-xieshijie.cn/2023/10/01/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://coder-xieshijie.cn/2023/10/01/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</id>
+    <published>2023-10-01T10:57:40.000Z</published>
+    <updated>2023-10-01T10:57:40.000Z</updated>
+    
+    
+    <summary type="html">vim常用命令</summary>
+    
+    
+    
+    <category term="其他技能" scheme="http://coder-xieshijie.cn/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/"/>
+    
+    <category term="工具" scheme="http://coder-xieshijie.cn/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="其他技能" scheme="http://coder-xieshijie.cn/tags/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/"/>
+    
+    <category term="vim" scheme="http://coder-xieshijie.cn/tags/vim/"/>
+    
+  </entry>
   
   <entry>
     <title>jdk 21 virtual thread doc reading</title>
@@ -434,27 +457,6 @@
     <category term="数据库" scheme="http://coder-xieshijie.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     <category term="redis" scheme="http://coder-xieshijie.cn/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL 中的 distinct 和 group by 哪个效率更高？</title>
-    <link href="http://coder-xieshijie.cn/2023/07/21/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL-%E4%B8%AD%E7%9A%84-distinct-%E5%92%8C-group-by-%E5%93%AA%E4%B8%AA%E6%95%88%E7%8E%87%E6%9B%B4%E9%AB%98%EF%BC%9F/"/>
-    <id>http://coder-xieshijie.cn/2023/07/21/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/MySQL-%E4%B8%AD%E7%9A%84-distinct-%E5%92%8C-group-by-%E5%93%AA%E4%B8%AA%E6%95%88%E7%8E%87%E6%9B%B4%E9%AB%98%EF%BC%9F/</id>
-    <published>2023-07-21T15:16:42.000Z</published>
-    <updated>2023-07-21T15:16:42.000Z</updated>
-    
-    
-    <summary type="html">MySQL 中的 distinct 和 group by 哪个效率更高？</summary>
-    
-    
-    
-    <category term="数据库" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    <category term="MySQL" scheme="http://coder-xieshijie.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/"/>
-    
-    
-    <category term="数据库" scheme="http://coder-xieshijie.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
