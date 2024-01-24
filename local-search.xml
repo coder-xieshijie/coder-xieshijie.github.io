@@ -8,7 +8,7 @@
     <link href="/2023/10/01/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     <url>/2023/10/01/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     
-    <content type="html"><![CDATA[<h2 id="显示态"><a href="#显示态" class="headerlink" title="显示态"></a>显示态</h2><ol><li><code>shift g</code> 跳转到最后一行</li><li><code>gg</code> 跳转到第一行</li><li><code>0</code> 跳转到行起点</li><li><code>$</code> 跳转到行末尾</li></ol><h2 id="编辑态"><a href="#编辑态" class="headerlink" title="编辑态"></a>编辑态</h2><ol><li><code>/</code> 关键字查找</li><li><code>n</code> 下一个查找结果</li><li><code>N</code> 上一个查找结果</li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="显示态"><a href="#显示态" class="headerlink" title="显示态"></a>显示态</h2><ol><li><code>shift g</code> 跳转到最后一行</li><li><code>gg</code> 跳转到第一行</li><li><code>0</code> 跳转到行起点</li><li><code>$</code> 跳转到行末尾</li></ol><h2 id="编辑态"><a href="#编辑态" class="headerlink" title="编辑态"></a>编辑态</h2><ol><li><code>/</code> 关键字查找</li><li><code>n</code> 下一个查找结果</li><li><code>N</code> 上一个查找结果</li><li><code>:行号</code> 跳转到指定行号</li><li><code>:set nu</code> 显示行号</li></ol>]]></content>
     
     
     <categories>
@@ -445,9 +445,9 @@
     
     <tags>
       
-      <tag>工作领域</tag>
-      
       <tag>git</tag>
+      
+      <tag>工作领域</tag>
       
     </tags>
     
@@ -1064,7 +1064,7 @@
     <link href="/2023/06/07/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/MAC%E5%BA%94%E7%94%A8%E3%80%81%E5%B7%A5%E5%85%B7%E7%BD%91%E7%AB%99%E3%80%81%E6%8F%92%E4%BB%B6%E5%A4%A7%E5%90%88%E9%9B%86/"/>
     <url>/2023/06/07/%E5%85%B6%E4%BB%96%E6%8A%80%E8%83%BD/%E5%B7%A5%E5%85%B7/MAC%E5%BA%94%E7%94%A8%E3%80%81%E5%B7%A5%E5%85%B7%E7%BD%91%E7%AB%99%E3%80%81%E6%8F%92%E4%BB%B6%E5%A4%A7%E5%90%88%E9%9B%86/</url>
     
-    <content type="html"><![CDATA[<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ol><li><p>Homebrew</p></li><li><p>hapigo快速启动器 <a href="https://www.hapigo.com/">https://www.hapigo.com/</a></p></li><li><p>Scroll Reverser 鼠标和触摸板方向翻转</p></li><li><p>clashX 科学上网</p></li><li><p>iclip 粘贴板(hapigo也有，建议用hapigo)</p></li><li><p>sublime text 文本编辑器</p></li><li><p>typora markdown文本记录</p></li><li><p>raycast 工具站(功能更全的启动器，但是需要安装很多插件并且配置快捷键，做不到开箱即用)</p><ol><li><a href="https://www.raycast.com/">https://www.raycast.com/</a></li></ol></li><li><p>tile window(桌面平铺)</p><ol><li>yabai <a href="https://github.com/koekeishiya/yabai/wiki">https://github.com/koekeishiya/yabai/wiki</a> </li><li>Amethyst <a href="https://github.com/ianyh/Amethyst">https://github.com/ianyh/Amethyst</a></li></ol></li><li><p>Charles 激活 <a href="https://www.zzzmode.com/mytools/charles/">https://www.zzzmode.com/mytools/charles/</a></p></li><li><p>depay&#x2F;dupay首页 <a href="https://dupay.one/zh-cn/index.html">https://dupay.one/zh-cn/index.html</a></p></li></ol><h2 id="工具网站"><a href="#工具网站" class="headerlink" title="工具网站"></a>工具网站</h2><ol><li><p><a href="https://chat.openai.com/">https://chat.openai.com/</a> chatpgt</p></li><li><p><a href="https://tool.lu/ip/">https://tool.lu/ip/</a> ip地址</p></li><li><p><a href="https://www.json.cn/">https://www.json.cn/</a> json序列化</p></li><li><p><a href="https://www.diffchecker.com/">https://www.diffchecker.com/</a> 文本diff</p></li><li><p><a href="https://clashios.com/">https://clashios.com/</a> clash 机场相关网站</p></li><li><p>电影&#x2F;电视剧 ： </p></li><li><ol><li><p>ACG盒子 <a href="https://www.miaoaaa.com/yingyinzhuanqu">https://www.miaoaaa.com/yingyinzhuanqu</a></p></li><li><ol><li><a href="https://www.acgbox.link/">https://www.acgbox.link/</a></li><li><a href="https://www.bttwo.net/">https://www.bttwo.net/</a></li><li><a href="https://gaze.run/">https://gaze.run/</a></li><li><a href="https://www.subaibaiys.com/">https://www.subaibaiys.com/</a></li></ol></li><li><p>厂长影视资源 <a href="https://czzyhd.com/">https://czzyhd.com</a></p></li></ol></li><li><p>电子书下载：zlibrary <a href="https://zlibrary-asia.se/">https://zlibrary-asia.se/</a></p></li></ol><h2 id="idea插件"><a href="#idea插件" class="headerlink" title="idea插件"></a>idea插件</h2><ol><li><strong>需要把idea的插件同步的远端git上</strong></li><li>arthas idea</li><li>CheckStyle</li><li>Free Mybatis Tool</li><li>GenerateAllSetter</li><li>GitToolBox</li><li>GrepConsolo</li><li>LeetCode Editor</li><li>MavenDependencyHelper</li><li>MavenHelper</li><li>MybatisX</li><li>One Dark Theme</li><li>Restful Box</li><li>RestfulTool</li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ol><li><p>Homebrew</p></li><li><p>hapigo快速启动器 <a href="https://www.hapigo.com/">https://www.hapigo.com/</a></p></li><li><p>Scroll Reverser 鼠标和触摸板方向翻转</p></li><li><p>clashX 科学上网</p></li><li><p>iclip 粘贴板(hapigo也有，建议用hapigo)</p></li><li><p>sublime text 文本编辑器</p></li><li><p>typora markdown文本记录</p></li><li><p>raycast 工具站(功能更全的启动器，但是需要安装很多插件并且配置快捷键，做不到开箱即用)</p><ol><li><a href="https://www.raycast.com/">https://www.raycast.com/</a></li></ol></li><li><p>tile window(桌面平铺)</p><ol><li>yabai <a href="https://github.com/koekeishiya/yabai/wiki">https://github.com/koekeishiya/yabai/wiki</a> </li><li>Amethyst <a href="https://github.com/ianyh/Amethyst">https://github.com/ianyh/Amethyst</a></li></ol></li><li><p>Charles 激活 <a href="https://www.zzzmode.com/mytools/charles/">https://www.zzzmode.com/mytools/charles/</a></p></li><li><p>depay&#x2F;dupay首页 <a href="https://dupay.one/zh-cn/index.html">https://dupay.one/zh-cn/index.html</a></p></li><li><p>开通 ChatGPT plus <a href="https://www.6hu.cc/archives/147780.html#header-7">https://www.6hu.cc/archives/147780.html#header-7</a></p></li><li><p>分开设置鼠标和触摸板，<a href="https://pilotmoon.com/scrollreverser/">https://pilotmoon.com/scrollreverser/</a></p></li></ol><h2 id="工具网站"><a href="#工具网站" class="headerlink" title="工具网站"></a>工具网站</h2><ol><li><p><a href="https://chat.openai.com/">https://chat.openai.com/</a> chatpgt</p></li><li><p><a href="https://tool.lu/ip/">https://tool.lu/ip/</a> ip地址</p></li><li><p><a href="https://www.json.cn/">https://www.json.cn/</a> json序列化</p></li><li><p><a href="https://www.diffchecker.com/">https://www.diffchecker.com/</a> 文本diff</p></li><li><p><a href="https://clashios.com/">https://clashios.com/</a> clash 机场相关网站</p></li><li><p>电影&#x2F;电视剧 ： </p></li><li><ol><li><p>ACG盒子 <a href="https://www.miaoaaa.com/yingyinzhuanqu">https://www.miaoaaa.com/yingyinzhuanqu</a></p></li><li><ol><li><a href="https://www.acgbox.link/">https://www.acgbox.link/</a></li><li><a href="https://www.bttwo.net/">https://www.bttwo.net/</a></li><li><a href="https://gaze.run/">https://gaze.run/</a></li><li><a href="https://www.subaibaiys.com/">https://www.subaibaiys.com/</a></li></ol></li><li><p>厂长影视资源 <a href="https://czzyhd.com/">https://czzyhd.com</a></p></li></ol></li><li><p>电子书下载：zlibrary <a href="https://zlibrary-asia.se/">https://zlibrary-asia.se/</a></p></li></ol><h2 id="idea插件"><a href="#idea插件" class="headerlink" title="idea插件"></a>idea插件</h2><ol><li><strong>需要把idea的插件同步的远端git上</strong></li><li>arthas idea</li><li>CheckStyle</li><li>Free Mybatis Tool</li><li>GenerateAllSetter</li><li>GitToolBox</li><li>GrepConsolo</li><li>LeetCode Editor</li><li>MavenDependencyHelper</li><li>MavenHelper</li><li>MybatisX</li><li>One Dark Theme</li><li>Restful Box</li><li>RestfulTool</li></ol>]]></content>
     
     
     <categories>
@@ -1306,9 +1306,9 @@
       
       <tag>LeetCode</tag>
       
-      <tag>easy</tag>
-      
       <tag>剑指offer</tag>
+      
+      <tag>easy</tag>
       
     </tags>
     
@@ -1397,9 +1397,9 @@
       
       <tag>LeetCode</tag>
       
-      <tag>树</tag>
-      
       <tag>easy</tag>
+      
+      <tag>树</tag>
       
     </tags>
     
@@ -1428,9 +1428,9 @@
       
       <tag>LeetCode</tag>
       
-      <tag>链表</tag>
-      
       <tag>medium</tag>
+      
+      <tag>链表</tag>
       
     </tags>
     
